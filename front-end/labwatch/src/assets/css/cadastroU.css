@@ -1,0 +1,159 @@
+.main_login{
+    background-color: #F2F2F2;
+    width: 100%;
+}
+
+.ContainerMain{
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box_cad{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 15vw;
+}
+
+.box_tituloCad{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+    margin-bottom: 5vh;
+    margin-top: 9vh;
+}
+
+.titulo-cad{
+    font-size: 46px;
+    font-weight: bold;
+    color: #2F2E41;
+}
+
+.subtitulo-cad{
+    font-size: 16px;
+    font-weight: lighter;
+    color: #827e88;
+}
+
+.form-cad{
+    /* margin-top: 10vh; */
+    display: flex;
+    flex-direction: column;
+    width: 24vw;
+    margin-bottom: 15vh;
+}
+
+.input-cad{
+    padding-left: 2vw;
+    width: 25vw;
+    height: 8vh;
+    background-color: #d4c2c2;
+    margin-top: 5vh;
+    background: rgba(197, 190, 190, 0.36);
+    box-shadow: 4px 3px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+.botao-cad{
+    display: flex;
+    justify-content: center;
+    width: 25vw;
+    height: 8vh;
+    margin-top: 10vh;
+}
+
+/* .btn-login{
+    background-color: #1B65A6;
+    color: #ffff;
+    width: 25vw;
+    height: 8vh;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+} */
+
+/* .btn-login:hover{
+    background:linear-gradient(to bottom, #1B65A6 5%, #4592d4 85%);
+} */
+
+/* .olho_senha{
+    position: absolute;
+    color: #A6A0AE;
+    cursor: pointer;
+    left: 41vw;
+    top: 52vh;
+} */
+
+
+.btn-cad {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: #1B65A6;
+    color: #ffff;
+    width: 25vw;
+    height: 8vh;
+	transition: all 0.5s;
+	position: relative;
+}
+.btn-cad::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: rgba(255,255,255,0.1);
+	transition: all 0.3s;
+}
+.btn-cad:hover::before {
+	opacity: 0 ;
+	transform: scale(0.5,0.5);
+}
+.btn-cad::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+	border: 1px solid rgba(255,255,255,0.5);
+	transform: scale(1.2,1.2);
+}
+.btn-cad:hover::after {
+	opacity: 1;
+	transform: scale(1,1);
+}
+
+.box_azulCad{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #1B65A6;
+    width: 45vw;
+}
+
+.img_logo{
+    margin-bottom: 2vh;
+    width: 22vw;
+}
+
+.box_desenhoCad{
+    width: 35vw;
+}
+
+.img_desenhoCad{
+    width: 37vw;
+}

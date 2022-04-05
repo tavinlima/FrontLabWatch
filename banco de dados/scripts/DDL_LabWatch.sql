@@ -1,0 +1,85 @@
+CREATE DATABASE LabWatch;
+GO
+
+USE Labwatch
+
+CREATE TABLE TipoUsuario(
+idTipoUsuario INT PRIMARY KEY IDENTITY,
+tituloTipoUsuario VARCHAR(20) NOT NULL
+);
+GO
+
+CREATE TABLE StatusUsuario(
+idStatus INT PRIMARY KEY IDENTITY,
+statusUsuario VARCHAR (20) NOT NULL
+);
+GO
+
+CREATE TABLE Usuario(
+idUsuario INT PRIMARY KEY IDENTITY,
+idTipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario(idTipoUsuario),
+idStatus INT FOREIGN KEY REFERENCES StatusUsuario(idStatus),
+nomeUsuario VARCHAR (50) NOT NULL,
+sobreNome VARCHAR (70) NOT NULL,
+cargaHoraria DECIMAL NOT NULL,
+horasTrabalhadas DECIMAL NOT NULL,
+email VARCHAR(256) NOT NULL,
+senha VARCHAR(256) NOT NULL,
+fotoUsuario VARCHAR(MAX) NOT NULL
+);
+GO
+
+CREATE TABLE Equipe(
+idEquipe INT PRIMARY KEY IDENTITY,
+idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario),
+nomeEquipe VARCHAR(100) NOT NULL,
+horasTrabalhadas DECIMAL NOT NULL
+);
+GO
+
+CREATE TABLE StatusProjeto(
+idStatusProjeto INT PRIMARY KEY IDENTITY,
+statusProjeto VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Projeto(
+idProjeto INT PRIMARY KEY IDENTITY,
+idEquipe INT FOREIGN KEY REFERENCES Equipe(idEquipe),
+idStatusProjeto INT FOREIGN KEY REFERENCES StatusProjeto(idStatusProjeto),
+tituloProjeto VARCHAR(100) NOT NULL,
+dataInicio SMALLDATETIME NOT NULL,
+dataConclusao SMALLDATETIME
+);
+GO
+
+CREATE TABLE Tag(
+idTag INT PRIMARY KEY IDENTITY,
+tituloTag VARCHAR(50) NOT NULL
+);
+GO
+
+CREATE TABLE StatusTask(
+idStatusTask INT PRIMARY KEY IDENTITY,
+statusTask VARCHAR(50) NOT NULL
+);
+GO
+
+CREATE TABLE Task(
+idTask INT PRIMARY KEY IDENTITY,
+idProjeto INT FOREIGN KEY REFERENCES Projeto(idProjeto),
+idTag INT FOREIGN KEY REFERENCES Tag(idTag),
+idStatusTask INT FOREIGN KEY REFERENCES StatusTask(idStatusTask),
+idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario),
+tituloTask VARCHAR(100) NOT NULL,
+descricao VARCHAR(300) NOT NULL,
+tempoTrabalho DECIMAL NOT NULL
+);
+
+CREATE TABLE Comentario(
+idComentario INT PRIMARY KEY IDENTITY,
+idTask INT FOREIGN KEY REFERENCES Task(idTask),
+idUsuario INT FOREIGN KEY REFERENCES Usuario(idUsuario),
+comentario VARCHAR(300) NOT NULL
+);
+
+
