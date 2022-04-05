@@ -12,8 +12,8 @@ import "../../assets/css/listaProjetos.css"
 import "../../assets/css/global.css"
 import "../../assets/css/modalExcluir.css"
 
-import api from '../../services/api';
 import { parseJwt } from '../../services/auth';
+import axios from 'axios';
 
 
 export default function ListagemProjetos() {
@@ -87,7 +87,7 @@ export default function ListagemProjetos() {
 
     // Listar todas os projetos na página
     function listarProjetos() {
-        api("/Projetos").then(resposta => {
+        axios("https://localhost:5001/api/Projetos").then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 setListaProjetos(resposta.data)
@@ -139,7 +139,7 @@ export default function ListagemProjetos() {
         var modal = document.getElementById("myModal");
         var alerta = document.getElementById("alerta");
         console.log(idProjeto)
-        api.delete("/Projetos/" + idProjeto).then(resposta => {
+        axios.delete("https://localhost:5001/api/Projetos/" + idProjeto).then(resposta => {
             if (resposta.status === 204) {
                 console.log(resposta + " Projeto deletado com sucesso!")
                 modal.style.display = "none";
@@ -169,7 +169,7 @@ export default function ListagemProjetos() {
         console.log(projeto)
         console.log(tituloProjeto)
 
-        api.put("/Projetos/" + idProjeto, {
+        axios.put("https://localhost:5001/api/Projetos/" + idProjeto, {
             tituloProjeto,
             nomeCliente,
             descricaoProjeto,
@@ -312,7 +312,7 @@ export default function ListagemProjetos() {
                                                                         value={nomeCliente}
                                                                         name='nomeCliente'
                                                                         autoComplete='off'
-                                                                        onChange={(e) => setNomeCliente(e.target.value)}/>
+                                                                        onChange={(e) => setNomeCliente(e.target.value)} />
                                                                 </label>
 
                                                                 <label className='boxCadastro__label'>

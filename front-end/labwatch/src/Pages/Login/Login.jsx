@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../services/api";
 import { Link } from 'react-router-dom';
 import { parseJwt, usuarioAutenticado } from "../../services/auth";
 import '../../assets/css/login.css';
@@ -9,6 +8,7 @@ import '../../assets/css/global.css';
 import "https://code.iconify.design/2/2.1.2/iconify.min.js"
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
+import axios from "axios";
 
 
 
@@ -27,8 +27,7 @@ export default function Login() {
 
         setErroMensagem('')
         setIsLoading(true)
-
-        api.post('/Login', {
+        axios.post("https://localhost:5001/api/Login", {
             email: email,
             senha: senha
         })
@@ -102,7 +101,7 @@ export default function Login() {
                                         </button>
                                     ) : (
                                         <button
-                                        className="btn_carregando"
+                                            className="btn_carregando"
                                             type="submit"
                                             disabled>Carregando...</button>
                                     )

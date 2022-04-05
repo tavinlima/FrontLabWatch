@@ -8,9 +8,8 @@ import '../../assets/css/cadastroProjetos.css';
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar';
 
-import api from '../../services/api';
-
 import ilustraTrabalhadores from '../../assets/img/ilustraTrabalhadores.png'
+import axios from 'axios';
 
 
 export default function CadastroProjetos() {
@@ -69,7 +68,7 @@ export default function CadastroProjetos() {
         formData.append('dataConclusao', dataFinal);
         formData.append('idStatusProjeto', 1);
 
-        api.post("/CadastrarProjetos", formData, {
+        axios.post("https://localhost:5001/api/CadastrarProjetos", formData, {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .then((resposta) => {
