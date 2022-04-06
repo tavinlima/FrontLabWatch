@@ -367,7 +367,7 @@ export default function ListagemProjetos() {
                                                                     alt="Imagem do cliente" />
 
                                                                 <button
-                                                                    className='boxCadastro__btnCriar btn'
+                                                                    className='boxCadastro__btnCriar btn btn_salvar'
                                                                     type='submit'
                                                                 >
                                                                     Salvar alterações</button>

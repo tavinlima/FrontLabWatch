@@ -8,6 +8,7 @@ import '../../assets/css/global.css';
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
 import axios from "axios";
+import "https://code.iconify.design/2/2.1.0/iconify.min.js";
 
 
 
