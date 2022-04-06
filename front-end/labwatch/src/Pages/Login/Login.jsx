@@ -3,14 +3,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { parseJwt, usuarioAutenticado } from "../../services/auth";
+import "https://code.iconify.design/2/2.1.0/iconify.min.js";
 import '../../assets/css/login.css';
 import '../../assets/css/global.css';
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
 import axios from "axios";
-
-
-
 
 export default function Login() {
     const [email, setEmail] = useState('');

@@ -10,6 +10,8 @@ import "../../assets/css/listaProjetos.css"
 import "../../assets/css/global.css"
 import "../../assets/css/modalExcluir.css"
 
+import "https://code.iconify.design/2/2.1.0/iconify.min.js";
+
 import { parseJwt } from '../../services/auth';
 import axios from 'axios';
 

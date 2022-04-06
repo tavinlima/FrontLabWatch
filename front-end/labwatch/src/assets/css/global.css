@@ -11,6 +11,17 @@ body {
     background-color: #F8F8F8;
 }
 
+/* body::-webkit-scrollbar {
+    width: 15px;
+}
+body::-webkit-scrollbar-track {
+    background: blueviolet;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: salmon;
+    border: 2px solid #fafa;
+} */
+
 .container {
     max-width: 1400px;
     width: 65%;
