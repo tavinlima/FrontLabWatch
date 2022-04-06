@@ -42,6 +42,7 @@
     min-height: 100px;
     box-shadow: 15px 15px 29px 4px rgba(0, 0, 0, 0.25), inset 4px 3px 12px rgba(0, 0, 0, 0.25);
     margin-top: 10px;
+    border-radius: 14px;
 }
 
 .div__inputDate {
@@ -123,6 +124,10 @@
     background-color: #1B65A6;
     transition: all 0.5s;
     color: #ffff;
+}
+
+.btn_salvar{
+    margin-top: 5vh;
 }
 
 .box__ilustracao {
