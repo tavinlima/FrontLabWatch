@@ -402,7 +402,7 @@ export default function ListagemProjetos() {
                                                                 className="btn__excluirProjeto btn"
                                                                 onClick={() => excluirProjeto()}>Sim</button>
                                                             <button
-                                                                className="btn__backProjeto btn"
+                                                                className="btn__Excluir"
                                                                 onClick={() => fecharAlerta()}
                                                             >Não</button>
                                                         </div>
@@ -573,7 +573,7 @@ export default function ListagemProjetos() {
                                                             className="btn__excluirProjeto btn"
                                                             onClick={() => excluirProjeto()}>Sim</button>
                                                         <button
-                                                            className="btn__backProjeto btn"
+                                                            className="btn__Excluir"
                                                             onClick={() => fecharAlerta()}
                                                         >Não</button>
                                                     </div>
