@@ -224,19 +224,19 @@ export default function ListagemProjetos() {
 
                     <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label>
                     {
-                        (() => {
-                            switch (parseJwt().role) {
-                                case "1":
-                                    return <span>Gestor</span>
-                                case "2":
-                                    return <span>Consultor</span>
-                                case "3":
-                                    return <span>Owner</span>
+                        // (() => {
+                        //     switch (parseJwt().role) {
+                        //         case "1":
+                        //             return <span>Gestor</span>
+                        //         case "2":
+                        //             return <span>Consultor</span>
+                        //         case "3":
+                        //             return <span>Owner</span>
 
-                                default:
-                                    return <span>Deu certo também</span>
-                            }
-                        })()
+                        //         default:
+                        //             return <span>Deu certo também</span>
+                        //     }
+                        // })()
 
                     }
                     <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
