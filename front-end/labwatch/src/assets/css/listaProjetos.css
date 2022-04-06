@@ -90,6 +90,11 @@
     display: flex;
     flex-direction: column;
     width: 45%;
+    color: var(--cor-secundaria);
+}
+
+.box__infProjeto h2 {
+    margin-bottom: 10px
 }
 
 .divisoria {

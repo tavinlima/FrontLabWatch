@@ -269,7 +269,7 @@ export default function ListagemProjetos() {
                                                                 <span>{projeto.nomeCliente}</span>
                                                             </div>
 
-                                                            <span>Data de entrega do projeto:</span>
+                                                            <span>Data de entrega:</span>
                                                             <span>{Intl.DateTimeFormat("pt-BR",
                                                                 {
                                                                     year: 'numeric', month: 'numeric', day: 'numeric',
@@ -437,14 +437,15 @@ export default function ListagemProjetos() {
                                                             <span>Cliente: </span>
                                                             <span>{projeto.nomeCliente}</span>
                                                         </div>
+                                                        <div>
 
-                                                        <span>Data de entrega do projeto:</span>
-                                                        <span>{Intl.DateTimeFormat("pt-BR",
-                                                            {
-                                                                year: 'numeric', month: 'numeric', day: 'numeric',
-                                                                hour: 'numeric', minute: 'numeric'
-                                                            }
-                                                        ).format(new Date(projeto.dataConclusao))}</span>
+                                                            <span>Data de entrega: </span>
+                                                            <span>{Intl.DateTimeFormat("pt-BR",
+                                                                {
+                                                                    year: 'numeric', month: 'numeric', day: 'numeric'
+                                                                }
+                                                            ).format(new Date(projeto.dataConclusao))}</span>
+                                                        </div>
                                                     </div>
                                                     <div className="div__membersGear">
                                                         <div className="div__members">
