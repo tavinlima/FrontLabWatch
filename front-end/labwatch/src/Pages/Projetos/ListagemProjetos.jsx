@@ -49,6 +49,7 @@ export default function ListagemProjetos() {
 
     function fecharAlerta() {
         var alerta = document.getElementById("alerta");
+        alerta.style.display = "none"
     }
 
     function fecharModal() {
@@ -535,10 +536,10 @@ export default function ListagemProjetos() {
                                                                 />
                                                             </label>
 
-                                                            <img
+                                                            {/* <img
                                                                 className="box__imgEmpresa"
                                                                 src={"http://localhost:5000/StaticFiles/Images/" + projeto.fotoCliente}
-                                                                alt="Imagem do cliente" />
+                                                                alt="Imagem do cliente" /> */}
 
                                                             <button
                                                                 className='boxCadastro__btnCriar btn'
