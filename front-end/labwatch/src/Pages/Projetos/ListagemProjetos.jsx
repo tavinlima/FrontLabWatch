@@ -88,7 +88,7 @@ export default function ListagemProjetos() {
 
     // Listar todas os projetos na página
     function listarProjetos() {
-        axios("https://localhost:5001/api/Projetos").then(resposta => {
+        axios("http://labwatch-backend.azurewebsites.net/api/Projetos").then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 setListaProjetos(resposta.data)
@@ -140,7 +140,7 @@ export default function ListagemProjetos() {
         var modal = document.getElementById("myModal");
         var alerta = document.getElementById("alerta");
         console.log(idProjeto)
-        axios.delete("https://localhost:5001/api/Projetos/" + idProjeto).then(resposta => {
+        axios.delete("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto).then(resposta => {
             if (resposta.status === 204) {
                 console.log(resposta + " Projeto deletado com sucesso!")
                 modal.style.display = "none";
@@ -170,7 +170,7 @@ export default function ListagemProjetos() {
         console.log(projeto)
         console.log(tituloProjeto)
 
-        axios.put("https://localhost:5001/api/Projetos/" + idProjeto, {
+        axios.put("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto, {
             tituloProjeto,
             nomeCliente,
             descricaoProjeto,
@@ -259,7 +259,7 @@ export default function ListagemProjetos() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://localhost:5000/StaticFiles/Images/" + projeto.fotoCliente}
+                                                                src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + projeto.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -427,7 +427,7 @@ export default function ListagemProjetos() {
                                                         } */}
                                                         <img
                                                             className="box__imgEmpresa"
-                                                            src={"http://localhost:5000/StaticFiles/Images/" + projeto.fotoCliente}
+                                                            src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
                                                             alt="Imagem do cliente" />
 
                                                     </div>
