@@ -60,7 +60,18 @@ export default function ListagemProjetos() {
     // Modal de configurações
     function abrirModal(projeto) {
         var modal = document.getElementById("myModal");
-        setIdProjeto(projeto)
+
+        const target = document.getElementById('arquivo')
+        const file = projeto.fotoCliente
+
+        console.log(projeto)
+        setIdProjeto(projeto.idProjeto)
+        setTituloProjeto(projeto.tituloProjeto)
+        setNomeCliente(projeto.nomeCliente)
+        setDescricaoProjeto(projeto.descricaoProjeto)
+        setDataInicio(projeto.dataInicio)
+        setDataConclusao(projeto.dataConclusao)
+        setFotoCliente(file)
 
         modal.style.display = "block";
 
@@ -164,11 +175,13 @@ export default function ListagemProjetos() {
             descricaoProjeto: descricaoProjeto,
             dataInicio: dataInicio,
             dataConclusao: dataConclusao,
+            fotoCliente: fotoCliente,
             idStatusProjeto: 1
         }
 
         console.log(projeto)
         console.log(tituloProjeto)
+        console.log(fotoCliente)
 
         axios.put("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto, {
             tituloProjeto,
@@ -176,6 +189,7 @@ export default function ListagemProjetos() {
             descricaoProjeto,
             dataInicio,
             dataConclusao,
+            fotoCliente
         }, {
             headers: { "Content-Type": "application/json" }
         }).then(resposta => {
@@ -284,7 +298,7 @@ export default function ListagemProjetos() {
                                                             <button
                                                                 aria-label="Configurações"
                                                                 className="btn__settings"
-                                                                onClick={() => abrirModal(projeto.idProjeto)}>
+                                                                onClick={() => abrirModal(projeto)}>
                                                                 <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span>
                                                             </button>
                                                         </div>
@@ -360,7 +374,7 @@ export default function ListagemProjetos() {
                                                                         id='arquivo'
                                                                         type='file'
                                                                         accept="image/png, image/jpeg"
-                                                                        onChange={(e) => setFotoCliente(e)}
+                                                                        onChange={(e) => setFotoCliente(e.target.value)}
                                                                     />
                                                                 </label>
 
@@ -455,7 +469,7 @@ export default function ListagemProjetos() {
                                                         <button
                                                             aria-label="Configurações"
                                                             className="btn__settings"
-                                                            onClick={() => abrirModal(projeto.idProjeto)}>
+                                                            onClick={() => abrirModal(projeto)}>
                                                             <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span>
                                                         </button>
                                                     </div>
@@ -485,7 +499,7 @@ export default function ListagemProjetos() {
                                                                     name='nomeCliente'
                                                                     autoComplete='off'
                                                                     onChange={(e) => setNomeCliente(e.target.value)}
-                                                                    required />
+                                                                     />
                                                             </label>
 
                                                             <label className='boxCadastro__label'>
@@ -532,7 +546,7 @@ export default function ListagemProjetos() {
                                                                     id='arquivo'
                                                                     type='file'
                                                                     accept="image/png, image/jpeg"
-                                                                    onChange={(e) => setFotoCliente(e)}
+                                                                    onChange={(e) => setFotoCliente(e.target.value)}
                                                                 />
                                                             </label>
 

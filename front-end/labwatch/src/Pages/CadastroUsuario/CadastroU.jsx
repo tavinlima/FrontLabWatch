@@ -24,7 +24,7 @@ export default function Usuario(){
         console.log(email)
         console.log(senha)
 
-        axios.post('http://localhost:5000/api/Usuarios',{
+        axios.post('http://labwatch-backend.azurewebsites.net/api/Usuarios',{
             idTipoUsuario: idTipoUsuario,
             idStatus: idStatus,
             nomeUsuario: nomeUsuario,
