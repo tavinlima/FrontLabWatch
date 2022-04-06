@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { parseJwt, usuarioAutenticado } from "../../services/auth";
 import '../../assets/css/login.css';
 import '../../assets/css/global.css';
-import "https://code.iconify.design/2/2.1.2/iconify.min.js"
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
 import axios from "axios";

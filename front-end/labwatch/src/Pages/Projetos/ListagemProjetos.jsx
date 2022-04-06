@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
 
-import "https://code.iconify.design/2/2.1.0/iconify.min.js";
-
 import "../../assets/css/listaProjetos.css"
 import "../../assets/css/global.css"
 import "../../assets/css/modalExcluir.css"

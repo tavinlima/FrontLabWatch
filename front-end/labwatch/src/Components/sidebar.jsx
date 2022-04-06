@@ -9,7 +9,7 @@ import {faChartLine} from "@fortawesome/free-solid-svg-icons";
 import {faTarp} from "@fortawesome/free-solid-svg-icons";
 import {faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import { parseJwt, usuarioAutenticado } from '../services/auth';
-<script src="https://kit.fontawesome.com/e222487669.js" crossorigin="anonymous"></script>
+{/* <script src="https://kit.fontawesome.com/e222487669.js" crossorigin="anonymous"></script> */}
 
 export default function SideBar(){
     let navigate = useNavigate();
