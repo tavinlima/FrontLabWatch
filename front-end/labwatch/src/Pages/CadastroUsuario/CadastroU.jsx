@@ -1,5 +1,6 @@
 import {  useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import '../../assets/css/cadastroU.css';
 import '../../assets/css/global.css'
 import logo from '../../assets/img/logowatchh.png'
@@ -15,6 +16,8 @@ export default function Usuario(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [fotoUsuario, setFotoUsuario] = useState('');
+
+    let navigate = useNavigate();
 
     function Cadastar(evento){
         evento.preventDefault()
@@ -47,6 +50,8 @@ export default function Usuario(){
                 setEmail('');
                 setSenha('');
                 setFotoUsuario('');
+
+                navigate('/Login')
             }
         })
         .catch(erro=> console.log(erro))
