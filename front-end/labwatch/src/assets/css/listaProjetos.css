@@ -39,7 +39,8 @@
     margin-top: 40px;
     width: 30%;
     height: 50px;
-    padding-left: 10px;
+    padding-left: 4vw;
+    position: relative;
 }
 
 .box__filter {
@@ -189,4 +190,12 @@ svg.iconify.iconify--bi.projeto__icon {
 }
 .btn__criarProjeto::after {
 	opacity: 1;
+}
+
+.lupa{
+    position: absolute;
+    color: #A6A0AE;
+    font-size: 18px;
+    left: 70vw;
+    top: 22vh;
 }

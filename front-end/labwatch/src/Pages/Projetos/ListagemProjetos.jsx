@@ -221,7 +221,7 @@ export default function ListagemProjetos() {
                             list='projetos'
                             onChange={(e) => searchItems(e.target.value)}
                             placeholder="Search anything..." />
-
+                        <span className="iconify lupa" data-icon="fa6-solid:magnifying-glass"></span>
                     </div>
 
 
@@ -499,7 +499,7 @@ export default function ListagemProjetos() {
                                                                     name='nomeCliente'
                                                                     autoComplete='off'
                                                                     onChange={(e) => setNomeCliente(e.target.value)}
-                                                                     />
+                                                                />
                                                             </label>
 
                                                             <label className='boxCadastro__label'>
