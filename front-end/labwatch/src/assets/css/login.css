@@ -179,7 +179,7 @@
     width: 36vw;
 }
 
-@media (max-width: 1920px) {
+@media (min-width: 1920px) {
    .containerL{
        max-width: 1920px;
    }

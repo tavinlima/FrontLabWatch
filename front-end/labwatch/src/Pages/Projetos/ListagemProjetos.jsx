@@ -410,12 +410,12 @@ export default function ListagemProjetos() {
                                                         </div>
                                                     </div>
 
-                                                    <div id="alerta" className="modal">
+                                                    <div id="alerta" className="modal_mini">
 
                                                         <div className="alerta-content">
                                                             <h3>Deseja mesmo excluir esse projeto?</h3>
                                                             <button
-                                                                className="btn__excluirProjeto btn"
+                                                                className="btn__excluirProjetoModal btn"
                                                                 onClick={() => excluirProjeto()}>Sim</button>
                                                             <button
                                                                 className="btn__Excluir"
@@ -571,7 +571,7 @@ export default function ListagemProjetos() {
                                                             >
                                                                 Voltar
                                                             </button>
-
+                                                            <Icon className='iconify trash' icon="bi:trash"/>           
                                                             <button
                                                                 className="btn__excluirProjeto btn"
                                                                 type="button"
@@ -582,12 +582,12 @@ export default function ListagemProjetos() {
                                                     </div>
                                                 </div>
 
-                                                <div id="alerta" className="modal">
+                                                <div id="alerta" className="modal_mini">
 
                                                     <div className="alerta-content">
                                                         <h3>Deseja mesmo excluir esse projeto?</h3>
                                                         <button
-                                                            className="btn__excluirProjeto btn"
+                                                            className="btn__excluirProjetoModal btn"
                                                             onClick={() => excluirProjeto()}>Sim</button>
                                                         <button
                                                             className="btn__Excluir"

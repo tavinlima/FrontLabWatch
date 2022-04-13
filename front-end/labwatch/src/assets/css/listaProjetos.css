@@ -200,7 +200,7 @@ svg.iconify.iconify--bi.projeto__icon {
     top: 22vh;
 }
 
-@media (max-width: 1920px) {
+@media (min-width: 1920px) {
     .containerL{
         max-width: 1920px;
     }
