@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { parseJwt, usuarioAutenticado } from "../../services/auth";
-import "https://code.iconify.design/2/2.1.0/iconify.min.js";
 import '../../assets/css/login.css';
 import '../../assets/css/global.css';
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
 import axios from "axios";
-import "https://code.iconify.design/2/2.1.0/iconify.min.js";
+
+
+import { Icon } from '@iconify/react';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -85,7 +86,8 @@ export default function Login() {
                                 type="password"
                                 id="senha" />
                             <button type='button' className="botao_olho" onClick={show}>
-                                <span id="olho" className="iconify olho" data-icon="el:eye-open"></span>
+                                <Icon className="iconify olho"  icon="akar-icons:eye-open" />
+
                             </button>
                             {/* <div className="box_recovery">
                                 <Link to="/" className="link_recovery ">Recovery Password</Link>

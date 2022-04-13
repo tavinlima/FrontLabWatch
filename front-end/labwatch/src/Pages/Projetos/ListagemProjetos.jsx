@@ -10,7 +10,7 @@ import "../../assets/css/listaProjetos.css"
 import "../../assets/css/global.css"
 import "../../assets/css/modalExcluir.css"
 
-import "https://code.iconify.design/2/2.1.0/iconify.min.js";
+import { Icon } from '@iconify/react';
 
 import { parseJwt } from '../../services/auth';
 import axios from 'axios';
@@ -299,7 +299,8 @@ export default function ListagemProjetos() {
                                                                 aria-label="Configurações"
                                                                 className="btn__settings"
                                                                 onClick={() => abrirModal(projeto)}>
-                                                                <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span>
+                                                                {/* <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span> */}
+                                                                <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
                                                             </button>
                                                         </div>
                                                     </div>
@@ -467,11 +468,12 @@ export default function ListagemProjetos() {
                                                             {/* <span>Members</span> */}
                                                         </div>
                                                         <button
-                                                            aria-label="Configurações"
-                                                            className="btn__settings"
-                                                            onClick={() => abrirModal(projeto)}>
-                                                            <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span>
-                                                        </button>
+                                                                aria-label="Configurações"
+                                                                className="btn__settings"
+                                                                onClick={() => abrirModal(projeto)}>
+                                                                {/* <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span> */}
+                                                                <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
+                                                            </button>
                                                     </div>
                                                 </div>
                                             </section>
