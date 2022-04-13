@@ -221,7 +221,7 @@ export default function ListagemProjetos() {
                             list='projetos'
                             onChange={(e) => searchItems(e.target.value)}
                             placeholder="Search anything..." />
-                        <span className="iconify lupa" data-icon="fa6-solid:magnifying-glass"></span>
+                        <Icon className='iconify lupa' icon="cil:magnifying-glass"/>
                     </div>
 
 

@@ -178,3 +178,10 @@
 .img_desenho{
     width: 36vw;
 }
+
+@media (max-width: 1920px) {
+   .containerL{
+       max-width: 1920px;
+   }
+
+}
