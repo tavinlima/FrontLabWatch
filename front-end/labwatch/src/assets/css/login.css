@@ -184,4 +184,15 @@
        max-width: 1920px;
    }
 
+   .olho{
+    position: absolute;
+    color: #A6A0AE;
+    cursor: pointer;
+    left: 36.9vw;
+    top: 57vh;
+    z-index: 1;
+    font-size: 18px;
+  }
+
+  
 }

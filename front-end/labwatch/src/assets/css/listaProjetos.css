@@ -199,3 +199,18 @@ svg.iconify.iconify--bi.projeto__icon {
     left: 70vw;
     top: 22vh;
 }
+
+@media (max-width: 1920px) {
+    .containerL{
+        max-width: 1920px;
+    }
+
+    .lupa{
+        position: absolute;
+        color: #A6A0AE;
+        font-size: 18px;
+        left: 70vw;
+        top: 19.2vh;
+    }
+
+}
