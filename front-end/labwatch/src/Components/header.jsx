@@ -12,8 +12,10 @@ export default function Header() {
             <div className='header__conteudo container'>
                 <Link to='/ListaProjetos'><img src={logo} alt='Logo da Lab Watch' className='header__logo'></img> </Link>
                 <div className='div__imgNomePerfil'>
+                    <Link to='/PerfilUsuario'>
                     <img src={foto} alt='imagem de perfil padrão' className='header__imgPerfil' />
                     <span>{parseJwt().name}</span>
+                    </Link>
                 </div>
             </div>
         </header>
