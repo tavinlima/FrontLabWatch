@@ -8,7 +8,7 @@ import CadastroU from './Pages/CadastroUsuario/CadastroU';
 import reportWebVitals from './reportWebVitals';
 import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 
-import Translate from './Components/translate';
+import  './i18n';
 
 
 const routing = (
@@ -20,7 +20,6 @@ const routing = (
         <Route exact path = '/' element = {<Login/>}/>
         <Route exact path = '/Login' element = {<Login/>}/>
         <Route exact path = '/CadastroUsuario' element = {<CadastroU/>}/>
-        <Route exact path = '/teste' element = {<Translate/>}/>
       </Routes>
     </div>
   </Router>
