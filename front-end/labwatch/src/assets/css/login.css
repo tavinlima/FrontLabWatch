@@ -18,7 +18,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-left: 15vw;
+    margin-right: 6vw;
 }
 
 .box_titulo{
@@ -84,7 +84,7 @@
     position: absolute;
     color: #A6A0AE;
     cursor: pointer;
-    left: 36.9vw;
+    left: 39.9vw;
     top: 58.5vh;
     z-index: 1;
     font-size: 18px;
@@ -188,7 +188,7 @@
     position: absolute;
     color: #A6A0AE;
     cursor: pointer;
-    left: 36.9vw;
+    left: 39.9vw;
     top: 57vh;
     z-index: 1;
     font-size: 18px;

@@ -1,6 +1,6 @@
-import es from '../../assets/es.svg';
-import br from '../../assets/br.svg';
-import us from '../../assets/us.svg';
+import es from '../../assets/img/icons8-espanha-96.png';
+import br from '../../assets/img/icons8-brasil-96.png';
+import us from '../../assets/img/icons8-eua-96.png';
 import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import './index.css';
@@ -33,7 +33,7 @@ const { t, i18n } = useTranslation();
 
     return(
         <div className='language-switcher'>
-            <span>{t('selectYourLanguage')}</span>
+            <span className='title'>{t('selectYourLanguage')}</span>
             {LanguageOptions.map(LanguageOptions => (
                 <button key={LanguageOptions.value} onClick={() => {
                     i18n.changeLanguage(LanguageOptions.value)
