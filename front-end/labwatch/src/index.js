@@ -10,6 +10,8 @@ import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 // import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/PaginaProjeto';
 
+import  './i18n';
+
 
 const routing = (
   <Router>
