@@ -9,10 +9,16 @@ import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
 import axios from "axios";
 
+//Imports i18 (Tradução)
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from 'i18next';
+import { LanguageSwitcher } from '../../Components/LanguageSwitcher';
 
 import { Icon } from '@iconify/react';
 
+
 export default function Login() {
+    const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -64,10 +70,11 @@ export default function Login() {
         <>
             <main className="main_login">
                 <div className="ContainerMain containerL">
+                    <LanguageSwitcher/>
                     <section className="box_login">
                         <div className="box_titulo">
-                            <span className="titulo-login"> Hello Again!</span>
-                            <span className="subtitulo-login"> Hurry Up! The time is flying!!!</span>
+                            <span className="titulo-login"> {t('welcome')}</span>
+                            <span className="subtitulo-login"> {t('subtitle')}</span>
                         </div>
                         <form onSubmit={efetuarLogin} className="form-login">
                             <input className="input-login"
