@@ -62,11 +62,13 @@ ul li:hover a{
 .settings ul li{
     line-height: 10px;
     border-bottom: none;
+    
 }
 
 .settings ul li a{
     font-size: 14px;
     padding-left: 4vw;
+    
 }
 
 .seta{

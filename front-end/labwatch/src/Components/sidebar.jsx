@@ -14,7 +14,6 @@ import { faBuildingUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { parseJwt, usuarioAutenticado } from '../services/auth';
-{/* <script src="https://kit.fontawesome.com/e222487669.js" crossorigin="anonymous"></script> */ }
 
 export default function SideBar() {
     let navigate = useNavigate();
@@ -45,11 +44,11 @@ export default function SideBar() {
                     <li><Link to="/"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>Activity</Link></li>
                     <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>Project</Link></li>
                     <li className="settings">
-                        <Link onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon icon={faGear}></FontAwesomeIcon></i>More Settings<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
-                            <ul id="links" className="settings">
-                                <li className="sett_link"><Link to={'/Approve'}><i><FontAwesomeIcon icon={faUserCheck}></FontAwesomeIcon></i>Approve Users</Link></li>
-                                <li className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>Realocate Users</Link></li>
-                                <li className="sett_link"><Link to={'/List'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>List of Clients</Link></li>
+                        <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faGear}></FontAwesomeIcon></i>More Settings<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
+                            <ul id="links" className="settings" style={{display: "none"}}>
+                                <li  className="sett_link"><Link to={'/Approve'}><i><FontAwesomeIcon icon={faUserCheck}></FontAwesomeIcon></i>Approve Users</Link></li>
+                                <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>Realocate Users</Link></li>
+                                <li  className="sett_link"><Link to={'/List'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>List of Clients</Link></li>
                             </ul>
                     </li>
                 </ul>
