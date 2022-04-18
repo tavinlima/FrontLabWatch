@@ -10,6 +10,7 @@ import SideBar from '../../Components/sidebar'
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([])
+    const [idProjeto, setIdProjeto] = useState(0)
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function PaginaProjeto() {
                 console.log(resposta.data)
                 setListaProjetos(resposta.data)
                 var valorProjeto = resposta.data.idProjeto;
-                navigate('/ProjetoOverview', { state: { id: resposta.data.idProjeto, name: resposta.data.idProjeto, value: valorProjeto } })
+                navigate('/ProjetoOverview', { state: { idProjeto: resposta.data.idProjeto, name: resposta.data.idProjeto, value: valorProjeto } })
             }
         })
             .catch(erro => console.log(erro));
