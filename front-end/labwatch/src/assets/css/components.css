@@ -34,22 +34,54 @@
     border-top: 1px solid rgba(255,255,255,.1);
     border-bottom: 1px solid rgb(226, 209, 209);
     transition: .4s;
+    border-left: 4px solid transparent;
 }
 
 .sidebar ul li:hover{
     background: rgba(194, 194, 178, 0.133);
+    
 }
 
 ul li:hover a{
     padding-left: 30px;
+    color: #0D4373;
+    border-left-color:#1f81d6;
 }
+
 
 .sidebar ul a i{
     margin-right: 18px;
+    
 }
+
+.settings ul ul{
+    position: static;
+    display: none;
+}
+
+.settings ul li{
+    line-height: 10px;
+    border-bottom: none;
+}
+
+.settings ul li a{
+    font-size: 14px;
+    padding-left: 4vw;
+}
+
+.seta{
+    margin-left: 1vw;
+    font-size: small;
+    transition: transform 0.4s;
+}
+
+.seta:hover{
+    transform: translate(-50%) rotate(-180deg);
+}
+
 .li_logout{
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-    margin-top: 38vh;
+    margin-top: 28vh;
     display: block;
     height: 100%;
     width: 100%;
@@ -69,6 +101,7 @@ ul li:hover a{
 .li_logout i{
     margin-right: 18px;
 }
+
 
 
 /*-------------- HEADER -----------------*/
