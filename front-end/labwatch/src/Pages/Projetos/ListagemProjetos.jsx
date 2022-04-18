@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
 
@@ -31,6 +31,8 @@ export default function ListagemProjetos() {
 
     const notify = () => toast.success("Projeto deletado com sucesso!")
     const atualizado = () => toast.success("Projeto atualizado com sucesso!")
+
+    let navigate = useNavigate();
 
     /// Funções que não são de conexão com a API aqui:
 
@@ -221,7 +223,7 @@ export default function ListagemProjetos() {
                             list='projetos'
                             onChange={(e) => searchItems(e.target.value)}
                             placeholder="Search anything..." />
-                        <Icon className='iconify lupa' icon="cil:magnifying-glass"/>
+                        <Icon className='iconify lupa' icon="cil:magnifying-glass" />
                     </div>
 
 
@@ -453,6 +455,7 @@ export default function ListagemProjetos() {
                                                             <span>Cliente: </span>
                                                             <span>{projeto.nomeCliente}</span>
                                                         </div>
+                                                        
                                                         <div>
 
                                                             <span>Data de entrega: </span>
@@ -468,12 +471,12 @@ export default function ListagemProjetos() {
                                                             {/* <span>Members</span> */}
                                                         </div>
                                                         <button
-                                                                aria-label="Configurações"
-                                                                className="btn__settings"
-                                                                onClick={() => abrirModal(projeto)}>
-                                                                {/* <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span> */}
-                                                                <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
-                                                            </button>
+                                                            aria-label="Configurações"
+                                                            className="btn__settings"
+                                                            onClick={() => abrirModal(projeto)}>
+                                                            {/* <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span> */}
+                                                            <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </section>
@@ -571,7 +574,7 @@ export default function ListagemProjetos() {
                                                             >
                                                                 Voltar
                                                             </button>
-                                                            <Icon className='iconify trash' icon="bi:trash"/>           
+                                                            <Icon className='iconify trash' icon="bi:trash" />
                                                             <button
                                                                 className="btn__excluirProjeto btn"
                                                                 type="button"

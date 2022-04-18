@@ -7,6 +7,8 @@ import Login from './Pages/Login/Login';
 import CadastroU from './Pages/CadastroUsuario/CadastroU';
 import reportWebVitals from './reportWebVitals';
 import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
+// import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
+import PaginaProjeto from './Pages/Projetos/PaginaProjeto';
 
 
 const routing = (
@@ -18,6 +20,8 @@ const routing = (
         <Route exact path = '/' element = {<Login/>}/>
         <Route exact path = '/Login' element = {<Login/>}/>
         <Route exact path = '/CadastroUsuario' element = {<CadastroU/>}/>
+        <Route exact path = '/ProjetoOverview' element = {<PaginaProjeto/>}/>
+        {/* <Route exact path = '/PerfilUsuario' element = {<PerfilUsuario/>}/> */}
       </Routes>
     </div>
   </Router>
