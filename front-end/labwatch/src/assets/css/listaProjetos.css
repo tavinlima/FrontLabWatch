@@ -87,10 +87,15 @@
     margin-left: 10px;
 }
 
-.box__infProjeto {
+.button_selectProject {
+    background: transparent;
+    border-style: none;
+    cursor: pointer;
+}
+
+.box__infProjeto, .button_selectProject {
     display: flex;
     flex-direction: column;
-    width: 45%;
     color: var(--cor-secundaria);
 }
 
@@ -156,43 +161,46 @@ svg.iconify.iconify--bi.projeto__icon {
     color: #ffff;
     width: 25vw;
     height: 8vh;
-	transition: all 0.5s;
-	position: relative;
+    transition: all 0.5s;
+    position: relative;
 }
 
 .btn__criarProjeto::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	background-color: rgba(255,255,255,0.1);
-	transition: all 0.3s;
-}
-.btn__criarProjeto:hover::before {
-	opacity: 0 ;
-	transform: scale(0.5,0.5);
-}
-.btn__criarProjeto::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	opacity: 0;
-	transition: all 0.3s;
-	border: 1px solid rgba(255,255,255,0.5);
-	transform: scale(1.2,1.2);
-}
-.btn__criarProjeto::after {
-	opacity: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
 }
 
-.lupa{
+.btn__criarProjeto:hover::before {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+}
+
+.btn__criarProjeto::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transform: scale(1.2, 1.2);
+}
+
+.btn__criarProjeto::after {
+    opacity: 1;
+}
+
+.lupa {
     position: absolute;
     color: #A6A0AE;
     font-size: 18px;
@@ -201,11 +209,11 @@ svg.iconify.iconify--bi.projeto__icon {
 }
 
 @media (min-width: 1920px) {
-    .containerL{
+    .containerL {
         max-width: 1920px;
     }
 
-    .lupa{
+    .lupa {
         position: absolute;
         color: #A6A0AE;
         font-size: 18px;
