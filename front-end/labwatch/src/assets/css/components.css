@@ -81,19 +81,27 @@ ul li:hover a{
     transform: translate(-50%) rotate(-180deg);
 }
 
+.side_baixo{
+    margin-top: 28vh;
+    position: sticky;
+}
+
 .li_logout{
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-    margin-top: 28vh;
     display: block;
     height: 100%;
     width: 100%;
     line-height: 10vh;
     font-size: 18px;
     color: rgba(255, 0, 0, 0.849);
-    padding-left: 20px;
     box-sizing: border-box;
     cursor: pointer;
     transition: .3s;
+    padding-left: 20px;
+}
+
+.li_logout Link{
+    padding-left: 20px;
 }
 
 .li_logout:hover i{
@@ -125,11 +133,24 @@ header {
     justify-content: space-between;
 }
 
+.header__imgPerfil{
+    width: 2vw;
+    height: 4.6vh;
+}
+
 .div__imgNomePerfil {
     display: flex;
     align-items: center;
+    height: 11vh;
+    width: 13vw;    
 }
 
 .div__imgNomePerfil span {
     font-weight: bold;
+    padding-left: 1em;
+}
+.div__imgNomePerfil a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -8,6 +8,7 @@ import { faListCheck } from "@fortawesome/free-solid-svg-icons";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faTarp } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { faSliders } from "@fortawesome/free-solid-svg-icons";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faBuildingUser } from "@fortawesome/free-solid-svg-icons";
@@ -39,12 +40,12 @@ export default function SideBar() {
                 <ul>
                     <li><Link to="/ListaProjetos"><i><FontAwesomeIcon icon={faTarp} /></i>Back to Projects</Link></li>
                     <hr className="side_hr"></hr>
-                    <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li>
+                    {/* <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li> */}
                     <li><Link to="/"><i> <FontAwesomeIcon icon={faListCheck} /></i>My Tasks</Link></li>
                     <li><Link to="/"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>Activity</Link></li>
                     <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>Project</Link></li>
                     <li className="settings">
-                        <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faGear}></FontAwesomeIcon></i>More Settings<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
+                        <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faSliders}></FontAwesomeIcon></i>More Options<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
                             <ul id="links" className="settings" style={{display: "none"}}>
                                 <li  className="sett_link"><Link to={'/Approve'}><i><FontAwesomeIcon icon={faUserCheck}></FontAwesomeIcon></i>Approve Users</Link></li>
                                 <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>Realocate Users</Link></li>
@@ -52,7 +53,8 @@ export default function SideBar() {
                             </ul>
                     </li>
                 </ul>
-                <ul>
+                <ul className="side_baixo">
+                    <li><Link to={'/Settings'}><i><FontAwesomeIcon icon={faGear}></FontAwesomeIcon></i>Settings</Link></li>
                     <li className="li_logout" onClick={realizarLogout}><i><FontAwesomeIcon icon={faArrowRightFromBracket} /></i>Logout</li>
                 </ul>
             </div>

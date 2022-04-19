@@ -197,7 +197,7 @@ export default function CadastroProjetos() {
                             }
                         </div>
                     </form>
-                    <img src={ilustraTrabalhadores} alt='' className='box__ilustracao' />
+                    {/* <img src={ilustraTrabalhadores} alt='' className='box__ilustracao' /> */}
                 </section>
             </div>
         </div>
