@@ -12,14 +12,16 @@ import "../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
 
-import { parseJwt } from '../../services/auth';
 import axios from 'axios';
+import api from '../../services/api';
 
 
 export default function ListagemProjetos() {
     const [listaProjetos, setListaProjetos] = useState([])
     const [idProjeto, setIdProjeto] = useState([])
     const [filteredResults, setFilteredResults] = useState([]);
+    // const [projetosAtivos, setProjetosAtivos] = useState([]);
+    // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -63,9 +65,6 @@ export default function ListagemProjetos() {
     function abrirModal(projeto) {
         var modal = document.getElementById("myModal");
 
-        const target = document.getElementById('arquivo')
-        const file = projeto.fotoCliente
-
         console.log(projeto)
         setIdProjeto(projeto.idProjeto)
         setTituloProjeto(projeto.tituloProjeto)
@@ -101,7 +100,7 @@ export default function ListagemProjetos() {
 
     // Listar todas os projetos na página
     function listarProjetos() {
-        axios("http://labwatch-backend.azurewebsites.net/api/Projetos").then(resposta => {
+        api("/Projetos").then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 setListaProjetos(resposta.data)
@@ -111,10 +110,11 @@ export default function ListagemProjetos() {
     }
 
     function selecionarProjeto(projeto) {
-        axios("http://labwatch-backend.azurewebsites.net/api/Projetos/" + projeto.idProjeto).then(resposta => {
+        api("/Projetos/" + projeto.idProjeto).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 var valorProjeto = resposta.data.idProjeto;
+                localStorage.setItem('idProjetoSelect', resposta.data.idProjeto)
                 navigate('/ProjetoOverview', { state: { id: projeto.idProjeto, name: projeto.idProjeto, value: valorProjeto } })
             }
         })

@@ -1,31 +1,31 @@
 import { React, useState, useEffect } from 'react';
-import axios from 'axios';
 
 import '../../assets/css/overview.css'
 
-import { useLocation, useNavigate } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
 
+import { parseIdProjeto } from '../../services/auth.jsx'
+import api from '../../services/api';
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([])
-    const [idProjeto, setIdProjeto] = useState(0)
 
-    const location = useLocation();
-    const navigate = useNavigate();
+    // const location = useLocation();
+    // const navigate = useNavigate();
 
-    
+
     // Listar todas os projetos na página
     function BuscarProjeto() {
-        var idProjetoSelect = location.state.value;
-        var idProjeto = idProjetoSelect
-        axios("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto).then(resposta => {
+        // var idProjetoSelect = location.state.value;
+        // var idProjeto = idProjetoSelect;
+        api("/Projetos/" + parseIdProjeto).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 setListaProjetos(resposta.data)
-                var valorProjeto = resposta.data.idProjeto;
-                navigate('/ProjetoOverview', { state: { idProjeto: resposta.data.idProjeto, name: resposta.data.idProjeto, value: valorProjeto } })
+                // var valorProjeto = resposta.data.idProjeto;
+                // navigate('/ProjetoOverview', { state: { idProjeto: resposta.data.idProjeto, name: resposta.data.idProjeto, value: valorProjeto } })
             }
         })
             .catch(erro => console.log(erro));
@@ -63,10 +63,18 @@ export default function PaginaProjeto() {
 
                             <div className='div__infBox'>
                                 <h2 className='subtitulo_projeto'>Data de conclusão:</h2>
-                                <p id='dataConclusao'></p>
+                                <p id='dataConclusao'>{listaProjetos.dataConclusao}</p>
                             </div>
                         </div>
                     </div>
+
+                    <h2>Project description:</h2>
+
+                    <textarea>{listaProjetos.descricao}</textarea>
+
+                    <h2>Project team:</h2>
+
+                    <button>Edit team</button>
 
 
                 </section>
