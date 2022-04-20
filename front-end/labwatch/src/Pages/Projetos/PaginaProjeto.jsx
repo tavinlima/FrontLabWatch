@@ -11,24 +11,40 @@ import api from '../../services/api';
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([])
+    const [Cliente, setCliente] = useState([])
 
-    // const location = useLocation();
-    // const navigate = useNavigate();
-
-
-    // Listar todas os projetos na página
+    // Buscar projeto selecionado
     function BuscarProjeto() {
         // var idProjetoSelect = location.state.value;
         // var idProjeto = idProjetoSelect;
-        api("/Projetos/" + parseIdProjeto).then(resposta => {
+        api("/Projetos/").then(resposta => {
             if (resposta.status === 200) {
-                console.log(resposta.data)
-                setListaProjetos(resposta.data)
-                // var valorProjeto = resposta.data.idProjeto;
-                // navigate('/ProjetoOverview', { state: { idProjeto: resposta.data.idProjeto, name: resposta.data.idProjeto, value: valorProjeto } })
+                resposta.data.map((projeto) => {
+                    if (projeto.idProjeto == parseIdProjeto()) {
+                        setListaProjetos(projeto)
+                    }
+                })
             }
         })
             .catch(erro => console.log(erro));
+    }
+
+    // function BuscarCliente() {
+    //     api("/Clientes").then(resposta => {
+    //         if (resposta.data.idCliente === listaProjetos.idCliente) {
+    //             if (resposta.status === 200) {
+    //                 console.log(resposta.data)
+    //                 setCliente(resposta.data)
+    //                 console.log(Cliente)
+    //             }
+    //         }
+    //     })
+    // }
+
+    // useEffect(BuscarCliente, [])
+
+    function BuscarEquipe() {
+        api("/Equipes")
     }
 
     useEffect(BuscarProjeto, [])
@@ -48,10 +64,10 @@ export default function PaginaProjeto() {
                         // ).format(new Date(listaProjetos.dataConclusao))
                     }
                     <div className='section__infoBox'>
-                        <img
+                        {/* <img
                             className="overview__imgEmpresa"
-                            src={"http://labwatch-backend.azurewebsites.net/img/" + listaProjetos.fotoCliente}
-                            alt="Imagem do cliente" />
+                            src={"http://labwatch-backend.azurewebsites.net/Images/" + listaProjetos.idClienteNavigation.fotoCliente}
+                            alt="Imagem do cliente" /> */}
 
                         <div className='div__textBox'>
                             <h2 className='titulo__projeto'>{listaProjetos.tituloProjeto}</h2>

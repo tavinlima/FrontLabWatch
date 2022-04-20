@@ -21,6 +21,7 @@ export default function SideBar() {
 
     function realizarLogout() {
         localStorage.removeItem('usuario-login')
+        localStorage.removeItem('idProjetoSelect')
         navigate('/Login')
 
     }
