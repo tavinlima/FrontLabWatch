@@ -10,3 +10,10 @@ export const parseJwt = () => {
     // converte o valor de base64 para string e em seguida para JSON
     return JSON.parse( window.atob(base64) );
 };
+
+export const parseIdProjeto = () => {
+
+    let baseID = localStorage.getItem('idProjetoSelect');
+
+    return baseID;
+}

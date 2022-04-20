@@ -1,0 +1,40 @@
+@import url(../css/global.css);
+
+.overview__imgEmpresa {
+    clip-path: circle();
+    width: 15em;
+    object-fit: contain;
+    margin-right: 1rem;
+}
+
+.section__infoBox {
+    display: flex;
+}
+
+.div__infBox {
+    display: flex;
+}
+
+.div__textBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo__projeto {
+    margin-bottom: 1.5rem;
+    font-size: 2em;
+}
+
+.div__textBox p {
+    font-size: 1.5em;
+}
+
+.div__textBox h2 {
+    color: var(--cor-secundaria);
+    font-weight: bolder;
+}
+
+.subtitulo_projeto {
+    margin-bottom: 1rem;
+    margin-right: 8px;
+}

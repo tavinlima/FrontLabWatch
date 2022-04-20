@@ -1,5 +1,6 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, Outlet } from "react-router-dom";
 
 import './index.css';
 import ListagemProjetos from './Pages/Projetos/ListagemProjetos';
@@ -7,17 +8,28 @@ import Login from './Pages/Login/Login';
 import CadastroU from './Pages/CadastroUsuario/CadastroU';
 import reportWebVitals from './reportWebVitals';
 import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
-// import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
+import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
 
-import  './i18n';
-
+import './i18n';
+import { usuarioAutenticado } from './services/auth';
+// const PermisaoAutenticado = ({ component: Component }) => (
+//   <Route
+//     render={(props) =>
+//       usuarioAutenticado() ? (
+//         <Component {...props} />
+//       ) : (
+//         <Redirect to="Login" />
+//       )}
+//   />
+// )
 
 const routing = (
   <Router>
     <div>
       <Routes>
+        {/* <PrivateRoute path="ListaProjetos" element={<ListagemProjetos />} roles={[usuarioAutenticado()]} /> */}
         <Route exact path='/ListaProjetos' element={<ListagemProjetos />} />
         <Route path = '/CadastroProjetos' element={<CadastroProjetos />}/>
         <Route exact path = '/' element = {<Login/>}/>

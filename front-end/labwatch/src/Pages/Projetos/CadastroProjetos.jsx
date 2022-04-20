@@ -17,8 +17,6 @@ export default function CadastroProjetos() {
     const [dataInicio, setDataInicio] = useState(new Date());
     const [dataFinal, setDataFinal] = useState(new Date());
     const [descricaoProjeto, setDescricaoProjeto] = useState('');
-    const [nomeCliente, setNomeCliente] = useState('');
-    const [fotoCliente, setFotoCliente] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     let history = useNavigate();
@@ -53,23 +51,34 @@ export default function CadastroProjetos() {
         event.preventDefault();
         setIsLoading(true);
 
-        var formData = new FormData();
+        // var formData = new FormData();
 
-        const target = document.getElementById('arquivo')
-        const file = target.files[0]
-        console.log(file)
+        // const target = document.getElementById('arquivo')
+        // const file = target.files[0]
+        // console.log(file)
 
-        formData.append('arquivo', file, file.name)
+        // formData.append('arquivo', file, file.name)
 
-        formData.append('tituloProjeto', nomeProjeto);
-        formData.append('nomeCliente', nomeCliente);
-        formData.append('descricaoProjeto', descricaoProjeto);
-        formData.append('dataInicio', dataInicio);
-        formData.append('dataConclusao', dataFinal);
-        formData.append('idStatusProjeto', 1);
+        // formData.append('tituloProjeto', nomeProjeto);
+        // formData.append('descricao', descricaoProjeto);
+        // formData.append('dataInicio', dataInicio);
+        // formData.append('dataConclusao', dataFinal);
+        // formData.append('idStatusProjeto', 1);
+        // formData.append('idEquipe', 2);
+        // formData.append('idCliente', 2);
 
-        axios.post("http://labwatch-backend.azurewebsites.net/api/CadastrarProjetos", formData, {
-            headers: { "Content-Type": "multipart/form-data" }
+        let projeto = {
+            tituloProjeto: nomeProjeto,
+            descricao: descricaoProjeto,
+            dataInicio: dataInicio,
+            dataConclusao: dataFinal,
+            idStatusProjeto: 1,
+            idEquipe: 2,
+            idCliente: 2
+        }
+
+        axios.post("http://labwatch-backend.azurewebsites.net/api/Projetos", projeto, {
+            headers: { "Content-Type": "application/json" }
         })
             .then((resposta) => {
                 if (resposta.status === 201) {
@@ -118,7 +127,7 @@ export default function CadastroProjetos() {
                                 required />
                         </label>
 
-                        <label className='boxCadastro__label'>
+                        {/* <label className='boxCadastro__label'>
                             Client name
                             <input
                                 className='projetoNome__input'
@@ -127,7 +136,7 @@ export default function CadastroProjetos() {
                                 autoComplete='off'
                                 onChange={(e) => setNomeCliente(e.target.value)}
                                 required />
-                        </label>
+                        </label> */}
 
                         <label className='boxCadastro__label'>
                             Description
@@ -164,7 +173,7 @@ export default function CadastroProjetos() {
                             </label>
 
                         </div>
-                        <label className="boxCadastro__label">
+                        {/* <label className="boxCadastro__label">
                             Imagem do cliente
                             <input
                                 className="projetoArquivo__input"
@@ -175,7 +184,7 @@ export default function CadastroProjetos() {
                                 accept="image/png, image/jpeg"
                                 onChange={(e) => setFotoCliente(e)}
                             />
-                        </label>
+                        </label> */}
 
                         <div className='div__buttons'>
 

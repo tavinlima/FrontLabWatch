@@ -12,14 +12,16 @@ import "../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
 
-import { parseJwt } from '../../services/auth';
 import axios from 'axios';
+import api from '../../services/api';
 
 
 export default function ListagemProjetos() {
     const [listaProjetos, setListaProjetos] = useState([])
     const [idProjeto, setIdProjeto] = useState([])
     const [filteredResults, setFilteredResults] = useState([]);
+    // const [projetosAtivos, setProjetosAtivos] = useState([]);
+    // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -63,9 +65,6 @@ export default function ListagemProjetos() {
     function abrirModal(projeto) {
         var modal = document.getElementById("myModal");
 
-        const target = document.getElementById('arquivo')
-        const file = projeto.fotoCliente
-
         console.log(projeto)
         setIdProjeto(projeto.idProjeto)
         setTituloProjeto(projeto.tituloProjeto)
@@ -73,7 +72,7 @@ export default function ListagemProjetos() {
         setDescricaoProjeto(projeto.descricaoProjeto)
         setDataInicio(projeto.dataInicio)
         setDataConclusao(projeto.dataConclusao)
-        setFotoCliente(file)
+        setFotoCliente(projeto.fotoCliente)
 
         modal.style.display = "block";
 
@@ -101,7 +100,7 @@ export default function ListagemProjetos() {
 
     // Listar todas os projetos na página
     function listarProjetos() {
-        axios("http://labwatch-backend.azurewebsites.net/api/Projetos").then(resposta => {
+        api("/Projetos").then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 setListaProjetos(resposta.data)
@@ -110,43 +109,17 @@ export default function ListagemProjetos() {
             .catch(erro => console.log(erro));
     }
 
-    // Cadastrar Equipe
-    // function cadastrarEquipe(event) {
-    //     event.preventDefault();
-
-    //     console.log(event)
-
-    //     let usuarios = {
-    //         idUsuario: idUsuario
-    //     }
-
-    //     let equipe = {
-    //         nomeEquipe: "novaEquipe",
-    //         horasTrabalhadas: 0,
-    //         projetos: idProjeto,
-    //         usuarios: usuarios
-    //     }
-
-    //     console.log(equipe)
-
-    //     api.post("/Equipes", equipe, {
-    //         headers: { "Content-Type": "application/json" }
-    //     })
-    // }
-
-
-    // Listar Usuários para cadastrar na equipe
-
-    // function listarUsuarios() {
-    //     api("/Usuarios").then(resposta => {
-    //         if (resposta.status === 200) {
-    //             console.log(resposta.data)
-    //             setListaUsuarios(resposta.data)
-    //             console.log(listaUsuarios)
-    //         }
-    //     })
-    //         .catch(erro => console.log(erro));
-    // }
+    function selecionarProjeto(projeto) {
+        api("/Projetos/" + projeto.idProjeto).then(resposta => {
+            if (resposta.status === 200) {
+                console.log(resposta.data)
+                var valorProjeto = resposta.data.idProjeto;
+                localStorage.setItem('idProjetoSelect', resposta.data.idProjeto)
+                navigate('/ProjetoOverview', { state: { id: projeto.idProjeto, name: projeto.idProjeto, value: valorProjeto } })
+            }
+        })
+            .catch(erro => console.log(erro));
+    }
 
     // Excluir projeto listada
     function excluirProjeto() {
@@ -275,7 +248,7 @@ export default function ListagemProjetos() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + projeto.fotoCliente}
+                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -305,6 +278,7 @@ export default function ListagemProjetos() {
                                                                 <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
                                                             </button>
                                                         </div>
+                                                        <button >Teste</button>
                                                     </div>
                                                 </section>
                                                 <div id="myModal" className="modal">
@@ -437,11 +411,6 @@ export default function ListagemProjetos() {
                                             <section className="box__projeto">
                                                 <div className="containerBox">
                                                     <div className="divisoria__imgEmpresa">
-                                                        {/* {
-                                                            projeto.fotoCliente === 0 ?
-                                                                <span>{projeto.tituloProjeto.toUpperCase()}</span> :
-                                                                <span>Teste</span>
-                                                        } */}
                                                         <img
                                                             className="box__imgEmpresa"
                                                             src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
@@ -449,13 +418,15 @@ export default function ListagemProjetos() {
 
                                                     </div>
                                                     <div className="box__infProjeto">
-                                                        <h2>{projeto.tituloProjeto}</h2>
+                                                        <button className="button_selectProject" onClick={() => selecionarProjeto(projeto)}>
+                                                            <h2>{projeto.tituloProjeto}</h2>
+                                                        </button>
 
                                                         <div>
                                                             <span>Cliente: </span>
                                                             <span>{projeto.nomeCliente}</span>
                                                         </div>
-                                                        
+
                                                         <div>
 
                                                             <span>Data de entrega: </span>
@@ -555,10 +526,10 @@ export default function ListagemProjetos() {
                                                                 />
                                                             </label>
 
-                                                            {/* <img
+                                                            <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://localhost:5000/StaticFiles/Images/" + projeto.fotoCliente}
-                                                                alt="Imagem do cliente" /> */}
+                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
+                                                                alt="Imagem do cliente" />
 
                                                             <button
                                                                 className='boxCadastro__btnCriar btn'
