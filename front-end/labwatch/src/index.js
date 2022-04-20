@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 // import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/PaginaProjeto';
+import Cliente from './Pages/Clientes/ListagemClientes';
 
 import  './i18n';
 
@@ -23,6 +24,7 @@ const routing = (
         <Route exact path = '/Login' element = {<Login/>}/>
         <Route exact path = '/CadastroUsuario' element = {<CadastroU/>}/>
         <Route exact path = '/ProjetoOverview' element = {<PaginaProjeto/>}/>
+        <Route exact path = '/Clientes' element = {<Cliente/>}/>
         {/* <Route exact path = '/PerfilUsuario' element = {<PerfilUsuario/>}/> */}
       </Routes>
     </div>

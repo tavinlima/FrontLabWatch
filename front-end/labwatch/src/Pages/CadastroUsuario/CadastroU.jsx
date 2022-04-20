@@ -15,42 +15,40 @@ export default function Usuario(){
     const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [usuarioAtivo, setusuarioAtivo] = useState(false);
     const [fotoUsuario, setFotoUsuario] = useState('');
 
     let navigate = useNavigate();
 
     function Cadastar(evento){
         evento.preventDefault()
+        
+        var formData = new FormData();
 
+        // const target = document.getElementById('arquivo')
+        // const file = target.files[0]
         console.log(nomeUsuario)
         console.log(sobreNome)
         console.log(email)
         console.log(senha)
 
-        axios.post('http://labwatch-backend.azurewebsites.net/api/Usuarios',{
-            idTipoUsuario: idTipoUsuario,
-            idStatus: idStatus,
-            nomeUsuario: nomeUsuario,
-            sobreNome: sobreNome,
-            cargaHoraria: cargaHoraria,
-            horasTrabalhadas: horasTrabalhadas,
-            email: email,
-            senha: senha,
-            fotoUsuario: fotoUsuario
+        // formData.append('arquivo', file, file.name)
+        formData.append('idTipoUsuario', 1)
+        formData.append('idStatus', 1)
+        formData.append('usuarioAtivo', false)
+        formData.append('nomeUsuario', nomeUsuario)
+        formData.append('sobreNome', sobreNome)
+        // formData.append('cargaHoraria', cargaHoraria)
+        // formData.append('horasTrabalhadas', horasTrabalhadas)
+        formData.append('email', email)
+        formData.append('senha', senha)
+
+        axios.post('http://labwatch-backend.azurewebsites.net/api/CadastroUsuario', formData,{
+            headers: { "Content-Type": "multipart/form-data" }
         })
         .then(resposta=>{
             if (resposta.status === 201) {
                 console.log('Usuario Cadastrado')
-                setIdTipoUsuario('');
-                setIdStatus('');
-                setNomeUsuario('');
-                setSobreNome('');
-                setCargaHoraria('');
-                setHorasTrabalhadas('');
-                setEmail('');
-                setSenha('');
-                setFotoUsuario('');
-
                 navigate('/Login')
             }
         })
