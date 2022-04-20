@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/PaginaProjeto';
+import Cliente from './Pages/Clientes/ListagemClientes';
 
 import './i18n';
 import { usuarioAutenticado } from './services/auth';
@@ -30,12 +31,13 @@ const routing = (
       <Routes>
         {/* <PrivateRoute path="ListaProjetos" element={<ListagemProjetos />} roles={[usuarioAutenticado()]} /> */}
         <Route exact path='/ListaProjetos' element={<ListagemProjetos />} />
-        <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
-        <Route exact path='/' element={<Login />} />
-        <Route exact path='/Login' element={<Login />} />
-        <Route exact path='/CadastroUsuario' element={<CadastroU />} />
-        <Route exact path='/ProjetoOverview' element={<PaginaProjeto />} />
-        <Route exact path='/PerfilUsuario' element={<PerfilUsuario />} />
+        <Route path = '/CadastroProjetos' element={<CadastroProjetos />}/>
+        <Route exact path = '/' element = {<Login/>}/>
+        <Route exact path = '/Login' element = {<Login/>}/>
+        <Route exact path = '/CadastroUsuario' element = {<CadastroU/>}/>
+        <Route exact path = '/ProjetoOverview' element = {<PaginaProjeto/>}/>
+        <Route exact path = '/Clientes' element = {<Cliente/>}/>
+        {/* <Route exact path = '/PerfilUsuario' element = {<PerfilUsuario/>}/> */}
       </Routes>
     </div>
   </Router>
