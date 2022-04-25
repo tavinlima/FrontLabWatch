@@ -1,28 +1,29 @@
 import { React, useState, useEffect } from 'react';
 
-import '../../assets/css/overview.css'
+import '../../../assets/css/overview.css'
 
 // import { useLocation, useNavigate } from 'react-router-dom';
-import Header from '../../Components/header';
-import SideBar from '../../Components/sidebar'
+import Header from '../../../Components/header';
+import SideBar from '../../../Components/sidebar'
 
-import { parseIdProjeto } from '../../services/auth.jsx'
-import api from '../../services/api';
+import { parseIdProjeto } from '../../../services/auth.jsx'
+import api from '../../../services/api';
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([])
+    const [descricao, setDescricao] = useState('')
     const [Cliente, setCliente] = useState([])
 
     // Buscar projeto selecionado
     function BuscarProjeto() {
-        // var idProjetoSelect = location.state.value;
-        // var idProjeto = idProjetoSelect;
         api("/Projetos/").then(resposta => {
             if (resposta.status === 200) {
                 resposta.data.map((projeto) => {
                     if (projeto.idProjeto == parseIdProjeto()) {
                         setListaProjetos(projeto)
+                        setDescricao(projeto.descricao)
                     }
+                    return projeto
                 })
             }
         })
@@ -84,13 +85,20 @@ export default function PaginaProjeto() {
                         </div>
                     </div>
 
-                    <h2>Project description:</h2>
+                    <div className='div__description'>
+                        <h2>Project description:</h2>
 
-                    <textarea>{listaProjetos.descricao}</textarea>
+                        <textarea
+                            className='input__descricao'
+                            value={descricao}
+                            onChange={(e) => setDescricao(e.target.value)} />
+                    </div>
 
-                    <h2>Project team:</h2>
+                    <div className='div__team'>
+                        <h2>Project team:</h2>
 
-                    <button>Edit team</button>
+                        <button className='btn btnStyle btn__edit'>Edit team</button>
+                    </div>
 
 
                 </section>

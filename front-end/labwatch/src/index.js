@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import './index.css';
-import ListagemProjetos from './Pages/Projetos/ListagemProjetos';
+import ListagemProjetos from './Pages/Projetos/ListagemGestor/ListagemComum';
 import Login from './Pages/Login/Login';
 import CadastroU from './Pages/CadastroUsuario/CadastroU';
 import reportWebVitals from './reportWebVitals';
 import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
-import PaginaProjeto from './Pages/Projetos/PaginaProjeto';
+import PaginaProjeto from './Pages/Projetos/Overview/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
 
 import './i18n';
