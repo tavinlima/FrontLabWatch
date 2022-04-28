@@ -4,6 +4,7 @@ import { parseJwt } from '../../services/auth';
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import api from '../../services/api';
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
@@ -11,7 +12,6 @@ import SideBar from '../../Components/sidebar'
 import { Icon } from '@iconify/react';
 import '../../assets/css/listaClientes.css';
 import '../../assets/css/global.css'
-import logo from '../../assets/img/logowatchh.png'
 
 export default function Cliente() {
     const [filteredResults, setFilteredResults] = useState([])
@@ -19,7 +19,7 @@ export default function Cliente() {
     const [isLoading, setIsLoading] = useState(false)
 
     const [listaClientes, setListaClientes] = useState([])
-    const [idCliente, setIdCliente] = useState([])
+    // const [idCliente, setIdCliente] = useState([])
     const [nomeCliente, setNomeCliente] = useState('')
     const [descricao, setDescricao] = useState('')
     const [dataCadastro, setDataCadastro] = useState(new Date())
@@ -45,7 +45,7 @@ export default function Cliente() {
 
     ///FUNCAO COM A API
     function listarClientes() {
-        axios("http://labwatch-backend.azurewebsites.net/api/Clientes")
+        api("http://labwatch-backend.azurewebsites.net/api/Clientes")
             .then(resposta => {
                 if (resposta.status === 200) {
                     console.log(resposta.data)
@@ -66,11 +66,14 @@ export default function Cliente() {
         console.log(file)
 
         formData.append('arquivo', file, file.name);
-        formData.append('idCliente', idCliente);
+        // formData.append('idCliente', idCliente);
         formData.append('nomeCliente', nomeCliente);
         formData.append('descricao', descricao);
         formData.append('dataCadastro', dataCadastro);
-
+        console.log(nomeCliente);
+        console.log(descricao);
+        console.log(dataCadastro);
+        console.log(file.name);
 
         axios.post("http://labwatch-backend.azurewebsites.net/api/ClientesCadastrar", formData, {
             headers: { "Content-Type": "multipart/form-data" }
@@ -88,7 +91,7 @@ export default function Cliente() {
             })
     }
 
-    useEffect(listarClientes,[])
+    useEffect(listarClientes, [])
 
     return (
         <div>
@@ -98,8 +101,10 @@ export default function Cliente() {
             </section>
             <div className="box__clientes">
                 <section className="section__listagemClientes container">
-                    <div className="div__tituloinput">
+                    <div className="div__titulo">
                         <h1>LabWatch Clients</h1>
+                    </div>
+                    <div className="div__input">
                         <input
                             type='search'
                             id='clientes'
@@ -108,8 +113,9 @@ export default function Cliente() {
                             list="clientes"
                             onChange={(e) => searchItems(e.target.value)}
                             placeholder="Search Clients..." />
-                        <Icon className="iconify lupa" icon="cil: magnifying-glass" />
+                        <Icon className='iconify lupa_cliente' icon="cil:magnifying-glass" />
                     </div>
+
 
                     <ToastContainer
                         position="top-center"
@@ -142,51 +148,108 @@ export default function Cliente() {
                                                                 alt="Imagem do Cliente" />
                                                         </div>
                                                         <div className="box__infoCliente">
-                                                            <h2>{cliente.nomeCliente}</h2>
+                                                            <h2>Client: {cliente.nomeCliente}</h2>
 
-                                                            <div>
-                                                                <span>Working Since: {cliente.dataCadastro}</span>
-                                                            </div>
-
-                                                            <div>
-                                                                <span>Description:</span>
-                                                                <span>{cliente.descricao}</span>
+                                                            <div className="div__working">
+                                                                <span>Working Since: {new Date(cliente.dataCadastro).toLocaleDateString()}</span>
                                                             </div>
                                                         </div>
+
+                                                        <div className="div__descricao">
+                                                            <span>Descrição: {cliente.descricao}</span>
+                                                        </div>
+
                                                     </div>
                                                 </section>
                                             </div>
                                         )
                                     })
-                                ):
-                                listaClientes.map((cliente)=>{
-                                    return(
+                                ) :
+                                listaClientes.map((cliente) => {
+                                    return (
                                         <div className="section__cliente" key={cliente.idCliente}>
-                                                <section className="box__cliente" key={cliente.idCliente}>
-                                                    <div className="containerBox">
-                                                        <div className="divisoria__imgCliente">
-                                                            <img src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + cliente.fotoCliente}
-                                                                alt="Imagem do Cliente" />
-                                                        </div>
-                                                        <div className="box__infoCliente">
-                                                            <h2>{cliente.nomeCliente}</h2>
+                                            <section className="box__cliente" key={cliente.idCliente}>
+                                                <div className="containerBox">
+                                                    <div className="divisoria__imgCliente">
+                                                        <img src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + cliente.fotoCliente}
+                                                            alt="Imagem do Cliente" />
+                                                    </div>
+                                                    <div className="box__infoCliente">
+                                                        <h2>Client: {cliente.nomeCliente}</h2>
 
-                                                            <div>
-                                                                <span>Working Since: {cliente.dataCadastro}</span>
-                                                            </div>
-
-                                                            <div>
-                                                                <span>Description:</span>
-                                                                <span>{cliente.descricao}</span>
-                                                            </div>
+                                                        <div className="div__working">
+                                                            <span>Working Since: {new Date(cliente.dataCadastro).toLocaleDateString()}</span>
                                                         </div>
                                                     </div>
-                                                </section>
-                                            </div>
+
+                                                    <div className="div__descricao">
+                                                        <span>Descrição: {cliente.descricao}</span>
+                                                    </div>
+
+                                                </div>
+                                            </section>
+                                        </div>
                                     )
                                 })
-                     }
+                    }
                 </section>
+                    <section className="box__cadastro">
+                        <div>
+                            <form className="form_cad" encType="multipart/form-data">
+                                <label className="box__cadastroLabel">
+                                    Client Name:
+                                    <input
+                                        className="input_clienteName"
+                                        type="text"
+                                        autoComplete="off"
+                                        name="nomeCliente"
+                                        onChange={(e) => setNomeCliente(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                                <label className="box__cadastroLabel">
+                                    Description:
+                                    <input
+                                        className="input_description"
+                                        type="text"
+                                        autoComplete="off"
+                                        name="descricao"
+                                        onChange={(e) => setDescricao(e.target.value)}
+                                        required />
+                                </label>
+                                <label className="box__cadastroLabel">
+                                    Client Image:
+                                    </label>
+                                    <label className="label_btn" for="arquivo">Selecionar Foto</label>
+                                    <input
+                                        className="input_file"
+                                        type="file"
+                                        name="arquivo"
+                                        id="arquivo"
+                                        required
+                                        accept="image/png, image/jpeg"
+                                        onChange={(e) => setFotoCliente(e)} />
+                                <div className="div_btnCliente">
+                                    {
+                                        isLoading === false ? (
+                                            <button
+                                                className='btn_cadCliente'
+                                                type='submit'
+                                                onClick={(e) => cadastrarCliente(e)}
+                                            >
+                                                Add Client
+                                            </button>
+                                        ) : (
+                                            <button className='btn_cadastro_carregando'
+                                                type="submit"
+
+                                                disabled>Loading...</button>
+                                        )
+                                    }
+                                </div>
+                            </form>
+                        </div>
+                    </section>
             </div>
         </div>
     )

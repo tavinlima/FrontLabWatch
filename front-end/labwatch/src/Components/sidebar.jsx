@@ -50,7 +50,7 @@ export default function SideBar() {
                             <ul id="links" className="settings" style={{display: "none"}}>
                                 <li  className="sett_link"><Link to={'/Approve'}><i><FontAwesomeIcon icon={faUserCheck}></FontAwesomeIcon></i>Approve Users</Link></li>
                                 <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>Realocate Users</Link></li>
-                                <li  className="sett_link"><Link to={'/List'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>List of Clients</Link></li>
+                                <li  className="sett_link"><Link to={'/Clientes'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>List of Clients</Link></li>
                             </ul>
                     </li>
                 </ul>
