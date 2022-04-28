@@ -37,7 +37,7 @@ const routing = (
         <Route exact path = '/CadastroUsuario' element = {<CadastroU/>}/>
         <Route exact path = '/ProjetoOverview' element = {<PaginaProjeto/>}/>
         <Route exact path = '/Clientes' element = {<Cliente/>}/>
-        {/* <Route exact path = '/PerfilUsuario' element = {<PerfilUsuario/>}/> */}
+        <Route exact path = '/PerfilUsuario' element = {<PerfilUsuario/>}/>
       </Routes>
     </div>
   </Router>

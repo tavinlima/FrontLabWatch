@@ -9,6 +9,7 @@
 
 .section__infoBox {
     display: flex;
+    align-items: center;
 }
 
 .div__infBox {
@@ -51,7 +52,7 @@
 }
 
 .input__descricao {
-    padding-left: 5px;
+    padding: 1rem;
     width: 90%;
     min-width: 90%;
     max-width: 90%;
@@ -59,6 +60,7 @@
     max-height: 100px;
     box-shadow: 7px 7px 9px 6px rgba(0, 0, 0, 0.25);
     font-size: 16px;
+    resize: none;
 }
 
 .div__team {
@@ -69,9 +71,56 @@
 
 .div__team h2 {
     font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+.div__teamInput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div__teamInput input {
+    margin-top: 40px;
+    width: 45%;
+    height: 50px;
+    padding-left: 4vw;
+    position: relative;
 }
 
 .btn__edit {
-    width: 30%;
+    width: 45%;
     height: 70px;
+}
+
+.section__membersTeam {
+    display: flex;
+    align-items: center;
+    background-color: #fff;    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 45%;
+    height: 100px;
+    margin-top: 1rem;
+    border-radius: 10px;
+}
+
+.div__listTeams:last-child {
+    margin-bottom: 2rem;
+}
+
+.section__infMembers {
+    display: flex;
+    flex-direction: column;
+}
+
+.equipe__fotoUsuario {
+    margin: 0 1rem 0 1rem;
+    width: 50px;
+    height: auto;
+    clip-path: circle();
+    object-fit: contain;
+}
+
+.list__team {
+    margin-bottom: 2rem;
 }

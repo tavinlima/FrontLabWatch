@@ -17,3 +17,9 @@ export const parseIdProjeto = () => {
 
     return baseID;
 }
+
+export const parseIdEquipe = () => {
+    let baseIdEquipe = localStorage.getItem('idEquipe');
+
+    return baseIdEquipe
+}

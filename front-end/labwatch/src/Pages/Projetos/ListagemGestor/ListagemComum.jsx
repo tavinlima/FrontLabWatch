@@ -14,7 +14,8 @@ import { Icon } from '@iconify/react';
 
 import axios from 'axios';
 import api from '../../../services/api';
-import { parseJwt } from '../../../services/auth';
+import { parseIdEquipe, parseJwt } from '../../../services/auth';
+import { useLayoutEffect } from 'react';
 
 
 export default function ListarMinhas() {
@@ -130,12 +131,12 @@ export default function ListarMinhas() {
                     })
                 })
             }
-        })
+        }).then(() => listarMeusProjetos())
             .catch(erro => console.log(erro))
     }
 
-    function listarMeusProjetos() {
-        api("/Projetos/Minhas/" + localStorage.getItem('idEquipe')).then(resposta => {
+    async function listarMeusProjetos() {
+        await api("/Projetos/Minhas/" + parseIdEquipe()).then(resposta => {
             // console.log(resposta.data)
             if (resposta.status === 200) {
                 console.log(resposta.data)
@@ -182,10 +183,8 @@ export default function ListarMinhas() {
 
 
     /// UseEffects aqui:
-    useEffect(buscarEquipe, [])
-    useEffect(listarMeusProjetos, [])
-    // useEffect(buscarEquipePorId, [])
-    // useEffect(listarUsuarios, [])
+    useLayoutEffect(buscarEquipe, [])
+    // useEffect(listarMeusProjetos, [])
 
     return (
         <div>
@@ -249,7 +248,7 @@ export default function ListarMinhas() {
 
                                                             <div>
                                                                 <span>Cliente: </span>
-                                                                <span>{projeto.nomeCliente}</span>
+                                                                <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
 
                                                             <span>Data de entrega:</span>
@@ -267,7 +266,6 @@ export default function ListarMinhas() {
                                                                 aria-label="Configurações"
                                                                 className="btn__settings"
                                                                 onClick={() => abrirModal(projeto)}>
-                                                                {/* <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span> */}
                                                                 <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
                                                             </button>
                                                         </div>
@@ -382,9 +380,9 @@ export default function ListarMinhas() {
                                                 <div className="containerBox">
                                                     <div className="divisoria__imgEmpresa">
                                                         {/* <img
-                                                                                    className="box__imgEmpresa"
-                                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
-                                                                                    alt="Imagem do cliente" /> */}
+                                                            className="box__imgEmpresa"
+                                                            src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + projeto.idClienteNavigation.fotoCliente}
+                                                            alt="Imagem do cliente" /> */}
                                                     </div>
                                                     <div className="box__infProjeto">
                                                         <button className="button_selectProject" onClick={() => selecionarProjeto(projeto)}>
@@ -393,7 +391,7 @@ export default function ListarMinhas() {
 
                                                         <div>
                                                             <span>Cliente: </span>
-                                                            <span>{projeto.nomeCliente}</span>
+                                                            <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                         </div>
 
                                                         <span>Data de entrega:</span>
