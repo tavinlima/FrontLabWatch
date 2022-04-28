@@ -6,6 +6,9 @@ import '../../assets/css/global.css'
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenhoCadastro.png'
 
+import fotoPadrao from '../../assets/img/PerfilDefault.png'
+import { useEffect } from "react";
+
 export default function Usuario(){
     const [idTipoUsuario, setIdTipoUsuario] = useState('');
     const [idStatus, setIdStatus] = useState('');
@@ -31,6 +34,7 @@ export default function Usuario(){
         console.log(sobreNome)
         console.log(email)
         console.log(senha)
+        console.log(fotoPadrao)
 
         // formData.append('arquivo', file, file.name)
         formData.append('idTipoUsuario', 1)
@@ -38,6 +42,8 @@ export default function Usuario(){
         formData.append('usuarioAtivo', false)
         formData.append('nomeUsuario', nomeUsuario)
         formData.append('sobreNome', sobreNome)
+        formData.append('fotoUsuario', fotoPadrao.name)
+        // formData.append('fotoUsuario', fotoPadrao.split(',', 2)[1])
         // formData.append('cargaHoraria', cargaHoraria)
         // formData.append('horasTrabalhadas', horasTrabalhadas)
         formData.append('email', email)
@@ -54,6 +60,8 @@ export default function Usuario(){
         })
         .catch(erro=> console.log(erro))
     }
+
+    // useEffect(console.log(fotoPadrao.split(',', 2)[1]), [])
     return(
         <>
         <main className="main_login">

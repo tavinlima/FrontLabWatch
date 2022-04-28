@@ -7,8 +7,6 @@ import SideBar from '../../Components/sidebar'
 import { parseJwt } from "../../services/auth";
 import api from "../../services/api";
 
-import imgtrabalho from '../../assets/img/ilustraTrabalhadores.png'
-
 export default function PerfilUsuario() {
     const [listaPerfil, setListaPerfil] = useState([]);
     const [nomeUsuario, setNomeUsuario] = useState([]);
@@ -22,7 +20,6 @@ export default function PerfilUsuario() {
                     setListaPerfil(resposta.data)
                     setNomeUsuario(resposta.data.nomeUsuario)
                     setSobrenome(resposta.data.sobreNome)
-                    console.log(listaPerfil)
                 }
             }
             )
@@ -40,7 +37,7 @@ export default function PerfilUsuario() {
             sobreNome: sobrenome,
         }
 
-        api.put('/Usuarios' + '?' + 'idUsuario=' + parseJwt().jti, usuario, {
+        api.put('/Usuarios' + parseJwt().jti, usuario, {
             headers: { "Content-Type": "application/json" }
         }).then(resposta => {
             console.log(resposta)
@@ -59,7 +56,7 @@ export default function PerfilUsuario() {
                     <div className='section__infoBox'>
                         <img
                             className="overview__imgEmpresa"
-                            src={imgtrabalho}
+                            src={"http://labwatch-backend.azurewebsites.net/img/" + listaPerfil.fotoUsuario}
                             alt="Imagem do cliente" />
 
                         <div className='div__textBox'>
