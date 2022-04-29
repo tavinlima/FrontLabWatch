@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from 'react';
-import { Icon } from '@iconify/react';
 
 import '../../../assets/css/overview.css'
 
@@ -9,8 +8,6 @@ import SideBar from '../../../Components/sidebar'
 
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth.jsx'
 import api from '../../../services/api';
-
-import fotoPerfil from '../../../assets/img/PerfilDefault.png';
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([]);
@@ -39,6 +36,8 @@ export default function PaginaProjeto() {
                     if (projeto.idProjeto == parseIdProjeto()) {
                         setListaProjetos(projeto)
                         setDescricao(projeto.descricao)
+                        console.log(projeto)
+                        console.log(projeto.idClienteNavigation.nomeCliente)
                     }
                     return projeto
                 })
@@ -57,29 +56,33 @@ export default function PaginaProjeto() {
             resposta.data.map((equipe) => {
                 if (equipe.idEquipe == parseIdEquipe()) {
                     console.log(equipe.usuarios);
-                    console.log(equipe.usuarios[0].tasks)
+                    console.log(equipe.usuarios[0].fotoUsuario);
                     let equipeBuscada = equipe.usuarios.map((usuarios) => {
                         return (usuarios)
                     });
                     setEquipe(equipeBuscada)
                 }
+                return equipe
             })
         })
     }
 
-    // function BuscarCliente() {
+    // function buscarCliente() {
     //     api("/Clientes").then(resposta => {
-    //         if (resposta.data.idCliente === listaProjetos.idCliente) {
-    //             if (resposta.status === 200) {
-    //                 console.log(resposta.data)
-    //                 setCliente(resposta.data)
-    //                 console.log(Cliente)
+    //         resposta.data.map((cliente) => {
+    //             if (cliente.idCliente === listaProjetos.idCliente) {
+    //                 if (resposta.status === 200) {
+    //                     console.log(resposta.data)
+    //                     console.log(resposta.data)
+    //                     setCliente(resposta.data)
+    //                     console.log(cliente)
+    //                 }
     //             }
-    //         }
+    //         })
     //     })
     // }
 
-    // useEffect(BuscarCliente, [])
+    // useEffect(buscarCliente, [])
 
     useEffect(buscarProjeto, [])
     useEffect(buscarEquipe, [])
@@ -93,17 +96,17 @@ export default function PaginaProjeto() {
                     <h1>Overview</h1>
 
                     <div className='section__infoBox'>
-                        <img
+                        {/* <img
                             className="overview__imgEmpresa"
-                            src={fotoPerfil}
-                            alt="Imagem do cliente" />
+                            src={"http://labwatch-backend.azurewebsites.net/img/" + listaProjetos.idClienteNavigation.fotoCliente}
+                            alt="Imagem do cliente" /> */}
 
                         <div className='div__textBox'>
                             <h2 className='titulo__projeto'>{listaProjetos.tituloProjeto}</h2>
 
                             <div className='div__infBox'>
                                 <h2 className='subtitulo_projeto'>Cliente: </h2>
-                                <p>{listaProjetos.tituloProjeto}</p>
+                                {/* <p>{listaProjetos.idClienteNavigation.nomeCliente}</p> */}
                             </div>
 
                             <div className='div__infBox'>
@@ -125,6 +128,8 @@ export default function PaginaProjeto() {
                     <div className='div__team'>
                         <h2>Project team:</h2>
 
+                        {/* <h3>{equipe}</h3> */}
+
                         <button className='btn btnStyle btn__edit'>Edit team</button>
                         <div className="div__teamInput">
                             <input
@@ -144,7 +149,7 @@ export default function PaginaProjeto() {
                                         return (
                                             <div key={equipe.idUsuario}>
                                                 <section className='section__membersTeam'>
-                                                    <img className='equipe__fotoUsuario' src={fotoPerfil} alt='Foto de perfil do usuário'></img>
+                                                    <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + equipe.fotoUsuario} alt='Foto de perfil do usuário'></img>
                                                     <div className='section__infMembers'>
                                                         <span>{equipe.nomeUsuario}</span>
                                                         <span>Responsável por: {(equipe.tasks).length} tasks</span>
@@ -158,7 +163,8 @@ export default function PaginaProjeto() {
                                         return (
                                             <div key={equipe.idUsuario}>
                                                 <section className='section__membersTeam'>
-                                                    <img className='equipe__fotoUsuario' src={fotoPerfil} alt='Foto de perfil do usuário'></img>
+                                                    {/* <img className='equipe__fotoUsuario' src={fotoPerfil} alt='Foto de perfil do usuário'></img> */}
+                                                    <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + equipe.fotoUsuario} alt='Foto de perfil do usuário'></img>
                                                     <div className='section__infMembers'>
                                                         <span>{equipe.nomeUsuario}</span>
                                                         <span>Responsável por: {(equipe.tasks).length} tasks</span>
