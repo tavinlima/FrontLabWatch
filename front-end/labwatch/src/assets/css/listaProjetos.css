@@ -66,6 +66,12 @@
     border-radius: 10px;
 }
 
+.box__projeto:hover{
+    background-color: #ecebee;
+    transition: 0.4s;
+    transform: scale(1.03);
+}
+
 .containerBox {
     display: flex;
     width: 95%;
