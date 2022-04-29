@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../../services/api';
+import {motion} from "framer-motion"
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
@@ -94,7 +95,11 @@ export default function Cliente() {
     useEffect(listarClientes, [])
 
     return (
-        <div>
+        <motion.div
+        initial ={{opacity: 0}}
+        animate ={{opacity: 1}}
+        exit ={{opacity: 0}}
+        >
             <Header />
             <section>
                 <SideBar />
@@ -251,7 +256,7 @@ export default function Cliente() {
                         </div>
                     </section>
             </div>
-        </div>
+        </motion.div>
     )
 
 }

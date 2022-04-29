@@ -179,6 +179,15 @@
     width: 36vw;
 }
 
+.erro_login{
+    font-size: 1em;
+    color: rgba(226, 23, 23, 0.87);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
 @media (min-width: 1920px) {
    .containerL{
        max-width: 1920px;

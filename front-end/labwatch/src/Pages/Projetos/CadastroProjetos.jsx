@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 import '../../assets/css/global.css';
 import '../../assets/css/cadastroProjetos.css';
@@ -109,25 +110,30 @@ export default function CadastroProjetos() {
     // }
 
     return (
-        <div>
-            <Header />
-            <SideBar />
-            <div className='box__cadastroProjetos'>
-                <section className='section__cadastroProjetos container'>
-                    <h1>Create a project to get start</h1>
-                    <form encType="multipart/form-data">
-                        <label className='boxCadastro__label'>
-                            Project name
-                            <input
-                                className='projetoNome__input'
-                                type='text'
-                                name='nomeProjeto'
-                                autoComplete='off'
-                                onChange={(e) => setNomeProjeto(e.target.value)}
-                                required />
-                        </label>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <div>
+                <Header />
+                <SideBar />
+                <div className='box__cadastroProjetos'>
+                    <section className='section__cadastroProjetos container'>
+                        <h1>Create a project to get start</h1>
+                        <form encType="multipart/form-data">
+                            <label className='boxCadastro__label'>
+                                Project name
+                                <input
+                                    className='projetoNome__input'
+                                    type='text'
+                                    name='nomeProjeto'
+                                    autoComplete='off'
+                                    onChange={(e) => setNomeProjeto(e.target.value)}
+                                    required />
+                            </label>
 
-                        {/* <label className='boxCadastro__label'>
+                            {/* <label className='boxCadastro__label'>
                             Client name
                             <input
                                 className='projetoNome__input'
@@ -138,42 +144,42 @@ export default function CadastroProjetos() {
                                 required />
                         </label> */}
 
-                        <label className='boxCadastro__label'>
-                            Description
-                            <textarea
-                                className='projetoDescricao__input'
-                                type='text'
-                                name='descricaoProjeto'
-                                maxLength="200"
-                                onChange={(e) => setDescricaoProjeto(e.target.value)}
-                            />
-                        </label>
-
-                        <div className="div__inputDate">
-                            <label className="boxCadastro__label">
-                                Start Date
-                                <input
-                                    className="projetoData__input"
-                                    name='dataInicioProjeto'
-                                    type='datetime-local'
-                                    required
-                                    onChange={(e) => setDataInicio(e.target.value)}
+                            <label className='boxCadastro__label'>
+                                Description
+                                <textarea
+                                    className='projetoDescricao__input'
+                                    type='text'
+                                    name='descricaoProjeto'
+                                    maxLength="200"
+                                    onChange={(e) => setDescricaoProjeto(e.target.value)}
                                 />
                             </label>
 
-                            <label className="boxCadastro__label">
-                                Final date
-                                <input
-                                    className="projetoData__input"
-                                    name='dataFinalProjeto'
-                                    type='datetime-local'
-                                    required
-                                    onChange={(e) => setDataFinal(e.target.value)}
-                                />
-                            </label>
+                            <div className="div__inputDate">
+                                <label className="boxCadastro__label">
+                                    Start Date
+                                    <input
+                                        className="projetoData__input"
+                                        name='dataInicioProjeto'
+                                        type='datetime-local'
+                                        required
+                                        onChange={(e) => setDataInicio(e.target.value)}
+                                    />
+                                </label>
 
-                        </div>
-                        {/* <label className="boxCadastro__label">
+                                <label className="boxCadastro__label">
+                                    Final date
+                                    <input
+                                        className="projetoData__input"
+                                        name='dataFinalProjeto'
+                                        type='datetime-local'
+                                        required
+                                        onChange={(e) => setDataFinal(e.target.value)}
+                                    />
+                                </label>
+
+                            </div>
+                            {/* <label className="boxCadastro__label">
                             Imagem do cliente
                             <input
                                 className="projetoArquivo__input"
@@ -186,30 +192,31 @@ export default function CadastroProjetos() {
                             />
                         </label> */}
 
-                        <div className='div__buttons'>
+                            <div className='div__buttons'>
 
-                            {
-                                isLoading === false ? (
-                                    <button
-                                        className='boxCadastro__btnCriar btn'
-                                        type='submit'
-                                        onClick={(e) => cadastrarProjetos(e)}
-                                    >
-                                        Create project
-                                    </button>
-                                ) : (
-                                    <button className='btn_cadastro_carregando'
-                                        type="submit"
+                                {
+                                    isLoading === false ? (
+                                        <button
+                                            className='boxCadastro__btnCriar btn'
+                                            type='submit'
+                                            onClick={(e) => cadastrarProjetos(e)}
+                                        >
+                                            Create project
+                                        </button>
+                                    ) : (
+                                        <button className='btn_cadastro_carregando'
+                                            type="submit"
 
-                                        disabled>Carregando...</button>
-                                )
-                            }
-                        </div>
-                    </form>
-                    {/* <img src={ilustraTrabalhadores} alt='' className='box__ilustracao' /> */}
-                </section>
+                                            disabled>Carregando...</button>
+                                    )
+                                }
+                            </div>
+                        </form>
+                        {/* <img src={ilustraTrabalhadores} alt='' className='box__ilustracao' /> */}
+                    </section>
+                </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
