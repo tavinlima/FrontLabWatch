@@ -8,6 +8,7 @@ import SideBar from '../../../Components/sidebar'
 
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth.jsx'
 import api from '../../../services/api';
+import axios from 'axios';
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([]);
@@ -15,6 +16,10 @@ export default function PaginaProjeto() {
     const [equipe, setEquipe] = useState([]);
     const [searchInput, setSearchInput] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
+    const [nomeCliente, setNomeCliente] = useState([]);
+    const [fotoCliente, setFotoCliente] = useState([]);
+    const [listaUsuarios, setListaUsuarios] = useState([]);
+    const [idUsuario, setIdUsuario] = useState(0);
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
@@ -37,7 +42,9 @@ export default function PaginaProjeto() {
                         setListaProjetos(projeto)
                         setDescricao(projeto.descricao)
                         console.log(projeto)
-                        console.log(projeto.idClienteNavigation.nomeCliente)
+                        console.log(projeto.idClienteNavigation)
+                        setNomeCliente(projeto.idClienteNavigation.nomeCliente)
+                        setFotoCliente(projeto.idClienteNavigation.fotoCliente)
                     }
                     return projeto
                 })
@@ -55,8 +62,6 @@ export default function PaginaProjeto() {
         }).then(resposta => {
             resposta.data.map((equipe) => {
                 if (equipe.idEquipe == parseIdEquipe()) {
-                    console.log(equipe.usuarios);
-                    console.log(equipe.usuarios[0].fotoUsuario);
                     let equipeBuscada = equipe.usuarios.map((usuarios) => {
                         return (usuarios)
                     });
@@ -65,6 +70,20 @@ export default function PaginaProjeto() {
                 return equipe
             })
         })
+    }
+
+    function mudarEquipe(event) {
+        event.preventDefault()
+        // console.log(usuarios)
+        axios.patch('http://localhost:5000/api/Equipes/' + idUsuario, {
+            idEquipe: listaProjetos.idEquipe
+        }).then(resposta => console.log(resposta))
+    }
+
+    function excluirUserEquipe() {
+        axios.patch('http://localhost:5000/api/Equipes/' + idUsuario, {
+            idEquipe: listaProjetos.idEquipe
+        }).then(resposta => console.log(resposta))
     }
 
     // function buscarCliente() {
@@ -84,8 +103,27 @@ export default function PaginaProjeto() {
 
     // useEffect(buscarCliente, [])
 
+    function abrirModal() {
+        var modal = document.getElementById("myModal");
+
+        modal.style.display = "block";
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
+    function buscarUsuarios() {
+        api('/Usuarios').then(resposta => setListaUsuarios(resposta.data))
+    }
+
+    useEffect(buscarUsuarios, [])
+
     useEffect(buscarProjeto, [])
     useEffect(buscarEquipe, [])
+    // useEffect(buscarFotoCliente, [])
 
     return (
         <div>
@@ -96,17 +134,18 @@ export default function PaginaProjeto() {
                     <h1>Overview</h1>
 
                     <div className='section__infoBox'>
-                        {/* <img
-                            className="overview__imgEmpresa"
-                            src={"http://labwatch-backend.azurewebsites.net/img/" + listaProjetos.idClienteNavigation.fotoCliente}
-                            alt="Imagem do cliente" /> */}
+                        <div className="overview__imgEmpresa">
+                            <img
+                                src={"http://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
+                                alt="Imagem do cliente" />
+                        </div>
 
                         <div className='div__textBox'>
                             <h2 className='titulo__projeto'>{listaProjetos.tituloProjeto}</h2>
 
                             <div className='div__infBox'>
                                 <h2 className='subtitulo_projeto'>Cliente: </h2>
-                                {/* <p>{listaProjetos.idClienteNavigation.nomeCliente}</p> */}
+                                <p>{nomeCliente}</p>
                             </div>
 
                             <div className='div__infBox'>
@@ -129,8 +168,31 @@ export default function PaginaProjeto() {
                         <h2>Project team:</h2>
 
                         {/* <h3>{equipe}</h3> */}
+                        <button type="submit" className='btn btnStyle btn__edit' onClick={() => abrirModal()}>Edit team</button>
+                        <div id="myModal" className="modal">
+                            <div className="modal-content">
+                                <div className="modal_container">
+                                    <form onSubmit={(e) => mudarEquipe(e)}>
+                                        <select
+                                            onChange={(e) => setIdUsuario(e.target.value)}
+                                            value={idUsuario}>
+                                            <option aria-disabled="true" value="0" disabled>Selecione um usuario</option>
+                                            {
+                                                listaUsuarios.map((consultor) => {
+                                                    return (
+                                                        <option key={consultor.idUsuario} value={consultor.idUsuario}>{consultor.nomeUsuario}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                        <button type="submit" className='btn btnStyle btn__edit' onClick={() => mudarEquipe()}>Edit team</button>
+                                    </form>
 
-                        <button className='btn btnStyle btn__edit'>Edit team</button>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div className="div__teamInput">
                             <input
                                 type="search"
@@ -141,6 +203,8 @@ export default function PaginaProjeto() {
                                 onChange={(e) => searchItems(e.target.value)}
                                 placeholder="Search anything..." />
                         </div>
+
+
 
                         <div className='div__listTeams'>
                             {
