@@ -3,6 +3,8 @@
       "welcome": "Hola nuevamente",
       "subtitle" : "¡Apúrate, el tiempo vuela!",
       "selectYourLanguage" : "Elige tu idioma:",
-      "password" : "Clave"
+      "password" : "Clave",
+      "Settings" : "Ajustes",
+      "Notifications" : "Avisos"
     }
   }
