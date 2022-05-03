@@ -20,6 +20,7 @@ import { LanguageSwitcher } from '../../Components/LanguageSwitcher';
 
 export default function Setting() {
     const { t } = useTranslation();
+
     
 
     return (
@@ -38,14 +39,22 @@ export default function Setting() {
                         <LanguageSwitcher/>
                         </section>
                     </div>
-                   
-                  <h2 className='titulo__Notificacao'>{t('Notifications')}</h2>
-                  <select name="" id="" className='Box__Options'>
+                    </section>
+
+                    <div className='div__Notidicacao'>
+                    <h2 className='titulo__Notificacao'>{t('Notifications')} 
+                    <select name="" id="" className='Box__Options'>
                       <option value="">{t('All Notifications')}</option>
                       <option value="">{t('Notifications of the day')}</option>
                       <option value="">{t('Last Week')}</option>
+
                   </select>
-                </section>
+                    </h2>
+
+               
+                    </div>
+                 
+                
 
                 <section>
                     <button type='button' className='btn__Link'><a href="/PerfilUsuario" className='link__PerfilUsuario'>{t('Edit Profile')}</a></button>
