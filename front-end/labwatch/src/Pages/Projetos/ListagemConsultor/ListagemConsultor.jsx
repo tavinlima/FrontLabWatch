@@ -57,16 +57,13 @@ export default function ListarConsultor() {
     }
 
     function buscarEquipe() {
-        api("/Equipes").then(resposta => {
+        api("/UsuarioEquipes").then(resposta => {
             if (resposta.status === 200) {
                 resposta.data.map((equipe) => {
-                    return equipe.usuarios.map((usuario) => {
-                        if (usuario.idUsuario == parseJwt().jti) {
-                            setMinhaEquipe(equipe)
-                            localStorage.setItem('idEquipe', equipe.idEquipe)
-                        }
-                        return equipe
-                    })
+                    if (equipe.idUsuario == parseJwt().jti) {
+                        console.log(equipe)
+                        localStorage.setItem('idEquipe', equipe.idEquipe)
+                    }
                 })
             }
         }).then(() => listarMeusProjetos())

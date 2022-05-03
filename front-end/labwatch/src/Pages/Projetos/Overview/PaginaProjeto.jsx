@@ -19,13 +19,15 @@ export default function PaginaProjeto() {
     const [nomeCliente, setNomeCliente] = useState([]);
     const [fotoCliente, setFotoCliente] = useState([]);
     const [listaUsuarios, setListaUsuarios] = useState([]);
+    const [infEquipe, setInfEquipe] = useState([]);
     const [idUsuario, setIdUsuario] = useState(0);
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
         if (searchInput !== '') {
+            console.log(equipe)
             const filteredData = equipe.filter((item) => {
-                return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+                return Object.values(item.nomeUsuario).join('').toLowerCase().includes(searchInput.toLowerCase())
             })
             setFilteredResults(filteredData)
         } else {
@@ -41,8 +43,6 @@ export default function PaginaProjeto() {
                     if (projeto.idProjeto == parseIdProjeto()) {
                         setListaProjetos(projeto)
                         setDescricao(projeto.descricao)
-                        console.log(projeto)
-                        console.log(projeto.idClienteNavigation)
                         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
                         setFotoCliente(projeto.idClienteNavigation.fotoCliente)
                     }
@@ -55,17 +55,21 @@ export default function PaginaProjeto() {
 
     function buscarEquipe() {
         console.log(parseIdEquipe())
-        api("/Equipes", {
+        api("/UsuarioEquipes", {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
             }
         }).then(resposta => {
             resposta.data.map((equipe) => {
                 if (equipe.idEquipe == parseIdEquipe()) {
-                    let equipeBuscada = equipe.usuarios.map((usuarios) => {
-                        return (usuarios)
+                    let equipeBuscada = equipe.idEquipeNavigation.usuarioEquipes.map((usuarios) => {
+                        return usuarios
                     });
-                    setEquipe(equipeBuscada)
+                    let membrosEquipe = equipeBuscada.map((equipe) => {
+                        return equipe.idUsuarioNavigation
+                    })
+                    setEquipe(membrosEquipe)
+                    console.log(membrosEquipe)
                 }
                 return equipe
             })
@@ -74,8 +78,7 @@ export default function PaginaProjeto() {
 
     function mudarEquipe(event) {
         event.preventDefault()
-        // console.log(usuarios)
-        axios.patch('http://localhost:5000/api/Equipes/' + idUsuario, {
+        axios.patch('http://localhost:5000/api/UsuarioEquipes/' + idUsuario, {
             idEquipe: listaProjetos.idEquipe
         }).then(resposta => console.log(resposta))
     }
@@ -85,23 +88,6 @@ export default function PaginaProjeto() {
             idEquipe: listaProjetos.idEquipe
         }).then(resposta => console.log(resposta))
     }
-
-    // function buscarCliente() {
-    //     api("/Clientes").then(resposta => {
-    //         resposta.data.map((cliente) => {
-    //             if (cliente.idCliente === listaProjetos.idCliente) {
-    //                 if (resposta.status === 200) {
-    //                     console.log(resposta.data)
-    //                     console.log(resposta.data)
-    //                     setCliente(resposta.data)
-    //                     console.log(cliente)
-    //                 }
-    //             }
-    //         })
-    //     })
-    // }
-
-    // useEffect(buscarCliente, [])
 
     function abrirModal() {
         var modal = document.getElementById("myModal");
@@ -167,7 +153,7 @@ export default function PaginaProjeto() {
                     <div className='div__team'>
                         <h2>Project team:</h2>
 
-                        {/* <h3>{equipe}</h3> */}
+                        {/* <h3>{infEquipe.tituloEquipe}</h3> */}
                         <button type="submit" className='btn btnStyle btn__edit' onClick={() => abrirModal()}>Edit team</button>
                         <div id="myModal" className="modal">
                             <div className="modal-content">
