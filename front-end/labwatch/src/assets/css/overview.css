@@ -1,10 +1,13 @@
 @import url(../css/global.css);
 
 .overview__imgEmpresa {
-    clip-path: circle();
     width: 15em;
-    object-fit: contain;
     margin-right: 1rem;
+}
+
+.overview__imgEmpresa img {
+    width: 80%;
+    object-fit: scale-down;
 }
 
 .section__infoBox {

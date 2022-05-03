@@ -16,7 +16,7 @@ export default function PerfilUsuario() {
     function buscarPerfil() {
         axios('http://labwatch-backend.azurewebsites.net/api/Usuarios/' + parseJwt().jti)
             .then(resposta => {
-                console.log(resposta)
+                console.log(resposta.data)
                 if (resposta.status === 200) {
                     setListaPerfil(resposta.data)
                     setNomeUsuario(resposta.data.nomeUsuario)

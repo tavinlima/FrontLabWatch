@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useLayoutEffect } from 'react';
 
 import '../../../assets/css/overview.css'
 
@@ -19,15 +19,13 @@ export default function PaginaProjeto() {
     const [nomeCliente, setNomeCliente] = useState([]);
     const [fotoCliente, setFotoCliente] = useState([]);
     const [listaUsuarios, setListaUsuarios] = useState([]);
-    const [infEquipe, setInfEquipe] = useState([]);
     const [idUsuario, setIdUsuario] = useState(0);
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
         if (searchInput !== '') {
-            console.log(equipe)
             const filteredData = equipe.filter((item) => {
-                return Object.values(item.nomeUsuario).join('').toLowerCase().includes(searchInput.toLowerCase())
+                return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
             })
             setFilteredResults(filteredData)
         } else {
@@ -46,7 +44,6 @@ export default function PaginaProjeto() {
                         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
                         setFotoCliente(projeto.idClienteNavigation.fotoCliente)
                     }
-                    return projeto
                 })
             }
         })
@@ -54,40 +51,34 @@ export default function PaginaProjeto() {
     }
 
     function buscarEquipe() {
-        console.log(parseIdEquipe())
         api("/UsuarioEquipes", {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
             }
         }).then(resposta => {
-            resposta.data.map((equipe) => {
-                if (equipe.idEquipe == parseIdEquipe()) {
-                    let equipeBuscada = equipe.idEquipeNavigation.usuarioEquipes.map((usuarios) => {
-                        return usuarios
-                    });
-                    let membrosEquipe = equipeBuscada.map((equipe) => {
-                        return equipe.idUsuarioNavigation
-                    })
-                    setEquipe(membrosEquipe)
-                    console.log(membrosEquipe)
+            console.log(resposta.data)
+            let users = resposta.data.map((equipe) => {
+                if (equipe.idEquipeNavigation.idEquipe == parseIdEquipe()) {
+                    return equipe
                 }
-                return equipe
             })
+            setEquipe(users.slice(1))
         })
     }
 
-    function mudarEquipe(event) {
+    function cadastrarNaEquipe(event) {
         event.preventDefault()
-        axios.patch('http://localhost:5000/api/UsuarioEquipes/' + idUsuario, {
-            idEquipe: listaProjetos.idEquipe
+        axios.patch('http://localhost:5000/api/UsuarioEquipes/', {
+            idEquipe: listaProjetos.idEquipe,
+            idUsuario: idUsuario
         }).then(resposta => console.log(resposta))
     }
 
-    function excluirUserEquipe() {
-        axios.patch('http://localhost:5000/api/Equipes/' + idUsuario, {
-            idEquipe: listaProjetos.idEquipe
-        }).then(resposta => console.log(resposta))
-    }
+    // function excluirUserEquipe() {
+    //     axios.patch('http://localhost:5000/api/Equipes/' + idUsuario, {
+    //         idEquipe: listaProjetos.idEquipe
+    //     }).then(resposta => console.log(resposta))
+    // }
 
     function abrirModal() {
         var modal = document.getElementById("myModal");
@@ -106,9 +97,8 @@ export default function PaginaProjeto() {
     }
 
     useEffect(buscarUsuarios, [])
-
     useEffect(buscarProjeto, [])
-    useEffect(buscarEquipe, [])
+    useLayoutEffect(buscarEquipe, [])
     // useEffect(buscarFotoCliente, [])
 
     return (
@@ -158,7 +148,7 @@ export default function PaginaProjeto() {
                         <div id="myModal" className="modal">
                             <div className="modal-content">
                                 <div className="modal_container">
-                                    <form onSubmit={(e) => mudarEquipe(e)}>
+                                    <form onSubmit={(e) => cadastrarNaEquipe(e)}>
                                         <select
                                             onChange={(e) => setIdUsuario(e.target.value)}
                                             value={idUsuario}>
@@ -171,7 +161,7 @@ export default function PaginaProjeto() {
                                                 })
                                             }
                                         </select>
-                                        <button type="submit" className='btn btnStyle btn__edit' onClick={() => mudarEquipe()}>Edit team</button>
+                                        <button type="submit" className='btn btnStyle btn__edit' >Edit team</button>
                                     </form>
 
                                 </div>
@@ -195,35 +185,36 @@ export default function PaginaProjeto() {
                         <div className='div__listTeams'>
                             {
                                 searchInput.length > 0 ?
-                                    filteredResults.map((equipe) => {
+                                    filteredResults.map((usuarios) => {
                                         return (
-                                            <div key={equipe.idUsuario}>
+                                            <div key={usuarios.idUsuarioNavigation.idUsuario}>
                                                 <section className='section__membersTeam'>
-                                                    <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + equipe.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                    {/* <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + usuarios.fotoUsuario} alt='Foto de perfil do usuário'></img> */}
                                                     <div className='section__infMembers'>
-                                                        <span>{equipe.nomeUsuario}</span>
-                                                        <span>Responsável por: {(equipe.tasks).length} tasks</span>
+                                                        <span>{usuarios.idUsuarioNavigation.nomeUsuario}</span>
+                                                        <span>Responsável por: {(usuarios.idUsuarioNavigation.tasks).length} tasks</span>
                                                     </div>
                                                 </section>
                                             </div>
                                         )
                                     })
                                     :
-                                    equipe.map((equipe) => {
+                                    equipe.map((users) => {
                                         return (
-                                            <div key={equipe.idUsuario}>
+                                            <div key={users.idUsuarioNavigation.idUsuario}>
                                                 <section className='section__membersTeam'>
                                                     {/* <img className='equipe__fotoUsuario' src={fotoPerfil} alt='Foto de perfil do usuário'></img> */}
-                                                    <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + equipe.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                    <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + users.fotoUsuario} alt='Foto de perfil do usuário'></img>
                                                     <div className='section__infMembers'>
-                                                        <span>{equipe.nomeUsuario}</span>
-                                                        <span>Responsável por: {(equipe.tasks).length} tasks</span>
+                                                        <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
+                                                        <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
                                                     </div>
                                                 </section>
                                             </div>
                                         )
                                     })
                             }
+
                         </div>
                     </div>
                 </section>

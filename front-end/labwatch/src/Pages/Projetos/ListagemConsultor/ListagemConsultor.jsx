@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useLayoutEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/header';
@@ -57,12 +57,25 @@ export default function ListarConsultor() {
     }
 
     function buscarEquipe() {
+        // console.log('entrou')
         api("/UsuarioEquipes").then(resposta => {
+            console.log(resposta.data.map((usuario) => {
+                // console.log(usuario.idUsuarioNavigation.idUsuario)
+                let usuarioEquipes = usuario.idEquipeNavigation.usuarioEquipes
+                // usuarioEquipes.map((usuario) => {
+                //     console.log(usuario.idUsuario == 2)
+                // })
+            }))
             if (resposta.status === 200) {
                 resposta.data.map((equipe) => {
-                    if (equipe.idUsuario == parseJwt().jti) {
-                        console.log(equipe)
-                        localStorage.setItem('idEquipe', equipe.idEquipe)
+                    if (equipe.idUsuarioNavigation.idUsuario != null) {
+                        let usuarioEquipes = equipe.idEquipeNavigation.usuarioEquipes
+                        usuarioEquipes.map((usuario) => {
+                            if (usuario.idUsuario == parseJwt().jti) {
+                                console.log(usuario)
+                                localStorage.setItem('idEquipe', usuario.idEquipe)
+                            }
+                        })
                     }
                 })
             }
@@ -70,8 +83,11 @@ export default function ListarConsultor() {
             .catch(erro => console.log(erro))
     }
 
+    useLayoutEffect(buscarEquipe, [])
+
     async function listarMeusProjetos() {
-        await api("/Projetos/Minhas/" + parseIdEquipe()).then(resposta => {
+        console.log(parseIdEquipe());
+        await api("/Projetos/Minhas/" + parseJwt().jti).then(resposta => {
             // console.log(resposta.data)
             if (resposta.status === 200) {
                 console.log(resposta.data)
@@ -82,7 +98,6 @@ export default function ListarConsultor() {
     }
 
     /// UseEffects aqui:
-    useEffect(buscarEquipe, [])
     // useEffect(listarMeusProjetos, [])
 
     return (
