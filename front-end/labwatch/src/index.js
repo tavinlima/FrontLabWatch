@@ -4,8 +4,8 @@ import { Route, BrowserRouter as Router, Routes, Outlet, Navigate } from "react-
 import { AnimatePresence } from "framer-motion"
 
 import './index.css';
-import ListagemGestor from './Pages/Projetos/ListagemGestor/ListagemComum';
-import ListagemConsultor from './Pages/Projetos/ListagemConsultor/ListagemGestor';
+import ListagemGestor from './Pages/Projetos/ListagemGestor/ListagemGestor';
+import ListagemConsultor from './Pages/Projetos/ListagemConsultor/ListagemConsultor';
 import ListagemOwner from './Pages/Projetos/ListagemOwner/ListagemOwner';
 import Login from './Pages/Login/Login';
 import CadastroU from './Pages/CadastroUsuario/CadastroU';
