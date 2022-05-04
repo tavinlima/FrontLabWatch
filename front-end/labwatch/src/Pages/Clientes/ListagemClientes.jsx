@@ -199,9 +199,8 @@ export default function Cliente() {
                     }
                 </section>
                     <section className="box__cadastro">
-                        <div>
                             <form className="form_cad" encType="multipart/form-data">
-                                <label className="box__cadastroLabel">
+                                <label className="box__cadastroLabel continer">
                                     Client Name:
                                     <input
                                         className="input_clienteName"
@@ -253,7 +252,6 @@ export default function Cliente() {
                                     }
                                 </div>
                             </form>
-                        </div>
                     </section>
             </div>
         </motion.div>

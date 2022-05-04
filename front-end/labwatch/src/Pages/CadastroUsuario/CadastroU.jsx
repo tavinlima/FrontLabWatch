@@ -18,7 +18,7 @@ export default function Usuario(){
     const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [usuarioAtivo, setusuarioAtivo] = useState(false);
+    const [ativo, setAtivo] = useState(false);
     const [fotoUsuario, setFotoUsuario] = useState('');
 
     let navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function Usuario(){
         // formData.append('arquivo', file, file.name)
         formData.append('idTipoUsuario', 1)
         formData.append('idStatus', 1)
-        formData.append('usuarioAtivo', false)
+        formData.append('ativo', false)
         formData.append('nomeUsuario', nomeUsuario)
         formData.append('sobreNome', sobreNome)
         formData.append('fotoUsuario', fotoPadrao.name)

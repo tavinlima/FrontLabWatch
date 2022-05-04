@@ -14,6 +14,7 @@ import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/Overview/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
+import Usuario from './Pages/Usuarios/ListagemUsuarios';
 
 import './i18n';
 import { usuarioAutenticado } from './services/auth';
@@ -39,7 +40,7 @@ const routing = (
             <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Clientes' element={<Cliente />} />
             <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
-            <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
+            <Route path='/Usuarios' element={<Usuario />} />
           </Route>
         </Routes>
       </AnimatePresence>
