@@ -152,7 +152,9 @@ export default function ListagemOwner() {
             dataConclusao,
             fotoCliente
         }, {
-            headers: { "Content-Type": "application/json" }
+            headers: { 
+                "Content-Type": "application/json"
+             }
         }).then(resposta => {
             console.log(resposta)
         }).then(() => listarProjetos()).then(atualizado)
