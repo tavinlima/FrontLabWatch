@@ -21,7 +21,6 @@ export default function ListarConsultor() {
     const [minhaEquipe, setMinhaEquipe] = useState('');
     const [meusProjetos, setMeusProjetos] = useState([]);
 
-
     let navigate = useNavigate();
 
     /// Funções que não são de conexão com a API aqui:

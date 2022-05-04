@@ -1,4 +1,6 @@
 import { React, useState, useEffect, useLayoutEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import '../../../assets/css/overview.css'
 
@@ -15,11 +17,17 @@ export default function PaginaProjeto() {
     const [descricao, setDescricao] = useState('');
     const [equipe, setEquipe] = useState([]);
     const [searchInput, setSearchInput] = useState([]);
+    const [searchUsers, setSearchUsers] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
     const [nomeCliente, setNomeCliente] = useState([]);
     const [fotoCliente, setFotoCliente] = useState([]);
     const [listaUsuarios, setListaUsuarios] = useState([]);
     const [idUsuario, setIdUsuario] = useState(0);
+    const [erroMensagem, setErroMensagem] = useState('');
+
+    const notify = () => toast.success("Usuário retirado da equipe com sucesso!")
+    const notifyCadastro = () => toast.success("Usuário cadastrado na equipe com sucesso!")
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
@@ -28,8 +36,28 @@ export default function PaginaProjeto() {
                 return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
             })
             setFilteredResults(filteredData)
-        } else {
-            setFilteredResults(equipe)
+        } 
+    }
+
+    const searchTeam = (valorProcurado) => {
+        setSearchUsers(valorProcurado)
+        if (searchUsers !== '') {
+            let equipeBuscada = equipe.map((usuario) => {
+                return usuario 
+            })
+
+            let usuarioBuscado = listaUsuarios.filter((usuario) => {
+                return usuario.idUsuario === equipeBuscada.idUsuario
+            }) 
+
+            console.log(usuarioBuscado)
+            console.log(equipeBuscada)
+            const filteredDados = listaUsuarios.filter((item) => {
+                return Object.values(item).join('').toLowerCase().includes(searchUsers.toLowerCase())
+            })
+            setFilteredUsers(filteredDados)
+        } else{
+            setFilteredUsers(listaUsuarios)
         }
     }
 
@@ -43,6 +71,8 @@ export default function PaginaProjeto() {
                         setDescricao(projeto.descricao)
                         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
                         setFotoCliente(projeto.idClienteNavigation.fotoCliente)
+                        console.log(projeto.idEquipe)
+                        localStorage.setItem('idEquipe', projeto.idEquipe)
                     }
                 })
             }
@@ -57,28 +87,40 @@ export default function PaginaProjeto() {
             }
         }).then(resposta => {
             console.log(resposta.data)
-            let users = resposta.data.map((equipe) => {
-                if (equipe.idEquipeNavigation.idEquipe == parseIdEquipe()) {
-                    return equipe
-                }
+            let users = resposta.data.filter((equipe) => {
+                return equipe.idEquipe == parseIdEquipe()
             })
-            setEquipe(users.slice(1))
+            console.log(users)
+            setEquipe(users)
         })
     }
 
     function cadastrarNaEquipe(event) {
+        var modal = document.getElementById("myModal");
+
         event.preventDefault()
-        axios.patch('http://localhost:5000/api/UsuarioEquipes/', {
+        api.post('/UsuarioEquipes', {
             idEquipe: listaProjetos.idEquipe,
             idUsuario: idUsuario
-        }).then(resposta => console.log(resposta))
+        })
+            .then(modal.style.display = "none")
+            .then(notifyCadastro)
+            .then(() => buscarEquipe())
+            .catch(erro => console.log(erro))
     }
 
-    // function excluirUserEquipe() {
-    //     axios.patch('http://localhost:5000/api/Equipes/' + idUsuario, {
-    //         idEquipe: listaProjetos.idEquipe
-    //     }).then(resposta => console.log(resposta))
-    // }
+    function excluirUserEquipe(users) {
+        console.log(users.idusuarioEquipe)
+        api.delete('/UsuarioEquipes/' + users.idusuarioEquipe, {
+            idEquipe: listaProjetos.idEquipe
+        })
+            .then(() => buscarEquipe())
+            .then(notify)
+            .catch(erro => {
+                console.log(erro)
+                setErroMensagem("Algo deu errado, tente novamente mais tarde")
+            })
+    }
 
     function abrirModal() {
         var modal = document.getElementById("myModal");
@@ -93,7 +135,11 @@ export default function PaginaProjeto() {
     }
 
     function buscarUsuarios() {
-        api('/Usuarios').then(resposta => setListaUsuarios(resposta.data))
+        api('/Usuarios').then(resposta => {
+            if (resposta.status === 200) {
+                setListaUsuarios(resposta.data)
+            }
+        }).catch(erro => console.log(erro))
     }
 
     useEffect(buscarUsuarios, [])
@@ -149,24 +195,51 @@ export default function PaginaProjeto() {
                             <div className="modal-content">
                                 <div className="modal_container">
                                     <form onSubmit={(e) => cadastrarNaEquipe(e)}>
-                                        <select
-                                            onChange={(e) => setIdUsuario(e.target.value)}
-                                            value={idUsuario}>
-                                            <option aria-disabled="true" value="0" disabled>Selecione um usuario</option>
-                                            {
-                                                listaUsuarios.map((consultor) => {
-                                                    return (
-                                                        <option key={consultor.idUsuario} value={consultor.idUsuario}>{consultor.nomeUsuario}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                        <button type="submit" className='btn btnStyle btn__edit' >Edit team</button>
+
+                                        <div className="div__teamRegister">
+                                        <h3>Insert new users in your team!</h3>
+                                            <input
+                                                type="search"
+                                                id='usuarios'
+                                                name='usuario'
+                                                autoComplete='off'
+                                                list='usuarios'
+                                                onChange={(e) => searchTeam(e.target.value)}
+                                                placeholder="Search anything..." />
+                                        </div>
+
+                                        {
+                                            filteredUsers.map((usuarios) => {
+                                                return (
+                                                    <div key={usuarios.idUsuario}>
+                                                        <section className='section__membersRegister'>
+                                                            <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + usuarios.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                            <div className='section__infMembers'>
+                                                                <span>{usuarios.nomeUsuario} {usuarios.sobreNome}</span>
+                                                                <span>{usuarios.email}</span>
+                                                            </div>
+                                                            <button onClick={() => setIdUsuario(usuarios.idUsuario)} className='btn btnStyle btn__addTeam'>Adicionar na equipe</button>
+                                                        </section>
+                                                    </div>
+                                                )
+                                            })
+                                        }
                                     </form>
 
                                 </div>
                             </div>
                         </div>
+
+                        <ToastContainer
+                            position="top-center"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover />
 
 
                         <div className="div__teamInput">
@@ -179,8 +252,6 @@ export default function PaginaProjeto() {
                                 onChange={(e) => searchItems(e.target.value)}
                                 placeholder="Search anything..." />
                         </div>
-
-
 
                         <div className='div__listTeams'>
                             {
@@ -209,6 +280,7 @@ export default function PaginaProjeto() {
                                                         <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
                                                         <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
                                                     </div>
+                                                    <button onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
                                                 </section>
                                             </div>
                                         )
@@ -218,7 +290,7 @@ export default function PaginaProjeto() {
                         </div>
                     </div>
                 </section>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

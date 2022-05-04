@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
 
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/header';
@@ -121,10 +121,16 @@ export default function ListarMinhas() {
     function buscarEquipe() {
         api("/UsuarioEquipes").then(resposta => {
             if (resposta.status === 200) {
+                console.log(resposta.data)
                 resposta.data.map((equipe) => {
-                    if (equipe.idUsuario == parseJwt().jti) {
-                        console.log(equipe)
-                        localStorage.setItem('idEquipe', equipe.idEquipe)
+                    if (equipe.idUsuarioNavigation.idUsuario != null) {
+                        let usuarioEquipes = equipe.idEquipeNavigation.usuarioEquipes
+                        usuarioEquipes.map((usuario) => {
+                            if (usuario.idUsuario == parseJwt().jti) {
+                                console.log(usuario)
+                                localStorage.setItem('idEquipe', usuario.idEquipe)
+                            }
+                        })
                     }
                 })
             }
@@ -134,12 +140,11 @@ export default function ListarMinhas() {
 
 
     async function listarMeusProjetos() {
-        await api("/Projetos/Minhas/" + parseIdEquipe()).then(resposta => {
-            // console.log(resposta.data)
+        console.log(parseIdEquipe());
+        await api("/Projetos/Minhas/" + parseJwt().jti).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 setMeusProjetos(resposta.data);
-                // console.log(meusProjetos)
             }
         }).catch(erro => console.log(erro))
     }
