@@ -31,20 +31,20 @@ const routing = (
         <Routes>
           {/* <ProtectedRoute path="ListaProjetos" element={<ListagemComum />} roles={[usuarioAutenticado()]} /> */}
           {/* <Route exact path='/' element={<Login />} /> */}
-          <Route element={<ProtectedRoute />}>
-            <Route path='/ListaProjetos' element={<ListagemGestor />} />
-            <Route path='/ListaProjetosOwner' element={<ListagemOwner />} />
-            <Route path='/ListaProjetosConsultor' element={<ListagemConsultor />} />
-            <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
-            <Route path='/Login' element={<Login />} />
-            <Route path='/CadastroUsuario' element={<CadastroU />} />
-            <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
-            <Route path='/Clientes' element={<Cliente />} />
-            <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
-            <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
-            <Route path='/Tasks' element={<ListagemTasks />} />
-            <Route path='/Settings' element={ <Settings/>} />
-          </Route>
+          <Route path='/Login' element={<Login />} />
+          <Route path='/ListaProjetos' element={<ListagemGestor />} />
+          <Route path='/ListaProjetosOwner' element={<ListagemOwner />} />
+          <Route path='/ListaProjetosConsultor' element={<ListagemConsultor />} />
+          <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
+          <Route path='/CadastroUsuario' element={<CadastroU />} />
+          <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
+          <Route path='/Clientes' element={<Cliente />} />
+          <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
+          <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
+          <Route path='/Tasks' element={<ListagemTasks />} />
+          <Route path='/Settings' element={<Settings />} />
+          <Route path='/' element={<Navigate replace to='/Login' />} />
+          {/* Navigate replace to='/Login' para redirecionar quando o / for utilizado */}
         </Routes>
       </AnimatePresence>
     </div>
