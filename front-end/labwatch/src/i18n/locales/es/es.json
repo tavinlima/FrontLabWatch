@@ -2,13 +2,6 @@
   "translation": {
     "welcome": "Hola nuevamente",
     "subtitle" : "¡Apúrate, el tiempo vuela!",
-    "selectYourLanguage" : "Elige tu idioma:",
-    "password" : "Clave",
-    "Settings" : "Ajustes",
-    "Notifications" : "Avisos",
-    "All Notifications" : "Todos os Avisos",
-    "Notifications of the day" : "Avisos del dia",
-    "Last Week" : "Avisos de la semana pasada",
-    "Edit Profile" : "Editar perfil"
+    "selectYourLanguage" : "Elige tu idioma:"
   }
 }

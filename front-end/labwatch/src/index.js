@@ -32,7 +32,7 @@ const routing = (
       <AnimatePresence>
         <Routes>
           {/* <ProtectedRoute path="ListaProjetos" element={<ListagemComum />} roles={[usuarioAutenticado()]} /> */}
-          <Route exact path='/' element={<Login />} />
+          {/* <Route exact path='/' element={<Login />} /> */}
           <Route element={<ProtectedRoute />}>
             <Route path='/ListaProjetos' element={<ListagemGestor />} />
             <Route path='/ListaProjetosOwner' element={<ListagemOwner />} />

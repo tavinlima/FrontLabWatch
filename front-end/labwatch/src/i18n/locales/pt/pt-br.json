@@ -2,15 +2,6 @@
   "translation": {
     "welcome": "Olá novamente",
     "subtitle" : "Apresse-se o tempo está voando!",
-    "selectYourLanguage" : " Selecione seu idioma:",
-    "password" : "Senha",
-    "Settings" : "Configurações",
-    "Notifications" : "Notificações",
-    "All Notifications" : "Todas as Notificações",
-    "Notifications of the day" : "Notificações de Hoje",
-    "Last Week" : "Notificações Passadas",
-    "Edit Profile" : "Editar Perfil",
-    "Name" : "Nome",
-    "Last Name" : "Sobrenome"
+    "selectYourLanguage" : " Selecione seu idioma:"
   }
 }
