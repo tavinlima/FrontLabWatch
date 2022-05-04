@@ -45,7 +45,7 @@ export default function SideBar() {
                     {/* <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li> */}
                     <li><Link to="/Tasks"><i> <FontAwesomeIcon icon={faListCheck} /></i>My Tasks</Link></li>
                     <li><Link to="/"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>Activity</Link></li>
-                    <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>Project</Link></li>
+                    <li><Link to="/ListaProjetos"><i><FontAwesomeIcon icon={faStar} /></i>Project</Link></li>
                     <li className="settings">
                         <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faSliders}></FontAwesomeIcon></i>More Options<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
                             <ul id="links" className="settings" style={{display: "none"}}>

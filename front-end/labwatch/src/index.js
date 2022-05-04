@@ -14,11 +14,8 @@ import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/Overview/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
-<<<<<<< HEAD
 import Task from './Pages/Task/tasks';
-=======
 import Settings from './Pages/Settings/Settings'
->>>>>>> 50f5b253c6febe85b78e0df6e22cd75c521e78db
 
 import './i18n';
 import { usuarioAutenticado } from './services/auth';
@@ -30,20 +27,6 @@ const ProtectedRoute = () => {
 const routing = (
   <Router>
     <div>
-<<<<<<< HEAD
-      <Routes>
-        {/* <PrivateRoute path="ListaProjetos" element={<ListagemProjetos />} roles={[usuarioAutenticado()]} /> */}
-        <Route exact path='/ListaProjetos' element={<ListagemProjetos />} />
-        <Route path = '/CadastroProjetos' element={<CadastroProjetos />}/>
-        <Route exact path = '/' element = {<Login/>}/>
-        <Route exact path = '/Login' element = {<Login/>}/>
-        <Route exact path = '/CadastroUsuario' element = {<CadastroU/>}/>
-        <Route exact path = '/ProjetoOverview' element = {<PaginaProjeto/>}/>
-        <Route exact path = '/Clientes' element = {<Cliente/>}/>
-        <Route exact path = '/Tasks' element = {<Task/>}/>
-        {/* <Route exact path = '/PerfilUsuario' element = {<PerfilUsuario/>}/> */}
-      </Routes>
-=======
       <AnimatePresence>
         <Routes>
           {/* <ProtectedRoute path="ListaProjetos" element={<ListagemComum />} roles={[usuarioAutenticado()]} /> */}
@@ -55,15 +38,14 @@ const routing = (
             <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
             <Route path='/Login' element={<Login />} />
             <Route path='/CadastroUsuario' element={<CadastroU />} />
-            <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Clientes' element={<Cliente />} />
             <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
-            <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
             <Route path='/Settings' element={ <Settings/>} />
+            <Route exact path = '/Tasks' element = {<Task/>}/>
+
           </Route>
         </Routes>
       </AnimatePresence>
->>>>>>> 50f5b253c6febe85b78e0df6e22cd75c521e78db
     </div>
   </Router>
 )
