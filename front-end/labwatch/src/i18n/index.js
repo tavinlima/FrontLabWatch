@@ -8,36 +8,39 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 
 
 const resources = {
-    'en-US': enUS,
-    'pt-BR': ptBR,
-    'es': es,
-  }
-  
-  // i18n.use(initReactI18next).init({
-  //   resources,
-  //   lng: navigator.language,
-  //   interpolation: {
-  //     escapeValue: false,
-  //   }
-  // })
+  'en-US': enUS,
+  'pt-BR': ptBR,
+  'es': es,
+}
 
-  i18n
+// i18n.use(initReactI18next).init({
+//   resources,
+//   lng: navigator.language,
+//   interpolation: {
+//     escapeValue: false,
+//   }
+// })
+
+i18n
   .use(initReactI18next)
   .use(LanguageDetector)
   .init({
     fallbackLng: "en",
-    interpolation:{
+    interpolation: {
       escapeValue: false
     },
-    resources:{
+    resources: {
       en: enUS,
       ptBR: ptBR,
-      es : es
+      es: es
     },
     detection: {
-      order: ['path', 'cookie', 'htmlTag'],
-      caches: ['cookie'],
+      order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
+      caches: ['localStorage', 'cookie'],
+      excludeCacheFor: ['cimode'], 
+      cookieOptions: { path: '/Login', path: '/Settings', sameSite: 'strict' },
+      cookieMinutes: 180
     }
   });
-  
-  export default i18n;
+
+export default i18n;
