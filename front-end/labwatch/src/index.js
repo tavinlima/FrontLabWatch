@@ -39,6 +39,7 @@ const routing = (
             <Route path='/ListaProjetosConsultor' element={<ListagemConsultor />} />
             <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
             <Route path='/Login' element={<Login />} />
+            <Route path='/' element={<Login />} />
             <Route path='/CadastroUsuario' element={<CadastroU />} />
             <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Clientes' element={<Cliente />} />
