@@ -123,7 +123,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 40%;
+    width: 52%;
 }
 
 .div__members {
@@ -228,7 +228,13 @@ svg.iconify.iconify--bi.projeto__icon {
         color: #A6A0AE;
         font-size: 18px;
         left: 70vw;
-        top: 19.2vh;
+        top: 18.2vh;
+    }
+    .div__membersGear {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 65%;
     }
 
 }

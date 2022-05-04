@@ -19,24 +19,10 @@ export default function Usuario(){
     const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [usuarioAtivo, setusuarioAtivo] = useState(false);
+    const [ativo, setAtivo] = useState(false);
     const [fotoUsuario, setFotoUsuario] = useState('');
 
     let navigate = useNavigate();
-
-    let form = document.querySelector('.color_mode');
-
-    form.addEventListener('change', (e) => {
-        let mode = e.target.value;
-
-        if(mode === 'dark'){
-            document.documentElement.classList.toggle('dark_mode');
-
-        }else{
-            document.documentElement.classList.toggle('dark_mode');
-
-        }
-    })
 
     function Cadastar(evento){
         evento.preventDefault()
@@ -54,7 +40,7 @@ export default function Usuario(){
         // formData.append('arquivo', file, file.name)
         formData.append('idTipoUsuario', 1)
         formData.append('idStatus', 1)
-        formData.append('usuarioAtivo', false)
+        formData.append('ativo', false)
         formData.append('nomeUsuario', nomeUsuario)
         formData.append('sobreNome', sobreNome)
         formData.append('fotoUsuario', fotoPadrao.name)
@@ -89,15 +75,15 @@ export default function Usuario(){
                                 <span className="subtitulo-cad"> Register New Users</span>
                             </div>
                             <form onSubmit={Cadastar} className="form-cad">
-                                <label for="color_mode" >
+                                {/* <label for="color_mode" >
 
-                                    <input type="radio" name="color_mode" id="normal_mode" value="normal" checked/>
+                                     <input type="radio" name="color_mode" id="normal_mode" value="normal" checked/>
                                     Normal
                                 </label>
                                 <label for="dark_mode">
                                     <input type="radio" name="color_mode" id="dark_mode" value="dark" />
                                     Dark
-                                </label>
+                                </label>  */}
                                 <input className="input-cad" 
                                 placeholder="First Name" 
                                 value={nomeUsuario} 

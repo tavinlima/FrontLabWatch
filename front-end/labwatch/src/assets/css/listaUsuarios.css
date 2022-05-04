@@ -1,0 +1,175 @@
+.box_semUsuarios {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.box__usuarios {
+    display: flex;
+    height: 100%    ;
+    align-items: center;
+    background-color: #f8f8f8;
+}
+
+.section__listagemUsuarios {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20rem;
+    width: 58vw;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+}
+
+.div__titulo {
+    display: flex;
+    align-items: center;
+    width: 22vw;
+}
+
+.div__titulo h1 {
+    font-size: 40px;
+    color: black;
+    margin: 40px 0 20px 0;
+}
+.div__inputt input {
+    margin-bottom: 2rem;
+    width: 100%;
+    height: 40px;
+    padding-left: 4vw;
+    position: relative;
+    background-color: #ecebee;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+}
+
+.div__inputt ::-webkit-input-placeholder{
+    color: #1B65A6;
+}
+
+.section__usuario {
+    display: flex;
+}
+
+.box__usuario {
+    background-color: #fcf9f9;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    height: 12vh;
+    width: 100%;
+    margin:10px 0 20px 0;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+}
+
+.box__usuario:hover{
+    background-color: #ecebee;
+    transition: 0.4s;
+    transform: scale(1.03);
+}
+
+.container__Box {
+    display: flex;
+    width: 95%;
+}
+
+.divisoria__imgUsuario {
+    clip-path: circle(50% at 50% 50%);
+    background-color: #D5E6F0;
+    height: 8vh;
+    width: 4vw;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.box__infoUsuario{
+    display: flex;
+    flex-direction: column;
+    width: 24vw;
+    margin-left: 4rem;
+    font-size: 0.9em;
+    margin-top: 0.3rem;
+}
+
+
+.div__linha{
+    display: flex;
+    align-items: center;
+    margin-right: 5rem;
+    
+}
+
+.div__linha hr{
+    width: 4vw;
+    transform: rotate(90deg);
+}
+
+
+.div__check{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+}
+
+.check{
+    color: #77BF63;
+    font-size: 1.8em;
+    width: 4vw;
+}
+
+.X{
+    color: rgba(238, 12, 12, 0.966);
+    font-size: 1.8em;
+    width: 4vw;
+}
+
+.btn__check{
+    cursor: pointer;
+    width: 10vw ;
+}
+.lupa_usuario {
+    position: absolute;
+    color: #1B65A6;
+    font-size: 18px;
+    left: 24.5vw;
+    top: 30.7vh;
+}
+
+@media (min-width: 1920px) {
+    .section__listagemUsuarios {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 25rem;
+        width: 58vw;
+        margin-top: 9rem;
+        margin-bottom: 3rem;
+    }
+
+    .lupa_usuario {
+        position: absolute;
+        color: #1B65A6;
+        font-size: 18px;
+        left: 22.5vw;
+        top: 24.7vh;
+    }
+
+    .box__infoUsuario{
+        display: flex;
+        flex-direction: column;
+        width: 24vw;
+        margin-left: 4rem;
+        font-size: 0.9em;
+        margin-top: 1.5rem;
+    }
+
+
+
+}

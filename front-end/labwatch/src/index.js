@@ -16,9 +16,11 @@ import PaginaProjeto from './Pages/Projetos/Overview/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
+import Usuario from './Pages/Usuarios/ListagemUsuarios';
 
 import './i18n';
 import { usuarioAutenticado } from './services/auth';
+
 
 const ProtectedRoute = () => {
   return usuarioAutenticado ? <Outlet /> : <Navigate to='/Login' />;

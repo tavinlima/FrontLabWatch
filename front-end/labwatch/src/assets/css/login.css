@@ -3,16 +3,11 @@
     width: 100%;
 }
 
-.containerL {
-    max-width: 1400px;
-    width: 100%;
-}
-
 .ContainerMain{
     height: 100vh;
     display: flex;
     justify-content: space-between;
-    margin-left: 45px;
+    margin-left: 10em;
 }
 
 .box_login{
@@ -85,8 +80,8 @@
     position: absolute;
     color: #A6A0AE;
     cursor: pointer;
-    left: 24.9vw;
-    top: 57.5vh;
+    left: 33.9vw;
+    top: 58.5vh;
     z-index: 1;
     font-size: 18px;
 }
@@ -190,16 +185,19 @@
 }
 
 @media (min-width: 1920px) {
-   .containerL{
-       max-width: 1920px;
-   }
+    .ContainerMain{
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 17em;
+    }
 
    .olho{
     position: absolute;
     color: #A6A0AE;
     cursor: pointer;
-    left: 39.9vw;
-    top: 57vh;
+    left: 36.3vw;
+    top: 56vh;
     z-index: 1;
     font-size: 18px;
   }

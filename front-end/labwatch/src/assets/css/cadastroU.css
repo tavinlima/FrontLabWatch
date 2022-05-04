@@ -13,7 +13,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-left: 15vw;
 }
 
 .box_tituloCad{
@@ -156,4 +155,19 @@
 
 .img_desenhoCad{
     width: 37vw;
+}
+
+@media (min-width: 1920px) {
+    .ContainerMain{
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+    }
+    .form-cad{
+        /* margin-top: 10vh; */
+        display: flex;
+        flex-direction: column;
+        width: 24vw;
+        margin-bottom: 8vh;
+    }
 }
