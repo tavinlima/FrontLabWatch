@@ -70,6 +70,7 @@ export default function Login() {
         <>
             <main className="main_login">
                 <div className="ContainerMain containerL">
+                <LanguageSwitcher/>
                     <section className="box_login">
                         <div className="box_titulo">
                             <span className="titulo-login"> {t('welcome')}</span>
@@ -91,7 +92,6 @@ export default function Login() {
                                 name="senha"
                                 type="password"
                                 id="senha" />
-                                <p className="erro_login">{erroMensagem}</p>
                             <button type='button' className="botao_olho" onClick={show}>
                                 <Icon className="iconify olho"  icon="akar-icons:eye-open" />
 
