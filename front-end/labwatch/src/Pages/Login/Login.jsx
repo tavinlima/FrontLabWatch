@@ -69,7 +69,7 @@ export default function Login() {
     return (
         <>
             <main className="main_login">
-                <div className="ContainerMain containerL">
+                <div className="ContainerMain">
                     <section className="box_login">
                         <div className="box_titulo">
                             <span className="titulo-login"> {t('welcome')}</span>

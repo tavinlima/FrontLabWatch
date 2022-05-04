@@ -14,15 +14,13 @@ import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/Overview/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
-<<<<<<< HEAD
-import Usuario from './Pages/Usuarios/ListagemUsuarios';
-=======
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
->>>>>>> f5950426652ec9dbaaf877618d12b562e6c1b64d
+import Usuario from './Pages/Usuarios/ListagemUsuarios';
 
 import './i18n';
 import { usuarioAutenticado } from './services/auth';
+
 
 const ProtectedRoute = () => {
   return usuarioAutenticado ? <Outlet /> : <Navigate to='/Login' />;
@@ -45,13 +43,10 @@ const routing = (
             <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Clientes' element={<Cliente />} />
             <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
-<<<<<<< HEAD
-            <Route path='/Usuarios' element={<Usuario />} />
-=======
             <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
             <Route path='/Tasks' element={<ListagemTasks />} />
             <Route path='/Settings' element={ <Settings/>} />
->>>>>>> f5950426652ec9dbaaf877618d12b562e6c1b64d
+            <Route path='/Usuarios' element={ <Usuario/>} />
           </Route>
         </Routes>
       </AnimatePresence>

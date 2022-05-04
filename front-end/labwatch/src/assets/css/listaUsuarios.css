@@ -141,3 +141,35 @@
     left: 24.5vw;
     top: 30.7vh;
 }
+
+@media (min-width: 1920px) {
+    .section__listagemUsuarios {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 25rem;
+        width: 58vw;
+        margin-top: 9rem;
+        margin-bottom: 3rem;
+    }
+
+    .lupa_usuario {
+        position: absolute;
+        color: #1B65A6;
+        font-size: 18px;
+        left: 22.5vw;
+        top: 24.7vh;
+    }
+
+    .box__infoUsuario{
+        display: flex;
+        flex-direction: column;
+        width: 24vw;
+        margin-left: 4rem;
+        font-size: 0.9em;
+        margin-top: 1.5rem;
+    }
+
+
+
+}
