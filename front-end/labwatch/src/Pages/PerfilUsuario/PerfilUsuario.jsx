@@ -8,15 +8,23 @@ import SideBar from '../../Components/sidebar'
 import { parseJwt } from "../../services/auth";
 import api from "../../services/api";
 
+//Tradução
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from 'i18next';
+import { LanguageSwitcher } from '../../Components/LanguageSwitcher';
+
 export default function PerfilUsuario() {
     const [listaPerfil, setListaPerfil] = useState([]);
     const [nomeUsuario, setNomeUsuario] = useState([]);
     const [sobrenome, setSobrenome] = useState([]);
 
+    //Tradução
+    const { t } = useTranslation();
+
     function buscarPerfil() {
         axios('http://labwatch-backend.azurewebsites.net/api/Usuarios/' + parseJwt().jti)
             .then(resposta => {
-                console.log(resposta)
+                console.log(resposta.data)
                 if (resposta.status === 200) {
                     setListaPerfil(resposta.data)
                     setNomeUsuario(resposta.data.nomeUsuario)
@@ -66,9 +74,9 @@ export default function PerfilUsuario() {
                                 alt="Imagem do cliente" />
 
                             <div className='div__textBox'>
-                                <h2>{listaPerfil.nomeUsuario}</h2>
-                                <h2>{listaPerfil.sobreNome}</h2>
-                                <h2>{listaPerfil.email}</h2>
+                                <h2> {t('Name :')} {listaPerfil.nomeUsuario}</h2>
+                                <h2> {t('Last Name :')} {listaPerfil.sobreNome}</h2>
+                                <h2> Email : {listaPerfil.email}</h2>
                             </div>
                         </div>
 

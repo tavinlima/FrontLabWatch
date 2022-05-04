@@ -12,6 +12,7 @@
     height: 100vh;
     display: flex;
     justify-content: space-between;
+    margin-left: 45px;
 }
 
 .box_login{
@@ -84,8 +85,8 @@
     position: absolute;
     color: #A6A0AE;
     cursor: pointer;
-    left: 39.9vw;
-    top: 58.5vh;
+    left: 24.9vw;
+    top: 57.5vh;
     z-index: 1;
     font-size: 18px;
 }

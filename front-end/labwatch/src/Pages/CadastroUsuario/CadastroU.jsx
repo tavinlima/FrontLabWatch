@@ -48,6 +48,8 @@ export default function Usuario(){
         // formData.append('horasTrabalhadas', horasTrabalhadas)
         formData.append('email', email)
         formData.append('senha', senha)
+        formData.append('ativo', false)
+        console.log(formData)
 
         axios.post('http://labwatch-backend.azurewebsites.net/api/CadastroUsuario', formData,{
             headers: { "Content-Type": "multipart/form-data" }
