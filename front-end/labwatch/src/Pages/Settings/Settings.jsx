@@ -31,7 +31,7 @@ export default function Setting() {
             </section>
             <div className="box__listagemProjetos">
                 <section className="section__listagemProjetos container">
-                    <h1 className='titulo__Settings'>{t('Settings')}</h1>
+                    <h1 className='titulo__Settings'>{t('welcome')}</h1>
                     <div className='div__Idioma'>
                         <span className='titulo__Settings'></span>
                        

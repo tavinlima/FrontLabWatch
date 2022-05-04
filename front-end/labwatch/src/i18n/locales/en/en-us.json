@@ -1,16 +1,7 @@
 {
   "translation": {
-    "welcome": "Hello Again!",
-    "subtitle" : "Hurry up! The time is flying!",
-    "selectYourLanguage" : "Select your language:",
-    "password" : "Password",
-    "Settings" : "Settings",
-    "Notifications" : "Notifications",
-    "All Notifications" : "All Notifications",
-    "Notifications of the day" : "Notifications of the day",
-    "Last Week" : "Last Week",
-    "Edit Profile" : "Edit Profile",
-    "Name" : "Name",
-    "Last Name" : "Last Name"
+    "welcome": "Settings",
+    "subtitle" : "Notifications",
+    "botaoPerfil" : "Edit profile"
   }
 }
