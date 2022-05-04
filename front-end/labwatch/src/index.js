@@ -11,6 +11,7 @@ import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/Overview/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
+import Task from './Pages/Task/tasks';
 
 import './i18n';
 import { usuarioAutenticado } from './services/auth';
@@ -37,6 +38,7 @@ const routing = (
         <Route exact path = '/CadastroUsuario' element = {<CadastroU/>}/>
         <Route exact path = '/ProjetoOverview' element = {<PaginaProjeto/>}/>
         <Route exact path = '/Clientes' element = {<Cliente/>}/>
+        <Route exact path = '/Tasks' element = {<Task/>}/>
         {/* <Route exact path = '/PerfilUsuario' element = {<PerfilUsuario/>}/> */}
       </Routes>
     </div>
