@@ -22,6 +22,7 @@ export default function SideBar() {
     function realizarLogout() {
         localStorage.removeItem('usuario-login')
         localStorage.removeItem('idProjetoSelect')
+        localStorage.removeItem('idEquipe')
         navigate('/Login')
 
     }
@@ -50,7 +51,7 @@ export default function SideBar() {
                             <ul id="links" className="settings" style={{display: "none"}}>
                                 <li  className="sett_link"><Link to={'/Approve'}><i><FontAwesomeIcon icon={faUserCheck}></FontAwesomeIcon></i>Approve Users</Link></li>
                                 <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>Realocate Users</Link></li>
-                                <li  className="sett_link"><Link to={'/List'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>List of Clients</Link></li>
+                                <li  className="sett_link"><Link to={'/Clientes'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>List of Clients</Link></li>
                             </ul>
                     </li>
                 </ul>

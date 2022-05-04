@@ -3,18 +3,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
-import Header from '../../Components/header';
-import SideBar from '../../Components/sidebar'
+import Header from '../../../Components/header';
+import SideBar from '../../../Components/sidebar'
 
-import "../../assets/css/listaProjetos.css"
-import "../../assets/css/global.css"
-import "../../assets/css/modalExcluir.css"
+import "../../../assets/css/listaProjetos.css"
+import "../../../assets/css/global.css"
+import "../../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
 
 import axios from 'axios';
-import api from '../../services/api';
-import { parseJwt } from '../../services/auth';
+import api from '../../../services/api';
+import { parseJwt } from '../../../services/auth';
 
 
 export default function ListagemOwner() {
@@ -41,15 +41,13 @@ export default function ListagemOwner() {
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
         if (searchInput !== '') {
-            if (parseJwt().role == 3) {
-                const filteredData = listaProjetos.filter((item) => {
-                    return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-                })
-                setFilteredResults(filteredData)
-            }
-            else {
-                setFilteredResults(listaProjetos)
-            }
+            const filteredData = listaProjetos.filter((item) => {
+                return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+            })
+            setFilteredResults(filteredData)
+        }
+        else {
+            setFilteredResults(listaProjetos)
         }
     }
 
@@ -164,9 +162,6 @@ export default function ListagemOwner() {
 
     /// UseEffects aqui:
     useEffect(listarProjetos, [])
-    useEffect(buscarEquipe, [])
-    // useEffect(buscarEquipePorId, [])
-    // useEffect(listarUsuarios, [])
 
     return (
         <div>
@@ -218,10 +213,10 @@ export default function ListagemOwner() {
                                                 <section className="box__projeto" key={projeto.idProjeto}>
                                                     <div className="containerBox">
                                                         <div className="divisoria__imgEmpresa">
-                                                            {/* <img
-                                                                                className="box__imgEmpresa"
-                                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
-                                                                                alt="Imagem do cliente" /> */}
+                                                            <img
+                                                                className="box__imgEmpresa"
+                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
                                                             <h2>{projeto.tituloProjeto}</h2>
@@ -320,11 +315,16 @@ export default function ListagemOwner() {
                                                                                     src={"http://localhost:5000/StaticFiles/Images/" + projeto.fotoCliente}
                                                                                     alt="Imagem do cliente" /> */}
 
-                                                                <button
-                                                                    className='boxCadastro__btnCriar btn btn_salvar'
-                                                                    type='submit'
-                                                                >
-                                                                    Salvar alterações</button>
+                                                                {
+                                                                    isLoading ? <button
+                                                                        className='boxCadastro__btnCriar btn btn_salvar'
+                                                                        disabled>
+                                                                        Salvar Alterações</button>
+                                                                        :
+                                                                        <button
+                                                                            className='boxCadastro__btnCriar btn btn_salvar'
+                                                                            type='submit'>Salvar alterações</button>
+                                                                }
                                                             </form>
 
                                                             <div className="div__buttons">
@@ -339,7 +339,7 @@ export default function ListagemOwner() {
                                                                 <button
                                                                     className="btn__excluirProjeto btn"
                                                                     type="button"
-                                                                    onClick={() => btnExcluir()}>Excluir projeto
+                                                                    onClick={() => btnExcluir()}>Desativar projeto
                                                                 </button>
 
                                                             </div>
@@ -350,9 +350,9 @@ export default function ListagemOwner() {
 
                                                         <div className="alerta-content">
                                                             <h3>Deseja mesmo excluir esse projeto?</h3>
-                                                            <button
+                                                            {/* <button
                                                                 className="btn__excluirProjetoModal btn"
-                                                                onClick={() => excluirProjeto()}>Sim</button>
+                                                                onClick={() => excluirProjeto()}>Sim</button> */}
                                                             <button
                                                                 className="btn__Excluir"
                                                                 onClick={() => fecharAlerta()}
@@ -371,10 +371,10 @@ export default function ListagemOwner() {
                                             <section className="box__projeto">
                                                 <div className="containerBox">
                                                     <div className="divisoria__imgEmpresa">
-                                                        {/* <img
-                                                                            className="box__imgEmpresa"
-                                                                            src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + projeto.idClienteNavigation.fotoCliente}
-                                                                            alt="Imagem do cliente" /> */}
+                                                        <img
+                                                            className="box__imgEmpresa"
+                                                            src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                            alt="Imagem do cliente" />
 
                                                     </div>
                                                     <div className="box__infProjeto">
@@ -396,18 +396,18 @@ export default function ListagemOwner() {
                                                                 }
                                                             ).format(new Date(projeto.dataConclusao))}</span>
                                                         </div>
-                                                    </div>
-                                                    <div className="div__membersGear">
-                                                        <div className="div__members">
-                                                            {/* <span>Members</span> */}
+                                                        <div className="div__membersGear">
+                                                            <div className="div__members">
+                                                                {/* <span>Members</span> */}
+                                                            </div>
+                                                            <button
+                                                                aria-label="Configurações"
+                                                                className="btn__settings"
+                                                                onClick={() => abrirModal(projeto)}>
+                                                                {/* <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span> */}
+                                                                <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
+                                                            </button>
                                                         </div>
-                                                        <button
-                                                            aria-label="Configurações"
-                                                            className="btn__settings"
-                                                            onClick={() => abrirModal(projeto)}>
-                                                            {/* <span className="iconify projeto__icon" data-icon="bi:gear-fill"></span> */}
-                                                            <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
-                                                        </button>
                                                     </div>
                                                 </div>
                                             </section>
@@ -491,11 +491,21 @@ export default function ListagemOwner() {
                                                                                 src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
                                                                                 alt="Imagem do cliente" /> */}
 
+                                                            {
+                                                                isLoading ? <button
+                                                                    className='boxCadastro__btnCriar btn btn_salvar'
+                                                                    disabled>
+                                                                    Salvar Alterações</button>
+                                                                    :
+                                                                    <button
+                                                                        className='boxCadastro__btnCriar btn btn_salvar'
+                                                                        type='submit'>Salvar alterações</button>
+                                                            }
                                                             <button
-                                                                className='boxCadastro__btnCriar btn'
-                                                                type='submit'
-                                                            >
-                                                                Salvar alterações</button>
+                                                                className="btn__excluirProjeto btn"
+                                                                type="button"
+                                                                onClick={() => btnExcluir()}>Desativar projeto
+                                                            </button>
                                                         </form>
                                                         <div className="div__buttons">
                                                             <button
@@ -505,11 +515,12 @@ export default function ListagemOwner() {
                                                             >
                                                                 Voltar
                                                             </button>
+
                                                             <Icon className='iconify trash' icon="bi:trash" />
                                                             <button
                                                                 className="btn__excluirProjeto btn"
                                                                 type="button"
-                                                                onClick={() => btnExcluir()}>Excluir projeto
+                                                                onClick={() => btnExcluir()}>Desativar projeto
                                                             </button>
 
                                                         </div>
@@ -520,9 +531,9 @@ export default function ListagemOwner() {
 
                                                     <div className="alerta-content">
                                                         <h3>Deseja mesmo excluir esse projeto?</h3>
-                                                        <button
+                                                        {/* <button
                                                             className="btn__excluirProjetoModal btn"
-                                                            onClick={() => excluirProjeto()}>Sim</button>
+                                                            onClick={() => excluirProjeto()}>Sim</button> */}
                                                         <button
                                                             className="btn__Excluir"
                                                             onClick={() => fecharAlerta()}

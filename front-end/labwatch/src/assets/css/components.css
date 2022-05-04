@@ -136,6 +136,7 @@ header {
 .header__imgPerfil{
     width: 2vw;
     height: 4.6vh;
+    object-fit: contain;
 }
 
 .div__imgNomePerfil {

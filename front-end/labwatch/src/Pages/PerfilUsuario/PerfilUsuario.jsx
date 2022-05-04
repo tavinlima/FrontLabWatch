@@ -1,28 +1,34 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 // import { parseJwt } from "../../services/auth";
+import {motion} from "framer-motion"
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
 import { parseJwt } from "../../services/auth";
 import api from "../../services/api";
 
-import imgtrabalho from '../../assets/img/ilustraTrabalhadores.png'
+//Tradução
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from 'i18next';
+import { LanguageSwitcher } from '../../Components/LanguageSwitcher';
 
 export default function PerfilUsuario() {
     const [listaPerfil, setListaPerfil] = useState([]);
     const [nomeUsuario, setNomeUsuario] = useState([]);
     const [sobrenome, setSobrenome] = useState([]);
 
+    //Tradução
+    const { t } = useTranslation();
+
     function buscarPerfil() {
         axios('http://labwatch-backend.azurewebsites.net/api/Usuarios/' + parseJwt().jti)
             .then(resposta => {
-                console.log(resposta)
+                console.log(resposta.data)
                 if (resposta.status === 200) {
                     setListaPerfil(resposta.data)
                     setNomeUsuario(resposta.data.nomeUsuario)
                     setSobrenome(resposta.data.sobreNome)
-                    console.log(listaPerfil)
                 }
             }
             )
@@ -40,7 +46,7 @@ export default function PerfilUsuario() {
             sobreNome: sobrenome,
         }
 
-        api.put('/Usuarios' + '?' + 'idUsuario=' + parseJwt().jti, usuario, {
+        api.put('/Usuarios' + parseJwt().jti, usuario, {
             headers: { "Content-Type": "application/json" }
         }).then(resposta => {
             console.log(resposta)
@@ -49,55 +55,61 @@ export default function PerfilUsuario() {
     }
 
     return (
-        <div>
-            <Header />
-            <SideBar />
-            <div className="box__listagemProjetos">
-                <section className="section__listagemProjetos container">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <div>
+                <Header />
+                <SideBar />
+                <div className="box__listagemProjetos">
+                    <section className="section__listagemProjetos container">
 
                         <h1>Profile</h1>
-                    <div className='section__infoBox'>
-                        <img
-                            className="overview__imgEmpresa"
-                            src={imgtrabalho}
-                            alt="Imagem do cliente" />
+                        <div className='section__infoBox'>
+                            <img
+                                className="overview__imgEmpresa"
+                                src={"http://labwatch-backend.azurewebsites.net/img/" + listaPerfil.fotoUsuario}
+                                alt="Imagem do cliente" />
 
-                        <div className='div__textBox'>
-                            <h2>{listaPerfil.nomeUsuario}</h2>
-                            <h2>{listaPerfil.sobreNome}</h2>
-                            <h2>{listaPerfil.email}</h2>
+                            <div className='div__textBox'>
+                                <h2> {t('Name :')} {listaPerfil.nomeUsuario}</h2>
+                                <h2> {t('Last Name :')} {listaPerfil.sobreNome}</h2>
+                                <h2> Email : {listaPerfil.email}</h2>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <form onSubmit={(e) => editarPerfil(e)}>
-                        <label className='boxCadastro__label'>
-                            Name
-                            <input
-                                className='projetoNome__input'
-                                type='text'
-                                value={nomeUsuario}
-                                name='nomeUsuario'
-                                autoComplete='off'
-                                onChange={(e) => setNomeUsuario(e.target.value)} />
-                        </label>
+                        <form onSubmit={(e) => editarPerfil(e)}>
+                            <label className='boxCadastro__label'>
+                                Name
+                                <input
+                                    className='projetoNome__input'
+                                    type='text'
+                                    value={nomeUsuario}
+                                    name='nomeUsuario'
+                                    autoComplete='off'
+                                    onChange={(e) => setNomeUsuario(e.target.value)} />
+                            </label>
 
-                        <label className='boxCadastro__label'>
-                            Surname
-                            <input
-                                className='projetoNome__input'
-                                type='text'
-                                value={sobrenome}
-                                name='sobrenome'
-                                autoComplete='off'
-                                onChange={(e) => setSobrenome(e.target.value)} />
-                        </label>
-                        <button>Edit profile</button>
-                    </form>
+                            <label className='boxCadastro__label'>
+                                Surname
+                                <input
+                                    className='projetoNome__input'
+                                    type='text'
+                                    value={sobrenome}
+                                    name='sobrenome'
+                                    autoComplete='off'
+                                    onChange={(e) => setSobrenome(e.target.value)} />
+                            </label>
+                            <button>Edit profile</button>
+                        </form>
 
 
-                </section>
+                    </section>
+                </div>
             </div>
-        </div>
+        </motion.div>
     )
 }

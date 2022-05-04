@@ -70,7 +70,6 @@ export default function Login() {
         <>
             <main className="main_login">
                 <div className="ContainerMain containerL">
-                    <LanguageSwitcher/>
                     <section className="box_login">
                         <div className="box_titulo">
                             <span className="titulo-login"> {t('welcome')}</span>
