@@ -142,7 +142,7 @@ export default function Usuario() {
                                                 <section className="box__usuario" key={usuario.idUsuario}>
                                                     <div className="container__Box">
                                                         <div className="divisoria__imgUsuario">
-                                                            <img src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + usuario.fotoUsuario}
+                                                            <img src={"http://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
                                                                 alt="Imagem do Usuario" />
                                                         </div>
                                                         <div id="usuario" className="box__infoUsuario">
@@ -175,7 +175,7 @@ export default function Usuario() {
                                             <section className="box__usuario" key={usuario.idUsuario}>
                                                 <div className="container__Box">
                                                     <div className="divisoria__imgUsuario">
-                                                        <img src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + usuario.fotoUsuario}
+                                                        <img src={"http://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
                                                             alt="Imagem do Usuario" />
                                                     </div>
                                                     <div id="usuario" className="box__infoUsuario">
@@ -188,7 +188,7 @@ export default function Usuario() {
                                                     </div>
 
                                                     <div className="div__check">
-                                                        <button onClick={ativarUsuario}>
+                                                        <button className="btn__check" onClick={ativarUsuario}>
                                                             <Icon className="check" icon="ant-design:check-circle-outlined" />
                                                         </button>
                                                         <button onClick={() => excluirUsuario(usuario.idUsuario)} className="btn__X">

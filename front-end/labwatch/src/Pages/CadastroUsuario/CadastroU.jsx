@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import '../../assets/css/cadastroU.css';
@@ -6,11 +6,12 @@ import '../../assets/css/global.css'
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenhoCadastro.png'
 import '../../assets/css/dark_mode.css';
+import { motion } from "framer-motion"
 
 import fotoPadrao from '../../assets/img/PerfilDefault.png'
 import { useEffect } from "react";
 
-export default function Usuario(){
+export default function Usuario() {
     const [idTipoUsuario, setIdTipoUsuario] = useState('');
     const [idStatus, setIdStatus] = useState('');
     const [nomeUsuario, setNomeUsuario] = useState('');
@@ -24,9 +25,9 @@ export default function Usuario(){
 
     let navigate = useNavigate();
 
-    function Cadastar(evento){
+    function Cadastar(evento) {
         evento.preventDefault()
-        
+
         var formData = new FormData();
 
         // const target = document.getElementById('arquivo')
@@ -52,22 +53,27 @@ export default function Usuario(){
         formData.append('ativo', false)
         console.log(formData)
 
-        axios.post('http://labwatch-backend.azurewebsites.net/api/CadastroUsuario', formData,{
+        axios.post('http://labwatch-backend.azurewebsites.net/api/CadastroUsuario', formData, {
             headers: { "Content-Type": "multipart/form-data" }
         })
-        .then(resposta=>{
-            if (resposta.status === 201) {
-                console.log('Usuario Cadastrado')
-                navigate('/Login')
-            }
-        })
-        .catch(erro=> console.log(erro))
+            .then(resposta => {
+                if (resposta.status === 201) {
+                    console.log('Usuario Cadastrado')
+                    navigate('/Login')
+                }
+            })
+            .catch(erro => console.log(erro))
     }
 
     // useEffect(console.log(fotoPadrao.split(',', 2)[1]), [])
-    return(
-        <>
-        <main className="main_login">
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <>
+                <main className="main_login">
                     <div className="ContainerMain containerL">
                         <section className="box_cad">
                             <div className="box_tituloCad">
@@ -84,37 +90,37 @@ export default function Usuario(){
                                     <input type="radio" name="color_mode" id="dark_mode" value="dark" />
                                     Dark
                                 </label>  */}
-                                <input className="input-cad" 
-                                placeholder="First Name" 
-                                value={nomeUsuario} 
-                                onChange={(campo) => setNomeUsuario(campo.target.value)} 
-                                name="nomeUsuario" 
-                                type="text" 
-                                id="nomeUsuario" />
+                                <input className="input-cad"
+                                    placeholder="First Name"
+                                    value={nomeUsuario}
+                                    onChange={(campo) => setNomeUsuario(campo.target.value)}
+                                    name="nomeUsuario"
+                                    type="text"
+                                    id="nomeUsuario" />
 
-                                <input className="input-cad" 
-                                placeholder="Last Name" 
-                                value={sobreNome} 
-                                onChange={(campo) => setSobreNome(campo.target.value)} 
-                                name="sobreNome" 
-                                type="text" 
-                                id="sobreNome" />
+                                <input className="input-cad"
+                                    placeholder="Last Name"
+                                    value={sobreNome}
+                                    onChange={(campo) => setSobreNome(campo.target.value)}
+                                    name="sobreNome"
+                                    type="text"
+                                    id="sobreNome" />
 
-                                <input className="input-cad" 
-                                placeholder="Email" 
-                                value={email} 
-                                onChange={(campo) => setEmail(campo.target.value)} 
-                                name="email" 
-                                type="email" 
-                                id="email" />
+                                <input className="input-cad"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(campo) => setEmail(campo.target.value)}
+                                    name="email"
+                                    type="email"
+                                    id="email" />
 
-                                <input className="input-cad" 
-                                placeholder="Password" 
-                                defaultValue={senha} 
-                                onChange={(campo) => setSenha(campo.target.value)} 
-                                name="password" type="password" 
-                                id="password" />
-                               
+                                <input className="input-cad"
+                                    placeholder="Password"
+                                    defaultValue={senha}
+                                    onChange={(campo) => setSenha(campo.target.value)}
+                                    name="password" type="password"
+                                    id="password" />
+
                                 <div className="botao-cad">
                                     <button type='submit' className="btn-cad" id="btn_cad">
                                         Register
@@ -124,14 +130,15 @@ export default function Usuario(){
                         </section>
                         <section className="box_azulCad">
                             <div>
-                                <img className="img_logo" src= {logo} alt="Logo" />
+                                <img className="img_logo" src={logo} alt="Logo" />
                             </div>
                             <div className="box_desenhoCad">
-                                <img className="img_desenhoCad" src = {desenho} alt="desenho"/>
+                                <img className="img_desenhoCad" src={desenho} alt="desenho" />
                             </div>
                         </section>
                     </div>
                 </main>
-        </>
+            </>
+        </motion.div >
     )
 }
