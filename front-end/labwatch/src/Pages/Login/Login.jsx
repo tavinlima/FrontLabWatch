@@ -95,9 +95,9 @@ export default function Login() {
                                 <Icon className="iconify olho"  icon="akar-icons:eye-open" />
 
                             </button>
-                            {/* <div className="box_recovery">
-                                <Link to="/" className="link_recovery ">Recovery Password</Link>
-                            </div> */}
+                            <div className="box_recovery">
+                                <Link to="/CadastroUsuario" className="link_recovery ">Register</Link>
+                            </div>
                             <div className="botao-login">
                                 {
 
