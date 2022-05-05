@@ -18,40 +18,43 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 16rem;
+    margin-left: 18rem;
     width: 50vw;
     margin-top: 5rem;
     margin-bottom: 3rem;
 }
 
-.section__listagemClientes h1 {
-    font-size: 40px;
-    color: black;
-    margin: 40px 0 20px 0;
-}
 
-.div__titulo {
+.div__tituloInput {
     display: flex;
-    align-items: center;
-    width: 22vw;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
-.div__input input {
+.div__tituloInput h1{
+    font-size: 40px;
+    color: var(--cor-primaria);
+    margin-top: 3rem;
+}
+
+.div__tituloInput input {
     margin-bottom: 2rem;
     width: 86%;
-    height: 40px;
+    height: 5vh;
     padding-left: 4vw;
     position: relative;
     background-color: #ecebee;
     filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
     border-radius: 10px;
 }
-.div__input ::-webkit-input-placeholder{
+.div__tituloInput ::-webkit-input-placeholder{
     color: #1B65A6;
 }
 
 .section__cliente {
     display: flex;
+    justify-content: space-between;
 }
 
 .box__cliente {
@@ -62,7 +65,7 @@
     justify-content: center;
     height: 14vh;
     width: 86%;
-    margin:10px 0 20px 0;
+    margin-bottom: 2rem;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 10px;
 }
@@ -82,10 +85,14 @@
     clip-path: circle(50% at 50% 50%);
     background-color: #D5E6F0;
     height: 12vh;
-    width: 8vw;
+    width: 6vw;
     display: flex;
     align-items: center;
     margin-right: 1rem;
+}
+
+.img_cliente{
+    object-fit: scale-down;
 }
 
 .div__working{
@@ -100,11 +107,12 @@
 }
 
 .div__descricao{
-display: flex;
-justify-content: center;
-align-items: center;
-width: 23vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 23vw;
 }
+
 .div__descricao span{
     font-size: 0.92em;
     color: black;;
@@ -121,8 +129,8 @@ width: 23vw;
     position: absolute;
     color: #1B65A6;
     font-size: 18px;
-    left: 19.5vw;
-    top: 30.7vh;
+    left: 22.5vw;
+    top: 34.3vh;
 }
 
 /* ///CSS BOX CADASTRO//// */
@@ -132,7 +140,8 @@ width: 23vw;
     width: 25vw;
     height: 55vh;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    border-radius: 10px;
+    border-radius: 10px;    
+    position: absolute;
 }
 
 .form_cad{
@@ -243,7 +252,7 @@ input[type="file"] {
         color: #1B65A6;
         font-size: 18px;
         left: 20vw;
-        top: 23.2vh;
+        top: 26.6vh;
     }
 
     .section__listagemClientes {
