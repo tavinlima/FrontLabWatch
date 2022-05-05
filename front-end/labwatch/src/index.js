@@ -19,11 +19,41 @@ import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
 import Usuario from './Pages/Usuarios/ListagemUsuarios';
 
 import './i18n';
-import { usuarioAutenticado } from './services/auth';
+import { usuarioAutenticado, parseJwt } from './services/auth';
 
+const PermissaoConsultor = () => {
+  return (
+    usuarioAutenticado() && parseJwt().role === '1' ?
+      <Outlet /> : <Navigate to="/Login" />
+  );
+}
 
-const ProtectedRoute = () => {
-  return usuarioAutenticado ? <Outlet /> : <Navigate to='/Login' />;
+const PermissaoGestor = () => {
+  return (
+    usuarioAutenticado() && parseJwt().role === '2' ?
+      <Outlet /> : <Navigate to="/Login" />
+  );
+}
+
+const PermissaoOwner = () => {
+  return (
+    usuarioAutenticado() && parseJwt().role === '3' ?
+      <Outlet /> : <Navigate to="/Login" />
+  );
+}
+
+const PermissaoOwnerGestor = ({ children }) => {
+  return (
+    usuarioAutenticado() && parseJwt().role === '2' ?
+      children : <Navigate to='/Login' />
+  )
+}
+
+const UsuarioLogado = () => {
+  return (
+    usuarioAutenticado() ?
+      <Outlet /> : <Navigate to="/Login" />
+  )
 }
 
 const routing = (
@@ -31,20 +61,35 @@ const routing = (
     <div>
       <AnimatePresence>
         <Routes>
-          {/* <ProtectedRoute path="ListaProjetos" element={<ListagemComum />} roles={[usuarioAutenticado()]} /> */}
-          {/* <Route exact path='/' element={<Login />} /> */}
           <Route path='/Login' element={<Login />} />
-          <Route path='/ListaProjetos' element={<ListagemGestor />} />
-          <Route path='/ListaProjetosOwner' element={<ListagemOwner />} />
-          <Route path='/ListaProjetosConsultor' element={<ListagemConsultor />} />
-          <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
           <Route path='/CadastroUsuario' element={<CadastroU />} />
-          <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
-          <Route path='/Clientes' element={<Cliente />} />
-          <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
-          <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
-          <Route path='/Tasks' element={<ListagemTasks />} />
-          <Route path='/Settings' element={<Settings />} />
+
+          <Route element={<PermissaoConsultor />}>
+            <Route path='/ListaProjetosConsultor' element={<ListagemConsultor />} />
+          </Route>
+
+          <Route element={<PermissaoGestor />}>
+            <Route path='/ListaProjetosGestor' element={<ListagemGestor />} />
+            <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
+          </Route>
+
+          <Route element={<PermissaoOwner />}>
+            <Route path='/ListaProjetosOwner' element={<ListagemOwner />} />
+            <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
+            <Route path='/Clientes' element={<Cliente />} />
+          </Route>
+
+          <Route element={<PermissaoOwnerGestor />}>
+          </Route>
+
+          <Route element={<UsuarioLogado />}>
+            <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
+            <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
+            <Route path='/Tasks' element={<ListagemTasks />} />
+            <Route path='/Settings' element={<Settings />} />
+
+          </Route>
+
           <Route path='/' element={<Navigate replace to='/Login' />} />
           {/* Navigate replace to='/Login' para redirecionar quando o / for utilizado */}
         </Routes>

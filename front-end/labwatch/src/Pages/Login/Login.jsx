@@ -47,7 +47,21 @@ export default function Login() {
 
                     setIsLoading(false)
 
-                    navigate('/ListaProjetos')
+                    if (parseJwt().role === '1') {
+                        navigate('/ListaProjetosConsultor');
+                    }
+
+                    else if (parseJwt().role === '2') {
+                        navigate('/ListaProjetosGestor');
+                    }
+
+                    else if(parseJwt().role === '3') {
+                        navigate('/ListaProjetosOwner');
+                    }
+
+                    else {
+                        navigate('/Login');
+                    }
                 }
             })
             .catch(erro => {

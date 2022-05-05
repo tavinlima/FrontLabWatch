@@ -38,7 +38,7 @@ i18n
       order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
       caches: ['localStorage', 'cookie'],
       excludeCacheFor: ['cimode'], 
-      cookieOptions: { path: '/Login', path: '/Settings', sameSite: 'strict' },
+      cookieOptions: { path: '/Login' && '/Settings', sameSite: 'strict' },
       cookieMinutes: 180
     }
   });
