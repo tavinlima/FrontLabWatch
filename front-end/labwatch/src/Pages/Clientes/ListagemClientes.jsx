@@ -106,7 +106,7 @@ export default function Cliente() {
             </section>
             <div className="box__clientes">
                 <section className="section__listagemClientes container">
-                    <div className="div__tituloInput">
+                    <div className="div__tituloInputt">
                         <h1>LabWatch Clients</h1>
                         <input
                             type='search'
