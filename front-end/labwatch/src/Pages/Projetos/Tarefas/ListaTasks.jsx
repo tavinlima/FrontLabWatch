@@ -116,6 +116,13 @@ export default function TaskTarefa() {
                             placeholder="Find a task" />
                         <Icon className='iconify lupa' icon="cil:magnifying-glass" />
                     </div>
+                    {/* {
+                        listarTasks.map((tasks) => {
+                            return (
+                                <span>{tasks.idStatusTask === 1 ? <Icon className='iconify' icon="cil:magnifying-glass" /> : '' }</span>
+                            )
+                        })
+                    } */}
 
                     <button onClick={() => abrirModal()}>Add Task</button>
                     <div id="myModal" className="modal">
@@ -141,7 +148,7 @@ export default function TaskTarefa() {
                                         </label>
                                     </div>
 
-                                    <div>
+                                    <div  className="div__Register">
                                         <h2>Task tag</h2>
                                         <div className='div__tags'>
                                             {
@@ -169,7 +176,7 @@ export default function TaskTarefa() {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className="div__Register">
                                         <h2>Details</h2>
                                         <label className='div__Register'>
                                             Add description

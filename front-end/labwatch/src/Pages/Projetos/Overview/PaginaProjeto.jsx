@@ -11,6 +11,7 @@ import SideBar from '../../../Components/sidebar'
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth.jsx'
 import api from '../../../services/api';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([]);
@@ -28,6 +29,8 @@ export default function PaginaProjeto() {
 
     const notify = () => toast.success("Usuário retirado da equipe com sucesso!")
     const notifyCadastro = () => toast.success("Usuário cadastrado na equipe com sucesso!")
+
+    let navigate = useNavigate();
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
@@ -185,6 +188,8 @@ export default function PaginaProjeto() {
                             value={descricao}
                             onChange={(e) => setDescricao(e.target.value)} />
                     </div>
+
+                    <button onClick={() => navigate('/Tasks')}>Acessar Tasks</button>
 
                     <div className='div__team'>
                         <h2>Project team:</h2>
