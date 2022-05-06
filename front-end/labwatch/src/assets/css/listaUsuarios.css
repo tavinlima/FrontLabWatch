@@ -32,7 +32,7 @@
 
 .div__titulo h1 {
     font-size: 40px;
-    color: black;
+    color: var(--cor-primaria);
     margin: 40px 0 20px 0;
 }
 .div__inputt input {
@@ -123,17 +123,47 @@
     font-size: 1.8em;
     width: 4vw;
 }
+.check:hover{
+    color: #42e714;
+}
 
 .X{
-    color: rgba(238, 12, 12, 0.966);
+    color: rgba(219, 23, 23, 0.952);
     font-size: 1.8em;
     width: 4vw;
+}
+.X:hover{
+    color: rgba(255, 0, 0, 0.966);;
 }
 
 .btn__check{
     cursor: pointer;
     width: 10vw ;
+    width: fit-content;
+    height: fit-content;
+    background: transparent;
+    border-width: inherit;
 }
+.btn__check:hover{
+    transition: all 1.5s 0s ease;
+    transform: scale(1.3);
+    transition: all 0.2s;
+}
+
+.btn__X{
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    background: transparent;
+    border-width: inherit;
+}
+.btn__X:hover{
+    color: rgba(255, 0, 0, 0.966);
+    transition: all 1.5s 0s ease;
+    transform: scale(1.3);
+    transition: all 0.2s;
+}
+
 .lupa_usuario {
     position: absolute;
     color: #1B65A6;

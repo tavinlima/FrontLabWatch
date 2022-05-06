@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../../services/api';
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
@@ -96,9 +96,9 @@ export default function Cliente() {
 
     return (
         <motion.div
-        initial ={{opacity: 0}}
-        animate ={{opacity: 1}}
-        exit ={{opacity: 0}}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
         >
             <Header />
             <section>
@@ -106,10 +106,8 @@ export default function Cliente() {
             </section>
             <div className="box__clientes">
                 <section className="section__listagemClientes container">
-                    <div className="div__titulo">
+                    <div className="div__tituloInputt">
                         <h1>LabWatch Clients</h1>
-                    </div>
-                    <div className="div__input">
                         <input
                             type='search'
                             id='clientes'
@@ -120,6 +118,7 @@ export default function Cliente() {
                             placeholder="Search Clients..." />
                         <Icon className='iconify lupa_cliente' icon="cil:magnifying-glass" />
                     </div>
+
 
 
                     <ToastContainer
@@ -145,11 +144,11 @@ export default function Cliente() {
                                 (
                                     filteredResults.map((cliente) => {
                                         return (
-                                            <div className="section__cliente" key={cliente.idCliente}>
-                                                <section className="box__cliente" key={cliente.idCliente}>
+                                            <section className="section__cliente" key={cliente.idCliente}>
+                                                <div className="box__cliente" key={cliente.idCliente}>
                                                     <div className="containerBox">
                                                         <div className="divisoria__imgCliente">
-                                                            <img src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + cliente.fotoCliente}
+                                                            <img className="img_cliente" src={"http://labwatch-backend.azurewebsites.net/img/" + cliente.fotoCliente}
                                                                 alt="Imagem do Cliente" />
                                                         </div>
                                                         <div className="box__infoCliente">
@@ -165,96 +164,98 @@ export default function Cliente() {
                                                         </div>
 
                                                     </div>
-                                                </section>
-                                            </div>
+                                                </div>
+                                            </section>
                                         )
                                     })
                                 ) :
                                 listaClientes.map((cliente) => {
                                     return (
-                                        <div className="section__cliente" key={cliente.idCliente}>
-                                            <section className="box__cliente" key={cliente.idCliente}>
-                                                <div className="containerBox">
-                                                    <div className="divisoria__imgCliente">
-                                                        <img src={"http://labwatch-backend.azurewebsites.net/StaticFiles/Images/" + cliente.fotoCliente}
-                                                            alt="Imagem do Cliente" />
-                                                    </div>
-                                                    <div className="box__infoCliente">
-                                                        <h2>Client: {cliente.nomeCliente}</h2>
-
-                                                        <div className="div__working">
-                                                            <span>Working Since: {new Date(cliente.dataCadastro).toLocaleDateString()}</span>
+                                        <section className="section__cliente" key={cliente.idCliente}>
+                                                <div className="box__cliente" key={cliente.idCliente}>
+                                                    <div className="containerBox">
+                                                        <div className="divisoria__imgCliente">
+                                                            <img className="img_cliente" src={"http://labwatch-backend.azurewebsites.net/img/" + cliente.fotoCliente}
+                                                                alt="Imagem do Cliente" />
                                                         </div>
-                                                    </div>
+                                                        <div className="box__infoCliente">
+                                                            <h2>Client: {cliente.nomeCliente}</h2>
 
-                                                    <div className="div__descricao">
-                                                        <span>Descrição: {cliente.descricao}</span>
-                                                    </div>
+                                                            <div className="div__working">
+                                                                <span>Working Since: {new Date(cliente.dataCadastro).toLocaleDateString()}</span>
+                                                            </div>
+                                                        </div>
 
+                                                        <div className="div__descricao">
+                                                            <span>Descrição: {cliente.descricao}</span>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </section>
-                                        </div>
                                     )
                                 })
                     }
                 </section>
-                    <section className="box__cadastro">
-                            <form className="form_cad" encType="multipart/form-data">
-                                <label className="box__cadastroLabel continer">
-                                    Client Name:
-                                    <input
-                                        className="input_clienteName"
-                                        type="text"
-                                        autoComplete="off"
-                                        name="nomeCliente"
-                                        onChange={(e) => setNomeCliente(e.target.value)}
-                                        required
-                                    />
-                                </label>
-                                <label className="box__cadastroLabel">
-                                    Description:
-                                    <input
-                                        className="input_description"
-                                        type="text"
-                                        autoComplete="off"
-                                        name="descricao"
-                                        onChange={(e) => setDescricao(e.target.value)}
-                                        required />
-                                </label>
-                                <label className="box__cadastroLabel">
-                                    Client Image:
-                                    </label>
-                                    <label className="label_btn" for="arquivo">Selecionar Foto</label>
-                                    <input
-                                        className="input_file"
-                                        type="file"
-                                        name="arquivo"
-                                        id="arquivo"
-                                        required
-                                        accept="image/png, image/jpeg"
-                                        onChange={(e) => setFotoCliente(e)} />
-                                <div className="div_btnCliente">
-                                    {
-                                        isLoading === false ? (
-                                            <button
-                                                className='btn_cadCliente'
-                                                type='submit'
-                                                onClick={(e) => cadastrarCliente(e)}
-                                            >
-                                                Add Client
-                                            </button>
-                                        ) : (
-                                            <button className='btn_cadastro_carregando'
-                                                type="submit"
+                <section className="section__BoxCadastro">
+                    <div className="box__cadastro">
+                        <form className="form_cad" encType="multipart/form-data">
+                            <label className="box__cadastroLabel continer">
+                                Client Name:
+                                <input
+                                    className="input_clienteName"
+                                    type="text"
+                                    autoComplete="off"
+                                    name="nomeCliente"
+                                    onChange={(e) => setNomeCliente(e.target.value)}
+                                    required
+                                />
+                            </label>
+                            <label className="box__cadastroLabel">
+                                Description:
+                                <input
+                                    className="input_description"
+                                    type="text"
+                                    autoComplete="off"
+                                    name="descricao"
+                                    onChange={(e) => setDescricao(e.target.value)}
+                                    required />
+                            </label>
+                            <label className="box__cadastroLabel">
+                                Client Image:
+                            </label>
+                            <label className="label_btn" for="arquivo">Selecionar Foto</label>
+                            <input
+                                className="input_file"
+                                type="file"
+                                name="arquivo"
+                                id="arquivo"
+                                required
+                                accept="image/png, image/jpeg"
+                                onChange={(e) => setFotoCliente(e)} />
+                            <div className="div_btnCliente">
+                                {
+                                    isLoading === false ? (
+                                        <button
+                                            className='btn_cadCliente'
+                                            type='submit'
+                                            onClick={(e) => cadastrarCliente(e)}
+                                        >
+                                            Add Client
+                                        </button>
+                                    ) : (
+                                        <button className='btn_cadastro_carregando'
+                                            type="submit"
 
-                                                disabled>Loading...</button>
-                                        )
-                                    }
-                                </div>
-                            </form>
-                    </section>
-            </div>
-        </motion.div>
+                                            disabled>Loading...</button>
+                                    )
+                                }
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div >
+        </motion.div >
     )
 
 }

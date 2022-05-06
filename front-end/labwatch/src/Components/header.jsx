@@ -10,11 +10,20 @@ export default function Header() {
     return (
         <header>
             <div className='header__conteudo container'>
-                <Link to='/ListaProjetos'><img src={logo} alt='Logo da Lab Watch' className='header__logo'></img> </Link>
+                {/* <Link to='/ListaProjetos'><img src={logo} alt='Logo da Lab Watch' className='header__logo'></img> </Link> */}
+                {
+                    parseJwt().role === '1' ? <Link to='/ListaProjetosConsultor'><img src={logo} alt='Logo da Lab Watch' className='header__logo'></img> </Link> : ''
+                }
+                {
+                    parseJwt().role === '2' ? <Link to='/ListaProjetosGestor'><img src={logo} alt='Logo da Lab Watch' className='header__logo'></img> </Link> : ''
+                }
+                {
+                    parseJwt().role === '3' ? <Link to='/ListaProjetosOwner'><img src={logo} alt='Logo da Lab Watch' className='header__logo'></img> </Link> : ''
+                }
                 <div className='div__imgNomePerfil'>
                     <Link to='/PerfilUsuario'>
-                    <img src={foto} alt='imagem de perfil padrão' className='header__imgPerfil' />
-                    <span>{parseJwt().name}</span>
+                        <img src={foto} alt='imagem de perfil padrão' className='header__imgPerfil' />
+                        <span>{parseJwt().name}</span>
                     </Link>
                 </div>
             </div>

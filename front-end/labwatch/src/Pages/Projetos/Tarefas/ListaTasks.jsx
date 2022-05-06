@@ -15,6 +15,7 @@ export default function TaskTarefa() {
     const date = new Date().toLocaleDateString();
 
     const [searchInput, setSearchInput] = useState('');
+    const [tituloTag, setTituloTag] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
     const [minhasTasks, setMinhasTasks] = useState([]);
     const [tituloTask, setTituloTask] = useState([]);
@@ -96,17 +97,26 @@ export default function TaskTarefa() {
 
     function cadastrarTask(e) {
         e.preventDefault()
-        setDescricaoTask('teste')
         let task = {
             idProjeto: parseIdProjeto(),
             idTag: idTag,
             idUsuario: parseJwt().jti,
             tituloTask: tituloTask,
-            descricao: descricaoTask
+            descricao: descricaoTask,
+            idStatusTask: 1
         }
+<<<<<<< HEAD
         api.post('/Tasks', task, {
             headers: { "Content-Type": "multipart/form-data" }
         })
+=======
+        console.log(task)
+        api.post('/Tasks', task
+        // {
+        //     headers: { "Content-Type": "multipart/form-data" }
+        // }
+        )
+>>>>>>> e3cc3d4405472096b2afe003c9bd75badbda6dc7
             .catch(erro => console.log(erro))
     }
 
@@ -118,6 +128,17 @@ export default function TaskTarefa() {
             idUsuario: parseJwt().jti,
             idTask: parseIdTask
         }
+    }
+
+    function cadastrarTag(e) {
+        e.preventDefault()
+        api.post('/Tags', {
+            tituloTag: tituloTag
+        }).then(resposta => {
+            console.log(resposta)
+        }).then(() => listarTags())
+            .catch(erro => console.log(erro))
+
     }
 
     useEffect(listarTags, [])
@@ -254,31 +275,78 @@ export default function TaskTarefa() {
                     </div>
                     {/* Modal ADD TASK */}
                     <div id="myModal" className="modal">
+<<<<<<< HEAD
                         <div className="modal-content">
                             <div className="modal_container modal__task">
                                 <div >
                                     <div className="div__Register">
                                         <h2>Add new Task</h2>
 
+=======
+                        <div className="modal__addTask">
+                            <div className="modal_container ">
+                                <div className='modal__conteudo'>
+
+                                    <div className="div__Register">
+                                        <h2>Add new Task</h2>
+
+                                        <label className=''>
+                                            Title
+                                            <input
+                                                type="search"
+                                                id='usuarios'
+                                                name='usuario'
+                                                autoComplete='off'
+                                                list='usuarios'
+                                                autoFocus='on'
+                                                value={tituloTask}
+                                                onChange={(e) => setTituloTask(e.target.value)}
+                                                placeholder="Título da task" />
+                                        </label>
+>>>>>>> e3cc3d4405472096b2afe003c9bd75badbda6dc7
                                     </div>
 
                                     <div>
                                         <h2>Task tag</h2>
-                                        {
-                                            listaTag.map((tag) => {
-                                                return (
-                                                    <div key={tag.idTag}>
-                                                        <button type='' onClick={() => setIdTag(tag.idTag)}>{tag.tituloTag}</button>
-                                                    </div>
-                                                )
-                                            })
-                                        }
+                                        <div className='div__tags'>
+                                            {
+                                                listaTag.map((tag) => {
+                                                    return (
+                                                        <div key={tag.idTag}>
+                                                            <button type='' onClick={() => setIdTag(tag.idTag)}>{tag.tituloTag}</button>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                            <form onSubmit={(e) => cadastrarTag(e)} >
+                                                <label>
+                                                    <input
+                                                        type="text"
+                                                        name="tag"
+                                                        id="tags"
+                                                        value={tituloTag}
+                                                        autoComplete='off'
+                                                        onChange={(e) => setTituloTag(e.target.value)}
+                                                        placeholder="Tag"
+                                                    />
+                                                </label>
+                                            </form>
+                                        </div>
                                     </div>
 
                                     <div>
                                         <h2>Details</h2>
-                                        <button>Add description</button>
-                                        <input type='date' />
+                                        <label className='div__Register'>
+                                            Add description
+                                            <input
+                                                type="search"
+                                                id='descriptions'
+                                                name='description'
+                                                autoComplete='off'
+                                                value={descricaoTask}
+                                                onChange={(e) => setDescricaoTask(e.target.value)}
+                                                placeholder="Descrição da task" />
+                                        </label>
                                     </div>
                                     <button onClick={(e) => cadastrarTask(e)}>Cadastrar Task</button>
                                 </div>
