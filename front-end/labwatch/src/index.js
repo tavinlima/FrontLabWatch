@@ -16,14 +16,36 @@ import PaginaProjeto from './Pages/Projetos/Overview/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
-import Usuario from './Pages/Usuarios/ListagemUsuarios';
+import Tarefas from './Pages/Projetos/Tarefas/ListaTasks';
 
 import './i18n';
-import { usuarioAutenticado } from './services/auth';
+import { parseJwt, usuarioAutenticado } from './services/auth';
 
 
 const ProtectedRoute = () => {
   return usuarioAutenticado ? <Outlet /> : <Navigate to='/Login' />;
+}
+
+//Children : "filho" (CadastrarConsulta) que está dentro do PermissaoAdm.
+const PermissaoConsultor = ({ children }) => {
+  return( 
+    usuarioAutenticado() && parseJwt().role === '1' ?
+     children : <Navigate to="/ListaProjetosConsultor" /> 
+  );
+}
+
+const PermissaoMedico = ({ children }) => {
+  return( 
+    usuarioAutenticado() && parseJwt().role === '2' ?
+     children : <Navigate to="/login" /> 
+  );
+}
+
+const PermissaoAdm = ({ children }) => {
+  return( 
+    usuarioAutenticado() && parseJwt().role === '3' ?
+     children : <Navigate to="/login" /> 
+  );
 }
 
 const routing = (
@@ -43,7 +65,7 @@ const routing = (
           <Route path='/Clientes' element={<Cliente />} />
           <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
           <Route path='/PerfilUsuario' element={<PerfilUsuario />} />
-          <Route path='/Tasks' element={<ListagemTasks />} />
+          <Route path='/Tarefas' element={<Tarefas />} />
           <Route path='/Settings' element={<Settings />} />
           <Route path='/' element={<Navigate replace to='/Login' />} />
           {/* Navigate replace to='/Login' para redirecionar quando o / for utilizado */}

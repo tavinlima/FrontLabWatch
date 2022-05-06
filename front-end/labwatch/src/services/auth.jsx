@@ -23,3 +23,9 @@ export const parseIdEquipe = () => {
 
     return baseIdEquipe
 }
+
+export const parseIdTask = () => {
+    let baseIdTask = localStorage.getItem('idTask');
+
+    return baseIdTask
+}
