@@ -2,13 +2,14 @@ import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Icon } from '@iconify/react';
-import { parseJwt, parseIdProjeto } from '../../../services/auth';
+import { parseJwt, parseIdProjeto, parseIdTask } from '../../../services/auth';
 
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar';
 import api from '../../../services/api';
 
 import "../../../assets/css/minhasTasks.css";
+import { Navigate } from 'react-router-dom';
 
 export default function TaskTarefa() {
     const date = new Date().toLocaleDateString();
@@ -19,8 +20,34 @@ export default function TaskTarefa() {
     const [minhasTasks, setMinhasTasks] = useState([]);
     const [tituloTask, setTituloTask] = useState([]);
     const [descricaoTask, setDescricaoTask] = useState([]);
+    const [comentariotask, setComentarioTask] = useState([]);
     const [listaTag, setListaTag] = useState([]);
     const [idTag, setIdTag] = useState([]);
+    const [idTask, setIdTask] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+
+    async function listarMinhasTasks() {
+        await api("/Tasks/Minhas/" + parseJwt().jti).then(resposta => {
+            // console.log(resposta.data)
+            if (resposta.status === 200) {
+                console.log(resposta.data)
+                setMinhasTasks(resposta.data);
+                // console.log(meusProjetos)
+            }
+        }).catch(erro => console.log(erro))
+    }
+
+    function selecionarTask(task) {
+        api("/Tasks/" + task.idTask).then(resposta => {
+            if (resposta.status === 200) {
+                var valorTask = resposta.data.idTask;
+                localStorage.setItem('idTaskSelect', resposta.data.idTask)
+                Navigate('/TaskOverview', { state: { id: task.idTask, name: task.idTask, value: valorTask } })
+            }
+        })
+            .catch(erro => console.log(erro));
+    }
 
 
     //Função da barra de busca
@@ -48,6 +75,18 @@ export default function TaskTarefa() {
         }
     }
 
+    function abrirModalTask() {
+
+        var modal = document.getElementById("ModalTask")
+        modal.style.display = "block";
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
     function listarTags() {
         api('/Tags').then(resposta => {
             if (resposta.status === 200) {
@@ -66,17 +105,29 @@ export default function TaskTarefa() {
             descricao: descricaoTask,
             idStatusTask: 1
         }
+<<<<<<< HEAD
+        api.post('/Tasks', task, {
+            headers: { "Content-Type": "multipart/form-data" }
+        })
+=======
         console.log(task)
         api.post('/Tasks', task
         // {
         //     headers: { "Content-Type": "multipart/form-data" }
         // }
         )
+>>>>>>> e3cc3d4405472096b2afe003c9bd75badbda6dc7
             .catch(erro => console.log(erro))
     }
 
-    function listarTasks() {
-        api('/Tasks').then(resposta => console.log(resposta.data))
+    function cadastrarComentario(e) {
+        e.preventDefault()
+        setComentarioTask('FUNCIONA')
+        let comentTask = {
+            comentario1: comentariotask,
+            idUsuario: parseJwt().jti,
+            idTask: parseIdTask
+        }
     }
 
     function cadastrarTag(e) {
@@ -91,7 +142,7 @@ export default function TaskTarefa() {
     }
 
     useEffect(listarTags, [])
-    useEffect(listarTasks, [])
+    useEffect(listarMinhasTasks, [])
 
     return (
         <div>
@@ -124,8 +175,121 @@ export default function TaskTarefa() {
                         })
                     } */}
 
-                    <button onClick={() => abrirModal()}>Add Task</button>
+                    {
+                        minhasTasks.length === 0 ?
+                            <div className="box__semTasks">
+                                <span>
+                                    Não há nenhuma tarefa para ser feita hoje!
+                                </span>
+                            </div>
+
+                            :
+
+                            searchInput.length > 0 ?
+                                (
+                                    filteredResults.map((task) => {
+                                        return (
+                                            <div className="section_task" key={task.idTask}>
+                                                <section className="box_task" key={task.idTask}>
+                                                    <div className="containerBox">
+                                                        <div className="box_infTask">
+                                                            <button className="button_selectTask" onClick={() => selecionarTask(task)}>
+                                                                <h2>{task.tituloTask}</h2>
+                                                            </button>
+
+                                                            <div>
+                                                                <span>
+                                                                    {task.tituloTask}
+                                                                </span>
+                                                                <span>
+                                                                    {task.descricao}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        )
+                                    }
+
+                                    )
+                                )
+                                :
+                                //Lista das minhas tasks
+                                minhasTasks.map((task) => {
+                                    return (
+                                        <div>
+                                            <div className="section__task" key={task.idTask}>
+                                                <section className="box__task" key={task.idTask}>
+                                                    <div className="containerBox">
+                                                        <div className="box__infTask">
+                                                            <span>
+                                                                {task.idStatusTask === 1 ? <Icon icon="ic:baseline-check-circle" />
+                                                                    : <Icon icon="akar-icons:circle-alert-fill" />
+                                                                }
+                                                            </span>
+                                                            <button className="button_selectProject" onClick={() => abrirModalTask()}>
+
+                                                                <h2>{task.tituloTask}</h2>
+                                                            </button>
+                                                            <span>
+                                                                h2Descrição: {task.descricao}
+                                                                Esforço: {task.tempoTrabalho}
+                                                                <h2>{task.idProjetoNavigation.tituloProjeto}</h2>
+                                                            </span>
+
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            {
+                                                isLoading ? <button
+                                                    className='boxCadastro__btnCriar btn btn_salvar'
+                                                    disabled>
+                                                    Add task</button>
+                                                    :
+                                                    <button onClick={() => abrirModal()}
+                                                        className='boxCadastro__btnCriar btn btn_salvar'
+                                                        type='submit'>Add Task</button>
+                                            }
+                                        </div>
+                                    )
+                                })
+                    }
+                    {/* Modal Datails Task */}
+                    <div id="ModalTask" className="modal">
+                        <div className="modal-content">
+                            <div className="modal_container modal__task">
+                                <div>
+                                    <div className="div__RegisterTask">
+                                        <h2>Details</h2>
+                                    </div>
+                                    <div>
+                                        <h2>Comentários</h2>
+                                        {
+                                            minhasTasks.map(() => {
+                                                return (
+                                                    <button>aa</button>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    <button onClick={(e) => cadastrarComentario(e)}>Escrever um comentário</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Modal ADD TASK */}
                     <div id="myModal" className="modal">
+<<<<<<< HEAD
+                        <div className="modal-content">
+                            <div className="modal_container modal__task">
+                                <div >
+                                    <div className="div__Register">
+                                        <h2>Add new Task</h2>
+
+=======
                         <div className="modal__addTask">
                             <div className="modal_container ">
                                 <div className='modal__conteudo'>
@@ -146,6 +310,7 @@ export default function TaskTarefa() {
                                                 onChange={(e) => setTituloTask(e.target.value)}
                                                 placeholder="Título da task" />
                                         </label>
+>>>>>>> e3cc3d4405472096b2afe003c9bd75badbda6dc7
                                     </div>
 
                                     <div  className="div__Register">
