@@ -166,13 +166,6 @@ export default function TaskTarefa() {
                             placeholder="Find a task" />
                         <Icon className='iconify lupa' icon="cil:magnifying-glass" />
                     </div>
-                    {/* {
-                        listarTasks.map((tasks) => {
-                            return (
-                                <span>{tasks.idStatusTask === 1 ? <Icon className='iconify' icon="cil:magnifying-glass" /> : '' }</span>
-                            )
-                        })
-                    } */}
 
                     {
                         minhasTasks.length === 0 ?
