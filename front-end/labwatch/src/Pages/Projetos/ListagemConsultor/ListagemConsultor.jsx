@@ -28,7 +28,6 @@ export default function ListarConsultor() {
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
         if (searchInput !== '') {
-
             const filteredData = meusProjetos.filter((item) => {
                 return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
             })
