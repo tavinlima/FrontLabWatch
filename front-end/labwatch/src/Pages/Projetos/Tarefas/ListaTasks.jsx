@@ -12,6 +12,7 @@ import "../../../assets/css/minhasTasks.css";
 import { Navigate } from 'react-router-dom';
 
 export default function TaskTarefa() {
+    const notify = () => toast.warning("Cuidado! Palavras inadequadas foram encontradas")
     const date = new Date().toLocaleDateString();
 
     const [searchInput, setSearchInput] = useState('');
@@ -23,6 +24,7 @@ export default function TaskTarefa() {
     const [descricaoTask, setDescricaoTask] = useState([]);
     const [comentariotask, setComentarioTask] = useState([]);
     const [listaTag, setListaTag] = useState([]);
+    const [erroMod, setErroMod] = useState('');
     const [idTag, setIdTag] = useState([]);
     const [idTask, setIdTask] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -109,22 +111,28 @@ export default function TaskTarefa() {
         let task = {
             idProjeto: parseIdProjeto(),
             idTag: idTag,
+            idStatusTask: 3,
             idUsuario: parseJwt().jti,
             tituloTask: tituloTask,
             descricao: descricaoTask,
-            idStatusTask: 1
+            tempoTrabalho: tempoTrabalho,
+
         }
         api.post('/Tasks', task, {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .catch(erro => console.log(erro))
     }
-
-    function listarTasks() {
-        api('/Tasks').then(resposta => console.log(resposta.data))
-    }
-
-
+    
+        
+    //     )   
+    //         .catch(erro =>{
+    //             if(erro.toJSON().status === 400){
+    //                 notify();
+    //             }
+    //         })
+    //         console.log(task)
+    // }
     function cadastrarComentario(e) {
         e.preventDefault()
         setComentarioTask('FUNCIONA')
@@ -263,19 +271,19 @@ export default function TaskTarefa() {
                                                     </div>
                                                 </section>
                                             </div>
+                                            {
+                                                isLoading ? <button
+                                                    className='boxCadastro__btnCriar btn btn_salvar'
+                                                    disabled>
+                                                    Add task</button>
+                                                    :
+                                                    <button onClick={() => abrirModal()}
+                                                        className='boxCadastro__btnCriar btn btn_salvar'
+                                                        type='submit'>Add Task</button>
+                                            }
                                         </div>
                                     )
                                 })
-                    }
-                    {
-                        isLoading ? <button
-                            className='boxCadastro__btnCriar btn btn_salvar'
-                            disabled>
-                            Add task</button>
-                            :
-                            <button onClick={() => abrirModal()}
-                                className='boxCadastro__btnCriar btn btn_salvar'
-                                type='submit'>Add Task</button>
                     }
                     {/* Modal Datails Task */}
                     <div id="ModalTask" className="modal">
@@ -314,7 +322,7 @@ export default function TaskTarefa() {
 
                                     </div>
 
-                                    <div className="div__Register">
+                                    <div>
                                         <h2>Task tag</h2>
                                         <div className='div__tags'>
                                             {
@@ -342,7 +350,7 @@ export default function TaskTarefa() {
                                         </div>
                                     </div>
 
-                                    <div className="div__Register">
+                                    <div>
                                         <h2>Details</h2>
                                         <label className='div__Register'>
                                             Add description
@@ -355,6 +363,21 @@ export default function TaskTarefa() {
                                                 onChange={(e) => setDescricaoTask(e.target.value)}
                                                 placeholder="Descrição da task" />
                                         </label>
+                                    </div>
+                                    <div>
+                                        <h2>Details</h2>
+                                        <label className='div__Register'>
+                                            Add Horas
+                                            <input
+                                                type="search"
+                                                id='horas'
+                                                name='hora'
+                                                autoComplete='off'
+                                                value={tempoTrabalho}
+                                                onChange={(e) => setTempoTrabalho(e.target.value)}
+                                                placeholder="Descrição da task" />
+                                        </label>
+
                                     </div>
                                     <button onClick={(e) => cadastrarTask(e)}>Cadastrar Task</button>
                                 </div>
@@ -373,6 +396,7 @@ export default function TaskTarefa() {
                         pauseOnFocusLoss
                         draggable
                         pauseOnHover />
+
 
                 </section>
             </div>
