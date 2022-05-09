@@ -42,8 +42,7 @@ export default function TaskTarefa() {
         api("/Tasks/" + task.idTask).then(resposta => {
             if (resposta.status === 200) {
                 var valorTask = resposta.data.idTask;
-                localStorage.setItem('idTaskSelect', resposta.data.idTask)
-                Navigate('/TaskOverview', { state: { id: task.idTask, name: task.idTask, value: valorTask } })
+                localStorage.setItem('idTaskSelect', valorTask)
             }
         })
             .catch(erro => console.log(erro));
@@ -151,7 +150,7 @@ export default function TaskTarefa() {
                     <div className="div__tInput">
                         <div className='div__titlesTasks'>
                             <h1>Active Tasks</h1>
-                            <h2>{date}</h2>
+                            <h2>Date: {date}</h2>
                         </div>
                         <input
                             type="search"
@@ -184,10 +183,10 @@ export default function TaskTarefa() {
                                                         <div className="box__infTask">
                                                             <span>
                                                                 {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
-                                                                    : <Icon icon="akar-icons:circle-alert-fill" />
+                                                                    : <Icon className='alertTask' icon="akar-icons:circle-alert-fill" />
                                                                 }
                                                             </span>
-                                                            <button className="button_selectTask" onClick={() => selecionarTask(task)}>
+                                                            <button className="button_selectTask" onClick={() => abrirModalTask(task)}>
                                                                 <h2>{task.tituloTask}</h2>
                                                             </button>
 
@@ -201,16 +200,16 @@ export default function TaskTarefa() {
                                                                     <span className='description'>{task.descricao}</span>
                                                                 </span>
                                                             </div>
-                                                                <div className='div__hours'>
-                                                                    <span >
-                                                                        <span className='span_hours'>Worked Hours: </span>
-                                                                        <span className='hours'>{task.tempoTrabalho}</span>
-                                                                    </span>
-                                                                </div>
+                                                            <div className='div__hours'>
+                                                                <span >
+                                                                    <span className='span_hours'>Worked Hours: </span>
+                                                                    <span className='hours'>{task.tempoTrabalho}</span>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </section>
-                                            </div>  
+                                            </div>
                                         )
                                     }
 
@@ -227,10 +226,10 @@ export default function TaskTarefa() {
                                                         <div className="box__infTask">
                                                             <span>
                                                                 {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
-                                                                    : <Icon icon="akar-icons:circle-alert-fill" />
+                                                                    : <Icon className='alertTask' icon="akar-icons:circle-alert-fill" />
                                                                 }
                                                             </span>
-                                                            <button className="button_selectTask" onClick={() => selecionarTask(task)}>
+                                                            <button className="button_selectTask" onClick={() => abrirModalTask()}>
                                                                 <h2>{task.tituloTask}</h2>
                                                             </button>
 
@@ -244,12 +243,12 @@ export default function TaskTarefa() {
                                                                     <span className='description'>{task.descricao}</span>
                                                                 </span>
                                                             </div>
-                                                                <div className='div__hours'>
-                                                                    <span >
-                                                                        <span className='span_hours'>Worked Hours: </span>
-                                                                        <span className='hours'>{task.tempoTrabalho}</span>
-                                                                    </span>
-                                                                </div>
+                                                            <div className='div__hours'>
+                                                                <span >
+                                                                    <span className='span_hours'>Worked Hours: </span>
+                                                                    <span className='hours'>{task.tempoTrabalho}</span>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </section>
