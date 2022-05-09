@@ -74,7 +74,6 @@ export default function PaginaProjeto() {
                         setDescricao(projeto.descricao)
                         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
                         setFotoCliente(projeto.idClienteNavigation.fotoCliente)
-                        console.log(projeto.idClienteNavigation.fotoCliente)
                         localStorage.setItem('idEquipe', projeto.idEquipe)
                     }
                 })
@@ -95,6 +94,7 @@ export default function PaginaProjeto() {
             })
             console.log(users)
             setEquipe(users)
+            console.log(users)
         })
     }
 
