@@ -74,7 +74,7 @@ export default function PaginaProjeto() {
                         setDescricao(projeto.descricao)
                         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
                         setFotoCliente(projeto.idClienteNavigation.fotoCliente)
-                        console.log(projeto.idEquipe)
+                        console.log(projeto.idClienteNavigation.fotoCliente)
                         localStorage.setItem('idEquipe', projeto.idEquipe)
                     }
                 })
@@ -283,7 +283,7 @@ export default function PaginaProjeto() {
                                                     <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + users.fotoUsuario} alt='Foto de perfil do usuário'></img>
                                                     <div className='section__infMembers'>
                                                         <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
-                                                        <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
+                                                        <span>Responsável por: {(users.idUsuarioNavigation.tasks)} tasks</span>
                                                     </div>
                                                     <button onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
                                                 </section>

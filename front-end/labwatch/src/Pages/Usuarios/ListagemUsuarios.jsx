@@ -46,9 +46,6 @@ export default function Usuario() {
         return usuario.ativo === false
     }
 
-
-
-
     ///FUNCAO COM API
     function listarUsuarios() {
         api("http://labwatch-backend.azurewebsites.net/api/Usuarios")

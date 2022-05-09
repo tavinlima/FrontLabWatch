@@ -235,19 +235,19 @@ export default function TaskTarefa() {
                                                     </div>
                                                 </section>
                                             </div>
-                                            {
-                                                isLoading ? <button
-                                                    className='boxCadastro__btnCriar btn btn_salvar'
-                                                    disabled>
-                                                    Add task</button>
-                                                    :
-                                                    <button onClick={() => abrirModal()}
-                                                        className='boxCadastro__btnCriar btn btn_salvar'
-                                                        type='submit'>Add Task</button>
-                                            }
                                         </div>
                                     )
                                 })
+                    }
+                    {
+                        isLoading ? <button
+                            className='boxCadastro__btnCriar btn btn_salvar'
+                            disabled>
+                            Add task</button>
+                            :
+                            <button onClick={() => abrirModal()}
+                                className='boxCadastro__btnCriar btn btn_salvar'
+                                type='submit'>Add Task</button>
                     }
                     {/* Modal Datails Task */}
                     <div id="ModalTask" className="modal">
