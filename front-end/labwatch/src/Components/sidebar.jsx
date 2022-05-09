@@ -43,7 +43,7 @@ export default function SideBar() {
                     <li><Link to="/ListaProjetos"><i><FontAwesomeIcon icon={faTarp} /></i>Back to Projects</Link></li>
                     <hr className="side_hr"></hr>
                     {/* <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li> */}
-                    <li><Link to="/"><i> <FontAwesomeIcon icon={faListCheck} /></i>My Tasks</Link></li>
+                    <li><Link to="/Tarefas"><i> <FontAwesomeIcon icon={faListCheck} /></i>My Tasks</Link></li>
                     <li><Link to="/"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>Activity</Link></li>
                     <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>Project</Link></li>
                     <li className="settings">

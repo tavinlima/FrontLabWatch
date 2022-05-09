@@ -33,6 +33,7 @@ export default function ListagemOwner() {
     const [descricaoProjeto, setDescricaoProjeto] = useState('');
 
     const atualizado = () => toast.success("Projeto atualizado com sucesso!")
+    const desativado = () => toast.success("Projeto desativado com sucesso!")
 
     let navigate = useNavigate();
 
@@ -102,11 +103,9 @@ export default function ListagemOwner() {
     function listarProjetos() {
         api("/Projetos").then(resposta => {
             if (resposta.status === 200) {
-                if (parseJwt().role === 3) {
-                    console.log(resposta.data)
-                    setListaProjetos(resposta.data)
-                    localStorage.removeItem('idEquipe')
-                }
+                console.log(resposta.data)
+                setListaProjetos(resposta.data)
+                localStorage.removeItem('idEquipe')
             }
         })
             .catch(erro => console.log(erro));
@@ -152,13 +151,30 @@ export default function ListagemOwner() {
             dataConclusao,
             fotoCliente
         }, {
-            headers: { 
+            headers: {
                 "Content-Type": "application/json"
-             }
+            }
         }).then(resposta => {
             console.log(resposta)
         }).then(() => listarProjetos()).then(atualizado)
             .catch(erro => console.log(erro))
+    }
+
+    function desativarProjeto() {
+        console.log(idProjeto)
+        api.patch('/Projetos/MudarSituacao/', {
+            statusProjeto: 2,
+            idProjeto: idProjeto
+        }).then(resposta => {
+            if (resposta.status === 200) {
+                console.log(resposta)
+                console.log(listaProjetos)
+                window.location.reload();
+                console.log(resposta)
+
+            }
+        }
+        ).then(desativado).catch(erro => console.log(erro))
     }
 
 
@@ -519,11 +535,11 @@ export default function ListagemOwner() {
                                                             </button>
 
                                                             <Icon className='iconify trash' icon="bi:trash" />
-                                                            <button
+                                                            {/* <button
                                                                 className="btn__excluirProjeto btn"
                                                                 type="button"
                                                                 onClick={() => btnExcluir()}>Desativar projeto
-                                                            </button>
+                                                            </button> */}
 
                                                         </div>
                                                     </div>
@@ -533,9 +549,9 @@ export default function ListagemOwner() {
 
                                                     <div className="alerta-content">
                                                         <h3>Deseja mesmo excluir esse projeto?</h3>
-                                                        {/* <button
+                                                        <button
                                                             className="btn__excluirProjetoModal btn"
-                                                            onClick={() => excluirProjeto()}>Sim</button> */}
+                                                            onClick={() => desativarProjeto()}>Sim</button>
                                                         <button
                                                             className="btn__Excluir"
                                                             onClick={() => fecharAlerta()}
