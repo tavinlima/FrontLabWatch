@@ -1,0 +1,38 @@
+.section__infoPerfil {
+    display: flex;
+}
+
+.perfil__imgPerfil {
+    width: 15em;
+    margin-right: 1rem;
+    object-fit: scale-down;
+    clip-path: circle();
+}
+
+.div__textPerfil {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+}
+
+.textPerfil__nomeUsuario {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.textPerfil__emailUsuario {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.button__editProfile {
+    background-color: transparent;
+    border-width: 0px;
+    width: 6em;
+    font-size: 24px;
+    margin: 2rem 2.5rem;
+}
+
+.button__editProfile:hover {
+    cursor: pointer;
+}

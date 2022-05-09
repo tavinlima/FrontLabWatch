@@ -134,9 +134,9 @@ header {
 }
 
 .header__imgPerfil{
-    width: 2vw;
-    height: 4.6vh;
+    width: 3em;
     object-fit: contain;
+    clip-path: circle();
 }
 
 .div__imgNomePerfil {
