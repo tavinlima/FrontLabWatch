@@ -35,8 +35,11 @@ export default function TaskTarefa() {
             // console.log(resposta.data)
             if (resposta.status === 200) {
                 console.log(resposta.data)
-                setMinhasTasks(resposta.data);
-                // console.log(meusProjetos)
+                let minhasTasks = resposta.data.filter((tasks) => {
+                    return tasks.idProjeto == parseIdProjeto()
+                })
+                setMinhasTasks(minhasTasks);
+                console.log(minhasTasks)
             }
         }).catch(erro => console.log(erro))
     }
