@@ -35,23 +35,27 @@ export default function PaginaProjeto() {
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
         if (searchInput !== '') {
+            console.log(equipe)
             const filteredData = equipe.filter((item) => {
-                return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+                return Object.values(item.idUsuarioNavigation.nomeUsuario).join('').toLowerCase().includes(searchInput.toLowerCase())
             })
             setFilteredResults(filteredData)
-        } 
+
+        } else {
+            setFilteredResults(equipe)
+        }
     }
 
     const searchTeam = (valorProcurado) => {
         setSearchUsers(valorProcurado)
         if (searchUsers !== '') {
             let equipeBuscada = equipe.map((usuario) => {
-                return usuario 
+                return usuario
             })
 
             let usuarioBuscado = listaUsuarios.filter((usuario) => {
                 return usuario.idUsuario === equipeBuscada.idUsuario
-            }) 
+            })
 
             console.log(usuarioBuscado)
             console.log(equipeBuscada)
@@ -59,7 +63,7 @@ export default function PaginaProjeto() {
                 return Object.values(item).join('').toLowerCase().includes(searchUsers.toLowerCase())
             })
             setFilteredUsers(filteredDados)
-        } else{
+        } else {
             setFilteredUsers(listaUsuarios)
         }
     }
@@ -202,7 +206,7 @@ export default function PaginaProjeto() {
                                     <form onSubmit={(e) => cadastrarNaEquipe(e)}>
 
                                         <div className="div__teamRegister">
-                                        <h3>Insert new users in your team!</h3>
+                                            <h3>Insert new users in your team!</h3>
                                             <input
                                                 type="search"
                                                 id='usuarios'
@@ -283,7 +287,7 @@ export default function PaginaProjeto() {
                                                     <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + users.fotoUsuario} alt='Foto de perfil do usuário'></img>
                                                     <div className='section__infMembers'>
                                                         <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
-                                                        <span>Responsável por: {(users.idUsuarioNavigation.tasks)} tasks</span>
+                                                        <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
                                                     </div>
                                                     <button onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
                                                 </section>

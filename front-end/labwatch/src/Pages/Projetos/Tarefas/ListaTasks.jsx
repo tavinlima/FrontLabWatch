@@ -32,8 +32,11 @@ export default function TaskTarefa() {
             // console.log(resposta.data)
             if (resposta.status === 200) {
                 console.log(resposta.data)
-                setMinhasTasks(resposta.data);
-                // console.log(meusProjetos)
+                let minhasTasks = resposta.data.filter((tasks) => {
+                    return tasks.idProjeto == parseIdProjeto()
+                })
+                setMinhasTasks(minhasTasks);
+                console.log(minhasTasks)
             }
         }).catch(erro => console.log(erro))
     }
@@ -43,7 +46,6 @@ export default function TaskTarefa() {
             if (resposta.status === 200) {
                 var valorTask = resposta.data.idTask;
                 localStorage.setItem('idTaskSelect', resposta.data.idTask)
-                Navigate('/TaskOverview', { state: { id: task.idTask, name: task.idTask, value: valorTask } })
             }
         })
             .catch(erro => console.log(erro));
@@ -222,7 +224,6 @@ export default function TaskTarefa() {
                                                                 }
                                                             </span>
                                                             <button className="button_selectProject" onClick={() => abrirModalTask()}>
-
                                                                 <h2>{task.tituloTask}</h2>
                                                             </button>
                                                             <span>

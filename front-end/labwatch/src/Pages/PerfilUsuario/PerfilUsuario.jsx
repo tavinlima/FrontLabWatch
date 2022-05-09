@@ -66,8 +66,8 @@ export default function PerfilUsuario() {
         }
     }
 
-    async function buscarTasks() {
-        await api('/Tasks')
+    function buscarTasks() {
+        api('/Tasks')
             .then(resposta => {
                 console.log(resposta.data)
                 let minhasTasks = resposta.data.filter((tasks) => {
@@ -156,15 +156,15 @@ export default function PerfilUsuario() {
 
                         <section>
                             {
-                                // console.log(minhasTasks)
-                                minhasTasks.map((tasks) => {
-                                    return (
-                                        <ul key={tasks.idTask}>
+                                console.log(minhasTasks)
+                                // minhasTasks.map((tasks) => {
+                                //     return (
+                                //         <ul key={tasks.idTask}>
 
-                                            <li>{tasks.tituloTask}</li>
-                                        </ul>
-                                    )
-                                })
+                                //             <li>{tasks.tituloTask}</li>
+                                //         </ul>
+                                //     )
+                                // })
                             }
                         </section>
 
