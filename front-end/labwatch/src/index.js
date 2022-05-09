@@ -77,6 +77,7 @@ const routing = (
             <Route path='/ListaProjetosOwner' element={<ListagemOwner />} />
             <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
             <Route path='/Clientes' element={<Cliente />} />
+            <Route path='/Usuarios' element={<Usuario />} />
           </Route>
 
           <Route element={<PermissaoOwnerGestor />}>

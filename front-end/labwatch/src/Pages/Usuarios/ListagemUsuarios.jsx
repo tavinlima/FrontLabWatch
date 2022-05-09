@@ -68,21 +68,24 @@ export default function Usuario() {
             .catch(erro => console.log(erro))
     }
 
-    function ativarUsuario(event) {
-        event.preventDefault();
-        let usuario = {
+    function ativarUsuario(usuario) {
+        // console.log(ativo)
+        // console.log(usuario);
+       
+        api.patch("/Usuarios/",{
+            idUsuario: usuario,
             ativo: true
-        }
-        console.log(usuario)
-
-        axios.put("http://labwatch-backend.azurewebsites.net/api/Usuarios/" + idUsuario, {
-            ativo
-        }, {
-            headers: { "Content-Type": "application/json" }
-        }).then(resposta => {
+        }   
+            // {headers: {'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')}
+     ).then(resposta => {
+            console.log(ativo)
+            console.log(resposta.data)
+            if (resposta.status === 200) {
+                listarUsuarios()
+                console.log("Deu certo")
+            }
             console.log(resposta);
-        }).then(() => listarUsuarios())
-            .catch(erro => console.log(erro))
+        }).catch(erro => console.log(erro))
 
     }
 
@@ -93,6 +96,7 @@ export default function Usuario() {
         }).then(resposta => {
             if (resposta.status===204) {
                 listarUsuarios()
+                console.log(usuario);
             }
             console.log(resposta)
         }).catch(erro => console.log(erro))
@@ -155,7 +159,7 @@ export default function Usuario() {
                                                         </div>
 
                                                         <div className="div__check">
-                                                            <button onClick={ativarUsuario} className="btn__check">
+                                                            <button onClick={()=> ativarUsuario(usuario.idUsuario)} className="btn__check">
                                                                 <Icon className="check" icon="ant-design:check-circle-outlined" />
                                                             </button>
                                                             <button onClick={() => excluirUsuario(usuario.idUsuario)} className="btn__X">
@@ -188,7 +192,7 @@ export default function Usuario() {
                                                     </div>
 
                                                     <div className="div__check">
-                                                        <button className="btn__check" onClick={ativarUsuario}>
+                                                        <button className="btn__check" onClick={()=>ativarUsuario(usuario.idUsuario)}>
                                                             <Icon className="check" icon="ant-design:check-circle-outlined" />
                                                         </button>
                                                         <button onClick={() => excluirUsuario(usuario.idUsuario)} className="btn__X">
