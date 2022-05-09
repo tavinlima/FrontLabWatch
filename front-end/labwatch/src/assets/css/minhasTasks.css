@@ -32,8 +32,8 @@
 }
 
 .div__titlesTasks h2 {
-    font-size: 40px;
-    color: var(--cor-primaria);
+    font-size: 2em;
+    color: black;
     margin-bottom:2rem;
 }
 
@@ -61,12 +61,73 @@
     align-items: center;
     align-self: center;
     justify-content: center;
-    height: 150px;
+    height: 15vh;
     width: 80%;
     margin: 10px 0 20px 0;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 10px;
 }
+
+.box__task:hover{
+    background-color: #ecebee;
+    transition: 0.4s;
+    transform: scale(1.03);
+}
+
+.box__infTask{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.checkTask{
+    color: #59a842;
+    font-size: 2em;
+}
+.button_selectTask{
+    margin-left: 1rem;
+}
+
+.button_selectTask h2{
+    border-width: inherit;
+    color: var(--cor-primaria);  
+    background: transparent;
+    border-style: none;
+}
+
+.infoTask{
+    display: flex;
+    flex-direction: column;
+    margin-left:5rem ;
+}
+
+.span_title{
+    color: var(--cor-primaria);
+    font-size: 1.5em;
+}
+.titleTask{
+    font-size: 1.4em;
+}
+.span_description{
+    color: var(--cor-primaria);
+    font-size: 1.1em;
+}
+.description{
+    font-size: 1em;
+}
+.div__hours{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 14vw;
+}
+.span_hours{
+    color: var(--cor-primaria);
+    font-size: 1.1em;
+}
+.hours{
+    font-size: 1em;
+}
+
 
 .modal__task {
     display: flex;
@@ -107,3 +168,11 @@
 .div__Register input {
     padding-left: 5px;
 }
+
+.lupaTask{
+    position: absolute;
+    color: #A6A0AE;
+    font-size: 18px;
+    left: 70vw;
+    top: 27.8vh;
+}   

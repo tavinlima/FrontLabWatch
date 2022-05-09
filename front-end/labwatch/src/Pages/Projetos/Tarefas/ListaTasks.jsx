@@ -105,18 +105,9 @@ export default function TaskTarefa() {
             descricao: descricaoTask,
             idStatusTask: 1
         }
-<<<<<<< HEAD
         api.post('/Tasks', task, {
             headers: { "Content-Type": "multipart/form-data" }
         })
-=======
-        console.log(task)
-        api.post('/Tasks', task,
-            {
-                headers: { "Content-Type": "multipart/form-data" }
-            }
-        )
->>>>>>> ccaa10c08a138dcec2990854bd663fbac62db158
             .catch(erro => console.log(erro))
     }
 
@@ -170,7 +161,7 @@ export default function TaskTarefa() {
                             list='tasks'
                             onChange={(e) => searchItems(e.target.value)}
                             placeholder="Find a task" />
-                        <Icon className='iconify lupa' icon="cil:magnifying-glass" />
+                        <Icon className='iconify lupaTask' icon="cil:magnifying-glass" />
                     </div>
 
                     {
@@ -187,27 +178,39 @@ export default function TaskTarefa() {
                                 (
                                     filteredResults.map((task) => {
                                         return (
-                                            <div className="section_task" key={task.idTask}>
-                                                <section className="box_task" key={task.idTask}>
+                                            <div className="section__task" key={task.idTask}>
+                                                <section className="box__task" key={task.idTask}>
                                                     <div className="containerBox">
-                                                        <div className="box_infTask">
+                                                        <div className="box__infTask">
+                                                            <span>
+                                                                {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
+                                                                    : <Icon icon="akar-icons:circle-alert-fill" />
+                                                                }
+                                                            </span>
                                                             <button className="button_selectTask" onClick={() => selecionarTask(task)}>
                                                                 <h2>{task.tituloTask}</h2>
                                                             </button>
 
-                                                            <div>
+                                                            <div className='infoTask'>
                                                                 <span>
-                                                                    {task.tituloTask}
+                                                                    <span className='span_title'>Project Title: </span>
+                                                                    <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
                                                                 </span>
-                                                                <span>
-                                                                    {task.descricao}
+                                                                <span >
+                                                                    <span className='span_description'>Description: </span>
+                                                                    <span className='description'>{task.descricao}</span>
                                                                 </span>
                                                             </div>
+                                                                <div className='div__hours'>
+                                                                    <span >
+                                                                        <span className='span_hours'>Worked Hours: </span>
+                                                                        <span className='hours'>{task.tempoTrabalho}</span>
+                                                                    </span>
+                                                                </div>
                                                         </div>
-
                                                     </div>
                                                 </section>
-                                            </div>
+                                            </div>  
                                         )
                                     }
 
@@ -223,20 +226,30 @@ export default function TaskTarefa() {
                                                     <div className="containerBox">
                                                         <div className="box__infTask">
                                                             <span>
-                                                                {task.idStatusTask === 1 ? <Icon icon="ic:baseline-check-circle" />
+                                                                {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
                                                                     : <Icon icon="akar-icons:circle-alert-fill" />
                                                                 }
                                                             </span>
-                                                            <button className="button_selectProject" onClick={() => abrirModalTask()}>
-
+                                                            <button className="button_selectTask" onClick={() => selecionarTask(task)}>
                                                                 <h2>{task.tituloTask}</h2>
                                                             </button>
-                                                            <span>
-                                                                <h2>Descrição: {task.descricao}</h2>
-                                                                <h2>Esforço: {task.tempoTrabalho}</h2>
-                                                                <h2>{task.idProjetoNavigation.tituloProjeto}</h2>
-                                                            </span>
 
+                                                            <div className='infoTask'>
+                                                                <span>
+                                                                    <span className='span_title'>Project Title: </span>
+                                                                    <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
+                                                                </span>
+                                                                <span >
+                                                                    <span className='span_description'>Description: </span>
+                                                                    <span className='description'>{task.descricao}</span>
+                                                                </span>
+                                                            </div>
+                                                                <div className='div__hours'>
+                                                                    <span >
+                                                                        <span className='span_hours'>Worked Hours: </span>
+                                                                        <span className='hours'>{task.tempoTrabalho}</span>
+                                                                    </span>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </section>
@@ -280,35 +293,12 @@ export default function TaskTarefa() {
                     </div>
                     {/* Modal ADD TASK */}
                     <div id="myModal" className="modal">
-<<<<<<< HEAD
                         <div className="modal-content">
                             <div className="modal_container modal__task">
                                 <div >
                                     <div className="div__Register">
                                         <h2>Add new Task</h2>
 
-=======
-                        <div className="modal__addTask">
-                            <div className="modal_container ">
-                                <div className='modal__content'>
-
-                                    <div className="div__Register">
-                                        <h2>Add new Task</h2>
-
-                                        <label className=''>
-                                            Title
-                                            <input
-                                                type="search"
-                                                id='usuarios'
-                                                name='usuario'
-                                                autoComplete='off'
-                                                list='usuarios'
-                                                autoFocus='on'
-                                                value={tituloTask}
-                                                onChange={(e) => setTituloTask(e.target.value)}
-                                                placeholder="Título da task" />
-                                        </label>
->>>>>>> ccaa10c08a138dcec2990854bd663fbac62db158
                                     </div>
 
                                     <div className="div__Register">

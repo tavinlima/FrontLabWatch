@@ -17,7 +17,6 @@ import Cliente from './Pages/Clientes/ListagemClientes';
 import Usuario from './Pages/Usuarios/ListagemUsuarios';
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
-import Usuario from './Pages/Usuarios/ListagemUsuarios';
 
 import './i18n';
 import { usuarioAutenticado, parseJwt } from './services/auth';
