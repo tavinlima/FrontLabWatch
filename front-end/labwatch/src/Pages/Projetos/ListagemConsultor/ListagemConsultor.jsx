@@ -148,11 +148,14 @@ export default function ListarConsultor() {
                                                             </button>
 
                                                             <div>
-                                                                <span>Cliente: </span>
+                                                                <span style={{"font-weight": 'bold'}}>Cliente: </span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
+                                                        </div>
 
-                                                            <span>Data de entrega:</span>
+                                                    </div>
+                                                        <div className='box__data'>
+                                                        <span style={{"font-weight": 'bold'}}>Data de entrega: </span>
                                                             <span>{Intl.DateTimeFormat("pt-BR",
                                                                 {
                                                                     year: 'numeric', month: 'numeric', day: 'numeric',
@@ -160,8 +163,6 @@ export default function ListarConsultor() {
                                                                 }
                                                             ).format(new Date(projeto.dataConclusao))}</span>
                                                         </div>
-
-                                                    </div>
                                                 </section>
 
                                             </div>
@@ -185,11 +186,14 @@ export default function ListarConsultor() {
                                                         </button>
 
                                                         <div>
-                                                            <span>Cliente: </span>
+                                                            <span style={{"font-weight": 'bold'}}>Cliente: </span>
                                                             <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                         </div>
+                                                    </div>
 
-                                                        <span>Data de entrega:</span>
+                                                </div>
+                                                    <div className='box__data'>
+                                                        <span style={{"font-weight": 'bold'}}>Data de entrega: </span>
                                                         <span>{Intl.DateTimeFormat("pt-BR",
                                                             {
                                                                 year: 'numeric', month: 'numeric', day: 'numeric',
@@ -197,8 +201,6 @@ export default function ListarConsultor() {
                                                             }
                                                         ).format(new Date(projeto.dataConclusao))}</span>
                                                     </div>
-
-                                                </div>
                                             </section>
                                         </div>
                                     )

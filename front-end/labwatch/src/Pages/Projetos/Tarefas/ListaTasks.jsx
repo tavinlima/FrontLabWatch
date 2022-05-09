@@ -16,6 +16,7 @@ export default function TaskTarefa() {
 
     const [searchInput, setSearchInput] = useState('');
     const [tituloTag, setTituloTag] = useState('');
+    const [tempoTrabalho, setTempoTrabalho] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
     const [minhasTasks, setMinhasTasks] = useState([]);
     const [tituloTask, setTituloTask] = useState([]);
@@ -65,6 +66,7 @@ export default function TaskTarefa() {
     function abrirModal() {
         var modal = document.getElementById("myModal");
 
+        
         modal.style.display = "block";
 
         window.onclick = function (event) {
@@ -74,10 +76,18 @@ export default function TaskTarefa() {
         }
     }
 
-    function abrirModalTask() {
+    function abrirModalTask(task) {
 
         var modal = document.getElementById("ModalTask")
         modal.style.display = "block";
+        console.log(task);
+        setIdTask(task.idTask)
+        setTempoTrabalho(task.tempoTrabalho)
+        setTituloTask(task.tituloTask)
+        setIdTag(task.idTag)
+        setTituloTag(task.idTag)
+        setComentarioTask(task.comentariosTask)
+
 
         window.onclick = function (event) {
             if (event.target === modal) {
@@ -229,7 +239,7 @@ export default function TaskTarefa() {
                                                                     : <Icon className='alertTask' icon="akar-icons:circle-alert-fill" />
                                                                 }
                                                             </span>
-                                                            <button className="button_selectTask" onClick={() => abrirModalTask()}>
+                                                            <button className="button_selectTask" onClick={() => abrirModalTask(task)}>
                                                                 <h2>{task.tituloTask}</h2>
                                                             </button>
 
@@ -272,8 +282,12 @@ export default function TaskTarefa() {
                         <div className="modal-content">
                             <div className="modal_container modal__task">
                                 <div>
+                                    <div>
+                                        <h1>Task: {tituloTask}</h1>
+                                    </div>
                                     <div className="div__RegisterTask">
-                                        <h2>Details</h2>
+                                        <h2>Details: {tempoTrabalho} {}</h2>
+                                        
                                     </div>
                                     <div>
                                         <h2>Comentários</h2>
