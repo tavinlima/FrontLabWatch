@@ -17,10 +17,17 @@ import Cliente from './Pages/Clientes/ListagemClientes';
 import Usuario from './Pages/Usuarios/ListagemUsuarios';
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
-import Tarefas from './Pages/Projetos/Tarefas/ListaTasks';
+import Usuario from './Pages/Usuarios/ListagemUsuarios';
 
 import './i18n';
 import { usuarioAutenticado, parseJwt } from './services/auth';
+
+const PermissaoConsultor = () => {
+  return (
+    usuarioAutenticado() && parseJwt().role === '1' ?
+      <Outlet /> : <Navigate to="/Login" />
+  );
+}
 
 const PermissaoGestor = () => {
   return (
@@ -48,28 +55,6 @@ const UsuarioLogado = () => {
     usuarioAutenticado() ?
       <Outlet /> : <Navigate to="/Login" />
   )
-}
-
-//Children : "filho" (CadastrarConsulta) que está dentro do PermissaoAdm.
-const PermissaoConsultor = ({ children }) => {
-  return( 
-    usuarioAutenticado() && parseJwt().role === '1' ?
-     children : <Navigate to="/ListaProjetosConsultor" /> 
-  );
-}
-
-const PermissaoMedico = ({ children }) => {
-  return( 
-    usuarioAutenticado() && parseJwt().role === '2' ?
-     children : <Navigate to="/login" /> 
-  );
-}
-
-const PermissaoAdm = ({ children }) => {
-  return( 
-    usuarioAutenticado() && parseJwt().role === '3' ?
-     children : <Navigate to="/login" /> 
-  );
 }
 
 const routing = (

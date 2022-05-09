@@ -105,11 +105,25 @@ export default function TaskTarefa() {
             descricao: descricaoTask,
             idStatusTask: 1
         }
+<<<<<<< HEAD
         api.post('/Tasks', task, {
             headers: { "Content-Type": "multipart/form-data" }
         })
+=======
+        console.log(task)
+        api.post('/Tasks', task,
+            {
+                headers: { "Content-Type": "multipart/form-data" }
+            }
+        )
+>>>>>>> ccaa10c08a138dcec2990854bd663fbac62db158
             .catch(erro => console.log(erro))
     }
+
+    function listarTasks() {
+        api('/Tasks').then(resposta => console.log(resposta.data))
+    }
+
 
     function cadastrarComentario(e) {
         e.preventDefault()
@@ -158,13 +172,6 @@ export default function TaskTarefa() {
                             placeholder="Find a task" />
                         <Icon className='iconify lupa' icon="cil:magnifying-glass" />
                     </div>
-                    {/* {
-                        listarTasks.map((tasks) => {
-                            return (
-                                <span>{tasks.idStatusTask === 1 ? <Icon className='iconify' icon="cil:magnifying-glass" /> : '' }</span>
-                            )
-                        })
-                    } */}
 
                     {
                         minhasTasks.length === 0 ?
@@ -225,8 +232,8 @@ export default function TaskTarefa() {
                                                                 <h2>{task.tituloTask}</h2>
                                                             </button>
                                                             <span>
-                                                                h2Descrição: {task.descricao}
-                                                                Esforço: {task.tempoTrabalho}
+                                                                <h2>Descrição: {task.descricao}</h2>
+                                                                <h2>Esforço: {task.tempoTrabalho}</h2>
                                                                 <h2>{task.idProjetoNavigation.tituloProjeto}</h2>
                                                             </span>
 
@@ -273,15 +280,38 @@ export default function TaskTarefa() {
                     </div>
                     {/* Modal ADD TASK */}
                     <div id="myModal" className="modal">
+<<<<<<< HEAD
                         <div className="modal-content">
                             <div className="modal_container modal__task">
                                 <div >
                                     <div className="div__Register">
                                         <h2>Add new Task</h2>
 
+=======
+                        <div className="modal__addTask">
+                            <div className="modal_container ">
+                                <div className='modal__content'>
+
+                                    <div className="div__Register">
+                                        <h2>Add new Task</h2>
+
+                                        <label className=''>
+                                            Title
+                                            <input
+                                                type="search"
+                                                id='usuarios'
+                                                name='usuario'
+                                                autoComplete='off'
+                                                list='usuarios'
+                                                autoFocus='on'
+                                                value={tituloTask}
+                                                onChange={(e) => setTituloTask(e.target.value)}
+                                                placeholder="Título da task" />
+                                        </label>
+>>>>>>> ccaa10c08a138dcec2990854bd663fbac62db158
                                     </div>
 
-                                    <div  className="div__Register">
+                                    <div className="div__Register">
                                         <h2>Task tag</h2>
                                         <div className='div__tags'>
                                             {
@@ -340,7 +370,6 @@ export default function TaskTarefa() {
                         pauseOnFocusLoss
                         draggable
                         pauseOnHover />
-
 
                 </section>
             </div>
