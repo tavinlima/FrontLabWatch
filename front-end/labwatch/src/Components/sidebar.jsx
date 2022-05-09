@@ -40,10 +40,12 @@ export default function SideBar() {
         <>
             <div className="sidebar">
                 <ul>
-                    <li><Link to="/ListaProjetos"><i><FontAwesomeIcon icon={faTarp} /></i>Back to Projects</Link></li>
+                {parseJwt().role === '1' ? <li><Link to="/ListaProjetosConsultor"><i><FontAwesomeIcon icon={faTarp} /></i>Back to Projects</Link></li> :''}
+                {parseJwt().role === '2' ? <li><Link to="/ListaProjetosGestor"><i><FontAwesomeIcon icon={faTarp} /></i>Back to Projects</Link></li> :''}
+                {parseJwt().role === '3' ? <li><Link to="/ListaProjetosOwner"><i><FontAwesomeIcon icon={faTarp} /></i>Back to Projects</Link></li> :''}
                     <hr className="side_hr"></hr>
                     {/* <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li> */}
-                    <li><Link to="/Tarefas"><i> <FontAwesomeIcon icon={faListCheck} /></i>My Tasks</Link></li>
+                    <li><Link to="/Tasks"><i> <FontAwesomeIcon icon={faListCheck} /></i>My Tasks</Link></li>
                     <li><Link to="/"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>Activity</Link></li>
                     <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>Project</Link></li>
                     <li className="settings">

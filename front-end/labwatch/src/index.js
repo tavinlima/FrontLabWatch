@@ -14,6 +14,7 @@ import CadastroProjetos from './Pages/Projetos/CadastroProjetos';
 import PerfilUsuario from './Pages/PerfilUsuario/PerfilUsuario';
 import PaginaProjeto from './Pages/Projetos/Overview/PaginaProjeto';
 import Cliente from './Pages/Clientes/ListagemClientes';
+import Usuario from './Pages/Usuarios/ListagemUsuarios';
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
 import Tarefas from './Pages/Projetos/Tarefas/ListaTasks';

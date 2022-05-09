@@ -105,18 +105,9 @@ export default function TaskTarefa() {
             descricao: descricaoTask,
             idStatusTask: 1
         }
-<<<<<<< HEAD
         api.post('/Tasks', task, {
             headers: { "Content-Type": "multipart/form-data" }
         })
-=======
-        console.log(task)
-        api.post('/Tasks', task
-        // {
-        //     headers: { "Content-Type": "multipart/form-data" }
-        // }
-        )
->>>>>>> e3cc3d4405472096b2afe003c9bd75badbda6dc7
             .catch(erro => console.log(erro))
     }
 
@@ -282,35 +273,12 @@ export default function TaskTarefa() {
                     </div>
                     {/* Modal ADD TASK */}
                     <div id="myModal" className="modal">
-<<<<<<< HEAD
                         <div className="modal-content">
                             <div className="modal_container modal__task">
                                 <div >
                                     <div className="div__Register">
                                         <h2>Add new Task</h2>
 
-=======
-                        <div className="modal__addTask">
-                            <div className="modal_container ">
-                                <div className='modal__conteudo'>
-
-                                    <div className="div__Register">
-                                        <h2>Add new Task</h2>
-
-                                        <label className=''>
-                                            Title
-                                            <input
-                                                type="search"
-                                                id='usuarios'
-                                                name='usuario'
-                                                autoComplete='off'
-                                                list='usuarios'
-                                                autoFocus='on'
-                                                value={tituloTask}
-                                                onChange={(e) => setTituloTask(e.target.value)}
-                                                placeholder="Título da task" />
-                                        </label>
->>>>>>> e3cc3d4405472096b2afe003c9bd75badbda6dc7
                                     </div>
 
                                     <div  className="div__Register">
