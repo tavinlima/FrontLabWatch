@@ -12,8 +12,12 @@ import { Icon } from '@iconify/react';
 
 import api from '../../../services/api';
 import { parseIdEquipe, parseJwt } from '../../../services/auth';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from 'i18next';
+
 
 export default function ListarConsultor() {
+    const { t } = useTranslation();
     const [filteredResults, setFilteredResults] = useState([]);
     // const [projetosAtivos, setProjetosAtivos] = useState([]);
     // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
@@ -107,7 +111,7 @@ export default function ListarConsultor() {
             <div className="box__listagemProjetos">
                 <section className="section__listagemProjetos container">
                     <div className="div__tituloInput">
-                        <h1>Projects</h1>
+                        <h1>{t('welcomeProjects')}</h1>
                         <input
                             type="search"
                             id='projetos'
@@ -115,11 +119,11 @@ export default function ListarConsultor() {
                             autoComplete='off'
                             list='projetos'
                             onChange={(e) => searchItems(e.target.value)}
-                            placeholder="Search anything..." />
+                            placeholder={t('inputSearch')} />
                         <Icon className='iconify lupa' icon="cil:magnifying-glass" />
                     </div>
 
-                    <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label>
+                    <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>{t('h3Projects')}</label>
                     {
                         meusProjetos.length === 0 ?
                             <div className="box__semProjetos">
@@ -147,14 +151,14 @@ export default function ListarConsultor() {
                                                             </button>
 
                                                             <div>
-                                                                <span style={{"font-weight": 'bold'}}>Cliente: </span>
+                                                                <span style={{"font-weight": 'bold'}}>{t('titleClient')} </span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
                                                         </div>
 
                                                     </div>
                                                         <div className='box__data'>
-                                                        <span style={{"font-weight": 'bold'}}>Data de entrega: </span>
+                                                        <span style={{"font-weight": 'bold'}}>{t('dataDelivery')}  </span>
                                                             <span>{Intl.DateTimeFormat("pt-BR",
                                                                 {
                                                                     year: 'numeric', month: 'numeric', day: 'numeric',
@@ -185,14 +189,14 @@ export default function ListarConsultor() {
                                                         </button>
 
                                                         <div>
-                                                            <span style={{"font-weight": 'bold'}}>Cliente: </span>
+                                                            <span style={{"font-weight": 'bold'}}>{t('titleClient')} </span>
                                                             <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                         </div>
                                                     </div>
 
                                                 </div>
                                                     <div className='box__data'>
-                                                        <span style={{"font-weight": 'bold'}}>Data de entrega: </span>
+                                                        <span style={{"font-weight": 'bold'}}>{t('dataDelivery')} </span>
                                                         <span>{Intl.DateTimeFormat("pt-BR",
                                                             {
                                                                 year: 'numeric', month: 'numeric', day: 'numeric',
