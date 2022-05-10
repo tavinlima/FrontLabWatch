@@ -164,48 +164,6 @@ export default function TaskTarefa() {
     useEffect(listarMinhasTasks, [])
 
     return (
-<<<<<<< HEAD
-        <div>
-            <Header />
-            <section>
-                <SideBar />
-            </section>
-            <div className="box__listagemProjetos">
-                <section className="section__listagemProjetos container" >
-                    <div className="div__tInput">
-                        <div className='div__titlesTasks'>
-                            <h1>Active Tasks</h1>
-                            <h2>Date: {date}</h2>
-                        </div>
-                        <input
-                            type="search"
-                            id='taks'
-                            name='task'
-                            autoComplete='off'
-                            list='tasks'
-                            onChange={(e) => searchItems(e.target.value)}
-                            placeholder="Find a task" />
-                        <Icon className='iconify lupaTask' icon="cil:magnifying-glass" />
-                    </div>
-
-                    {
-                        isLoading ? <button
-                            className='boxCadastro__btnCriar btn btn_salvar'
-                            disabled>
-                            Add task</button>
-                            :
-                            <button onClick={() => abrirModal()}
-                                className='boxCadastro__btnCriar btn btn_salvar'
-                                type='submit'>Add Task</button>
-                    }
-
-                    {
-                        minhasTasks.length === 0 ?
-                            <div className="box__semTasks">
-                                <span>
-                                    Não há nenhuma tarefa para ser feita hoje!
-                                </span>
-=======
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -222,7 +180,6 @@ export default function TaskTarefa() {
                             <div className='div__titlesTasks'>
                                 <h1>Active Tasks</h1>
                                 <h2>Date: {date}</h2>
->>>>>>> 43b4c4dbcb875ed2677153c95053cd75e517c407
                             </div>
                             <input
                                 type="search"
@@ -372,89 +329,11 @@ export default function TaskTarefa() {
                                             </div>
 
                                         </div>
-<<<<<<< HEAD
-                                    )
-                                })
-                    }
-                    {/* Modal Datails Task */}
-                    <div id="ModalTask" className="modal">
-                        <div className="modal-content">
-                            <div className="modal_container modal__task">
-                                <div>
-                                    <div>
-                                        <h1>Task: {tituloTask}</h1>
-                                    </div>
-                                    <div className="div__RegisterTask">
-                                        <h2>Details: {tempoTrabalho} { }</h2>
-
-                                    </div>
-                                    <div>
-                                        <h2>Comentários</h2>
-                                        {
-                                            minhasTasks.map(() => {
-                                                return (
-                                                    <button>aa</button>
-                                                )
-                                            })
-                                        }
-=======
                                         <button className='btn__coment' onClick={(e) => cadastrarComentario(e)}>Escrever um comentário</button>
->>>>>>> 43b4c4dbcb875ed2677153c95053cd75e517c407
                                     </div>
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                    </div>
-                    {/* Modal ADD TASK */}
-                    <div id="myModal" className="modal">
-                        <div className="modal-content">
-                            <div className="modal_container modal__task">
-                                <div >
-                                    <div className="div__Register">
-                                        <h2>Add new Task</h2>
-                                    </div>
-
-                                    <label className=''>
-                                        Title
-                                        <input
-                                            type="search"
-                                            id='usuarios'
-                                            name='usuario'
-                                            autoComplete='off'
-                                            list='usuarios'
-                                            autoFocus='on'
-                                            value={tituloTask}
-                                            onChange={(e) => setTituloTask(e.target.value)}
-                                            placeholder="Título da task" />
-                                    </label>
-
-                                    <div>
-                                        <h2>Task tag</h2>
-                                        <div className='div__tags'>
-                                            {
-                                                listaTag.map((tag) => {
-                                                    return (
-                                                        <div key={tag.idTag}>
-                                                            <button type='' onClick={() => setIdTag(tag.idTag)}>{tag.tituloTag}</button>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                            <form onSubmit={(e) => cadastrarTag(e)} >
-                                                <label>
-                                                    <input
-                                                        type="text"
-                                                        name="tag"
-                                                        id="tags"
-                                                        value={tituloTag}
-                                                        autoComplete='off'
-                                                        onChange={(e) => setTituloTag(e.target.value)}
-                                                        placeholder="Tag"
-                                                    />
-                                                </label>
-                                            </form>
-=======
                         {/* Modal ADD TASK */}
                         <div id="myModal" className="modal">
                             <div className="modal-content2">
@@ -477,7 +356,6 @@ export default function TaskTarefa() {
                                                     placeholder='Adicione o Titulo da Task' />
 
                                             </label>
->>>>>>> 43b4c4dbcb875ed2677153c95053cd75e517c407
                                         </div>
 
                                         <div className='box_input_tag'>
@@ -548,20 +426,6 @@ export default function TaskTarefa() {
                             </div>
                         </div>
 
-<<<<<<< HEAD
-
-
-                    <ToastContainer
-                        position="top-center"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover />
-=======
                         <ToastContainer
                             position="top-center"
                             autoClose={5000}
@@ -572,7 +436,6 @@ export default function TaskTarefa() {
                             pauseOnFocusLoss
                             draggable
                             pauseOnHover />
->>>>>>> 43b4c4dbcb875ed2677153c95053cd75e517c407
 
 
                     </section>
