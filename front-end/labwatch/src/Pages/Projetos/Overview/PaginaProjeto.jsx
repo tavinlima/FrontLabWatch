@@ -185,7 +185,7 @@ export default function PaginaProjeto() {
                     </div>
 
                     <div className='div__description'>
-                        <h2>Project description:</h2>
+                        <h2>Project Description:</h2>
 
                         <textarea
                             className='input__descricao'
@@ -193,10 +193,13 @@ export default function PaginaProjeto() {
                             onChange={(e) => setDescricao(e.target.value)} />
                     </div>
 
-                    <button onClick={() => navigate('/Tasks')}>Acessar Tasks</button>
+                    <div className='div_tasks'>
+                        <h2>Project Tasks: </h2>
+                        <button onClick={() => navigate('/Tasks')}>Acessar Tasks</button>
+                    </div>
 
                     <div className='div__team'>
-                        <h2>Project team:</h2>
+                        <h2>Project Team:</h2>
 
                         {/* <h3>{infEquipe.tituloEquipe}</h3> */}
                         <button type="submit" className='btn btnStyle btn__edit' onClick={() => abrirModal()}>Edit team</button>
@@ -289,7 +292,7 @@ export default function PaginaProjeto() {
                                                         <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
                                                         <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
                                                     </div>
-                                                    <button onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
+                                                    <button className='btn_exclui_user' onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
                                                 </section>
                                             </div>
                                         )

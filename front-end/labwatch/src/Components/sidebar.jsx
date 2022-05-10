@@ -48,14 +48,14 @@ export default function SideBar() {
                     <li><Link to="/Tasks"><i> <FontAwesomeIcon icon={faListCheck} /></i>My Tasks</Link></li>
                     <li><Link to="/"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>Activity</Link></li>
                     <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>Project</Link></li>
-                    <li className="settings">
+                    {parseJwt().role === '3' ? <li className="settings">
                         <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faSliders}></FontAwesomeIcon></i>More Options<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
                             <ul id="links" className="settings" style={{display: "none"}}>
                                 <li  className="sett_link"><Link to={'/Usuarios'}><i><FontAwesomeIcon icon={faUserCheck}></FontAwesomeIcon></i>Approve Users</Link></li>
                                 <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>Realocate Users</Link></li>
                                 <li  className="sett_link"><Link to={'/Clientes'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>List of Clients</Link></li>
                             </ul>
-                    </li>
+                    </li> :''}
                 </ul>
                 <ul className="side_baixo">
                     <li><Link to={'/Settings'}><i><FontAwesomeIcon icon={faGear}></FontAwesomeIcon></i>Settings</Link></li>
