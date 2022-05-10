@@ -16,7 +16,7 @@ export default function PerfilUsuario() {
     const [sobrenome, setSobrenome] = useState('');
     const [email, setEmail] = useState('');
     const [fotoPerfil, setFotoPerfil] = useState('');
-    const [minhasTasks, setMinhasTasks] = useState('');
+    const [minhasTasks, setMinhasTasks] = useState([]);
 
     //Tradução
 
@@ -40,17 +40,45 @@ export default function PerfilUsuario() {
     function editarPerfil(event) {
         event.preventDefault();
 
-        let usuario = {
-            idUsuario: parseJwt().jti,
-            nomeUsuario: nomeUsuario,
-            sobreNome: sobrenome,
-        }
+        var modal = document.getElementById("editPerfil");
 
-        api.put('/Usuarios', usuario, {
-            headers: { "Content-Type": "application/json" }
+        modal.style.display = "block"
+
+        var formData = new FormData();
+
+        const target = document.getElementById('arquivo')
+        const file = target.files[0]
+        console.log(file)
+
+        formData.append('idUsuario', parseJwt().jti);
+        formData.append('idTipoUsuario', parseJwt().role);
+        formData.append('idStatus', listaPerfil.idStatus);
+        formData.append('nomeUsuario', nomeUsuario);
+        formData.append('sobreNome', sobrenome);
+        formData.append('cargaHoraria', listaPerfil.cargaHoraria);
+        formData.append('horasTrabalhadas', listaPerfil.horasTrabalhadas);
+        formData.append('email', listaPerfil.email);
+        formData.append('senha', listaPerfil.senha);
+        formData.append('arquivo', file, file.name);
+        formData.append('ativo', true);
+
+        console.log(parseJwt().jti)
+        console.log(parseJwt().role)
+        console.log(listaPerfil.idStatus)
+        console.log(nomeUsuario)
+        console.log(sobrenome)
+        console.log(listaPerfil.cargaHoraria)
+        console.log(listaPerfil.horasTrabalhadas)
+        console.log(listaPerfil.email)
+        console.log(listaPerfil.senha)
+
+
+        api.put('/CadastroUsuario?id=' + parseJwt().jti, formData, {
+            headers: { 
+                "Content-Type": "multipart/form-data" }
         }).then(resposta => {
             console.log(resposta)
-        }).then(() => buscarPerfil())
+        }).then(() => buscarPerfil()).then(modal.style.display == "none")
             .catch(erro => console.log(erro))
     }
 
@@ -67,18 +95,15 @@ export default function PerfilUsuario() {
     }
 
     function buscarTasks() {
-        api('/Tasks')
+        api('/Tasks/Minhas/' + parseJwt().jti)
             .then(resposta => {
                 console.log(resposta.data)
-                let minhasTasks = resposta.data.filter((tasks) => {
-                    return (tasks.idUsuario == parseJwt().jti)
-                })
-                setMinhasTasks(minhasTasks)
+                setMinhasTasks(resposta.data)
             })
     }
 
+    useEffect(buscarTasks, []);
     useEffect(buscarPerfil, []);
-    useLayoutEffect(buscarTasks, [])
 
     return (
         <motion.div
@@ -145,6 +170,17 @@ export default function PerfilUsuario() {
                                                     onChange={(e) => setEmail(e.target.value)} />
                                             </label>
 
+                                            <label className='boxCadastro__label'>
+                                                Foto de perfil
+                                                <input
+                                                    className='projetoNome__input'
+                                                    type='file'
+                                                    id='arquivo'
+                                                    accept="image/png, image/jpeg"
+                                                    name='fotoPerfil'
+                                                    onChange={(e) => setFotoPerfil(e)} />
+                                            </label>
+
                                             <button className='button__editProfile'
                                                 onClick={(e) => editarPerfil(e)}>Editar perfil</button>
 
@@ -154,20 +190,19 @@ export default function PerfilUsuario() {
                             </div>
                         </div>
 
-                        <section>
-                            {
-                                console.log(minhasTasks)
-                                // minhasTasks.map((tasks) => {
-                                //     return (
-                                //         <ul key={tasks.idTask}>
 
-                                //             <li>{tasks.tituloTask}</li>
-                                //         </ul>
-                                //     )
-                                // })
+                        <section>
+                            <h2>Events</h2>
+                            {
+                                minhasTasks.map((tasks) => {
+                                    return (
+                                        <ul key={tasks.idTask}>
+                                            <li>{tasks.tituloTask}</li>
+                                        </ul>
+                                    )
+                                })
                             }
                         </section>
-
                     </section>
                 </div>
             </div>

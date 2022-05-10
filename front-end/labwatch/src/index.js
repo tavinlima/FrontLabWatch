@@ -42,10 +42,10 @@ const PermissaoOwner = () => {
   );
 }
 
-const PermissaoOwnerGestor = ({ children }) => {
+const PermissaoOwnerGestor = ({ }) => {
   return (
-    usuarioAutenticado() && parseJwt().role === '2' ?
-      children : <Navigate to='/Login' />
+    usuarioAutenticado() && parseJwt().role === '2' || parseJwt().role === '3' ?
+      <Outlet /> : <Navigate to='/Login' />
   )
 }
 
@@ -70,17 +70,17 @@ const routing = (
 
           <Route element={<PermissaoGestor />}>
             <Route path='/ListaProjetosGestor' element={<ListagemGestor />} />
-            <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
+            {/* <Route path='/CadastroProjetos' element={<CadastroProjetos />} /> */}
           </Route>
 
           <Route element={<PermissaoOwner />}>
             <Route path='/ListaProjetosOwner' element={<ListagemOwner />} />
-            <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
             <Route path='/Clientes' element={<Cliente />} />
             <Route path='/Usuarios' element={<Usuario />} />
           </Route>
 
           <Route element={<PermissaoOwnerGestor />}>
+            <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
           </Route>
 
           <Route element={<UsuarioLogado />}>

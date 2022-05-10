@@ -71,7 +71,7 @@ export default function TaskTarefa() {
     function abrirModal() {
         var modal = document.getElementById("myModal");
 
-        
+
         modal.style.display = "block";
 
         window.onclick = function (event) {
@@ -112,22 +112,24 @@ export default function TaskTarefa() {
     function cadastrarTask(e) {
         e.preventDefault()
         let task = {
-            idProjeto: parseIdProjeto(),
+            idProjeto: parseInt(parseIdProjeto()),
             idTag: idTag,
             idStatusTask: 3,
-            idUsuario: parseJwt().jti,
+            idUsuario: parseInt(parseJwt().jti),
             tituloTask: tituloTask,
             descricao: descricaoTask,
-            tempoTrabalho: tempoTrabalho,
+            tempoTrabalho: parseInt(tempoTrabalho),
 
         }
+
+        console.log(task)
         api.post('/Tasks', task, {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .catch(erro => console.log(erro))
     }
-    
-        
+
+
     //     )   
     //         .catch(erro =>{
     //             if(erro.toJSON().status === 400){
@@ -183,6 +185,17 @@ export default function TaskTarefa() {
                             placeholder="Find a task" />
                         <Icon className='iconify lupaTask' icon="cil:magnifying-glass" />
                     </div>
+
+                    {
+                        isLoading ? <button
+                            className='boxCadastro__btnCriar btn btn_salvar'
+                            disabled>
+                            Add task</button>
+                            :
+                            <button onClick={() => abrirModal()}
+                                className='boxCadastro__btnCriar btn btn_salvar'
+                                type='submit'>Add Task</button>
+                    }
 
                     {
                         minhasTasks.length === 0 ?
@@ -274,16 +287,7 @@ export default function TaskTarefa() {
                                                     </div>
                                                 </section>
                                             </div>
-                                            {
-                                                isLoading ? <button
-                                                    className='boxCadastro__btnCriar btn btn_salvar'
-                                                    disabled>
-                                                    Add task</button>
-                                                    :
-                                                    <button onClick={() => abrirModal()}
-                                                        className='boxCadastro__btnCriar btn btn_salvar'
-                                                        type='submit'>Add Task</button>
-                                            }
+
                                         </div>
                                     )
                                 })
@@ -297,8 +301,8 @@ export default function TaskTarefa() {
                                         <h1>Task: {tituloTask}</h1>
                                     </div>
                                     <div className="div__RegisterTask">
-                                        <h2>Details: {tempoTrabalho} {}</h2>
-                                        
+                                        <h2>Details: {tempoTrabalho} { }</h2>
+
                                     </div>
                                     <div>
                                         <h2>Comentários</h2>
@@ -322,8 +326,21 @@ export default function TaskTarefa() {
                                 <div >
                                     <div className="div__Register">
                                         <h2>Add new Task</h2>
-
                                     </div>
+
+                                    <label className=''>
+                                        Title
+                                        <input
+                                            type="search"
+                                            id='usuarios'
+                                            name='usuario'
+                                            autoComplete='off'
+                                            list='usuarios'
+                                            autoFocus='on'
+                                            value={tituloTask}
+                                            onChange={(e) => setTituloTask(e.target.value)}
+                                            placeholder="Título da task" />
+                                    </label>
 
                                     <div>
                                         <h2>Task tag</h2>
@@ -388,6 +405,8 @@ export default function TaskTarefa() {
                             </div>
                         </div>
                     </div>
+
+
 
                     <ToastContainer
                         position="top-center"

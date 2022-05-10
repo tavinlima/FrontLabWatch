@@ -1,16 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from "framer-motion"
 
 import '../../assets/css/global.css';
 import '../../assets/css/cadastroProjetos.css';
+import { parseJwt } from '../../services/auth';
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar';
 
-import ilustraTrabalhadores from '../../assets/img/ilustraTrabalhadores.png'
-import axios from 'axios';
+import api from '../../services/api';
 
 
 export default function CadastroProjetos() {
@@ -18,72 +18,46 @@ export default function CadastroProjetos() {
     const [dataInicio, setDataInicio] = useState(new Date());
     const [dataFinal, setDataFinal] = useState(new Date());
     const [descricaoProjeto, setDescricaoProjeto] = useState('');
+    const [cliente, setCliente] = useState([]);
+    const [idCliente, setIdCliente] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
     let history = useNavigate();
 
-    // function listarUsuarios() {
-    //     api("/Usuarios").then(resposta => {
-    //         if (resposta.status === 200) {
-    //             console.log(resposta.data)
-    //             setListaUsuarios(resposta.data)
-    //         }
-    //     })
-    //         .catch(erro => console.log(erro));
-    // }
-
-
-
-    // const searchItems = (searchValue) => {
-    //     setSearchInput(searchValue)
-    //     if (searchInput !== '') {
-    //         const filteredData = listaUsuarios.filter((item) => {
-    //             return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-    //         })
-    //         setFilteredResults(filteredData)
-    //     }
-    //     else {
-    //         setFilteredResults(listaUsuarios)
-    //     }
-    // }
-
-
-    function cadastrarProjetos(event) {
+    async function cadastrarProjetos(event) {
         event.preventDefault();
         setIsLoading(true);
 
-        // var formData = new FormData();
-
-        // const target = document.getElementById('arquivo')
-        // const file = target.files[0]
-        // console.log(file)
-
-        // formData.append('arquivo', file, file.name)
-
-        // formData.append('tituloProjeto', nomeProjeto);
-        // formData.append('descricao', descricaoProjeto);
-        // formData.append('dataInicio', dataInicio);
-        // formData.append('dataConclusao', dataFinal);
-        // formData.append('idStatusProjeto', 1);
-        // formData.append('idEquipe', 2);
-        // formData.append('idCliente', 2);
-
         let projeto = {
+            idStatusProjeto: 1,
             tituloProjeto: nomeProjeto,
-            descricao: descricaoProjeto,
             dataInicio: dataInicio,
             dataConclusao: dataFinal,
-            idStatusProjeto: 1,
-            idEquipe: 2,
-            idCliente: 2
+            descricao: descricaoProjeto,
+            idCliente: idCliente
         }
 
-        axios.post("http://labwatch-backend.azurewebsites.net/api/Projetos", projeto, {
-            headers: { "Content-Type": "application/json" }
-        })
+        console.log(projeto)
+
+        api.post("/Projetos", projeto
+            // {
+            //     headers: { "Content-Type": "application/json" }
+            // }
+        )
             .then((resposta) => {
                 if (resposta.status === 201) {
-                    history('/ListaProjetos');
+                    switch (parseJwt().role) {
+                        case '2':
+                            history('ListaProjetosGestor')
+                            break;
+                        case '3':
+                            history('/ListaProjetosOwner')
+                            break;
+
+                        default:
+                            break;
+                    }
+
                     console.log("cadastrado")
                     setIsLoading(false);
                 }
@@ -95,19 +69,11 @@ export default function CadastroProjetos() {
 
     }
 
-    // function cadastrarEquipe() {
-    //     let usuarios = {
-    //         idUsuario: idUsuario
-    //     }
-    //     let equipe = {
-    //         nomeEquipe: "novaEquipe",
-    //         usuarios: usuarios
-    //     }
+    function buscarClientes() {
+        api('/Clientes').then(resposta => setCliente(resposta.data))
+    }
 
-    //     api.post("/Equipes", equipe, {
-    //         headers: { "Content-Type": "application/json" }
-    //     })
-    // }
+    useLayoutEffect(buscarClientes, [])
 
     return (
         <motion.div
@@ -132,17 +98,6 @@ export default function CadastroProjetos() {
                                     onChange={(e) => setNomeProjeto(e.target.value)}
                                     required />
                             </label>
-
-                            {/* <label className='boxCadastro__label'>
-                            Client name
-                            <input
-                                className='projetoNome__input'
-                                type='text'
-                                name='nomeCliente'
-                                autoComplete='off'
-                                onChange={(e) => setNomeCliente(e.target.value)}
-                                required />
-                        </label> */}
 
                             <label className='boxCadastro__label'>
                                 Description
@@ -179,18 +134,24 @@ export default function CadastroProjetos() {
                                 </label>
 
                             </div>
-                            {/* <label className="boxCadastro__label">
-                            Imagem do cliente
-                            <input
-                                className="projetoArquivo__input"
-                                name='arquivo'
-                                id='arquivo'
-                                type='file'
-                                required
-                                accept="image/png, image/jpeg"
-                                onChange={(e) => setFotoCliente(e)}
-                            />
-                        </label> */}
+                            <label className="boxCadastro__label">
+                                Client
+                                <select
+                                    required
+                                    name='idCliente'
+                                    onChange={(e) => setIdCliente(e.target.value)}
+                                    value={idCliente}
+                                >
+                                    <option aria-disabled="true" value="0" disabled>Selecione um dos clientes</option>
+                                    {
+                                        cliente.map((cliente) => {
+                                            return (
+                                                <option key={cliente.idCliente} value={cliente.idCliente}>{cliente.nomeCliente}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </label>
 
                             <div className='div__buttons'>
 
