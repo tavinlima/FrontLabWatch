@@ -1,0 +1,26 @@
+{
+  "translation": {
+    "welcome": "Hola nuevamente",
+    "subtitle" : "¡Apúrate, el tiempo vuela!",
+    "selectYourLanguage" : "Elige tu idioma:",
+    "welcomeSettings":"Ajustes",
+    "sidebarItem1":"Volver a proyectos",
+    "sidebarItem2":"Mis Tareas",
+    "sidebarItem3":"Actividad",
+    "sidebarItem4":"Proyecto",
+    "sidebarItem5":"Mas Opciones",
+    "sidebarItem6":"Usuarios Aprobados",
+    "sidebarItem7":"Reubicar Usuarios",
+    "sidebarItem8":"Lista de Clientes",
+    "sidebarItem9":"Ajustes",
+    "sidebarItem10":"Salir",
+    "welcomeProjects":"Proyetos",
+    "h3Projects":"Lo mas reciente primero",
+    "inputSearch":"Buscar un proyecto",
+    "titleClient":"Cliente",
+    "dataDelivery":"Fecha de finalizacion"
+
+
+
+  }
+}

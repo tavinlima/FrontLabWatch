@@ -66,6 +66,9 @@
 .projetoArquivo__input {
     border-radius: 0px;
 }
+.projetoArquivo__input input {
+    width: 8.7vw;
+}
 
 .boxCadastro__btnCriar {
     align-self: center;
@@ -83,6 +86,10 @@
     height: 7vh;
 	transition: all 0.5s;
 	position: relative;
+}
+
+.select_cliente{
+    width: 20vw;
 }
 
 .boxCadastro__btnCriar::before {

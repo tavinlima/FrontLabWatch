@@ -1,3 +1,13 @@
+.box__semTasks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    font-size: 30px;
+    font-weight: bold;  
+    margin-right: 8rem;
+}
+
 .box__listagemTasks {
     display: flex;
     height: 89vh;
@@ -166,6 +176,10 @@
     background-color: #59a842;
 }
 
+.div__tags button:focus{
+    background-color: #54c233;
+}
+
 .div__Register input {
     padding-left: 5px;
 }
@@ -187,7 +201,7 @@
 /* CSS DOS MODAL */
 
 .modal-content1{
-    background-color: #485D70;
+    background-image: linear-gradient(to bottom, #485d70, #57697a, #667684, #76828f, #858f99);
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -196,15 +210,15 @@
     box-sizing: border-box;
     box-shadow: 5px 8px 10px 3px rgb(31 30 30 / 25%);
     margin-left: 23vw;
-    height: fit-content;
-    margin-top: 6rem;
+    height: 95vh;
+    margin-top: 1rem;
 }
 
 .modal__task{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25vw;
+    width: 40vw;
 }
 
 .box__tituloTask{
@@ -226,31 +240,32 @@
 }
 
 .btn__coment{
-    background-color: #1B65A6;
+    background-color: #348fdf;
     color: #FFFF;
     font-weight: bold;
     border-width: 1px;
     border-style: solid;
-    border-color: #1B65A6;
+    border-color: #348fdf;
     width: 14vw;
     height: 6vh;
     border-radius: 14px;
     border: none;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 .btn__coment:hover{
     cursor: pointer;
-    background-color: #348fdf;
+    background-color: #1B65A6;
     transition: all 1.5s 0s ease;
     transform: scale(1.01);
     transition: all 0.2s;
 }
 
 .section__coment{
-    width: 50vw;
+    width: 52vw;
     overflow-y: auto; 
-    
+    height: 29vh;
+    overflow-x: hidden;
 }
 
 .comentTask{
@@ -259,7 +274,28 @@
 
 ::-webkit-scrollbar {
     width: 1vw;
-    background: #F4F4F4;
+    background: #cac7c7;
+    border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #ffff;
+    border-radius: 16px;
+}
+
+.label_coment{
+    color: #ffff;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.input_add_coment{
+    width: 25vw;
+    border: #302e2e;
+    border-width: thin;
+    margin-top: 0.5rem;
+    padding-left: 2em;
 }
 
 .box__coment{
@@ -299,7 +335,7 @@
 
 /* MODAL DE ADD TASK */
 .modal-content2{
-    background-color: #fafafa;
+    background-image: linear-gradient(to left top, #bdc4cb, #afb6be, #a1a9b2, #939ca5, #858f99);
     width: 45%;
     display: flex;
     flex-direction: column;
@@ -310,7 +346,7 @@
     box-shadow: 5px 8px 10px 3px rgb(31 30 30 / 25%);
     margin-left: 30vw;
     height: 87vh;
-    margin-top: 4rem;
+    margin-top: 2.5rem;
 
 }
 
@@ -404,4 +440,56 @@
     transition: all 1.5s 0s ease;
     transform: scale(1.01);
     transition: all 0.2s;
+}
+
+@media (min-width: 1920px) {
+    .containerL {
+        max-width: 1920px;
+    }
+
+    .modal-content2{
+    background-image: linear-gradient(to left top, #bdc4cb, #afb6be, #a1a9b2, #939ca5, #858f99);
+    width: 36%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.44);
+    box-sizing: border-box;
+    box-shadow: 5px 8px 10px 3px rgb(31 30 30 / 25%);
+    margin-left: 34vw;
+    height: 63vh;
+    margin-top: 10.5rem;
+}
+
+.box_btn_cadTask{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+ }
+
+ .lupaTask{
+    left: 70.5vw;
+    top: 21.8vh;
+    position: absolute;
+    color: #A6A0AE;
+    font-size: 18px;
+ }
+
+ .input_add_coment{
+    width: 25vw;
+    border: #302e2e;
+    border-width: thin;
+    margin-top: 0.5rem;
+    padding-left: 2em;
+    height: 7vh;
+ }
+
+ .modal__task{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35vw;
+ }
 }

@@ -194,7 +194,7 @@ export default function PaginaProjeto() {
 
                     <div className='div_tasks'>
                         <h2>Project Tasks: </h2>
-                        <button onClick={() => navigate('/Tasks')}>Acessar Tasks</button>
+                        <button className='btn__tasks' onClick={() => navigate('/Tasks')}>Acessar Tasks</button>
                     </div>
 
                     <div className='div__team'>
@@ -203,7 +203,7 @@ export default function PaginaProjeto() {
                         {/* <h3>{infEquipe.tituloEquipe}</h3> */}
                         <button type="submit" className='btn btnStyle btn__edit' onClick={() => abrirModal()}>Edit team</button>
                         <div id="myModal" className="modal">
-                            <div className="modal-content">
+                            <div className="modal-contentAdd">
                                 <div className="modal_container">
                                     <form onSubmit={(e) => cadastrarNaEquipe(e)}>
 

@@ -363,9 +363,10 @@ export default function TaskTarefa() {
 
                                         </div>
                                         <form onSubmit={(e) => cadastrarComentario(e)}>
-                                            <label>
-                                                Comentario
+                                            <label className='label_coment'>
+                                                Comentario: 
                                                 <input
+                                                    className='input_add_coment'
                                                     type='text'
                                                     name='coment'
                                                     onChange={(e) => setMeuComentario(e.target.value)}

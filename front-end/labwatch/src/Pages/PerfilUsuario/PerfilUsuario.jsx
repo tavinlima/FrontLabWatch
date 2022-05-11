@@ -133,9 +133,9 @@ export default function PerfilUsuario() {
                         <button className='button__editProfile' onClick={() => abrirModal()}>Edit profile</button>
 
                         <div id='editPerfil' className='modal'>
-                            <div className="modal__addTask">
+                            <div className="modal__PerfilEdit">
                                 <div className="modal_container ">
-                                    <div className='modal__content'>
+                                    <div className='modal__contentPerfil'>
                                         <form onSubmit={(e) => editarPerfil(e)}>
                                             <label className='boxCadastro__label'>
                                                 Name
@@ -181,7 +181,7 @@ export default function PerfilUsuario() {
                                                     onChange={(e) => setFotoPerfil(e)} />
                                             </label>
 
-                                            <button className='button__editProfile'
+                                            <button className='button__editProfileModal'
                                                 onClick={(e) => editarPerfil(e)}>Editar perfil</button>
 
                                         </form>
