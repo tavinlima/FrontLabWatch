@@ -23,6 +23,7 @@ export default function Login() {
     const [senha, setSenha] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [erroMensagem, setErroMensagem] = useState('');
+    const [usuarioInvalido, setUsuarioInvalido] = useState('');
 
     let navigate = useNavigate();
 
@@ -55,7 +56,7 @@ export default function Login() {
                         navigate('/ListaProjetosGestor');
                     }
 
-                    else if(parseJwt().role === '3') {
+                    else if (parseJwt().role === '3') {
                         navigate('/ListaProjetosOwner');
                     }
 
@@ -66,9 +67,27 @@ export default function Login() {
             })
             .catch(erro => {
                 console.log(erro);
-                setErroMensagem("E-mail e/ou Senha inválidos")
                 setIsLoading(false)
+                setErroMensagem("E-mail e/ou Senha inválidos")
+                if (erro.toJSON().status === 400) {
+                    setUsuarioInvalido(`Ops! Parece que você não foi aprovado para entrar na aplicação!!! 
+                    Consulte seu gestor para mais informações!`)
+                    mostrarAviso()
+                    setIsLoading(false)
+                }
             });
+    }
+
+    function mostrarAviso() {
+        var modal = document.getElementById("avisoModal");
+
+        modal.style.display = "block";
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
     }
 
     function show() {
@@ -106,7 +125,9 @@ export default function Login() {
                                 type="password"
                                 id="senha" />
                             <button type='button' className="botao_olho" onClick={show}>
-                                <Icon className="iconify olho"  icon="akar-icons:eye-open" />
+                                <Icon className="iconify olho" icon="akar-icons:eye-open" />
+
+
 
                             </button>
                             <div className="box_recovery">
@@ -128,6 +149,16 @@ export default function Login() {
                                 }
                             </div>
                         </form>
+
+                        <div id='avisoModal' className='modalAviso'>
+                            <div className="modalAviso-content">
+                                <div className="modal_container ">
+                                    <div className='modalAviso__text'>
+                                        <p>{usuarioInvalido}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
                     <section className="box_azul">
                         <div>
