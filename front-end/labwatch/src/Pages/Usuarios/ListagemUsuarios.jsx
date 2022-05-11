@@ -61,7 +61,7 @@ export default function Usuario() {
         // console.log(ativo)
         // console.log(usuario);
        
-        api.patch("/Usuarios/",{
+        api.patch("/Usuarios/" + usuario + '?ativo=true',{
             idUsuario: usuario,
             ativo: true
         }   

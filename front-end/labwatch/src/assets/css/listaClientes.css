@@ -184,7 +184,7 @@
     padding-bottom: 2rem;
 }
 
-input[type="file"] {
+.input_file{
     display: none;
 }
 
@@ -257,7 +257,7 @@ input[type="file"] {
         color: #1B65A6;
         font-size: 18px;
         left: 20vw;
-        top: 26.6vh;
+        top: 25.9vh;
     }
 
     .section__listagemClientes {
@@ -285,8 +285,7 @@ input[type="file"] {
         font-size: 0.7em;
         border-radius: 13px;
         height: 2vh;
-        margin-bottom: 8vh;
+        margin-bottom: 4rem;
     }
-
 
 }

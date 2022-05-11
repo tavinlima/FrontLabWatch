@@ -41,6 +41,7 @@
     box-sizing: border-box;
     box-shadow: 5px 8px 10px 3px rgba(31, 30, 30, 0.25);
     margin-left: 23vw;
+
 }
 
 .modal-content h2 {
@@ -138,7 +139,8 @@ td:nth-child(2) {
 
 .alerta-content {
     background-color: #fafafa;
-    margin: 210px auto;
+    margin-left: 40vw;
+    margin-top: 41vh;
     width: 30%;
     height: 40%;
     display: flex;
@@ -187,7 +189,6 @@ td:nth-child(2) {
     font-weight: bold;
     width: 200px;
     height: 50px;
-    padding-left: 2rem;
 }
 
 .btn__excluirProjetoModal {
@@ -226,6 +227,7 @@ td:nth-child(2) {
     width: 200px;
     height: 50px;
     margin-left: 17vw;
+    margin-bottom: 5vh;
 }
 
 .btn__Excluir {

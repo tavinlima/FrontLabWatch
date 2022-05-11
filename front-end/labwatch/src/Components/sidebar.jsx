@@ -60,7 +60,7 @@ export default function SideBar() {
                                 <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>{t('sidebarItem7')}</Link></li>
                                 <li  className="sett_link"><Link to={'/Clientes'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>{t('sidebarItem8')}</Link></li>
                             </ul>
-                    </li> :''}
+                    </li> 
                 </ul>
                 <ul className="side_baixo">
                     <li><Link to={'/Settings'}><i><FontAwesomeIcon icon={faGear}></FontAwesomeIcon></i>{t('sidebarItem9')}</Link></li>

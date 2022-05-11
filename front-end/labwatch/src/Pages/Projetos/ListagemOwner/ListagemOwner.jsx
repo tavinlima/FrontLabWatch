@@ -360,6 +360,7 @@ export default function ListagemOwner() {
                                         Client
                                         <span value={nomeCliente}>{nomeCliente}</span>
                                         <select
+                                            className='select_cliente'
                                             required
                                             name='idCliente'
                                             onChange={(e) => setIdCliente(e.target.value)}

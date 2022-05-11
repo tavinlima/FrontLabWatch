@@ -86,7 +86,7 @@ export default function CadastroProjetos() {
                 <SideBar />
                 <div className='box__cadastroProjetos'>
                     <section className='section__cadastroProjetos container'>
-                        <h1>Create a project to get start</h1>
+                        <h1>Create a Project to Get Start</h1>
                         <form encType="multipart/form-data">
                             <label className='boxCadastro__label'>
                                 Project name
@@ -137,6 +137,7 @@ export default function CadastroProjetos() {
                             <label className="boxCadastro__label">
                                 Client
                                 <select
+                                className='select_cliente'
                                     required
                                     name='idCliente'
                                     onChange={(e) => setIdCliente(e.target.value)}
