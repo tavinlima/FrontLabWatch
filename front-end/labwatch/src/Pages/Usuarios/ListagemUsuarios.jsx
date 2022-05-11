@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
-import { parseJwt } from '../../services/auth';
-import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../../services/api';
 import { motion } from "framer-motion"
@@ -18,13 +15,8 @@ export default function Usuario() {
     const [filteredResults, setFilteredResults] = useState([])
     const [searchInput, setSearchInput] = useState('')
 
-    const [idUsuario, setIdUsuario] = useState([])
     const [listaUsuarios, setListaUsuarios] = useState([])
-    const [nomeUsuario, setNomeUsuario] = useState('')
-    const [sobreNome, setSobreNome] = useState('')
-    const [email, setEmail] = useState('')
     const [ativo, setAtivo] = useState(false)
-    const [fotoUsuario, setFotoUsuario] = useState(false)
 
     let navigate = useNavigate();
 

@@ -10,7 +10,6 @@ import SideBar from '../../../Components/sidebar'
 
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth.jsx'
 import api from '../../../services/api';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function PaginaProjeto() {

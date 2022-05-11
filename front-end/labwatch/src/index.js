@@ -42,9 +42,9 @@ const PermissaoOwner = () => {
   );
 }
 
-const PermissaoOwnerGestor = ({ }) => {
+const PermissaoOwnerGestor = () => {
   return (
-    usuarioAutenticado() && parseJwt().role === '2' || parseJwt().role === '3' ?
+    usuarioAutenticado() && (parseJwt().role === '2' || parseJwt().role === '3') ?
       <Outlet /> : <Navigate to='/Login' />
   )
 }

@@ -29,11 +29,11 @@ export default function TaskTarefa() {
     const [idTag, setIdTag] = useState([]);
     const [idTask, setIdTask] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [meuComentario, setMeuComentario] = useState('');
 
 
     async function listarMinhasTasks() {
         await api("/Tasks/Minhas/" + parseJwt().jti).then(resposta => {
-            // console.log(resposta.data)
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 let minhasTasks = resposta.data.filter((tasks) => {
@@ -55,6 +55,20 @@ export default function TaskTarefa() {
             .catch(erro => console.log(erro));
     }
 
+    function buscarComentarios(idTask) {
+        console.log(idTask)
+        api('/Comentarios').then(resposta => {
+            if (resposta.status === 200) {
+                let myComent = resposta.data.filter((coment) => {
+                    return (
+                        coment.idTask == idTask
+                    )
+                })
+                console.log(myComent)
+                setComentarioTask(myComent)
+            }
+        })
+    }
 
     //Função da barra de busca
     const searchItems = (searchValue) => {
@@ -71,7 +85,6 @@ export default function TaskTarefa() {
 
     function abrirModal() {
         var modal = document.getElementById("myModal");
-
 
         modal.style.display = "block";
 
@@ -92,8 +105,8 @@ export default function TaskTarefa() {
         setTituloTask(task.tituloTask)
         setIdTag(task.idTag)
         setTituloTag(task.idTag)
-        setComentarioTask(task.comentariosTask)
 
+        buscarComentarios(task.idTask)
 
         window.onclick = function (event) {
             if (event.target === modal) {
@@ -111,22 +124,23 @@ export default function TaskTarefa() {
     }
 
     function cadastrarTask(e) {
+        var modal = document.getElementById("myModal");
+
         e.preventDefault()
         let task = {
             idProjeto: parseInt(parseIdProjeto()),
-            idTag: idTag,
+            idTag: parseInt(idTag),
             idStatusTask: 3,
             idUsuario: parseInt(parseJwt().jti),
             tituloTask: tituloTask,
             descricao: descricaoTask,
-            tempoTrabalho: parseInt(tempoTrabalho),
-
+            tempoTrabalho: tempoTrabalho,
         }
 
         console.log(task)
         api.post('/Tasks', task, {
-            headers: { "Content-Type": "multipart/form-data" }
-        })
+            headers: { "Content-Type": "application/json" }
+        }).then(modal.style.display = "none").then(() => listarMinhasTasks())
             .catch(erro => console.log(erro))
     }
 
@@ -141,12 +155,19 @@ export default function TaskTarefa() {
     // }
     function cadastrarComentario(e) {
         e.preventDefault()
-        setComentarioTask('FUNCIONA')
+
         let comentTask = {
-            comentario1: comentariotask,
+            comentario1: meuComentario,
             idUsuario: parseJwt().jti,
-            idTask: parseIdTask
+            idTask: idTask
         }
+
+        console.log(comentTask)
+
+        api.post('/Comentarios', comentTask)
+            .then(resposta => console.log(resposta.data))
+            .then(() => buscarComentarios(idTask))
+            .catch(erro => console.log(erro))
     }
 
     function cadastrarTag(e) {
@@ -323,13 +344,38 @@ export default function TaskTarefa() {
                                         <div className='box__coment'>
                                             <h2 className='comentTask'>Comentários: </h2>
                                             <div className='section__coment'>
-                                                <div className='box__comentario'>
-                                                    {comentariotask}
-                                                </div>
+                                                {
+                                                    comentariotask.map((comentario) => {
+                                                        return (
+                                                            <div className='box__comentario'>
+                                                                <div key={comentario.idComentario} className='div__coment'>
+                                                                    <div className='coment__infUser'>
+                                                                        <span>{comentario.idUsuarioNavigation.nomeUsuario}</span>
+                                                                        <img className="coment__imgUser" src={"http://labwatch-backend.azurewebsites.net/img/" + comentario.idUsuarioNavigation.fotoUsuario} />
+                                                                    </div>
+                                                                    <span>{comentario.comentario1}</span>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
                                             </div>
 
                                         </div>
-                                        <button className='btn__coment' onClick={(e) => cadastrarComentario(e)}>Escrever um comentário</button>
+                                        <form onSubmit={(e) => cadastrarComentario(e)}>
+                                            <label>
+                                                Comentario
+                                                <input
+                                                    type='text'
+                                                    name='coment'
+                                                    onChange={(e) => setMeuComentario(e.target.value)}
+                                                    value={meuComentario}
+                                                    placeholder='Escreva um comentário'
+                                                />
+                                            </label>
+
+                                            <button className='btn__coment' >Escrever um comentário</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -352,7 +398,7 @@ export default function TaskTarefa() {
                                                     name='title'
                                                     autoComplete='off'
                                                     value={tituloTask}
-                                                    onSubmit={(e) => setTituloTask(e.target.value)}
+                                                    onChange={(e) => setTituloTask(e.target.value)}
                                                     placeholder='Adicione o Titulo da Task' />
 
                                             </label>
@@ -371,20 +417,20 @@ export default function TaskTarefa() {
                                                     })
                                                 }
                                             </div>
-                                                <form onSubmit={(e) => cadastrarTag(e)} >
-                                                    <label>
-                                                        <input
-                                                            className='input_tag'
-                                                            type="text"
-                                                            name="tag"
-                                                            id="tags"
-                                                            value={tituloTag}
-                                                            autoComplete='off'
-                                                            onChange={(e) => setTituloTag(e.target.value)}
-                                                            placeholder="Adicione uma Tag"
-                                                        />
-                                                    </label>
-                                                </form>
+                                            <form onSubmit={(e) => cadastrarTag(e)} >
+                                                <label>
+                                                    <input
+                                                        className='input_tag'
+                                                        type="text"
+                                                        name="tag"
+                                                        id="tags"
+                                                        value={tituloTag}
+                                                        autoComplete='off'
+                                                        onChange={(e) => setTituloTag(e.target.value)}
+                                                        placeholder="Adicione uma Tag"
+                                                    />
+                                                </label>
+                                            </form>
                                         </div>
 
                                         <div className='box_input_descricao'>

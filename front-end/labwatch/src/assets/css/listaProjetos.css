@@ -75,6 +75,7 @@
 .containerBox {
     display: flex;
     width: 95%;
+    align-items: center;
 }
 
 .divisoria__imgEmpresa {
@@ -91,7 +92,7 @@
     width: 70px;
     height: 70px;
     object-fit: contain;
-    margin-left: 10px;
+    padding: 5px;
 }
 
 .button_selectProject {
@@ -109,6 +110,7 @@
 .box__infProjeto {
     margin-left: 2rem;
     font-size: 0.9em;
+    width: 8rem;
 }
 
 .box__infProjeto h2 {
@@ -129,7 +131,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 52%;
+    margin-left: 10rem;
 }
 
 .div__members {

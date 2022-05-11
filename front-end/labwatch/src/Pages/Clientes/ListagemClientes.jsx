@@ -70,10 +70,10 @@ export default function Cliente() {
         // formData.append('idCliente', idCliente);
         formData.append('nomeCliente', nomeCliente);
         formData.append('descricao', descricao);
-        formData.append('dataCadastro', dataCadastro);
+        formData.append('dataCadastro', dataCadastro.toLocaleString());
         console.log(nomeCliente);
         console.log(descricao);
-        console.log(dataCadastro);
+        console.log(dataCadastro.toLocaleString());
         console.log(file.name);
 
         axios.post("http://labwatch-backend.azurewebsites.net/api/ClientesCadastrar", formData, {
