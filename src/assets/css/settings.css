@@ -1,0 +1,60 @@
+.titulo__Settings {
+    text-align: left;
+}
+
+.div__Idioma {
+    float: left;
+    text-align: left;
+    float: left;
+}
+
+.div__Notificacao {
+    float: right;
+}
+
+.titulo__Notificacao {
+    color: #0D4373;;
+    margin-top: -50%;
+    margin-bottom: -50%;
+    margin-left: 70%;
+    text-align: left;
+    float: right;
+    font-size: 40px;
+    text-decoration: underline green;
+}
+
+.Box__Options {
+    text-align: left;
+    width: 300px;
+    height: 30px;
+
+}
+
+.Box__Options, option {
+
+    font-size: 15px;
+}
+
+.btn__Link {
+    margin-top: 45px;
+    width: 100px;
+    height: 60px;
+    border-radius: 5%;
+    font-size: 15px;
+}
+
+.btn__Link:hover, .link__PerfilUsuario:hover {
+    transform: scale(1.4);
+    font-size: 17px;
+    background-color: #0D4373;
+    transition-delay: 200ms;
+}
+
+.link__PerfilUsuario {
+    color: black;
+}
+
+.link__PerfilUsuario:hover {
+    color: #77BF63;
+
+}
