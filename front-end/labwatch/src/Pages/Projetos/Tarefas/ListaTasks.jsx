@@ -140,7 +140,8 @@ export default function TaskTarefa() {
         console.log(task)
         api.post('/Tasks', task, {
             headers: { "Content-Type": "application/json" }
-        }).then(modal.style.display = "none").then(() => listarMinhasTasks())
+        }
+        ).then(modal.style.display = "none").then(() => listarMinhasTasks())
             .catch(erro => console.log(erro))
     }
 
