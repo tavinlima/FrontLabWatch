@@ -17,6 +17,7 @@ import Cliente from './Pages/Clientes/ListagemClientes';
 import Usuario from './Pages/Usuarios/ListagemUsuarios';
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
+import DashBoard from './Pages/Dashboard/Graficos'
 
 import './i18n';
 import { usuarioAutenticado, parseJwt } from './services/auth';
@@ -88,6 +89,7 @@ const routing = (
             <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Tasks' element={<ListagemTasks />} />
             <Route path='/Settings' element={<Settings />} />
+            <Route path='/DashBoard' element={<DashBoard />} />
 
           </Route>
 
