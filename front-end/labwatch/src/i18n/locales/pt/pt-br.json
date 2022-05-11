@@ -1,0 +1,25 @@
+{
+  "translation": {
+    "welcome": "Olá novamente",
+    "subtitle" : "Se apresse o tempo está voando!",
+    "selectYourLanguage" : " Selecione seu idioma:",
+    "welcomeSettings":"Configurações",
+    "sidebarItem1":"Voltar aos projetos",
+    "sidebarItem2":"Minhas tarefas",
+    "sidebarItem3":"Atividade",
+    "sidebarItem4":"Projeto",
+    "sidebarItem5":"Mais opções",
+    "sidebarItem6":"Usuários Aprovados",
+    "sidebarItem7":"Realocar Usuários",
+    "sidebarItem8":"Lista de Clientes",
+    "sidebarItem9":"Configurações",
+    "sidebarItem10":"Sair",
+    "welcomeProjects":"Projetos",
+    "h3Projects":"Mais recente primeiro",
+    "inputSearch":"Procurar algum projeto",
+    "titleClient":"Cliente",
+    "dataDelivery":"Data de conclusão"
+
+
+  }
+}
