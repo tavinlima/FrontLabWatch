@@ -1,0 +1,297 @@
+@import url(../css/global.css);
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(137, 137, 137, 0.052);
+    backdrop-filter: blur(1.5px);
+}
+
+.modal_mini {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 128vh;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(137, 137, 137, 0.052);
+    backdrop-filter: blur(1.5px);
+}
+
+
+.modal-content {
+    background-color: #fafafa;
+    margin: 60px auto;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.44);
+    box-sizing: border-box;
+    box-shadow: 5px 8px 10px 3px rgba(31, 30, 30, 0.25);
+    margin-left: 23vw;
+}
+
+.modal-content h2 {
+    margin: 40px 0 20px 0;
+}
+
+.modal_container {
+    width: 80%;
+}
+
+.modal__input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 40px;
+    box-shadow: 9px 9px 20px rgba(0, 0, 0, 0.25), inset 3px 4px 4px rgba(255, 255, 255, 0.25);
+}
+
+.modal__exibitionTeam {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__addTask {
+    background-color: #fafafa;
+    margin: 60px auto;
+    width: 65%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    box-sizing: border-box;
+    box-shadow: 5px 8px 10px 3px rgba(31, 30, 30, 0.25);
+    margin-left: 23vw;
+}
+
+.modal__conteudo {
+    margin: 7rem auto;
+    width: 80%;
+}
+
+.div__Register {
+    margin: 2rem auto;
+}
+
+.div__Register input {
+    padding-left: 5px;
+}
+
+.table__team {
+    background-color: #fff;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), inset 8px 4px 9px rgba(255, 255, 255, 0.25);
+    border-radius: 0px 0px 20px 20px;
+    width: 100%;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding-left: 20px;
+}
+
+th {
+    font-weight: lighter;
+    height: 40px;
+}
+
+td:first-child {
+    width: 60px;
+}
+
+td:nth-child(2) {
+    font-weight: bolder;
+}
+
+.modal__imgPerfil {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    margin: 5px 0px 5px 0px;
+    object-fit: cover;
+}
+
+.modal__btnAdd {
+    background-color: var(--cor-secundaria);
+    color: #fff;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    margin: 20px 0px 20px 0;
+}
+
+.alerta-content {
+    background-color: #fafafa;
+    margin: 210px auto;
+    width: 30%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.44);
+    box-sizing: border-box;
+    box-shadow: 5px 8px 10px 3px rgba(31, 30, 30, 0.25);
+}
+
+.modal-content h2 {
+    margin: 40px 0 20px 0;
+}
+
+.modal_container {
+    width: 80%;
+}
+
+.modal__input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 40px;
+    box-shadow: 9px 9px 20px rgba(0, 0, 0, 0.25), inset 3px 4px 4px rgba(255, 255, 255, 0.25);
+}
+
+.modal__exibitionTeam {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn__excluirProjeto {
+    position: relative;
+    margin: 10px 0 10px 0;
+    background-color: #d61f1fd2;
+    color: #FFFF;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    padding-left: 2rem;
+}
+
+.btn__excluirProjetoModal {
+    position: relative;
+    margin: 10px 0 10px 0;
+    background-color: #d61f1fd2;
+    color: #FFFF;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+}
+
+.btn__excluirProjeto:hover {
+    cursor: pointer;
+    background-color: #d10404;
+    transition: all 1.5s 0s ease;
+    transform: scale(1.01);
+    transition: all 0.2s;
+}
+
+.btn__excluirProjetoModal:hover {
+    cursor: pointer;
+    background-color: #d10404;
+    transition: all 1.5s 0s ease;
+    transform: scale(1.01);
+    transition: all 0.2s;
+}
+
+.btn__backProjeto {
+    background-color: #1B65A6;
+    color: #FFFF;
+    font-weight: bold;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #1B65A6;
+    width: 200px;
+    height: 50px;
+    margin-left: 17vw;
+}
+
+.btn__Excluir {
+    background-color: #1B65A6;
+    color: #FFFF;
+    font-weight: bold;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #1B65A6;
+    width: 200px;
+    height: 50px;
+    border-radius: 14px;
+}
+
+.btn__Excluir:hover {
+    cursor: pointer;
+    background-color: #348fdf;
+    transition: all 1.5s 0s ease;
+    transform: scale(1.01);
+    transition: all 0.2s;
+}
+
+.btn__backProjeto:hover {
+    cursor: pointer;
+    background-color: #348fdf;
+    transition: all 1.5s 0s ease;
+    transform: scale(1.01);
+    transition: all 0.2s;
+}
+
+.trash {
+    position: absolute;
+    color: #fff;
+    left: 69vw;
+    top: 112.7vh;
+    z-index: 1;
+    font-size: 1.3em;
+}
+
+@media (min-width: 1920px) {
+    .btn__backProjeto {
+        background-color: #1B65A6;
+        color: #FFFF;
+        font-weight: bold;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #1B65A6;
+        width: 200px;
+        height: 50px;
+        margin-left: 25vw;
+    }
+
+    .btn__backProjeto:hover {
+        cursor: pointer;
+        background-color: #348fdf;
+        transition: all 1.5s 0s ease;
+        transform: scale(1.01);
+        transition: all 0.2s;
+    }
+
+    .trash {
+        position: absolute;
+        color: #fff;
+        left: 73.3vw;
+        top: 80.7vh;
+        z-index: 1;
+        font-size: 1.3em;
+    }
+}

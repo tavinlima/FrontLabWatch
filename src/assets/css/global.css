@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+body {
+    background-color: #F8F8F8;
+}
+
+/* body::-webkit-scrollbar {
+    width: 15px;
+}
+body::-webkit-scrollbar-track {
+    background: blueviolet;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: salmon;
+    border: 2px solid #fafa;
+} */
+
+.container {
+    max-width: 1400px;
+    width: 65%;
+}
+
+:root {
+    --cor-primaria: #0D4373;
+    --cor-secundaria: #1B65A6;
+    --cor-tercearia: #77BF63;
+}
+
+.btn {
+    border-radius: 14px;
+    border-style: none;
+}
+
+.btnStyle {
+    background-color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--cor-primaria);
+}
+
+input {
+    border-style: none;
+    border-radius: 10px;
+}
+
+textarea {
+    border-style: none;
+    border-radius: 10px;
+}
