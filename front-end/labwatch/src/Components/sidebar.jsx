@@ -51,7 +51,7 @@ export default function SideBar() {
                     <hr className="side_hr"></hr>
                     {/* <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li> */}
                     <li><Link to="/Tasks"><i> <FontAwesomeIcon icon={faListCheck} /></i>{t('sidebarItem2')}</Link></li>
-                    <li><Link to="/"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>{t('sidebarItem3')}</Link></li>
+                    <li><Link to="/DashBoard"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>{t('sidebarItem3')}</Link></li>
                     <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>{t('sidebarItem4')}</Link></li>
                    {parseJwt().role === '3' ? <li className="settings">
                         <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faSliders}></FontAwesomeIcon></i>{t('sidebarItem5')}<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
@@ -60,7 +60,11 @@ export default function SideBar() {
                                 <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>{t('sidebarItem7')}</Link></li>
                                 <li  className="sett_link"><Link to={'/Clientes'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>{t('sidebarItem8')}</Link></li>
                             </ul>
+<<<<<<< HEAD
                     </li>: ''} 
+=======
+                    </li> 
+>>>>>>> 4771157921935670669d1c3909d94c967fc1312d
                 </ul>
                 <ul className="side_baixo">
                     <li><Link to={'/Settings'}><i><FontAwesomeIcon icon={faGear}></FontAwesomeIcon></i>{t('sidebarItem9')}</Link></li>
