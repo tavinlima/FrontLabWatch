@@ -104,7 +104,7 @@ export default function TaskTarefa() {
         setTempoTrabalho(task.tempoTrabalho)
         setTituloTask(task.tituloTask)
         setIdTag(task.idTag)
-        setTituloTag(task.idTag)
+        setTituloTag(task.idTagNavigation.tituloTag)
 
         buscarComentarios(task.idTask)
 

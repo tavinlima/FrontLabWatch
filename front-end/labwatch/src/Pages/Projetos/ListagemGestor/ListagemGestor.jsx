@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
 
@@ -228,6 +228,7 @@ export default function ListarMinhas() {
                             pauseOnHover />
 
                         <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label>
+                        <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
                         {
                             meusProjetos.length === 0 ?
                                 <div className="box__semProjetos">

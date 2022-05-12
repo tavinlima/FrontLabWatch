@@ -124,6 +124,7 @@ export default function Login() {
                                 name="senha"
                                 type="password"
                                 id="senha" />
+                                <p className="erro_login">{erroMensagem}</p>
                             <button type='button' className="botao_olho" onClick={show}>
                                 <Icon className="iconify olho" icon="akar-icons:eye-open" />
 

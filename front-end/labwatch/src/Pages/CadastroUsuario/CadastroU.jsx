@@ -107,6 +107,7 @@ export default function Usuario() {
                                     id="sobreNome" />
 
                                 <input className="input-cad"
+                                    autoComplete="off"
                                     placeholder="Email"
                                     value={email}
                                     onChange={(campo) => setEmail(campo.target.value)}
@@ -115,6 +116,7 @@ export default function Usuario() {
                                     id="email" />
 
                                 <input className="input-cad"
+                                    autoComplete="off"
                                     placeholder="Password"
                                     defaultValue={senha}
                                     onChange={(campo) => setSenha(campo.target.value)}

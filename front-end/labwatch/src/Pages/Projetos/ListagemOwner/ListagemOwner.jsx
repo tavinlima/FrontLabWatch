@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { motion } from "framer-motion"
 
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../../Components/header';
@@ -206,52 +207,102 @@ export default function ListagemOwner() {
     useEffect(buscarClientes, [])
 
     return (
-        <div>
-            <Header />
-            <section>
-                <SideBar />
-            </section>
-            <div className="box__listagemProjetos">
-                <section className="section__listagemProjetos container">
-                    <div className="div__tituloInput">
-                        <h1>Projects</h1>
-                        <input
-                            type="search"
-                            id='projetos'
-                            name='projeto'
-                            autoComplete='off'
-                            list='projetos'
-                            onChange={(e) => searchItems(e.target.value)}
-                            placeholder="Search anything..." />
-                        <Icon className='iconify lupa' icon="cil:magnifying-glass" />
-                    </div>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <div>
+                <Header />
+                <section>
+                    <SideBar />
+                </section>
+                <div className="box__listagemProjetos">
+                    <section className="section__listagemProjetos container">
+                        <div className="div__tituloInput">
+                            <h1>Projects</h1>
+                            <input
+                                type="search"
+                                id='projetos'
+                                name='projeto'
+                                autoComplete='off'
+                                list='projetos'
+                                onChange={(e) => searchItems(e.target.value)}
+                                placeholder="Search anything..." />
+                            <Icon className='iconify lupa' icon="cil:magnifying-glass" />
+                        </div>
 
 
-                    <ToastContainer
-                        position="top-center"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover />
+                        <ToastContainer
+                            position="top-center"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover />
 
-                    <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label>
+                        <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label>
 
-                    <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
-                    {
-                        listaProjetos.length === 0 ?
-                            <div className="box__semProjetos">
-                                <span>Não há projetos cadastrados</span>
-                            </div>
+                        <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
+                        {
+                            listaProjetos.length === 0 ?
+                                <div className="box__semProjetos">
+                                    <span>Não há projetos cadastrados</span>
+                                </div>
 
-                            :
+                                :
 
-                            searchInput.length > 0 ?
-                                (
-                                    filteredResults.map((projeto) => {
+                                searchInput.length > 0 ?
+                                    (
+                                        filteredResults.map((projeto) => {
+                                            return (
+                                                <div className="section__projeto" key={projeto.idProjeto}>
+                                                    <section className="box__projeto" key={projeto.idProjeto}>
+                                                        <div className="containerBox">
+                                                            <div className="divisoria__imgEmpresa">
+                                                                <img
+                                                                    className="box__imgEmpresa"
+                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    alt="Imagem do cliente" />
+                                                            </div>
+                                                            <div className="box__infProjeto">
+                                                                <button className="button_selectProject" onClick={() => selecionarProjeto(projeto)}>
+                                                                    <h2>{projeto.tituloProjeto}</h2>
+                                                                </button>
+
+                                                                <div>
+                                                                    <span>Cliente: </span>
+                                                                    <span>{projeto.idClienteNavigation.nomeCliente}</span>
+                                                                </div>
+
+                                                                <span>Data de entrega:</span>
+                                                                <span>{Intl.DateTimeFormat("pt-BR",
+                                                                    {
+                                                                        year: 'numeric', month: 'numeric', day: 'numeric',
+                                                                        hour: 'numeric', minute: 'numeric'
+                                                                    }
+                                                                ).format(new Date(projeto.dataConclusao))}</span>
+                                                            </div>
+                                                            <div className="div__membersGear">
+                                                                <div className="div__members">
+                                                                    <button
+                                                                        aria-label="Configurações"
+                                                                        className="btn__settings"
+                                                                        onClick={() => abrirModal(projeto)}>
+                                                                        <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            )
+                                        })
+                                    ) :
+                                    listaProjetos.map((projeto) => {
                                         return (
                                             <div className="section__projeto" key={projeto.idProjeto}>
                                                 <section className="box__projeto" key={projeto.idProjeto}>
@@ -295,187 +346,143 @@ export default function ListagemOwner() {
                                             </div>
                                         )
                                     })
-                                ) :
-                                listaProjetos.map((projeto) => {
-                                    return (
-                                        <div className="section__projeto" key={projeto.idProjeto}>
-                                            <section className="box__projeto" key={projeto.idProjeto}>
-                                                <div className="containerBox">
-                                                    <div className="divisoria__imgEmpresa">
-                                                        <img
-                                                            className="box__imgEmpresa"
-                                                            src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
-                                                            alt="Imagem do cliente" />
-                                                    </div>
-                                                    <div className="box__infProjeto">
-                                                        <button className="button_selectProject" onClick={() => selecionarProjeto(projeto)}>
-                                                            <h2>{projeto.tituloProjeto}</h2>
-                                                        </button>
+                        }
+                        <div id="myModal" className="modal">
+                            <div className="modal-content">
+                                <div className="modal_container">
+                                    <form onSubmit={(e) => atualizarProjeto(e)}>
+                                        <label className='boxCadastro__label'>
+                                            Project name
+                                            <input
+                                                className='projetoNome__input'
+                                                type='text'
+                                                value={tituloProjeto}
+                                                name='nomeProjeto'
+                                                autoComplete='off'
+                                                onChange={(e) => setTituloProjeto(e.target.value)} />
+                                        </label>
 
-                                                        <div>
-                                                            <span>Cliente: </span>
-                                                            <span>{projeto.idClienteNavigation.nomeCliente}</span>
-                                                        </div>
+                                        <label className="boxCadastro__label">
+                                            Client
+                                            <span value={nomeCliente}>{nomeCliente}</span>
+                                            <select
+                                                className='select_cliente'
+                                                required
+                                                name='idCliente'
+                                                onChange={(e) => setIdCliente(e.target.value)}
+                                                value={idCliente}
+                                            >
+                                                <option aria-disabled="true" value="0" disabled>Selecione um dos clientes</option>
+                                                {
+                                                    cliente.map((cliente) => {
+                                                        return (
+                                                            <option key={cliente.idCliente} value={cliente.idCliente}>{cliente.nomeCliente}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        </label>
 
-                                                        <span>Data de entrega:</span>
-                                                        <span>{Intl.DateTimeFormat("pt-BR",
-                                                            {
-                                                                year: 'numeric', month: 'numeric', day: 'numeric',
-                                                                hour: 'numeric', minute: 'numeric'
-                                                            }
-                                                        ).format(new Date(projeto.dataConclusao))}</span>
-                                                    </div>
-                                                    <div className="div__membersGear">
-                                                        <div className="div__members">
-                                                            <button
-                                                                aria-label="Configurações"
-                                                                className="btn__settings"
-                                                                onClick={() => abrirModal(projeto)}>
-                                                                <Icon className="iconify projeto__icon" icon="bi:gear-fill" />
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
+                                        <label className='boxCadastro__label'>
+                                            Description
+                                            <textarea
+                                                className='projetoDescricao__input'
+                                                type='text'
+                                                value={descricaoProjeto}
+                                                name='descricaoProjeto'
+                                                maxLength="200"
+                                                onChange={(e) => setDescricaoProjeto(e.target.value)}
+                                            />
+                                        </label>
+
+                                        <div className="div__inputDate">
+                                            <label className="boxCadastro__label">
+                                                Start Date
+                                                <input
+                                                    className="projetoData__input"
+                                                    name='dataInicioProjeto'
+                                                    value={dataInicio}
+                                                    type='datetime-local'
+                                                    onChange={(e) => setDataInicio(e.target.value)}
+                                                />
+                                            </label>
+
+                                            <label className="boxCadastro__label">
+                                                Final date
+                                                <input
+                                                    className="projetoData__input"
+                                                    name='dataFinalProjeto'
+                                                    value={dataConclusao}
+                                                    type='datetime-local'
+                                                    onChange={(e) => setDataConclusao(e.target.value)}
+                                                />
+                                            </label>
+
                                         </div>
-                                    )
-                                })
-                    }
-                    <div id="myModal" className="modal">
-                        <div className="modal-content">
-                            <div className="modal_container">
-                                <form onSubmit={(e) => atualizarProjeto(e)}>
-                                    <label className='boxCadastro__label'>
-                                        Project name
-                                        <input
-                                            className='projetoNome__input'
-                                            type='text'
-                                            value={tituloProjeto}
-                                            name='nomeProjeto'
-                                            autoComplete='off'
-                                            onChange={(e) => setTituloProjeto(e.target.value)} />
-                                    </label>
-
-                                    <label className="boxCadastro__label">
-                                        Client
-                                        <span value={nomeCliente}>{nomeCliente}</span>
-                                        <select
-                                            className='select_cliente'
-                                            required
-                                            name='idCliente'
-                                            onChange={(e) => setIdCliente(e.target.value)}
-                                            value={idCliente}
-                                        >
-                                            <option aria-disabled="true" value="0" disabled>Selecione um dos clientes</option>
-                                            {
-                                                cliente.map((cliente) => {
-                                                    return (
-                                                        <option key={cliente.idCliente} value={cliente.idCliente}>{cliente.nomeCliente}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </label>
-
-                                    <label className='boxCadastro__label'>
-                                        Description
-                                        <textarea
-                                            className='projetoDescricao__input'
-                                            type='text'
-                                            value={descricaoProjeto}
-                                            name='descricaoProjeto'
-                                            maxLength="200"
-                                            onChange={(e) => setDescricaoProjeto(e.target.value)}
-                                        />
-                                    </label>
-
-                                    <div className="div__inputDate">
                                         <label className="boxCadastro__label">
-                                            Start Date
+                                            Imagem do cliente
                                             <input
-                                                className="projetoData__input"
-                                                name='dataInicioProjeto'
-                                                value={dataInicio}
-                                                type='datetime-local'
-                                                onChange={(e) => setDataInicio(e.target.value)}
+                                                className="projetoArquivo__input"
+                                                name='arquivo'
+                                                id='arquivo'
+                                                type='file'
+                                                accept="image/png, image/jpeg"
+                                                onChange={(e) => setFotoCliente(e.target.value)}
                                             />
                                         </label>
 
-                                        <label className="boxCadastro__label">
-                                            Final date
-                                            <input
-                                                className="projetoData__input"
-                                                name='dataFinalProjeto'
-                                                value={dataConclusao}
-                                                type='datetime-local'
-                                                onChange={(e) => setDataConclusao(e.target.value)}
-                                            />
-                                        </label>
-
-                                    </div>
-                                    <label className="boxCadastro__label">
-                                        Imagem do cliente
-                                        <input
-                                            className="projetoArquivo__input"
-                                            name='arquivo'
-                                            id='arquivo'
-                                            type='file'
-                                            accept="image/png, image/jpeg"
-                                            onChange={(e) => setFotoCliente(e.target.value)}
-                                        />
-                                    </label>
-
-                                    {/* <img
+                                        {/* <img
                                         className="box__imgEmpresa"
                                         src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
                                         alt="Imagem do cliente" /> */}
 
-                                    {
-                                        isLoading ? <button
-                                            className='boxCadastro__btnCriar btn btn_salvar'
-                                            disabled>
-                                            Salvar Alterações</button>
-                                            :
-                                            <button
+                                        {
+                                            isLoading ? <button
                                                 className='boxCadastro__btnCriar btn btn_salvar'
-                                                type='submit'>Salvar alterações</button>
-                                    }
-                                    <button
-                                        className="btn__excluirProjeto btn"
-                                        type="button"
-                                        onClick={() => btnExcluir()}>Desativar projeto
-                                    </button>
-                                </form>
-                                <div className="div__buttons">
-                                    <button
-                                        className="btn__backProjeto btn"
-                                        type="button"
-                                        onClick={() => fecharModal()}
-                                    >
-                                        Voltar
-                                    </button>
+                                                disabled>
+                                                Salvar Alterações</button>
+                                                :
+                                                <button
+                                                    className='boxCadastro__btnCriar btn btn_salvar'
+                                                    type='submit'>Salvar alterações</button>
+                                        }
+                                        <button
+                                            className="btn__excluirProjeto btn"
+                                            type="button"
+                                            onClick={() => btnExcluir()}>Desativar projeto
+                                        </button>
+                                    </form>
+                                    <div className="div__buttons">
+                                        <button
+                                            className="btn__backProjeto btn"
+                                            type="button"
+                                            onClick={() => fecharModal()}
+                                        >
+                                            Voltar
+                                        </button>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div id="alerta" className="modal_mini">
+                            <div id="alerta" className="modal_mini">
 
-                            <div className="alerta-content">
-                                <h3>Deseja mesmo desativar esse projeto?</h3>
-                                <button
-                                    className="btn__excluirProjetoModal btn"
-                                    onClick={() => desativarProjeto()}>Sim</button>
-                                <button
-                                    className="btn__Excluir"
-                                    onClick={() => fecharAlerta()}
-                                >Não</button>
+                                <div className="alerta-content">
+                                    <h3>Deseja mesmo desativar esse projeto?</h3>
+                                    <button
+                                        className="btn__excluirProjetoModal btn"
+                                        onClick={() => desativarProjeto()}>Sim</button>
+                                    <button
+                                        className="btn__Excluir"
+                                        onClick={() => fecharAlerta()}
+                                    >Não</button>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div >
             </div >
-        </div >
+        </motion.div>
     )
 }

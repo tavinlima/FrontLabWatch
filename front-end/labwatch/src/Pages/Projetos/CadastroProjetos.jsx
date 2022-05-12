@@ -48,7 +48,7 @@ export default function CadastroProjetos() {
                 if (resposta.status === 201) {
                     switch (parseJwt().role) {
                         case '2':
-                            history('ListaProjetosGestor')
+                            history('/ListaProjetosGestor')
                             break;
                         case '3':
                             history('/ListaProjetosOwner')

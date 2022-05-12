@@ -1,4 +1,5 @@
 import { React, useState, useLayoutEffect } from 'react';
+import { motion } from "framer-motion"
 
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/header';
@@ -103,38 +104,81 @@ export default function ListarConsultor() {
     // useEffect(listarMeusProjetos, [])
 
     return (
-        <div>
-            <Header />
-            <section>
-                <SideBar />
-            </section>
-            <div className="box__listagemProjetos">
-                <section className="section__listagemProjetos container">
-                    <div className="div__tituloInput">
-                        <h1>{t('welcomeProjects')}</h1>
-                        <input
-                            type="search"
-                            id='projetos'
-                            name='projeto'
-                            autoComplete='off'
-                            list='projetos'
-                            onChange={(e) => searchItems(e.target.value)}
-                            placeholder={t('inputSearch')} />
-                        <Icon className='iconify lupa' icon="cil:magnifying-glass" />
-                    </div>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <div>
+                <Header />
+                <section>
+                    <SideBar />
+                </section>
+                <div className="box__listagemProjetos">
+                    <section className="section__listagemProjetos container">
+                        <div className="div__tituloInput">
+                            <h1>{t('welcomeProjects')}</h1>
+                            <input
+                                type="search"
+                                id='projetos'
+                                name='projeto'
+                                autoComplete='off'
+                                list='projetos'
+                                onChange={(e) => searchItems(e.target.value)}
+                                placeholder={t('inputSearch')} />
+                            <Icon className='iconify lupa' icon="cil:magnifying-glass" />
+                        </div>
 
-                    <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>{t('h3Projects')}</label>
-                    {
-                        meusProjetos.length === 0 ?
-                            <div className="box__semProjetos">
-                                <span>Não há projetos cadastrados</span>
-                            </div>
+                        <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>{t('h3Projects')}</label>
+                        {
+                            meusProjetos.length === 0 ?
+                                <div className="box__semProjetos">
+                                    <span>Não há projetos cadastrados</span>
+                                </div>
 
-                            :
+                                :
 
-                            searchInput.length > 0 ?
-                                (
-                                    filteredResults.map((projeto) => {
+                                searchInput.length > 0 ?
+                                    (
+                                        filteredResults.map((projeto) => {
+                                            return (
+                                                <div className="section__projeto" key={projeto.idProjeto}>
+                                                    <section className="box__projeto" key={projeto.idProjeto}>
+                                                        <div className="containerBox">
+                                                            <div className="divisoria__imgEmpresa">
+                                                                <img
+                                                                    className="box__imgEmpresa"
+                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    alt="Imagem do cliente" />
+                                                            </div>
+                                                            <div className="box__infProjeto">
+                                                                <button className="button_selectProject" onClick={() => selecionarProjeto(projeto)}>
+                                                                    <h2>{projeto.tituloProjeto}</h2>
+                                                                </button>
+
+                                                                <div>
+                                                                    <span style={{ "font-weight": 'bold' }}>{t('titleClient')} </span>
+                                                                    <span>{projeto.idClienteNavigation.nomeCliente}</span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div className='box__data'>
+                                                            <span style={{ "font-weight": 'bold' }}>{t('dataDelivery')}  </span>
+                                                            <span>{Intl.DateTimeFormat("pt-BR",
+                                                                {
+                                                                    year: 'numeric', month: 'numeric', day: 'numeric',
+                                                                    hour: 'numeric', minute: 'numeric'
+                                                                }
+                                                            ).format(new Date(projeto.dataConclusao))}</span>
+                                                        </div>
+                                                    </section>
+
+                                                </div>
+                                            )
+                                        })
+                                    ) :
+                                    meusProjetos.map((projeto) => {
                                         return (
                                             <div className="section__projeto" key={projeto.idProjeto}>
                                                 <section className="box__projeto" key={projeto.idProjeto}>
@@ -151,52 +195,14 @@ export default function ListarConsultor() {
                                                             </button>
 
                                                             <div>
-                                                                <span style={{"font-weight": 'bold'}}>{t('titleClient')} </span>
+                                                                <span style={{ "font-weight": 'bold' }}>{t('titleClient')} </span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
                                                         </div>
 
                                                     </div>
-                                                        <div className='box__data'>
-                                                        <span style={{"font-weight": 'bold'}}>{t('dataDelivery')}  </span>
-                                                            <span>{Intl.DateTimeFormat("pt-BR",
-                                                                {
-                                                                    year: 'numeric', month: 'numeric', day: 'numeric',
-                                                                    hour: 'numeric', minute: 'numeric'
-                                                                }
-                                                            ).format(new Date(projeto.dataConclusao))}</span>
-                                                        </div>
-                                                </section>
-
-                                            </div>
-                                        )
-                                    })
-                                ) :
-                                meusProjetos.map((projeto) => {
-                                    return (
-                                        <div className="section__projeto" key={projeto.idProjeto}>
-                                            <section className="box__projeto" key={projeto.idProjeto}>
-                                                <div className="containerBox">
-                                                    <div className="divisoria__imgEmpresa">
-                                                        <img
-                                                            className="box__imgEmpresa"
-                                                            src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
-                                                            alt="Imagem do cliente" />
-                                                    </div>
-                                                    <div className="box__infProjeto">
-                                                        <button className="button_selectProject" onClick={() => selecionarProjeto(projeto)}>
-                                                            <h2>{projeto.tituloProjeto}</h2>
-                                                        </button>
-
-                                                        <div>
-                                                            <span style={{"font-weight": 'bold'}}>{t('titleClient')} </span>
-                                                            <span>{projeto.idClienteNavigation.nomeCliente}</span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
                                                     <div className='box__data'>
-                                                        <span style={{"font-weight": 'bold'}}>{t('dataDelivery')} </span>
+                                                        <span style={{ "font-weight": 'bold' }}>{t('dataDelivery')} </span>
                                                         <span>{Intl.DateTimeFormat("pt-BR",
                                                             {
                                                                 year: 'numeric', month: 'numeric', day: 'numeric',
@@ -204,14 +210,15 @@ export default function ListarConsultor() {
                                                             }
                                                         ).format(new Date(projeto.dataConclusao))}</span>
                                                     </div>
-                                            </section>
-                                        </div>
-                                    )
-                                })
-                    }
+                                                </section>
+                                            </div>
+                                        )
+                                    })
+                        }
 
-                </section>
+                    </section>
+                </div >
             </div >
-        </div >
+        </motion.div>
     )
 }

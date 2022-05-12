@@ -108,6 +108,7 @@
 .btn__addTeam {
     display: flex;
     justify-self: flex-end;
+    margin-right: 1rem;
 }
 
 .div__listTeams:last-child {
