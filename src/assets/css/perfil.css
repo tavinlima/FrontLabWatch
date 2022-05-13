@@ -25,6 +25,12 @@
     font-weight: 400;
 }
 
+.imgUpload {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
 .button__editProfile {
     background-color: #1B65A6;
     color: #FFFF;
@@ -35,12 +41,12 @@
     width: 14vw;
     height: 6vh;
     border-radius: 14px;
-    border: none;       
+    border: none;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
 
-.modal__PerfilEdit{
+.modal__PerfilEdit {
     background-color: #fafafa;
     margin: 60px auto;
     width: 45%;
@@ -65,10 +71,10 @@
     width: 14vw;
     height: 6vh;
     border-radius: 14px;
-    border: none;       
+    border: none;
 }
 
-.button__editProfileModal:hover{
+.button__editProfileModal:hover {
     cursor: pointer;
     background-color: #348fdf;
     transition: all 1.5s 0s ease;
@@ -80,9 +86,9 @@
     cursor: pointer;
 }
 
-.modal__contentPerfil{
+.modal__contentPerfil {
     margin: 4rem auto;
-    width: 80%; 
+    width: 80%;
 }
 
 

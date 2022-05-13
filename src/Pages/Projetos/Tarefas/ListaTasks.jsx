@@ -243,39 +243,41 @@ export default function TaskTarefa() {
                                                     animate={{ opacity: 1 }}
                                                     exit={{ opacity: 0 }}
                                                 >
-                                                    <div className="section__task" key={task.idTask}>
-                                                        <section className="box__task" key={task.idTask}>
-                                                            <div className="containerBox">
-                                                                <div className="box__infTask">
-                                                                    <span>
-                                                                        {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
-                                                                            : <Icon className='alertTask' icon="akar-icons:circle-alert-fill" />
-                                                                        }
-                                                                    </span>
-                                                                    <button className="button_selectTask" onClick={() => abrirModalTask(task)}>
-                                                                        <h2>{task.tituloTask}</h2>
-                                                                    </button>
-
-                                                                    <div className='infoTask'>
+                                                    <label for='Task'>
+                                                        <div className="section__task" key={task.idTask}>
+                                                            <section className="box__task" key={task.idTask}>
+                                                                <div className="containerBox">
+                                                                    <div className="box__infTask">
                                                                         <span>
-                                                                            <span className='span_title'>Project Title: </span>
-                                                                            <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
+                                                                            {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
+                                                                                : <Icon className='alertTask' icon="akar-icons:circle-alert-fill" />
+                                                                            }
                                                                         </span>
-                                                                        <span >
-                                                                            <span className='span_description'>Description: </span>
-                                                                            <span className='description'>{task.descricao}</span>
-                                                                        </span>
-                                                                    </div>
-                                                                    <div className='div__hours'>
-                                                                        <span >
-                                                                            <span className='span_hours'>Worked Hours: </span>
-                                                                            <span className='hours'>{task.tempoTrabalho}</span>
-                                                                        </span>
+                                                                        <button className="button_selectTask" id='Task' onClick={() => abrirModalTask(task)}>
+                                                                            <h2>{task.tituloTask}</h2>
+                                                                        </button>
+
+                                                                        <div className='infoTask'>
+                                                                            <span>
+                                                                                <span className='span_title'>Project Title: </span>
+                                                                                <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
+                                                                            </span>
+                                                                            <span >
+                                                                                <span className='span_description'>Description: </span>
+                                                                                <span className='description'>{task.descricao}</span>
+                                                                            </span>
+                                                                        </div>
+                                                                        <div className='div__hours'>
+                                                                            <span >
+                                                                                <span className='span_hours'>Worked Hours: </span>
+                                                                                <span className='hours'>{task.tempoTrabalho}</span>
+                                                                            </span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </section>
-                                                    </div>
+                                                            </section>
+                                                        </div>
+                                                    </label>
                                                 </motion.div>
                                             )
                                         }
@@ -291,204 +293,205 @@ export default function TaskTarefa() {
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                             >
-                                                <div>
-                                                    <div className="section__task" key={task.idTask}>
-                                                        <section className="box__task" key={task.idTask}>
-                                                            <div className="containerBox">
-                                                                <div className="box__infTask">
-                                                                    <span>
-                                                                        {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
-                                                                            : <Icon className='alertTask' icon="akar-icons:circle-alert-fill" />
-                                                                        }
-                                                                    </span>
-                                                                    <button className="button_selectTask" onClick={() => abrirModalTask(task)}>
-                                                                        <h2>{task.tituloTask}</h2>
-                                                                    </button>
+                                                <label for='Task'>
+                                                        <div className="section__task" key={task.idTask}>
+                                                            <section className="box__task" key={task.idTask}>
+                                                                <div className="containerBox">
+                                                                        <div className="box__infTask">
+                                                                            <span>
+                                                                                {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
+                                                                                    : <Icon className='alertTask' icon="akar-icons:circle-alert-fill" />
+                                                                                }
+                                                                            </span>
+                                                                            <button className="button_selectTask" id='Task' onClick={() => abrirModalTask(task)}>
+                                                                                <h2>{task.tituloTask}</h2>
+                                                                            </button>
 
-                                                                    <div className='infoTask'>
-                                                                        <span>
-                                                                            <span className='span_title'>Project Title: </span>
-                                                                            <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
-                                                                        </span>
-                                                                        <span >
-                                                                            <span className='span_description'>Description: </span>
-                                                                            <span className='description'>{task.descricao}</span>
-                                                                        </span>
+                                                                            <div className='infoTask'>
+                                                                                <span>
+                                                                                    <span className='span_title'>Project Title: </span>
+                                                                                    <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
+                                                                                </span>
+                                                                                <span >
+                                                                                    <span className='span_description'>Description: </span>
+                                                                                    <span className='description'>{task.descricao}</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div className='div__hours'>
+                                                                                <span >
+                                                                                    <span className='span_hours'>Worked Hours: </span>
+                                                                                    <span className='hours'>{task.tempoTrabalho}</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className='div__hours'>
-                                                                        <span >
-                                                                            <span className='span_hours'>Worked Hours: </span>
-                                                                            <span className='hours'>{task.tempoTrabalho}</span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </section>
-                                                    </div>
-                                                </div>
+                                                    </div>  
+                                                </label>
                                             </motion.div>
-                                        )
+                                                )
                                     })
                         }
-                        {/* Modal Datails Task */}
-                        <div id="ModalTask" className="modal">
-                            <div className="modal-content1">
-                                <div className="modal_container modal__task">
-                                    <div>
-                                        <div className='box__tituloTask'>
-                                            <h2 className='tituloTask'>Task: {tituloTask}</h2>
-                                        </div>
-                                        <div className="box__DetailsTask">
-                                            <h2 className='detailsTask'>Details: {tituloTag} </h2>
+                                                {/* Modal Datails Task */}
+                                                <div id="ModalTask" className="modal">
+                                                    <div className="modal-content1">
+                                                        <div className="modal_container modal__task">
+                                                            <div>
+                                                                <div className='box__tituloTask'>
+                                                                    <h2 className='tituloTask'>Task: {tituloTask}</h2>
+                                                                </div>
+                                                                <div className="box__DetailsTask">
+                                                                    <h2 className='detailsTask'>Details: {tituloTag} </h2>
 
-                                        </div>
-                                        <div className='box__coment'>
-                                            <h2 className='comentTask'>Comentários: </h2>
-                                            <div className='section__coment'>
-                                                {
-                                                    comentariotask.map((comentario) => {
-                                                        return (
-                                                            <div className='box__comentario'>
-                                                                <div key={comentario.idComentario} className='div__coment'>
-                                                                    <div className='coment__infUser'>
-                                                                        <span>{comentario.idUsuarioNavigation.nomeUsuario}</span>
-                                                                        <img className="coment__imgUser" src={"http://labwatch-backend.azurewebsites.net/img/" + comentario.idUsuarioNavigation.fotoUsuario} />
+                                                                </div>
+                                                                <div className='box__coment'>
+                                                                    <h2 className='comentTask'>Comentários: </h2>
+                                                                    <div className='section__coment'>
+                                                                        {
+                                                                            comentariotask.map((comentario) => {
+                                                                                return (
+                                                                                    <div className='box__comentario'>
+                                                                                        <div key={comentario.idComentario} className='div__coment'>
+                                                                                            <div className='coment__infUser'>
+                                                                                                <span>{comentario.idUsuarioNavigation.nomeUsuario}</span>
+                                                                                                <img className="coment__imgUser" src={"http://labwatch-backend.azurewebsites.net/img/" + comentario.idUsuarioNavigation.fotoUsuario} />
+                                                                                            </div>
+                                                                                            <span>{comentario.comentario1}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                )
+                                                                            })
+                                                                        }
                                                                     </div>
-                                                                    <span>{comentario.comentario1}</span>
+
+                                                                </div>
+                                                                <form onSubmit={(e) => cadastrarComentario(e)}>
+                                                                    <label className='label_coment'>
+                                                                        Comentario:
+                                                                        <input
+                                                                            className='input_add_coment'
+                                                                            type='text'
+                                                                            name='coment'
+                                                                            onChange={(e) => setMeuComentario(e.target.value)}
+                                                                            value={meuComentario}
+                                                                            placeholder='Escreva um comentário'
+                                                                        />
+                                                                    </label>
+
+                                                                    <button className='btn__coment' >Escrever um comentário</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Modal ADD TASK */}
+                                                <div id="myModal" className="modal">
+                                                    <div className="modal-content2">
+                                                        <div className="modal_container modal__task">
+                                                            <div >
+                                                                <div className="div__Register">
+                                                                    <h1 className='new_task'>Add new Task</h1>
+
+                                                                </div>
+
+                                                                <div>
+                                                                    <h2>Title Task: </h2>
+                                                                    <label>
+                                                                        <input className='input_title' type="text"
+                                                                            id='title'
+                                                                            name='title'
+                                                                            autoComplete='off'
+                                                                            value={tituloTask}
+                                                                            onChange={(e) => setTituloTask(e.target.value)}
+                                                                            placeholder='Adicione o Titulo da Task' />
+
+                                                                    </label>
+                                                                </div>
+
+                                                                <div className='box_input_tag'>
+                                                                    <h2>Task tag: </h2>
+                                                                    <div className='div__tags'>
+                                                                        {
+                                                                            listaTag.map((tag) => {
+                                                                                return (
+                                                                                    <div key={tag.idTag}>
+                                                                                        <button type='' onClick={() => setIdTag(tag.idTag)}>{tag.tituloTag}</button>
+                                                                                    </div>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </div>
+                                                                    <form onSubmit={(e) => cadastrarTag(e)} >
+                                                                        <label>
+                                                                            <input
+                                                                                className='input_tag'
+                                                                                type="text"
+                                                                                name="tag"
+                                                                                id="tags"
+                                                                                value={tituloTag}
+                                                                                autoComplete='off'
+                                                                                onChange={(e) => setTituloTag(e.target.value)}
+                                                                                placeholder="Adicione uma Tag"
+                                                                            />
+                                                                        </label>
+                                                                    </form>
+                                                                </div>
+
+                                                                <div className='box_input_descricao'>
+                                                                    <h2>Details: </h2>
+                                                                    <label className='div__Register'>
+                                                                        Add Description:
+                                                                        <input
+                                                                            className='input_descricao'
+                                                                            type="search"
+                                                                            id='descriptions'
+                                                                            name='description'
+                                                                            autoComplete='off'
+                                                                            value={descricaoTask}
+                                                                            onChange={(e) => setDescricaoTask(e.target.value)}
+                                                                            placeholder="Descrição da task" />
+                                                                    </label>
+                                                                </div>
+                                                                <div className='box_input_horas'>
+                                                                    <label className='div__Register'>
+                                                                        Add Hours:
+                                                                        <input
+                                                                            className='input_horas'
+                                                                            type="number"
+                                                                            id='horas'
+                                                                            name='hora'
+                                                                            autoComplete='off'
+                                                                            value={tempoTrabalho}
+                                                                            onChange={(e) => setTempoTrabalho(e.target.value)}
+                                                                            placeholder="Horas de Trabalho" />
+                                                                    </label>
+
+                                                                </div>
+                                                                <div className='box_btn_cadTask'>
+                                                                    <button className='btn_cadTask' onClick={(e) => cadastrarTask(e)}>Cadastrar Task</button>
                                                                 </div>
                                                             </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
 
-                                        </div>
-                                        <form onSubmit={(e) => cadastrarComentario(e)}>
-                                            <label className='label_coment'>
-                                                Comentario: 
-                                                <input
-                                                    className='input_add_coment'
-                                                    type='text'
-                                                    name='coment'
-                                                    onChange={(e) => setMeuComentario(e.target.value)}
-                                                    value={meuComentario}
-                                                    placeholder='Escreva um comentário'
-                                                />
-                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                            <button className='btn__coment' >Escrever um comentário</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Modal ADD TASK */}
-                        <div id="myModal" className="modal">
-                            <div className="modal-content2">
-                                <div className="modal_container modal__task">
-                                    <div >
-                                        <div className="div__Register">
-                                            <h1 className='new_task'>Add new Task</h1>
-
-                                        </div>
-
-                                        <div>
-                                            <h2>Title Task: </h2>
-                                            <label>
-                                                <input className='input_title' type="text"
-                                                    id='title'
-                                                    name='title'
-                                                    autoComplete='off'
-                                                    value={tituloTask}
-                                                    onChange={(e) => setTituloTask(e.target.value)}
-                                                    placeholder='Adicione o Titulo da Task' />
-
-                                            </label>
-                                        </div>
-
-                                        <div className='box_input_tag'>
-                                            <h2>Task tag: </h2>
-                                            <div className='div__tags'>
-                                                {
-                                                    listaTag.map((tag) => {
-                                                        return (
-                                                            <div key={tag.idTag}>
-                                                                <button type='' onClick={() => setIdTag(tag.idTag)}>{tag.tituloTag}</button>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                            <form onSubmit={(e) => cadastrarTag(e)} >
-                                                <label>
-                                                    <input
-                                                        className='input_tag'
-                                                        type="text"
-                                                        name="tag"
-                                                        id="tags"
-                                                        value={tituloTag}
-                                                        autoComplete='off'
-                                                        onChange={(e) => setTituloTag(e.target.value)}
-                                                        placeholder="Adicione uma Tag"
-                                                    />
-                                                </label>
-                                            </form>
-                                        </div>
-
-                                        <div className='box_input_descricao'>
-                                            <h2>Details: </h2>
-                                            <label className='div__Register'>
-                                                Add Description:
-                                                <input
-                                                    className='input_descricao'
-                                                    type="search"
-                                                    id='descriptions'
-                                                    name='description'
-                                                    autoComplete='off'
-                                                    value={descricaoTask}
-                                                    onChange={(e) => setDescricaoTask(e.target.value)}
-                                                    placeholder="Descrição da task" />
-                                            </label>
-                                        </div>
-                                        <div className='box_input_horas'>
-                                            <label className='div__Register'>
-                                                Add Hours:
-                                                <input
-                                                    className='input_horas'
-                                                    type="number"
-                                                    id='horas'
-                                                    name='hora'
-                                                    autoComplete='off'
-                                                    value={tempoTrabalho}
-                                                    onChange={(e) => setTempoTrabalho(e.target.value)}
-                                                    placeholder="Horas de Trabalho" />
-                                            </label>
-
-                                        </div>
-                                        <div className='box_btn_cadTask'>
-                                            <button className='btn_cadTask' onClick={(e) => cadastrarTask(e)}>Cadastrar Task</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <ToastContainer
-                            position="top-center"
-                            autoClose={5000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover />
+                                                <ToastContainer
+                                                    position="top-center"
+                                                    autoClose={5000}
+                                                    hideProgressBar={false}
+                                                    newestOnTop={false}
+                                                    closeOnClick
+                                                    rtl={false}
+                                                    pauseOnFocusLoss
+                                                    draggable
+                                                    pauseOnHover />
 
 
                     </section>
                 </div>
-            </div>
+                </div>
         </motion.div>
-    )
+            )
 }

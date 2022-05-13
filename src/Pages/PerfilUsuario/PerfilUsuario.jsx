@@ -74,8 +74,9 @@ export default function PerfilUsuario() {
 
 
         api.put('/CadastroUsuario?id=' + parseJwt().jti, formData, {
-            headers: { 
-                "Content-Type": "multipart/form-data" }
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
         }).then(resposta => {
             console.log(resposta)
         }).then(() => buscarPerfil()).then(modal.style.display == "none")
@@ -119,10 +120,14 @@ export default function PerfilUsuario() {
 
                         <h1>Profile</h1>
                         <div className='section__infoPerfil'>
-                            <img
-                                className="perfil__imgPerfil"
-                                src={fotoPerfil}
-                                alt="Imagem do cliente" />
+                            <label>
+                                <input type='file' id='arquivo' className='imgUpload' onChange={(e) => editarPerfil(e)}/>
+                                <img
+                                    className="perfil__imgPerfil"
+                                    src={fotoPerfil}
+                                    alt="Imagem do cliente" />
+                            </label>
+
 
                             <div className='div__textPerfil'>
                                 <h2 className='textPerfil__nomeUsuario'> {listaPerfil.nomeUsuario} {listaPerfil.sobreNome}</h2>
