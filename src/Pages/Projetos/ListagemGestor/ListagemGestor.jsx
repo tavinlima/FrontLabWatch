@@ -130,8 +130,11 @@ export default function ListarMinhas() {
                                 console.log(usuario)
                                 localStorage.setItem('idEquipe', usuario.idEquipe)
                             }
+                            return usuario
                         })
                     }
+
+                    return equipe
                 })
             }
         }).then(() => listarMeusProjetos())

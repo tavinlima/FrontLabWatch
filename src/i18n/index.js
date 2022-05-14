@@ -5,8 +5,6 @@ import enUS from './locales/en/en-us.json';
 import es from './locales/es/es.json';
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-
-
 const resources = {
   'en-US': enUS,
   'pt-BR': ptBR,

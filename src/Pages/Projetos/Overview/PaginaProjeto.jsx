@@ -79,6 +79,7 @@ export default function PaginaProjeto() {
                         setFotoCliente(projeto.idClienteNavigation.fotoCliente)
                         localStorage.setItem('idEquipe', projeto.idEquipe)
                     }
+                    return projeto
                 })
             }
         })

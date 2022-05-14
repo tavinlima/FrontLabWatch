@@ -1,17 +1,12 @@
-import { React, useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { React } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useNavigate } from 'react-router-dom';
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
 
 import "../../assets/css/global.css"
 import "../../assets/css/settings.css"
 
-import { Icon } from '@iconify/react';
-
-import axios from 'axios';
 
 //Tradução
 import { useTranslation } from 'react-i18next';
