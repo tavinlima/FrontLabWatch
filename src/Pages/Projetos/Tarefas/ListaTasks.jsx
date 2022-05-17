@@ -349,8 +349,7 @@ export default function TaskTarefa() {
                             )
 
                         }
-
-
+                        <div className="section__task" ></div>
                         {
                             minhasTasks.length === 0 ?
                                 <div className="box__semTasks">
@@ -385,11 +384,12 @@ export default function TaskTarefa() {
                                                                         </button>
 
                                                                         <div className='infoTask'>
-                                                                            <span>
+                                                                            <span >
                                                                                 <span className='span_title'>Project Title: </span>
                                                                                 <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
                                                                             </span>
-                                                                            <span >
+                                                                            <div></div>
+                                                                            <span className='span__desc' >
                                                                                 <span className='span_description'>Description: </span>
                                                                                 <span className='description'>{task.descricao}</span>
                                                                             </span>
@@ -439,7 +439,7 @@ export default function TaskTarefa() {
                                                                             <span className='span_title'>Project Title: </span>
                                                                             <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
                                                                         </span>
-                                                                        <span >
+                                                                        <span className='span__desc'>
                                                                             <span className='span_description'>Description: </span>
                                                                             <span className='description'>{task.descricao}</span>
                                                                         </span>
@@ -694,6 +694,6 @@ export default function TaskTarefa() {
                     </section>
                 </div>
             </div>
-        </motion.div>
+        </motion.div >
     )
 }

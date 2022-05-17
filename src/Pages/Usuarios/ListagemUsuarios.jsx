@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../../services/api';
 import { motion } from "framer-motion"
+import { ToastContainer, toast } from 'react-toastify';
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
@@ -17,6 +18,9 @@ export default function Usuario() {
 
     const [listaUsuarios, setListaUsuarios] = useState([])
     const [ativo, setAtivo] = useState(false)
+
+    const check = () => toast.success("Usuário ativado com sucesso!")
+    const delet = () => toast.success("Usuário recusado do sistema!")
 
     let navigate = useNavigate();
 
@@ -40,7 +44,7 @@ export default function Usuario() {
 
     ///FUNCAO COM API
     function listarUsuarios() {
-        api("http://labwatch-backend.azurewebsites.net/api/Usuarios")
+        api("/Usuarios/")
             .then(resposta => {
                 // let users = resposta.data.map((usuarios) => {
                 //     if (usuarios.ativo === false) {
@@ -70,7 +74,8 @@ export default function Usuario() {
                 console.log("Deu certo")
             }
             console.log(resposta);
-        }).catch(erro => console.log(erro))
+        }).then(check)
+        .catch(erro => console.log(erro))
 
     }
 
@@ -84,7 +89,8 @@ export default function Usuario() {
                 console.log(usuario);
             }
             console.log(resposta)
-        }).catch(erro => console.log(erro))
+        }).then(delet)
+        .catch(erro => console.log(erro))
     }
 
     useEffect(listarUsuarios, [])
@@ -115,6 +121,17 @@ export default function Usuario() {
                             placeholder="Search Users..." />
                         <Icon className='iconify lupa_usuario' icon="cil:magnifying-glass" />
                     </div>
+
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover />
                     {
                         listaUsuarios.length === 0 ?
                             <div className="box_semUsuarios">

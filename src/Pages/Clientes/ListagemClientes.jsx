@@ -46,7 +46,7 @@ export default function Cliente() {
 
     ///FUNCAO COM A API
     function listarClientes() {
-        api("http://labwatch-backend.azurewebsites.net/api/Clientes")
+        api("/Clientes/")
             .then(resposta => {
                 if (resposta.status === 200) {
                     console.log(resposta.data)
@@ -70,13 +70,13 @@ export default function Cliente() {
         // formData.append('idCliente', idCliente);
         formData.append('nomeCliente', nomeCliente);
         formData.append('descricao', descricao);
-        formData.append('dataCadastro', dataCadastro.toLocaleString());
+        formData.append('dataCadastro', dataCadastro.toLocaleString()); 
         console.log(nomeCliente);
         console.log(descricao);
-        console.log(dataCadastro.toLocaleString());
+        console.log(dataCadastro.toLocaleString()); 
         console.log(file.name);
 
-        axios.post("http://labwatch-backend.azurewebsites.net/api/ClientesCadastrar", formData, {
+        api.post("/ClientesCadastrar/", formData, {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .then((resposta) => {
@@ -85,7 +85,7 @@ export default function Cliente() {
                     console.log('cadastrado')
                     setIsLoading(false)
                 }
-            }).then(() => listarClientes().then(notify))
+            }).then(() => listarClientes()).then(notify)
             .catch(erro => {
                 console.log(erro);
                 setIsLoading(false);
