@@ -231,6 +231,7 @@ export default function TaskTarefa() {
                                     className='boxCadastro__btnCriar btn btn_salvar1'
                                     type='submit'>Add Task</button>
                         }
+                        <div className="section__task" ></div>
                         {
                             minhasTasks.length === 0 ?
                                 <div className="box__semTasks">
@@ -245,14 +246,14 @@ export default function TaskTarefa() {
                                     (
                                         filteredResults.map((task) => {
                                             return (
-                                                <motion.div
+                                                <motion.div key={task.idTask}
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
                                                     exit={{ opacity: 0 }}
                                                 >
                                                     <label for='Task'>
-                                                        <div className="section__task" key={task.idTask}>
-                                                            <section className="box__task" key={task.idTask}>
+                                                        
+                                                            <section className="box__task" >
                                                                 <div className="containerBox">
                                                                     <div className="box__infTask">
                                                                         <span>
@@ -265,11 +266,12 @@ export default function TaskTarefa() {
                                                                         </button>
 
                                                                         <div className='infoTask'>
-                                                                            <span>
+                                                                            <span >
                                                                                 <span className='span_title'>Project Title: </span>
                                                                                 <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
                                                                             </span>
-                                                                            <span >
+                                                                            <div></div>
+                                                                            <span className='span__desc' >
                                                                                 <span className='span_description'>Description: </span>
                                                                                 <span className='description'>{task.descricao}</span>
                                                                             </span>
@@ -283,7 +285,6 @@ export default function TaskTarefa() {
                                                                     </div>
                                                                 </div>
                                                             </section>
-                                                        </div>
                                                     </label>
                                                 </motion.div>
                                             )
@@ -319,7 +320,7 @@ export default function TaskTarefa() {
                                                                             <span className='span_title'>Project Title: </span>
                                                                             <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
                                                                         </span>
-                                                                        <span >
+                                                                        <span className='span__desc'>
                                                                             <span className='span_description'>Description: </span>
                                                                             <span className='description'>{task.descricao}</span>
                                                                         </span>
