@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Icon } from '@iconify/react';
-import { parseJwt, parseIdProjeto } from '../../../services/auth';
+import { parseJwt, parseIdProjeto, parseIdEquipe } from '../../../services/auth';
 
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar';
@@ -20,6 +20,7 @@ export default function TaskTarefa() {
     const [tempoTrabalho, setTempoTrabalho] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
     const [minhasTasks, setMinhasTasks] = useState([]);
+    const [listaTasks, setListaTasks] = useState([]);
     const [tituloTask, setTituloTask] = useState([]);
     const [descricaoTask, setDescricaoTask] = useState([]);
     const [comentariotask, setComentarioTask] = useState([]);
@@ -29,6 +30,9 @@ export default function TaskTarefa() {
     const [idTask, setIdTask] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [meuComentario, setMeuComentario] = useState('');
+    const [equipe, setEquipe] = useState([]);
+    const [idResp, setIdResp] = useState([]);
+    const [idUsuario, setIdUsuario] = useState([]);
 
 
     function listarMinhasTasks() {
@@ -42,6 +46,19 @@ export default function TaskTarefa() {
                 console.log(minhasTasks)
             }
         }).catch(erro => console.log(erro))
+    }
+
+    function listarTodasTasks() {
+        api('/Tasks', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
+            if (resposta.status === 200) {
+                console.log(resposta.data)
+                setListaTasks(resposta.data)
+            }
+        })
     }
 
     function selecionarTask(task) {
@@ -131,7 +148,7 @@ export default function TaskTarefa() {
             idProjeto: parseInt(parseIdProjeto()),
             idTag: parseInt(idTag),
             idStatusTask: 3,
-            idUsuario: parseInt(parseJwt().jti),
+            idUsuario: idResp,
             tituloTask: tituloTask,
             descricao: descricaoTask,
             tempoTrabalho: tempoTrabalho,
@@ -189,6 +206,35 @@ export default function TaskTarefa() {
 
     }
 
+    function buscarEquipe() {
+        api("/UsuarioEquipes", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
+            console.log(resposta.data)
+            let users = resposta.data.filter((equipe) => {
+                return equipe.idEquipe == parseIdEquipe()
+            })
+            console.log(users)
+            setEquipe(users)
+            console.log(users)
+        })
+    }
+
+    function mudarResponsavel(idUser) {
+        console.log(idUser)
+        api.patch('/tasks/' + idUser, {
+            idTask: idTask
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => console.log(resposta))
+    }
+
+    useEffect(listarTodasTasks, [])
+    useEffect(buscarEquipe, [])
     useEffect(listarTags, [])
     useEffect(listarMinhasTasks, [])
 
@@ -222,15 +268,89 @@ export default function TaskTarefa() {
                         </div>
 
                         {
-                            isLoading ? <button
-                                className='boxCadastro__btnCriar btn btn_salvar1'
-                                disabled>
-                                Add task</button>
-                                :
-                                <button onClick={() => abrirModal()}
-                                    className='boxCadastro__btnCriar btn btn_salvar1'
-                                    type='submit'>Add Task</button>
+                            (() => {
+                                switch (parseJwt().role) {
+                                    case "2":
+                                        return (
+                                            isLoading ? <button
+                                                className='boxCadastro__btnCriar btn btn_salvar1'
+                                                disabled>
+                                                Add task</button>
+                                                :
+                                                <button onClick={() => abrirModal()}
+                                                    className='boxCadastro__btnCriar btn btn_salvar1'
+                                                    type='submit'>Add Task</button>
+                                        )
+                                    case "3":
+                                        return (
+                                            isLoading ? <button
+                                                className='boxCadastro__btnCriar btn btn_salvar1'
+                                                disabled>
+                                                Add task</button>
+                                                :
+                                                <button onClick={() => abrirModal()}
+                                                    className='boxCadastro__btnCriar btn btn_salvar1'
+                                                    type='submit'>Add Task</button>
+                                        )
+
+                                    default:
+                                        return
+                                }
+                            })()
                         }
+
+                        {
+                            listaTasks.map((task) => {
+                                return (
+                                    <motion.div key={task.idTask}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                    >
+                                        <label htmlFor='Task'>
+                                            <div className="section__task">
+                                                <section className="box__task">
+                                                    <div className="containerBox">
+                                                        <div className="box__infTask">
+                                                            <span>
+                                                                {task.idStatusTask === 1 ? <Icon className='checkTask' icon="ic:baseline-check-circle" />
+                                                                    : <Icon className='alertTask' icon="akar-icons:circle-alert-fill" />
+                                                                }
+                                                            </span>
+                                                            <button className="button_selectTask" id='Task' onClick={() => abrirModalTask(task)}>
+                                                                <h2>{task.tituloTask}</h2>
+                                                            </button>
+
+                                                            <div className='infoTask'>
+                                                                <span>
+                                                                    <span className='span_title'>Project Title: </span>
+                                                                    <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
+                                                                </span>
+                                                                <span >
+                                                                    <span className='span_description'>Description: </span>
+                                                                    <span className='description'>{task.descricao}</span>
+                                                                </span>
+                                                            </div>
+                                                            <div className='div__hours'>
+                                                                <span >
+                                                                    <span className='span_hours'>Worked Hours: </span>
+                                                                    <span className='hours'>{task.tempoTrabalho}</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </label>
+                                    </motion.div>
+                                )
+                            }
+
+                            )
+
+                        }
+
+
                         {
                             minhasTasks.length === 0 ?
                                 <div className="box__semTasks">
@@ -245,14 +365,14 @@ export default function TaskTarefa() {
                                     (
                                         filteredResults.map((task) => {
                                             return (
-                                                <motion.div
+                                                <motion.div key={task.idTask}
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
                                                     exit={{ opacity: 0 }}
                                                 >
-                                                    <label for='Task'>
-                                                        <div className="section__task" key={task.idTask}>
-                                                            <section className="box__task" key={task.idTask}>
+                                                    <label htmlFor='Task'>
+                                                        <div className="section__task">
+                                                            <section className="box__task">
                                                                 <div className="containerBox">
                                                                     <div className="box__infTask">
                                                                         <span>
@@ -295,13 +415,13 @@ export default function TaskTarefa() {
                                     //Lista das minhas tasks
                                     minhasTasks.map((task) => {
                                         return (
-                                            <motion.div
+                                            <motion.div key={task.idTask}
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                             >
-                                                <label for='Task'>
-                                                    <div className="section__task" key={task.idTask}>
+                                                <label htmlFor='Task' >
+                                                    <div className="section__task" >
                                                         <section className="box__task" key={task.idTask}>
                                                             <div className="containerBox">
                                                                 <div className="box__infTask">
@@ -349,7 +469,61 @@ export default function TaskTarefa() {
                                         </div>
                                         <div className="box__DetailsTask">
                                             <h2 className='detailsTask'>Details: {tituloTag} </h2>
-
+                                            {
+                                                (() => {
+                                                    switch (parseJwt().role) {
+                                                        case "2":
+                                                            return (
+                                                                <div className='box_input_horas'>
+                                                                    Add a responsable for the task
+                                                                    <select
+                                                                        className='select_cliente'
+                                                                        required
+                                                                        name='idResponsavel'
+                                                                        onChange={(e) => setIdUsuario(e.target.value)}
+                                                                        value={idUsuario}
+                                                                    >
+                                                                        <option aria-disabled="true" value="0">Selecione um responsável</option>
+                                                                        {
+                                                                            equipe.map((usuario) => {
+                                                                                return (
+                                                                                    <option key={usuario.idUsuarioNavigation.idUsuario} value={usuario.idUsuarioNavigation.idUsuario}>{usuario.idUsuarioNavigation.nomeUsuario}</option>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            )
+                                                        case "3":
+                                                            return (
+                                                                <div className='box_input_horas'>
+                                                                    <label>
+                                                                        Change the responsable for the task
+                                                                        <select
+                                                                            className='select_cliente'
+                                                                            required
+                                                                            name='idResponsavel'
+                                                                            onChange={(e) => setIdUsuario(e.target.value)}
+                                                                            value={idUsuario}
+                                                                        >
+                                                                            <option aria-disabled="true" value="0">Selecione um responsável</option>
+                                                                            {
+                                                                                equipe.map((usuario) => {
+                                                                                    return (
+                                                                                        <option key={usuario.idUsuarioNavigation.idUsuario} value={usuario.idUsuarioNavigation.idUsuario}>{usuario.idUsuarioNavigation.nomeUsuario}</option>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </select>
+                                                                        <button onClick={() => mudarResponsavel(idUsuario)}>Change responsable</button>
+                                                                    </label>
+                                                                </div>
+                                                            )
+                                                        default:
+                                                            return
+                                                    }
+                                                })()
+                                            }
                                         </div>
                                         <div className='box__coment'>
                                             <h2 className='comentTask'>Comentários: </h2>
@@ -357,8 +531,8 @@ export default function TaskTarefa() {
                                                 {
                                                     comentariotask.map((comentario) => {
                                                         return (
-                                                            <div className='box__comentario'>
-                                                                <div key={comentario.idComentario} className='div__coment'>
+                                                            <div className='box__comentario' key={comentario.idComentario}>
+                                                                <div className='div__coment'>
                                                                     <div className='coment__infUser'>
                                                                         <span>{comentario.idUsuarioNavigation.nomeUsuario}</span>
                                                                         <img className="coment__imgUser" alt='Foto de perfil do usuário' src={"http://labwatch-backend.azurewebsites.net/img/" + comentario.idUsuarioNavigation.fotoUsuario} />
@@ -459,6 +633,27 @@ export default function TaskTarefa() {
                                                     onChange={(e) => setDescricaoTask(e.target.value)}
                                                     placeholder="Descrição da task" />
                                             </label>
+
+                                            <div className='box_input_horas'>
+                                                Add a responsable for the task
+                                                <select
+                                                    className='select_cliente'
+                                                    required
+                                                    name='idResponsavel'
+                                                    onChange={(e) => setIdResp(e.target.value)}
+                                                    value={idResp}
+                                                >
+                                                    <option aria-disabled="true" value="0" disabled>Selecione um responsável</option>
+                                                    {
+                                                        equipe.map((usuario) => {
+                                                            return (
+                                                                <option key={usuario.idUsuarioNavigation.idUsuario} value={usuario.idUsuarioNavigation.idUsuario}>{usuario.idUsuarioNavigation.nomeUsuario}</option>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
+                                            </div>
+
                                         </div>
                                         <div className='box_input_horas'>
                                             <label className='div__Register'>
