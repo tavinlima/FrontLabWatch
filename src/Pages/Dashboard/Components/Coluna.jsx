@@ -11,7 +11,7 @@ const Coluna = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://labwatch-backend.azurewebsites.net/api/Charts/GetCountPercentageCatgoriesCompany')
+        fetch('https://labwatch-backend.azurewebsites.net/api/Charts/GetCountPercentageCatgoriesCompany')
             .then((result) => {
                 return result.json()
             })

@@ -29,7 +29,7 @@ export default function PerfilUsuario() {
                     setSobrenome(resposta.data.sobreNome)
                     setSobrenome(resposta.data.sobreNome)
                     setEmail(resposta.data.email)
-                    setFotoPerfil("http://labwatch-backend.azurewebsites.net/img/" + resposta.data.fotoUsuario)
+                    setFotoPerfil("https://labwatch-backend.azurewebsites.net/img/" + resposta.data.fotoUsuario)
                 }
             }
             )

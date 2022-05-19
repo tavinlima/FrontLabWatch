@@ -146,7 +146,7 @@ export default function Cliente() {
                                                 <div className="box__cliente" key={cliente.idCliente}>
                                                     <div className="containerBox">
                                                         <div className="divisoria__imgCliente">
-                                                            <img className="img_cliente" src={"http://labwatch-backend.azurewebsites.net/img/" + cliente.fotoCliente}
+                                                            <img className="img_cliente" src={"https://labwatch-backend.azurewebsites.net/img/" + cliente.fotoCliente}
                                                                 alt="Imagem do Cliente" />
                                                         </div>
                                                         <div className="box__infoCliente">
@@ -173,7 +173,7 @@ export default function Cliente() {
                                                 <div className="box__cliente" key={cliente.idCliente}>
                                                     <div className="containerBox">
                                                         <div className="divisoria__imgCliente">
-                                                            <img className="img_cliente" src={"http://labwatch-backend.azurewebsites.net/img/" + cliente.fotoCliente}
+                                                            <img className="img_cliente" src={"https://labwatch-backend.azurewebsites.net/img/" + cliente.fotoCliente}
                                                                 alt="Imagem do Cliente" />
                                                         </div>
                                                         <div className="box__infoCliente">

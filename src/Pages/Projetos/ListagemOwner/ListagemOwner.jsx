@@ -263,7 +263,7 @@ export default function ListagemOwner() {
                                                             <div className="divisoria__imgEmpresa">
                                                                 <img
                                                                     className="box__imgEmpresa"
-                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                     alt="Imagem do cliente" />
                                                             </div>
                                                             <div className="box__infProjeto">
@@ -308,7 +308,7 @@ export default function ListagemOwner() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -428,11 +428,6 @@ export default function ListagemOwner() {
                                                 onChange={(e) => setFotoCliente(e.target.value)}
                                             />
                                         </label>
-
-                                        {/* <img
-                                        className="box__imgEmpresa"
-                                        src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
-                                        alt="Imagem do cliente" /> */}
 
                                         {
                                             isLoading ? <button

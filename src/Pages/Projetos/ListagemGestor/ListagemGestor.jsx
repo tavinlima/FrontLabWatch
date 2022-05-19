@@ -248,7 +248,7 @@ export default function ListarMinhas() {
                                                             <div className="divisoria__imgEmpresa">
                                                                 <img
                                                                     className="box__imgEmpresa"
-                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                     alt="Imagem do cliente" />
                                                             </div>
                                                             <div className="box__infProjeto">
@@ -296,7 +296,7 @@ export default function ListarMinhas() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -352,7 +352,7 @@ export default function ListarMinhas() {
                                                                     <h3>{nomeCliente}</h3>
                                                                     <img
                                                                         className="box__imgEmpresa"
-                                                                        src={"http://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
+                                                                        src={"https://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
                                                                         alt="Imagem do cliente" />
                                                                 </label>
 
@@ -392,11 +392,6 @@ export default function ListarMinhas() {
                                                                     </label>
 
                                                                 </div>
-                                                                {/* 
-                                                                <img
-                                                                    className="box__imgEmpresa"
-                                                                    src={"http://localhost:5000/StaticFiles/Images/" + projeto.fotoCliente}
-                                                                    alt="Imagem do cliente" /> */}
 
                                                                 {
                                                                     isLoading ? <button

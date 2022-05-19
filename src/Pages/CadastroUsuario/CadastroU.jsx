@@ -8,20 +8,13 @@ import '../../assets/css/dark_mode.css';
 import { motion } from "framer-motion"
 
 import fotoPadrao from '../../assets/img/PerfilDefault.png'
-import { useEffect } from "react";
 import api from "../../services/api";
 
 export default function Usuario() {
-    const [idTipoUsuario, setIdTipoUsuario] = useState('');
-    const [idStatus, setIdStatus] = useState('');
     const [nomeUsuario, setNomeUsuario] = useState('');
     const [sobreNome, setSobreNome] = useState('');
-    const [cargaHoraria, setCargaHoraria] = useState('');
-    const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [ativo, setAtivo] = useState(false);
-    const [fotoUsuario, setFotoUsuario] = useState('');
 
     let navigate = useNavigate();
 

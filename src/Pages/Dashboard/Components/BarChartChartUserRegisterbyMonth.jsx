@@ -14,7 +14,7 @@ const BarChartChartUserRegisterbyMonth = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://labwatch-backend.azurewebsites.net/api/Charts/GetChartUserRegisterbyMonth')
+        fetch('https://labwatch-backend.azurewebsites.net/api/Charts/GetChartUserRegisterbyMonth')
             .then((result) => {
                 return result.json()
             })

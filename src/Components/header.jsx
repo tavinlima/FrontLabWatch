@@ -14,7 +14,7 @@ export default function Header() {
             .then(resposta => {
                 if (resposta.status === 200) {
                     // setListaPerfil(resposta.data)
-                    setFotoPerfil("http://labwatch-backend.azurewebsites.net/img/" + resposta.data.fotoUsuario)
+                    setFotoPerfil("https://labwatch-backend.azurewebsites.net/img/" + resposta.data.fotoUsuario)
                 }
             }
             )

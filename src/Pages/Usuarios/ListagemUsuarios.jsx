@@ -143,7 +143,7 @@ export default function Usuario() {
                                                 <section className="box__usuario" key={usuario.idUsuario}>
                                                     <div className="container__Box">
                                                         <div className="divisoria__imgUsuario">
-                                                            <img src={"http://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
+                                                            <img src={"https://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
                                                                 alt="Imagem do Usuario" />
                                                         </div>
                                                         <div id="usuario" className="box__infoUsuario">
@@ -176,7 +176,7 @@ export default function Usuario() {
                                             <section className="box__usuario" key={usuario.idUsuario}>
                                                 <div className="container__Box">
                                                     <div className="divisoria__imgUsuario">
-                                                        <img src={"http://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
+                                                        <img src={"https://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
                                                             alt="Imagem do Usuario" />
                                                     </div>
                                                     <div id="usuario" className="box__infoUsuario">
