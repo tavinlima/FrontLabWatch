@@ -13,9 +13,7 @@ import "../../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
 
-import axios from 'axios';
 import api from '../../../services/api';
-import { parseIdProjeto, parseJwt } from '../../../services/auth';
 
 
 export default function ListagemOwner() {
@@ -163,7 +161,7 @@ export default function ListagemOwner() {
         console.log(tituloProjeto)
         console.log(idProjeto)
 
-        axios.put("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto, {
+        api.put("/Projetos/" + idProjeto, {
             idProjeto: idProjeto,
             idStatusProjeto: 1,
             tituloProjeto: tituloProjeto,

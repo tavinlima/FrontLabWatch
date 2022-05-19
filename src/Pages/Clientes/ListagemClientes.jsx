@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
-import { parseJwt } from '../../services/auth';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../../services/api';

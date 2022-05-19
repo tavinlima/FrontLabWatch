@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import axios from "axios";
 // import { parseJwt } from "../../services/auth";
 import { motion } from "framer-motion"
 

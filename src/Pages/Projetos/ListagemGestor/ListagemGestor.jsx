@@ -12,8 +12,6 @@ import "../../../assets/css/global.css"
 import "../../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
-
-import axios from 'axios';
 import api from '../../../services/api';
 import { parseIdEquipe, parseJwt } from '../../../services/auth';
 
@@ -172,7 +170,7 @@ export default function ListarMinhas() {
         console.log(tituloProjeto)
         console.log(fotoCliente)
 
-        axios.put("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto, {
+        api.put("/Projetos/" + idProjeto, {
             tituloProjeto,
             nomeCliente,
             descricaoProjeto,
