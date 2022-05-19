@@ -7,12 +7,12 @@ import '../../assets/css/login.css';
 import '../../assets/css/global.css';
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
-import axios from "axios";
 
 //Imports i18 (Tradução)
 import { useTranslation } from 'react-i18next';
 
 import { Icon } from '@iconify/react';
+import api from "../../services/api";
 
 
 export default function Login() {
@@ -31,7 +31,7 @@ export default function Login() {
 
         setErroMensagem('')
         setIsLoading(true)
-        axios.post("http://labwatch-backend.azurewebsites.net/api/Login", {
+        api.post("/Login", {
             email: email,
             senha: senha
         })

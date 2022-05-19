@@ -157,14 +157,14 @@ export default function ListarConsultor() {
                                                                 </button>
 
                                                                 <div>
-                                                                    <span style={{ "font-weight": 'bold' }}>{t('titleClient')} </span>
+                                                                    <span style={{ "fontWeight": 'bold' }}>{t('titleClient')} </span>
                                                                     <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                                 </div>
                                                             </div>
 
                                                         </div>
                                                         <div className='box__data'>
-                                                            <span style={{ "font-weight": 'bold' }}>{t('dataDelivery')}  </span>
+                                                            <span style={{ "fontWeight": 'bold' }}>{t('dataDelivery')}  </span>
                                                             <span>{Intl.DateTimeFormat("pt-BR",
                                                                 {
                                                                     year: 'numeric', month: 'numeric', day: 'numeric',
@@ -195,14 +195,14 @@ export default function ListarConsultor() {
                                                             </button>
 
                                                             <div>
-                                                                <span style={{ "font-weight": 'bold' }}>{t('titleClient')} </span>
+                                                                <span style={{ "fontWeight": 'bold' }}>{t('titleClient')} </span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
                                                         </div>
 
                                                     </div>
                                                     <div className='box__data'>
-                                                        <span style={{ "font-weight": 'bold' }}>{t('dataDelivery')} </span>
+                                                        <span style={{ "fontWeight": 'bold' }}>{t('dataDelivery')} </span>
                                                         <span>{Intl.DateTimeFormat("pt-BR",
                                                             {
                                                                 year: 'numeric', month: 'numeric', day: 'numeric',

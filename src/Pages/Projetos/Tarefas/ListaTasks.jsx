@@ -482,6 +482,7 @@ export default function TaskTarefa() {
                                                                         name='idResponsavel'
                                                                         onChange={(e) => setIdUsuario(e.target.value)}
                                                                         value={idUsuario}
+                                                                        multiple={false}
                                                                     >
                                                                         <option aria-disabled="true" value="0">Selecione um responsável</option>
                                                                         {
@@ -505,6 +506,7 @@ export default function TaskTarefa() {
                                                                             name='idResponsavel'
                                                                             onChange={(e) => setIdUsuario(e.target.value)}
                                                                             value={idUsuario}
+                                                                            multiple={false}
                                                                         >
                                                                             <option aria-disabled="true" value="0">Selecione um responsável</option>
                                                                             {

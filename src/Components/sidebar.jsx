@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faFileWaveform } from "@fortawesome/free-solid-svg-icons";
 import { faListCheck } from "@fortawesome/free-solid-svg-icons";
-import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faTarp } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +13,7 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faBuildingUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { parseJwt, usuarioAutenticado } from '../services/auth';
+import { parseJwt } from '../services/auth';
 
 import { useTranslation } from 'react-i18next';
 import { changeLanguage } from 'i18next';

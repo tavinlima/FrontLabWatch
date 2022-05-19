@@ -36,7 +36,7 @@ export default function PaginaProjeto() {
         if (searchInput !== '') {
             console.log(equipe)
             const filteredData = equipe.filter((item) => {
-                return Object.values(item.idUsuarioNavigation.nomeUsuario).join('').toLowerCase().includes(searchInput.toLowerCase())
+                return Object.values(item.idUsuarioNavigation.email).join('').toLowerCase().includes(searchInput.toLowerCase())
             })
             setFilteredResults(filteredData)
 
@@ -76,7 +76,7 @@ export default function PaginaProjeto() {
                         setListaProjetos(projeto)
                         setDescricao(projeto.descricao)
                         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
-                        setFotoCliente(projeto.idClienteNavigation.fotoCliente)
+                        setFotoCliente("http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente)
                         localStorage.setItem('idEquipe', projeto.idEquipe)
                     }
                     return projeto
@@ -165,7 +165,7 @@ export default function PaginaProjeto() {
                     <div className='section__infoBox'>
                         <div className="overview__imgEmpresa">
                             <img
-                                src={"http://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
+                                src={fotoCliente}
                                 alt="Imagem do cliente" />
                         </div>
 

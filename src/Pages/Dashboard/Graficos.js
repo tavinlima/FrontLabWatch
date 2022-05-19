@@ -28,8 +28,8 @@ function App() {
       <SideBar />
       <div>
         <div className="App">
-          <div class="container">
-            <h1 className='Title' >DashBoard</h1>
+          <div className="container">
+            <h1 className='Title'>DashBoard</h1>
             {/* <div class="row">
               <div className="boxGraphs1">
                 <BarChartChartUserRegisterbyMonth />

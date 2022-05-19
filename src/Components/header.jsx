@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import logo from '../assets/img/logowatch.png'
-import foto from '../assets/img/PerfilDefault.png'
 import '../assets/css/components.css'
 import '../assets/css/global.css'
 import { parseJwt } from '../services/auth';
