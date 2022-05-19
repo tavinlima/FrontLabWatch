@@ -17,7 +17,11 @@ import Cliente from './Pages/Clientes/ListagemClientes';
 import Usuario from './Pages/Usuarios/ListagemUsuarios';
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
+<<<<<<< HEAD
 import NotFound from './Pages/NotFound/NotFound';
+=======
+import DashBoard from './Pages/Dashboard/Graficos'
+>>>>>>> 84d93b276dfaa3b683cbe5d509fe436cac8f8075
 
 import './i18n';
 import { usuarioAutenticado, parseJwt } from './services/auth';
@@ -91,6 +95,7 @@ const routing = (
             <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Tasks' element={<ListagemTasks />} />
             <Route path='/Settings' element={<Settings />} />
+            <Route path='/DashBoard' element={<DashBoard />} />
 
           </Route>
 

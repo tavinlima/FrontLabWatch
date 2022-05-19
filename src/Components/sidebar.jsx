@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faFileWaveform } from "@fortawesome/free-solid-svg-icons";
 import { faListCheck } from "@fortawesome/free-solid-svg-icons";
-import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { faTarp } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faSliders } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +13,7 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faBuildingUser } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { parseJwt, usuarioAutenticado } from '../services/auth';
+import { parseJwt } from '../services/auth';
 
 import { useTranslation } from 'react-i18next';
 import { changeLanguage } from 'i18next';
@@ -51,7 +50,7 @@ export default function SideBar() {
                     <hr className="side_hr"></hr>
                     {/* <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li> */}
                     <li><Link to="/Tasks"><i> <FontAwesomeIcon icon={faListCheck} /></i>{t('sidebarItem2')}</Link></li>
-                    <li><Link to="/"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>{t('sidebarItem3')}</Link></li>
+                    <li><Link to="/DashBoard"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>{t('sidebarItem3')}</Link></li>
                     <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>{t('sidebarItem4')}</Link></li>
                    {parseJwt().role === '3' ? <li className="settings">
                         <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faSliders}></FontAwesomeIcon></i>{t('sidebarItem5')}<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>

@@ -12,8 +12,6 @@ import "../../../assets/css/global.css"
 import "../../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
-
-import axios from 'axios';
 import api from '../../../services/api';
 import { parseIdEquipe, parseJwt } from '../../../services/auth';
 
@@ -172,7 +170,7 @@ export default function ListarMinhas() {
         console.log(tituloProjeto)
         console.log(fotoCliente)
 
-        axios.put("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto, {
+        api.put("/Projetos/" + idProjeto, {
             tituloProjeto,
             nomeCliente,
             descricaoProjeto,
@@ -250,7 +248,7 @@ export default function ListarMinhas() {
                                                             <div className="divisoria__imgEmpresa">
                                                                 <img
                                                                     className="box__imgEmpresa"
-                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                     alt="Imagem do cliente" />
                                                             </div>
                                                             <div className="box__infProjeto">
@@ -298,7 +296,7 @@ export default function ListarMinhas() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -354,7 +352,7 @@ export default function ListarMinhas() {
                                                                     <h3>{nomeCliente}</h3>
                                                                     <img
                                                                         className="box__imgEmpresa"
-                                                                        src={"http://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
+                                                                        src={"https://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
                                                                         alt="Imagem do cliente" />
                                                                 </label>
 
@@ -394,11 +392,6 @@ export default function ListarMinhas() {
                                                                     </label>
 
                                                                 </div>
-                                                                {/* 
-                                                                <img
-                                                                    className="box__imgEmpresa"
-                                                                    src={"http://localhost:5000/StaticFiles/Images/" + projeto.fotoCliente}
-                                                                    alt="Imagem do cliente" /> */}
 
                                                                 {
                                                                     isLoading ? <button

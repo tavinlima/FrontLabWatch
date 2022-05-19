@@ -2,19 +2,17 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { parseJwt, usuarioAutenticado } from "../../services/auth";
+import { parseJwt } from "../../services/auth";
 import '../../assets/css/login.css';
 import '../../assets/css/global.css';
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
-import axios from "axios";
 
 //Imports i18 (Tradução)
 import { useTranslation } from 'react-i18next';
-import { changeLanguage } from 'i18next';
-import { LanguageSwitcher } from '../../Components/LanguageSwitcher';
 
 import { Icon } from '@iconify/react';
+import api from "../../services/api";
 
 
 export default function Login() {
@@ -33,7 +31,7 @@ export default function Login() {
 
         setErroMensagem('')
         setIsLoading(true)
-        axios.post("http://labwatch-backend.azurewebsites.net/api/Login", {
+        api.post("/Login", {
             email: email,
             senha: senha
         })
@@ -68,12 +66,14 @@ export default function Login() {
             .catch(erro => {
                 console.log(erro);
                 setIsLoading(false)
-                setErroMensagem("E-mail e/ou Senha inválidos")
                 if (erro.toJSON().status === 400) {
                     setUsuarioInvalido(`Ops! Parece que você não foi aprovado para entrar na aplicação!!! 
                     Consulte seu gestor para mais informações!`)
                     mostrarAviso()
                     setIsLoading(false)
+                } else if (erro.toJSON().status === 404) {
+                    setIsLoading(false)
+                    setErroMensagem("E-mail e/ou Senha inválidos")
                 }
             });
     }

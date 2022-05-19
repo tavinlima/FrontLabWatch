@@ -13,9 +13,7 @@ import "../../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
 
-import axios from 'axios';
 import api from '../../../services/api';
-import { parseIdProjeto, parseJwt } from '../../../services/auth';
 
 
 export default function ListagemOwner() {
@@ -163,7 +161,7 @@ export default function ListagemOwner() {
         console.log(tituloProjeto)
         console.log(idProjeto)
 
-        axios.put("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto, {
+        api.put("/Projetos/" + idProjeto, {
             idProjeto: idProjeto,
             idStatusProjeto: 1,
             tituloProjeto: tituloProjeto,
@@ -265,7 +263,7 @@ export default function ListagemOwner() {
                                                             <div className="divisoria__imgEmpresa">
                                                                 <img
                                                                     className="box__imgEmpresa"
-                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                     alt="Imagem do cliente" />
                                                             </div>
                                                             <div className="box__infProjeto">
@@ -310,7 +308,7 @@ export default function ListagemOwner() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -430,11 +428,6 @@ export default function ListagemOwner() {
                                                 onChange={(e) => setFotoCliente(e.target.value)}
                                             />
                                         </label>
-
-                                        {/* <img
-                                        className="box__imgEmpresa"
-                                        src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
-                                        alt="Imagem do cliente" /> */}
 
                                         {
                                             isLoading ? <button

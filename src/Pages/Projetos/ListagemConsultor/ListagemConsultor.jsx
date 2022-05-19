@@ -14,7 +14,6 @@ import { Icon } from '@iconify/react';
 import api from '../../../services/api';
 import { parseIdEquipe, parseJwt } from '../../../services/auth';
 import { useTranslation } from 'react-i18next';
-import { changeLanguage } from 'i18next';
 
 
 export default function ListarConsultor() {
@@ -23,7 +22,6 @@ export default function ListarConsultor() {
     // const [projetosAtivos, setProjetosAtivos] = useState([]);
     // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-    const [minhaEquipe, setMinhaEquipe] = useState('');
     const [meusProjetos, setMeusProjetos] = useState([]);
 
     let navigate = useNavigate();
@@ -62,20 +60,12 @@ export default function ListarConsultor() {
     function buscarEquipe() {
         // console.log('entrou')
         api("/UsuarioEquipes").then(resposta => {
-            console.log(resposta.data.map((usuario) => {
-                // console.log(usuario.idUsuarioNavigation.idUsuario)
-                let usuarioEquipes = usuario.idEquipeNavigation.usuarioEquipes
-                // usuarioEquipes.map((usuario) => {
-                //     console.log(usuario.idUsuario == 2)
-                // })
-            }))
             if (resposta.status === 200) {
                 resposta.data.map((equipe) => {
                     if (equipe.idUsuarioNavigation.idUsuario != null) {
                         let usuarioEquipes = equipe.idEquipeNavigation.usuarioEquipes
                         usuarioEquipes.map((usuario) => {
                             if (usuario.idUsuario == parseJwt().jti) {
-                                console.log(usuario)
                                 localStorage.setItem('idEquipe', usuario.idEquipe)
                             }
                         })
@@ -91,11 +81,8 @@ export default function ListarConsultor() {
     async function listarMeusProjetos() {
         console.log(parseIdEquipe());
         await api("/Projetos/Minhas/" + parseJwt().jti).then(resposta => {
-            // console.log(resposta.data)
             if (resposta.status === 200) {
-                console.log(resposta.data)
                 setMeusProjetos(resposta.data);
-                // console.log(meusProjetos)
             }
         }).catch(erro => console.log(erro))
     }
@@ -148,7 +135,7 @@ export default function ListarConsultor() {
                                                             <div className="divisoria__imgEmpresa">
                                                                 <img
                                                                     className="box__imgEmpresa"
-                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                     alt="Imagem do cliente" />
                                                             </div>
                                                             <div className="box__infProjeto">
@@ -157,14 +144,14 @@ export default function ListarConsultor() {
                                                                 </button>
 
                                                                 <div>
-                                                                    <span style={{ "font-weight": 'bold' }}>{t('titleClient')} </span>
+                                                                    <span style={{ "fontWeight": 'bold' }}>{t('titleClient')} </span>
                                                                     <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                                 </div>
                                                             </div>
 
                                                         </div>
                                                         <div className='box__data'>
-                                                            <span style={{ "font-weight": 'bold' }}>{t('dataDelivery')}  </span>
+                                                            <span style={{ "fontWeight": 'bold' }}>{t('dataDelivery')}  </span>
                                                             <span>{Intl.DateTimeFormat("pt-BR",
                                                                 {
                                                                     year: 'numeric', month: 'numeric', day: 'numeric',
@@ -186,7 +173,7 @@ export default function ListarConsultor() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -195,14 +182,14 @@ export default function ListarConsultor() {
                                                             </button>
 
                                                             <div>
-                                                                <span style={{ "font-weight": 'bold' }}>{t('titleClient')} </span>
+                                                                <span style={{ "fontWeight": 'bold' }}>{t('titleClient')} </span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
                                                         </div>
 
                                                     </div>
                                                     <div className='box__data'>
-                                                        <span style={{ "font-weight": 'bold' }}>{t('dataDelivery')} </span>
+                                                        <span style={{ "fontWeight": 'bold' }}>{t('dataDelivery')} </span>
                                                         <span>{Intl.DateTimeFormat("pt-BR",
                                                             {
                                                                 year: 'numeric', month: 'numeric', day: 'numeric',

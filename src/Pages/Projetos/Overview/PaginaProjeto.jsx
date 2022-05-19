@@ -36,7 +36,7 @@ export default function PaginaProjeto() {
         if (searchInput !== '') {
             console.log(equipe)
             const filteredData = equipe.filter((item) => {
-                return Object.values(item.idUsuarioNavigation.nomeUsuario).join('').toLowerCase().includes(searchInput.toLowerCase())
+                return Object.values(item.idUsuarioNavigation.email).join('').toLowerCase().includes(searchInput.toLowerCase())
             })
             setFilteredResults(filteredData)
 
@@ -76,7 +76,7 @@ export default function PaginaProjeto() {
                         setListaProjetos(projeto)
                         setDescricao(projeto.descricao)
                         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
-                        setFotoCliente(projeto.idClienteNavigation.fotoCliente)
+                        setFotoCliente("https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente)
                         localStorage.setItem('idEquipe', projeto.idEquipe)
                     }
                     return projeto
@@ -165,7 +165,7 @@ export default function PaginaProjeto() {
                     <div className='section__infoBox'>
                         <div className="overview__imgEmpresa">
                             <img
-                                src={"http://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
+                                src={fotoCliente}
                                 alt="Imagem do cliente" />
                         </div>
 
@@ -225,7 +225,7 @@ export default function PaginaProjeto() {
                                                 return (
                                                     <div key={usuarios.idUsuario}>
                                                         <section className='section__membersRegister'>
-                                                            <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + usuarios.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                            <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + usuarios.fotoUsuario} alt='Foto de perfil do usuário'></img>
                                                             <div className='section__infMembers'>
                                                                 <span>{usuarios.nomeUsuario} {usuarios.sobreNome}</span>
                                                                 <span>{usuarios.email}</span>
@@ -272,7 +272,7 @@ export default function PaginaProjeto() {
                                         return (
                                             <div key={usuarios.idUsuarioNavigation.idUsuario}>
                                                 <section className='section__membersTeam'>
-                                                    <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + usuarios.idUsuarioNavigation.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                    <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + usuarios.idUsuarioNavigation.fotoUsuario} alt='Foto de perfil do usuário'></img>
                                                     <div className='section__infMembers'>
                                                         <span>{usuarios.idUsuarioNavigation.nomeUsuario}</span>
                                                         <span>Responsável por: {(usuarios.idUsuarioNavigation.tasks).length} tasks</span>
@@ -287,7 +287,7 @@ export default function PaginaProjeto() {
                                             <div key={users.idUsuarioNavigation.idUsuario}>
                                                 <section className='section__membersTeam'>
                                                     {/* <img className='equipe__fotoUsuario' src={fotoPerfil} alt='Foto de perfil do usuário'></img> */}
-                                                    <img className='equipe__fotoUsuario' src={"http://labwatch-backend.azurewebsites.net/img/" + users.idUsuarioNavigation.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                    <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + users.idUsuarioNavigation.fotoUsuario} alt='Foto de perfil do usuário'></img>
                                                     <div className='section__infMembers'>
                                                         <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
                                                         <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
