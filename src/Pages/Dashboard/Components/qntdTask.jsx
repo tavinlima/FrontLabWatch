@@ -3,7 +3,6 @@ import { Chart } from "react-google-charts";
 import ReactLoading from 'react-loading';
 import { parseJwt, parseIdProjeto } from '../../../services/auth';
 import api from '../../../services/api';
-import { keysIn } from "lodash";
 
 export default function QntdTask() {
     const [tasks, setTasks] = useState([]);
