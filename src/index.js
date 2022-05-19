@@ -17,6 +17,7 @@ import Cliente from './Pages/Clientes/ListagemClientes';
 import Usuario from './Pages/Usuarios/ListagemUsuarios';
 import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
+import NotFound from './Pages/NotFound/NotFound';
 
 import './i18n';
 import { usuarioAutenticado, parseJwt } from './services/auth';
@@ -61,6 +62,8 @@ const routing = (
     <div>
       <AnimatePresence>
         <Routes>
+          <Route path='/*' element={<NotFound/>} />
+
           <Route path='/Login' element={<Login />} />
           <Route path='/CadastroUsuario' element={<CadastroU />} />
 
