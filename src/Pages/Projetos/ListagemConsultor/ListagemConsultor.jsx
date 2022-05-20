@@ -1,9 +1,10 @@
-import { React, useState, useLayoutEffect } from 'react';
+import { React, useState, useLayoutEffect, useEffect } from 'react';
 import { motion } from "framer-motion"
 
 import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
+import Loading from '../../../Components/loading'
 
 import "../../../assets/css/listaProjetos.css"
 import "../../../assets/css/global.css"
@@ -27,6 +28,13 @@ export default function ListarConsultor() {
     let navigate = useNavigate();
 
     /// Funções que não são de conexão com a API aqui:
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1500);
+    })
+
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
@@ -96,6 +104,8 @@ export default function ListarConsultor() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
+            {isLoading == false ?
+                <Loading /> : ''}
             <div>
                 <Header />
                 <section>

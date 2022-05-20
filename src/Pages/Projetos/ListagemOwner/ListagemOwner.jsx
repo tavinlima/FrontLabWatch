@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
+import Loading from '../../../Components/loading'
 
 import "../../../assets/css/listaProjetos.css"
 import "../../../assets/css/global.css"
@@ -24,7 +25,6 @@ export default function ListagemOwner() {
     // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const [tituloProjeto, setTituloProjeto] = useState('');
     const [dataInicio, setDataInicio] = useState(new Date());
     const [fotoCliente, setFotoCliente] = useState('');
@@ -39,6 +39,13 @@ export default function ListagemOwner() {
     let navigate = useNavigate();
 
     /// Funções que não são de conexão com a API aqui:
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1500);
+    })
+
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
@@ -206,10 +213,13 @@ export default function ListagemOwner() {
 
     return (
         <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         >
+            {isLoading == false ?
+                <Loading /> : ''}
+                {/* <Loading /> */}
             <div>
                 <Header />
                 <section>
@@ -475,6 +485,7 @@ export default function ListagemOwner() {
                         </div>
                     </section>
                 </div >
+                
             </div >
         </motion.div>
     )
