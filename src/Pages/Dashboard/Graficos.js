@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
-import { parseJwt } from "../../services/auth";
+import { parseIdProjeto } from "../../services/auth";
 import api from "../../services/api";
 import "../../assets/css/graficos.css"
 
@@ -19,43 +19,33 @@ import Burndown from "./Components/burndown";
 import DiffCapacity from "./Components/capacity";
 
 
-
 function App() {
-
-
   return (
-    <div>
-      <Header />
-      <SideBar />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div>
-        <div className="App">
-          <div className="container">
-            <h1 className='Title'>DashBoard</h1>
-            {/* <div class="row">
-              <div className="boxGraphs1">
-                <BarChartChartUserRegisterbyMonth />
-              </div>
-              <div className="boxGraphs2">
-                <GraficoLinhas />
-              </div>
+        <Header />
+        <SideBar />
+        <div className="box__listagemProjetos">
+          <section className="section__listagemProjetos container">
+            <div className="div__tituloInput">
+              <h1>DashBoard</h1>
             </div>
-            <div class="row">
-              <div className="boxGraphs3">
-                <GraficoPizza />
-              </div>
-              <div className="boxGraphs4">
-                <GraficoColuna /> */}
-            {/* </div> */}
-            {/* </div> */}
-          </div>
+            <Burndown />
+
+            <QntdTask />
+            {
+              setTimeout(() => {
+                <DiffCapacity />
+              }, 2000)
+            }
+          </section>
         </div>
       </div>
-      <div className="boxGraphs1">
-        <QntdTask />
-        <Burndown />
-        <DiffCapacity />
-      </div>
-    </div>
+    </motion.div >
   );
 }
 

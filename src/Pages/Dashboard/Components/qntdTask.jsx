@@ -56,8 +56,8 @@ export default function QntdTask() {
             chartType="PieChart"
             data={data}
             options={options}
-            width={"800px"}
-            height={"400px"}
+            width={"400px"}
+            height={"250px"}
         />
     )
 }

@@ -4,6 +4,7 @@ import { Chart } from "react-google-charts";
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth';
 import api from '../../../services/api';
 import { useState } from "react";
+import moment from "moment";
 
 export default function DiffCapacity() {
     const [equipe, setEquipe] = useState([]);
@@ -22,11 +23,6 @@ export default function DiffCapacity() {
                         setDataInicio(projeto.dataInicio.split('T')[0])
                         setDataConclusao(projeto.dataConclusao.split('T')[0])
 
-                        const date1 = new Date('7/13/2010');
-                        const date2 = new Date('12/15/2010');
-                        const diffTime = Math.abs(date2 - date1);
-                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                        console.log(diffDays);
                     }
                     return projeto
                 })
@@ -35,12 +31,23 @@ export default function DiffCapacity() {
             .catch(erro => console.log(erro));
     }
 
-    async function calcularTempo() {
-        let tempoTeste = Math.abs(dataConclusao - dataInicio)
-        const difDias = Math.ceil(tempoTeste / (1000 * 60 * 60 * 24));
 
-        console.log(tempoTeste)
-        console.log(difDias)
+    async function calcularTempo() {
+        setTimeout(() => {
+            // var date = new Date()
+            console.log("E a data")
+            // console.log(moment().diff(date, moment().add(2, "years")))
+            let tempoTeste = Math.abs(dataConclusao - dataInicio)
+
+            console.log(dataConclusao)
+            console.log(dataInicio)
+            console.log(moment().diff(dataConclusao, dataInicio, "days"))
+            // console.log(dataConclusao = new Date().toLocaleDateString())
+            console.log(dataInicio)
+            const difDias = Math.ceil(tempoTeste / (1000 * 60 * 60 * 24))
+            console.log(difDias)
+
+        }, 2000)
     }
 
     function buscarEquipe() {
@@ -55,25 +62,27 @@ export default function DiffCapacity() {
             setEquipe(users)
             console.log(users[0].idUsuarioNavigation.cargaHoraria)
             console.log(users[0].idUsuarioNavigation.horasTrabalhadas)
-            // console.log(users[0].idUsuarioNavigation.cargaHoraria * )
             console.log(users)
-        })
+        }).then(() => calcularTempo())
     }
 
+
     const dataOld = [
-        ["Name", "Capacity"],
-        ["Gustavo", 250],
-        ["Rachel", 4200],
-        ["Patrick", 2900],
-        ["Eric", 8200],
+        ["Consultor", "Ideal working hours"],
+        // equipe.map((equipe) => {
+        //     return [equipe.idUsuarioNavigation.nomeUsuario, equipe.idUsuarioNavigation.cargaHoraria]
+        // }),
+        [equipe[0].idUsuarioNavigation.nomeUsuario, equipe[0].idUsuarioNavigation.cargaHoraria],
+        // [equipe[1].idUsuarioNavigation.nomeUsuario, equipe[1].idUsuarioNavigation.cargaHoraria],
     ];
 
     const dataNew = [
-        ["Name", "Popularity"],
-        ["Gustavo", 370],
-        ["Rachel", 600],
-        ["Patrick", 700],
-        ["Eric", 1500],
+        ["Consultor", "Real working hours"],
+        // equipe.map((equipe) => {
+        //     return [equipe.idUsuarioNavigation.nomeUsuario, equipe.idUsuarioNavigation.horasTrabalhadas]
+        // }),
+        [equipe[0].idUsuarioNavigation.nomeUsuario, equipe[0].idUsuarioNavigation.horasTrabalhadas],
+        // [equipe[1].idUsuarioNavigation.nomeUsuario, equipe[1].idUsuarioNavigation.horasTrabalhadas],
     ];
 
     const diffdata = {
@@ -87,15 +96,15 @@ export default function DiffCapacity() {
 
     useEffect(buscarEquipe, [])
     useEffect(buscarProjeto, [])
-    useEffect(calcularTempo, [])
 
     return (
         <Chart
             chartType="BarChart"
-            width="100%"
-            height="400px"
+            width={"500px"}
+            height={"250px"}
             diffdata={diffdata}
             options={options}
         />
     );
+
 }

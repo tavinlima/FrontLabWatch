@@ -86,6 +86,7 @@ const routing = (
 
           <Route element={<PermissaoOwnerGestor />}>
             <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
+            <Route path='/DashBoard' element={<DashBoard />} />
           </Route>
 
           <Route element={<UsuarioLogado />}>
@@ -93,7 +94,6 @@ const routing = (
             <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Tasks' element={<ListagemTasks />} />
             <Route path='/Settings' element={<Settings />} />
-            <Route path='/DashBoard' element={<DashBoard />} />
 
           </Route>
 
