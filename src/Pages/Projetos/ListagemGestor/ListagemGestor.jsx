@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
+import Loading from '../../../Components/loading'
 
 import "../../../assets/css/listaProjetos.css"
 import "../../../assets/css/global.css"
@@ -22,7 +23,6 @@ export default function ListarMinhas() {
     // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const [tituloProjeto, setTituloProjeto] = useState('');
     const [dataInicio, setDataInicio] = useState(new Date());
     const [fotoCliente, setFotoCliente] = useState('');
@@ -37,6 +37,13 @@ export default function ListarMinhas() {
     let navigate = useNavigate();
 
     /// Funções que não são de conexão com a API aqui:
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1500);
+    })
+
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
@@ -196,6 +203,8 @@ export default function ListarMinhas() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
+            {isLoading == false ?
+                <Loading /> : ''}
             <div>
                 <Header />
                 <section>

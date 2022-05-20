@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { parseJwt } from "../../services/auth";
@@ -7,6 +7,8 @@ import '../../assets/css/login.css';
 import '../../assets/css/global.css';
 import logo from '../../assets/img/logowatchh.png'
 import desenho from '../../assets/img/desenho.png'
+
+import Loading from '../../Components/loading'
 
 //Imports i18 (Tradução)
 import { useTranslation } from 'react-i18next';
@@ -24,6 +26,13 @@ export default function Login() {
     const [usuarioInvalido, setUsuarioInvalido] = useState('');
 
     let navigate = useNavigate();
+
+    const [carregando, setCarregando] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setCarregando(true);
+        }, 2500);
+    })
 
     function efetuarLogin(event) {
 
@@ -101,6 +110,8 @@ export default function Login() {
 
     return (
         <>
+         {carregando == false ?
+                <Loading /> : ''}
             <main className="main_login">
                 <div className="ContainerMain">
                     <section className="box_login">

@@ -18,7 +18,11 @@
     "h3Projects":"Mais recente primeiro",
     "inputSearch":"Procurar algum projeto",
     "titleClient":"Cliente",
-    "dataDelivery":"Data de conclusão"
+    "dataDelivery":"Data de conclusão",
+    "Notifications":"Notificações",
+    "Profile":"Perfil",
+    "Notifications of the day":"Notificações do dia",
+    "Last Week":"Semana Passada" 
 
 
   }
