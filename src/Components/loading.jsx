@@ -12,6 +12,9 @@ const Loading = () => {
                     height={150}
                     width={900}
                     timeout={1000} />
+                <div className='text'>
+                    <span>Loading....</span>
+                </div>
             </section >
         </div>
     )
