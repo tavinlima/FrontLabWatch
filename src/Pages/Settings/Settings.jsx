@@ -50,7 +50,7 @@ export default function Setting() {
                 
 
                 <section>
-                    <button type='button' className='btn__Link'><a href="/PerfilUsuario" className='link__PerfilUsuario'>{t('Edit Profile')}</a></button>
+                    <button type='button' className='btn__Link'><a href="/PerfilUsuario" className='link__PerfilUsuario'>{t('Profile')}</a></button>
                 </section>
             </div >
         </div >

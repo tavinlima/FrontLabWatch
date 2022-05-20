@@ -1,5 +1,7 @@
 .titulo__Settings {
     text-align: left;
+    text-decoration: underline #77BF63;
+
 }
 
 .div__Idioma {
@@ -19,8 +21,8 @@
     margin-left: 70%;
     text-align: left;
     float: right;
-    font-size: 40px;
-    text-decoration: underline green;
+    font-size: 30px;
+    text-decoration: underline #77BF63;
 }
 
 .Box__Options {
@@ -33,12 +35,13 @@
 .Box__Options, option {
 
     font-size: 15px;
+    
 }
 
 .btn__Link {
-    margin-top: 45px;
+    margin-top: 5px;
     width: 100px;
-    height: 60px;
+    height: 70px;
     border-radius: 5%;
     font-size: 15px;
 }
