@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../../services/api';
 import { motion } from "framer-motion"
@@ -17,12 +16,9 @@ export default function Usuario() {
     const [searchInput, setSearchInput] = useState('')
 
     const [listaUsuarios, setListaUsuarios] = useState([])
-    const [ativo, setAtivo] = useState(false)
 
     const check = () => toast.success("Usuário ativado com sucesso!")
     const delet = () => toast.success("Usuário recusado do sistema!")
-
-    let navigate = useNavigate();
 
     ///FUNCAO DE BARRA DE PESQUISA
     const searchItems = (searchValue) => {
@@ -67,7 +63,6 @@ export default function Usuario() {
 
         api.patch("/Usuarios/" + usuario + '?ativo=true'
         ).then(resposta => {
-            console.log(ativo)
             console.log(resposta.data)
             if (resposta.status === 200) {
                 listarUsuarios()
@@ -148,7 +143,7 @@ export default function Usuario() {
                                                 <section className="box__usuario" key={usuario.idUsuario}>
                                                     <div className="container__Box">
                                                         <div className="divisoria__imgUsuario">
-                                                            <img src={"http://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
+                                                            <img src={"https://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
                                                                 alt="Imagem do Usuario" />
                                                         </div>
                                                         <div id="usuario" className="box__infoUsuario">
@@ -181,7 +176,7 @@ export default function Usuario() {
                                             <section className="box__usuario" key={usuario.idUsuario}>
                                                 <div className="container__Box">
                                                     <div className="divisoria__imgUsuario">
-                                                        <img src={"http://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
+                                                        <img src={"https://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
                                                             alt="Imagem do Usuario" />
                                                     </div>
                                                     <div id="usuario" className="box__infoUsuario">

@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+
+.boxGraphs1  {
+    position: absolute;
+   margin-left: 300px;
+   margin-top: 200px;
+   flex: 1;
+
+}
+
+
+.boxGraphs2  {
+    position: absolute;
+    margin-left: 900px;
+    margin-top: 620px;
+    height: 100px;
+}
+
+.boxGraphsTeste  {
+    position: absolute;
+    margin-left: 900px;
+    margin-top: 620px;
+    height: 100px;
+}
+
+
+.boxGraphs3  {
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 620px;
+  
+}
+
+
+.boxGraphs4  {
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 900px;
+    flex: 1;
+}
+
+.Title {
+    position: absolute;
+    margin-left: 300px; 
+    margin-top: 120px;
+}

@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
+import Loading from '../../../Components/loading'
 
 import "../../../assets/css/listaProjetos.css"
 import "../../../assets/css/global.css"
@@ -13,9 +14,7 @@ import "../../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
 
-import axios from 'axios';
 import api from '../../../services/api';
-import { parseIdProjeto, parseJwt } from '../../../services/auth';
 
 
 export default function ListagemOwner() {
@@ -26,7 +25,6 @@ export default function ListagemOwner() {
     // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const [tituloProjeto, setTituloProjeto] = useState('');
     const [dataInicio, setDataInicio] = useState(new Date());
     const [fotoCliente, setFotoCliente] = useState('');
@@ -41,6 +39,13 @@ export default function ListagemOwner() {
     let navigate = useNavigate();
 
     /// Funções que não são de conexão com a API aqui:
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1500);
+    })
+
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
@@ -163,7 +168,7 @@ export default function ListagemOwner() {
         console.log(tituloProjeto)
         console.log(idProjeto)
 
-        axios.put("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto, {
+        api.put("/Projetos/" + idProjeto, {
             idProjeto: idProjeto,
             idStatusProjeto: 1,
             tituloProjeto: tituloProjeto,
@@ -208,10 +213,13 @@ export default function ListagemOwner() {
 
     return (
         <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         >
+            {isLoading == false ?
+                <Loading /> : ''}
+                {/* <Loading /> */}
             <div>
                 <Header />
                 <section>
@@ -265,7 +273,7 @@ export default function ListagemOwner() {
                                                             <div className="divisoria__imgEmpresa">
                                                                 <img
                                                                     className="box__imgEmpresa"
-                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                     alt="Imagem do cliente" />
                                                             </div>
                                                             <div className="box__infProjeto">
@@ -310,7 +318,7 @@ export default function ListagemOwner() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -431,11 +439,6 @@ export default function ListagemOwner() {
                                             />
                                         </label>
 
-                                        {/* <img
-                                        className="box__imgEmpresa"
-                                        src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.fotoCliente}
-                                        alt="Imagem do cliente" /> */}
-
                                         {
                                             isLoading ? <button
                                                 className='boxCadastro__btnCriar btn btn_salvar'
@@ -482,6 +485,7 @@ export default function ListagemOwner() {
                         </div>
                     </section>
                 </div >
+                
             </div >
         </motion.div>
     )

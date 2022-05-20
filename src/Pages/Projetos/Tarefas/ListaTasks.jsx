@@ -61,16 +61,6 @@ export default function TaskTarefa() {
         })
     }
 
-    function selecionarTask(task) {
-        api("/Tasks/" + task.idTask).then(resposta => {
-            if (resposta.status === 200) {
-                var valorTask = resposta.data.idTask;
-                localStorage.setItem('idTaskSelect', valorTask)
-            }
-        })
-            .catch(erro => console.log(erro));
-    }
-
     function buscarComentarios(idTask) {
         console.log(idTask)
         api('/Comentarios').then(resposta => {
@@ -482,6 +472,7 @@ export default function TaskTarefa() {
                                                                         name='idResponsavel'
                                                                         onChange={(e) => setIdUsuario(e.target.value)}
                                                                         value={idUsuario}
+                                                                        multiple={false}
                                                                     >
                                                                         <option aria-disabled="true" value="0">Selecione um responsável</option>
                                                                         {
@@ -505,6 +496,7 @@ export default function TaskTarefa() {
                                                                             name='idResponsavel'
                                                                             onChange={(e) => setIdUsuario(e.target.value)}
                                                                             value={idUsuario}
+                                                                            multiple={false}
                                                                         >
                                                                             <option aria-disabled="true" value="0">Selecione um responsável</option>
                                                                             {
@@ -535,7 +527,7 @@ export default function TaskTarefa() {
                                                                 <div className='div__coment'>
                                                                     <div className='coment__infUser'>
                                                                         <span>{comentario.idUsuarioNavigation.nomeUsuario}</span>
-                                                                        <img className="coment__imgUser" alt='Foto de perfil do usuário' src={"http://labwatch-backend.azurewebsites.net/img/" + comentario.idUsuarioNavigation.fotoUsuario} />
+                                                                        <img className="coment__imgUser" alt='Foto de perfil do usuário' src={"https://labwatch-backend.azurewebsites.net/img/" + comentario.idUsuarioNavigation.fotoUsuario} />
                                                                     </div>
                                                                     <span>{comentario.comentario1}</span>
                                                                 </div>

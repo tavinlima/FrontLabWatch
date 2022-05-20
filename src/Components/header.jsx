@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import logo from '../assets/img/logowatch.png'
-import foto from '../assets/img/PerfilDefault.png'
 import '../assets/css/components.css'
 import '../assets/css/global.css'
 import { parseJwt } from '../services/auth';
@@ -15,7 +14,7 @@ export default function Header() {
             .then(resposta => {
                 if (resposta.status === 200) {
                     // setListaPerfil(resposta.data)
-                    setFotoPerfil("http://labwatch-backend.azurewebsites.net/img/" + resposta.data.fotoUsuario)
+                    setFotoPerfil("https://labwatch-backend.azurewebsites.net/img/" + resposta.data.fotoUsuario)
                 }
             }
             )

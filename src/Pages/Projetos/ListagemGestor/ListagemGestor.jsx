@@ -6,14 +6,13 @@ import { motion } from "framer-motion"
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
+import Loading from '../../../Components/loading'
 
 import "../../../assets/css/listaProjetos.css"
 import "../../../assets/css/global.css"
 import "../../../assets/css/modalExcluir.css"
 
 import { Icon } from '@iconify/react';
-
-import axios from 'axios';
 import api from '../../../services/api';
 import { parseIdEquipe, parseJwt } from '../../../services/auth';
 
@@ -24,7 +23,6 @@ export default function ListarMinhas() {
     // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const [tituloProjeto, setTituloProjeto] = useState('');
     const [dataInicio, setDataInicio] = useState(new Date());
     const [fotoCliente, setFotoCliente] = useState('');
@@ -39,6 +37,13 @@ export default function ListarMinhas() {
     let navigate = useNavigate();
 
     /// Funções que não são de conexão com a API aqui:
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1500);
+    })
+
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
@@ -172,7 +177,7 @@ export default function ListarMinhas() {
         console.log(tituloProjeto)
         console.log(fotoCliente)
 
-        axios.put("http://labwatch-backend.azurewebsites.net/api/Projetos/" + idProjeto, {
+        api.put("/Projetos/" + idProjeto, {
             tituloProjeto,
             nomeCliente,
             descricaoProjeto,
@@ -198,6 +203,8 @@ export default function ListarMinhas() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
+            {isLoading == false ?
+                <Loading /> : ''}
             <div>
                 <Header />
                 <section>
@@ -250,7 +257,7 @@ export default function ListarMinhas() {
                                                             <div className="divisoria__imgEmpresa">
                                                                 <img
                                                                     className="box__imgEmpresa"
-                                                                    src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                    src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                     alt="Imagem do cliente" />
                                                             </div>
                                                             <div className="box__infProjeto">
@@ -298,7 +305,7 @@ export default function ListarMinhas() {
                                                         <div className="divisoria__imgEmpresa">
                                                             <img
                                                                 className="box__imgEmpresa"
-                                                                src={"http://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
+                                                                src={"https://labwatch-backend.azurewebsites.net/img/" + projeto.idClienteNavigation.fotoCliente}
                                                                 alt="Imagem do cliente" />
                                                         </div>
                                                         <div className="box__infProjeto">
@@ -354,7 +361,7 @@ export default function ListarMinhas() {
                                                                     <h3>{nomeCliente}</h3>
                                                                     <img
                                                                         className="box__imgEmpresa"
-                                                                        src={"http://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
+                                                                        src={"https://labwatch-backend.azurewebsites.net/img/" + fotoCliente}
                                                                         alt="Imagem do cliente" />
                                                                 </label>
 
@@ -394,11 +401,6 @@ export default function ListarMinhas() {
                                                                     </label>
 
                                                                 </div>
-                                                                {/* 
-                                                                <img
-                                                                    className="box__imgEmpresa"
-                                                                    src={"http://localhost:5000/StaticFiles/Images/" + projeto.fotoCliente}
-                                                                    alt="Imagem do cliente" /> */}
 
                                                                 {
                                                                     isLoading ? <button

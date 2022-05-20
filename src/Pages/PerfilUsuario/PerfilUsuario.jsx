@@ -1,5 +1,4 @@
-import { React, useState, useEffect, useLayoutEffect } from "react";
-import axios from "axios";
+import { React, useState, useEffect } from "react";
 // import { parseJwt } from "../../services/auth";
 import { motion } from "framer-motion"
 
@@ -21,7 +20,7 @@ export default function PerfilUsuario() {
     //Tradução
 
     function buscarPerfil() {
-        axios('http://labwatch-backend.azurewebsites.net/api/Usuarios/' + parseJwt().jti)
+        api('/Usuarios/' + parseJwt().jti)
             .then(resposta => {
                 console.log(resposta.data)
                 if (resposta.status === 200) {
@@ -30,7 +29,7 @@ export default function PerfilUsuario() {
                     setSobrenome(resposta.data.sobreNome)
                     setSobrenome(resposta.data.sobreNome)
                     setEmail(resposta.data.email)
-                    setFotoPerfil("http://labwatch-backend.azurewebsites.net/img/" + resposta.data.fotoUsuario)
+                    setFotoPerfil("https://labwatch-backend.azurewebsites.net/img/" + resposta.data.fotoUsuario)
                 }
             }
             )
@@ -72,14 +71,13 @@ export default function PerfilUsuario() {
         console.log(listaPerfil.email)
         console.log(listaPerfil.senha)
 
-
         api.put('/CadastroUsuario?id=' + parseJwt().jti, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         }).then(resposta => {
             console.log(resposta)
-        }).then(() => buscarPerfil()).then(modal.style.display == "none")
+        }).then(() => buscarPerfil()).then(modal.style.display = "none")
             .catch(erro => console.log(erro))
     }
 

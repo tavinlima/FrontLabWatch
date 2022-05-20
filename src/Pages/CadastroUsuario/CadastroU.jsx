@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import '../../assets/css/cadastroU.css';
 import '../../assets/css/global.css'
@@ -9,19 +8,13 @@ import '../../assets/css/dark_mode.css';
 import { motion } from "framer-motion"
 
 import fotoPadrao from '../../assets/img/PerfilDefault.png'
-import { useEffect } from "react";
+import api from "../../services/api";
 
 export default function Usuario() {
-    const [idTipoUsuario, setIdTipoUsuario] = useState('');
-    const [idStatus, setIdStatus] = useState('');
     const [nomeUsuario, setNomeUsuario] = useState('');
     const [sobreNome, setSobreNome] = useState('');
-    const [cargaHoraria, setCargaHoraria] = useState('');
-    const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [ativo, setAtivo] = useState(false);
-    const [fotoUsuario, setFotoUsuario] = useState('');
 
     let navigate = useNavigate();
 
@@ -53,7 +46,7 @@ export default function Usuario() {
         formData.append('ativo', false)
         console.log(formData)
 
-        axios.post('http://labwatch-backend.azurewebsites.net/api/CadastroUsuario', formData, {
+        api.post('/CadastroUsuario', formData, {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .then(resposta => {
