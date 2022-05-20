@@ -15,6 +15,8 @@ import GraficoPizza from "./Components/pizza.jsx";
 import GraficoColuna from "./Components/Coluna.jsx";
 import GraficoLinhas from "./Components/Linhas.jsx";
 import QntdTask from "./Components/qntdTask.jsx";
+import Burndown from "./Components/burndown";
+import DiffCapacity from "./Components/capacity";
 
 
 
@@ -50,6 +52,8 @@ function App() {
       </div>
       <div className="boxGraphs1">
         <QntdTask />
+        <Burndown />
+        <DiffCapacity />
       </div>
     </div>
   );
