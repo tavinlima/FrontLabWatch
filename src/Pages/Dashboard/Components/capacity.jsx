@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Chart } from "react-google-charts";
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth';
 import api from '../../../services/api';
+import ReactLoading from 'react-loading';
 import { useState } from "react";
 import moment from "moment";
 
@@ -10,6 +11,10 @@ export default function DiffCapacity() {
     const [equipe, setEquipe] = useState([]);
     const [capacity, setCapacity] = useState(0);
     const [listaProjetos, setListaProjetos] = useState([]);
+    const [oldData, setOldData] = useState([]);
+    const [newData, setNewData] = useState([]);
+    const [loading, setLoading] = useState([]);
+    const [buscouDias, setBuscouDias] = useState(false);
     const [tempoProjeto, setTempoProjeto] = useState([]);
     const [dataInicio, setDataInicio] = useState(new Date());
     const [dataConclusao, setDataConclusao] = useState(new Date());
@@ -17,37 +22,20 @@ export default function DiffCapacity() {
     function buscarProjeto() {
         api("/Projetos/").then(resposta => {
             if (resposta.status === 200) {
-                resposta.data.map((projeto) => {
-                    if (projeto.idProjeto == parseIdProjeto()) {
-                        localStorage.setItem('idEquipe', projeto.idEquipe)
-                        setDataInicio(projeto.dataInicio.split('T')[0])
-                        setDataConclusao(projeto.dataConclusao.split('T')[0])
-
-                    }
-                    return projeto
+                let meuProjeto = resposta.data.filter((projeto) => {
+                    return projeto.idProjeto == parseIdProjeto()
                 })
+                buscarDataFinal(meuProjeto)
             }
-        })
+        }).then()
             .catch(erro => console.log(erro));
     }
 
+    function buscarDataFinal(projeto) {
+        let dataInicial = projeto[0].dataInicio
+        let dataFinal = projeto[0].dataConclusao
 
-    async function calcularTempo() {
-        setTimeout(() => {
-            // var date = new Date()
-            console.log("E a data")
-            // console.log(moment().diff(date, moment().add(2, "years")))
-            let tempoTeste = Math.abs(dataConclusao - dataInicio)
-
-            console.log(dataConclusao)
-            console.log(dataInicio)
-            console.log(moment().diff(dataConclusao, dataInicio, "days"))
-            // console.log(dataConclusao = new Date().toLocaleDateString())
-            console.log(dataInicio)
-            const difDias = Math.ceil(tempoTeste / (1000 * 60 * 60 * 24))
-            console.log(difDias)
-
-        }, 2000)
+        setTempoProjeto(moment(dataFinal).diff(dataInicial, 'days'))
     }
 
     function buscarEquipe() {
@@ -59,52 +47,54 @@ export default function DiffCapacity() {
             let users = resposta.data.filter((equipe) => {
                 return equipe.idEquipe == parseIdEquipe()
             })
+
             setEquipe(users)
-            console.log(users[0].idUsuarioNavigation.cargaHoraria)
-            console.log(users[0].idUsuarioNavigation.horasTrabalhadas)
-            console.log(users)
-        }).then(() => calcularTempo())
+
+            let oldList = [];
+            oldList.push(["Consultor", "Capacity"]);
+            users.map((item) => {
+                oldList.push([item.idUsuarioNavigation.nomeUsuario, item.idUsuarioNavigation.horasTrabalhadas]);
+            })
+
+            let newList = [];
+            newList.push(["Consultor", "Horas trabalhadas"]);
+            users.map((item) => {
+                newList.push([item.idUsuarioNavigation.nomeUsuario, item.idUsuarioNavigation.cargaHoraria]);
+            })
+
+            setOldData(oldList);
+            setNewData(newList);
+            setLoading(false);
+        })
     }
 
-
-    const dataOld = [
-        ["Consultor", "Ideal working hours"],
-        // equipe.map((equipe) => {
-        //     return [equipe.idUsuarioNavigation.nomeUsuario, equipe.idUsuarioNavigation.cargaHoraria]
-        // }),
-        [equipe[0].idUsuarioNavigation.nomeUsuario, equipe[0].idUsuarioNavigation.cargaHoraria],
-        // [equipe[1].idUsuarioNavigation.nomeUsuario, equipe[1].idUsuarioNavigation.cargaHoraria],
-    ];
-
-    const dataNew = [
-        ["Consultor", "Real working hours"],
-        // equipe.map((equipe) => {
-        //     return [equipe.idUsuarioNavigation.nomeUsuario, equipe.idUsuarioNavigation.horasTrabalhadas]
-        // }),
-        [equipe[0].idUsuarioNavigation.nomeUsuario, equipe[0].idUsuarioNavigation.horasTrabalhadas],
-        // [equipe[1].idUsuarioNavigation.nomeUsuario, equipe[1].idUsuarioNavigation.horasTrabalhadas],
-    ];
-
     const diffdata = {
-        old: dataOld,
-        new: dataNew,
+        old: oldData,
+        new: newData,
     };
 
     const options = {
         legend: { position: "top" },
+        title: "Quantidade Horas Trabalhadas",
     };
 
     useEffect(buscarEquipe, [])
     useEffect(buscarProjeto, [])
 
     return (
-        <Chart
-            chartType="BarChart"
-            width={"500px"}
-            height={"250px"}
-            diffdata={diffdata}
-            options={options}
-        />
+        <>
+            {
+                loading ?
+                    <ReactLoading height={667} width={375} /> :
+                    <Chart
+                        chartType="BarChart"
+                        width={"500px"}
+                        height={"250px"}
+                        diffdata={diffdata}
+                        options={options}
+                    />
+            }
+        </>
     );
 
 }

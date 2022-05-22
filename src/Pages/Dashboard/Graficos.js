@@ -37,11 +37,8 @@ function App() {
             <Burndown />
 
             <QntdTask />
-            {
-              setTimeout(() => {
-                <DiffCapacity />
-              }, 2000)
-            }
+            <DiffCapacity />
+
           </section>
         </div>
       </div>

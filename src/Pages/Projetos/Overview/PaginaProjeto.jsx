@@ -102,10 +102,23 @@ export default function PaginaProjeto() {
         })
     }
 
+    function cadastrarEquipe() {
+        if (listaProjetos.idEquipe == null) {
+            api.post('/Equipes', {
+                nomeEquipe: 'Equipe ok'
+            }).catch(erro => console.log(erro))
+        } 
+    }
+
     function cadastrarNaEquipe(event) {
         var modal = document.getElementById("myModal");
 
         event.preventDefault()
+
+        if (listaProjetos.idEquipe == null) {
+            cadastrarEquipe();
+        }
+
         api.post('/UsuarioEquipes', {
             idEquipe: listaProjetos.idEquipe,
             idUsuario: idUsuario

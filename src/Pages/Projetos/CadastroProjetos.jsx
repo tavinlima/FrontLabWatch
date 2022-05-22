@@ -20,6 +20,7 @@ export default function CadastroProjetos() {
     const [descricaoProjeto, setDescricaoProjeto] = useState('');
     const [cliente, setCliente] = useState([]);
     const [idCliente, setIdCliente] = useState(0);
+    const [equipe, setEquipe] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     let history = useNavigate();
@@ -57,7 +58,6 @@ export default function CadastroProjetos() {
                         default:
                             break;
                     }
-
                     console.log("cadastrado")
                     setIsLoading(false);
                 }
@@ -66,8 +66,8 @@ export default function CadastroProjetos() {
                 console.log(erro);
                 setIsLoading(false);
             })
-
     }
+
 
     function buscarClientes() {
         api('/Clientes').then(resposta => setCliente(resposta.data))
@@ -137,7 +137,7 @@ export default function CadastroProjetos() {
                             <label className="boxCadastro__label">
                                 Client
                                 <select
-                                className='select_cliente'
+                                    className='select_cliente'
                                     required
                                     name='idCliente'
                                     onChange={(e) => setIdCliente(e.target.value)}
