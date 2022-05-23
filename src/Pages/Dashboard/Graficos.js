@@ -34,10 +34,14 @@ function App() {
             <div className="div__tituloInput">
               <h1>DashBoard</h1>
             </div>
+            <h2>Tempo de trabalho - burndown trend</h2>
             <Burndown />
+              <h2>Progresso das tarefas do projeto</h2>
+            <div className='box__graphics1'>
+              <QntdTask />
+              <DiffCapacity />
+            </div>
 
-            <QntdTask />
-            <DiffCapacity />
 
           </section>
         </div>

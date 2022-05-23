@@ -11,9 +11,11 @@ import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar';
 
 import api from '../../services/api';
+import { useEffect } from 'react';
 
 
 export default function CadastroProjetos() {
+    const data = new Date();
     const [nomeProjeto, setNomeProjeto] = useState('');
     const [dataInicio, setDataInicio] = useState(new Date());
     const [dataFinal, setDataFinal] = useState(new Date());
@@ -68,7 +70,6 @@ export default function CadastroProjetos() {
             })
     }
 
-
     function buscarClientes() {
         api('/Clientes').then(resposta => setCliente(resposta.data))
     }
@@ -86,7 +87,7 @@ export default function CadastroProjetos() {
                 <SideBar />
                 <div className='box__cadastroProjetos'>
                     <section className='section__cadastroProjetos container'>
-                        <h1>Create a Project to Get Start</h1>
+                        <h1>Create a project to get start</h1>
                         <form encType="multipart/form-data">
                             <label className='boxCadastro__label'>
                                 Project name
@@ -116,18 +117,21 @@ export default function CadastroProjetos() {
                                     <input
                                         className="projetoData__input"
                                         name='dataInicioProjeto'
-                                        type='datetime-local'
+                                        type='date'
                                         required
+                                        min={data.toISOString().split('T')[0]}
+                                        // min="2023-01-02"
                                         onChange={(e) => setDataInicio(e.target.value)}
                                     />
                                 </label>
 
                                 <label className="boxCadastro__label">
-                                    Final date
+                                    Final date 
                                     <input
                                         className="projetoData__input"
                                         name='dataFinalProjeto'
-                                        type='datetime-local'
+                                        type='date'
+                                        min={dataInicio}
                                         required
                                         onChange={(e) => setDataFinal(e.target.value)}
                                     />
