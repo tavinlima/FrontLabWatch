@@ -51,7 +51,7 @@ export default function SideBar() {
                     {/* <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li> */}
                     <li><Link to="/Tasks"><i> <FontAwesomeIcon icon={faListCheck} /></i>{t('sidebarItem2')}</Link></li>
                     <li><Link to="/DashBoard"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>{t('sidebarItem3')}</Link></li>
-                    <li><Link to="/"><i><FontAwesomeIcon icon={faStar} /></i>{t('sidebarItem4')}</Link></li>
+                    <li><Link to="/Kanban"><i><FontAwesomeIcon icon={faStar} /></i>{t('sidebarItem4')}</Link></li>
                    {parseJwt().role === '3' ? <li className="settings">
                         <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faSliders}></FontAwesomeIcon></i>{t('sidebarItem5')}<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
                             <ul id="links" className="settings" style={{display: "none"}}>
