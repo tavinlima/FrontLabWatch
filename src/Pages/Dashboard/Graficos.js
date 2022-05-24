@@ -1,19 +1,17 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 // import { parseJwt } from "../../services/auth";
 import { motion } from "framer-motion"
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
-import { parseIdProjeto } from "../../services/auth";
-import api from "../../services/api";
 import "../../assets/css/graficos.css"
 
-import BarChartChartUserRegisterbyMonth from "./Components/BarChartChartUserRegisterbyMonth.jsx";
+// import BarChartChartUserRegisterbyMonth from "./Components/BarChartChartUserRegisterbyMonth.jsx";
 
-import GraficoPizza from "./Components/pizza.jsx";
+// import GraficoPizza from "./Components/pizza.jsx";
 
-import GraficoColuna from "./Components/Coluna.jsx";
-import GraficoLinhas from "./Components/Linhas.jsx";
+// import GraficoColuna from "./Components/Coluna.jsx";
+// import GraficoLinhas from "./Components/Linhas.jsx";
 import QntdTask from "./Components/qntdTask.jsx";
 import Burndown from "./Components/burndown";
 import DiffCapacity from "./Components/capacity";

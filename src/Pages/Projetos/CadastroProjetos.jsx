@@ -11,7 +11,6 @@ import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar';
 
 import api from '../../services/api';
-import { useEffect } from 'react';
 
 
 export default function CadastroProjetos() {
@@ -22,7 +21,6 @@ export default function CadastroProjetos() {
     const [descricaoProjeto, setDescricaoProjeto] = useState('');
     const [cliente, setCliente] = useState([]);
     const [idCliente, setIdCliente] = useState(0);
-    const [equipe, setEquipe] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     let history = useNavigate();

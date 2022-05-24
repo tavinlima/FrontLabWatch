@@ -21,8 +21,6 @@ export default function ListagemOwner() {
     const [listaProjetos, setListaProjetos] = useState([])
     const [idProjeto, setIdProjeto] = useState([])
     const [filteredResults, setFilteredResults] = useState([]);
-    const [projetosAtivos, setProjetosAtivos] = useState([]);
-    // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [tituloProjeto, setTituloProjeto] = useState('');
@@ -32,6 +30,7 @@ export default function ListagemOwner() {
     const [cliente, setCliente] = useState([]);
     const [dataConclusao, setDataConclusao] = useState(new Date());
     const [descricaoProjeto, setDescricaoProjeto] = useState('');
+    const [filtroSelecionado, setFiltroSelecionado] = useState('');
 
     const atualizado = () => toast.success("Projeto atualizado com sucesso!")
     const desativado = () => toast.success("Projeto desativado com sucesso!")
@@ -111,7 +110,6 @@ export default function ListagemOwner() {
     function listarProjetos() {
         api("/Projetos").then(resposta => {
             if (resposta.status === 200) {
-                console.log(resposta.data)
                 setListaProjetos(resposta.data)
                 localStorage.removeItem('idEquipe')
             }
@@ -137,15 +135,28 @@ export default function ListagemOwner() {
                 let listaAtivos = resposta.data.filter((projeto) => {
                     return projeto.idStatusProjeto !== 2
                 })
-                setProjetosAtivos(listaAtivos)
-                console.log(listaAtivos)
+
+                setListaProjetos(listaAtivos)
                 localStorage.removeItem('idEquipe')
             }
         })
             .catch(erro => console.log(erro));
     }
 
-    useEffect(listarAtivos, [])
+    function listarConcluidos() {
+        api("/Projetos").then(resposta => {
+            if (resposta.status === 200) {
+
+                let listaConcluidos = resposta.data.filter((projeto) => {
+                    return projeto.idStatusProjeto === 2
+                })
+                setListaProjetos(listaConcluidos)
+                localStorage.removeItem('idEquipe')
+            }
+        })
+            .catch(erro => console.log(erro));
+    }
+
 
     // Atualizar Projeto
     function atualizarProjeto(event) {
@@ -208,18 +219,38 @@ export default function ListagemOwner() {
     }
 
     /// UseEffects aqui:
-    useEffect(listarProjetos, [])
+    // useEffect(listarProjetos, [])
+    useEffect(() => {
+        if (filtroSelecionado === '1') {
+            listarProjetos()
+        } else if (filtroSelecionado === '3') {
+            listarConcluidos()
+        } else {
+            listarAtivos()
+        }
+    })
+
     useEffect(buscarClientes, [])
 
     return (
         <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
         >
             {isLoading == false ?
                 <Loading /> : ''}
-                {/* <Loading /> */}
+            {/* <Loading /> */}
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover />
             <div>
                 <Header />
                 <section>
@@ -238,23 +269,18 @@ export default function ListagemOwner() {
                                 onChange={(e) => searchItems(e.target.value)}
                                 placeholder="Search anything..." />
                             <Icon className='iconify lupa' icon="cil:magnifying-glass" />
+
                         </div>
 
-
-                        <ToastContainer
-                            position="top-center"
-                            autoClose={5000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover />
-
-                        <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label>
-
-                        <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
+                        {/* <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label> */}
+                        <div className='box__filter'>
+                            <select className='select__filterProjects' onChange={(e) => setFiltroSelecionado(e.target.value)} value={filtroSelecionado}>
+                                <option value='1'>Todos os projetos</option>
+                                <option value='2'>Projetos em andamento</option>
+                                <option value='3'>Projetos concluídos</option>
+                            </select>
+                        </div>
+                            <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
                         {
                             listaProjetos.length === 0 ?
                                 <div className="box__semProjetos">
@@ -309,7 +335,9 @@ export default function ListagemOwner() {
                                                 </div>
                                             )
                                         })
-                                    ) :
+                                    )
+                                    :
+
                                     listaProjetos.map((projeto) => {
                                         return (
                                             <div className="section__projeto" key={projeto.idProjeto}>
@@ -355,6 +383,9 @@ export default function ListagemOwner() {
                                         )
                                     })
                         }
+                        {/* {
+
+                        } */}
                         <div id="myModal" className="modal">
                             <div className="modal-content">
                                 <div className="modal_container">
@@ -485,7 +516,7 @@ export default function ListagemOwner() {
                         </div>
                     </section>
                 </div >
-                
+
             </div >
         </motion.div>
     )

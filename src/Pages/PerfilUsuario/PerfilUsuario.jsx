@@ -15,7 +15,7 @@ export default function PerfilUsuario() {
     const [sobrenome, setSobrenome] = useState('');
     const [email, setEmail] = useState('');
     const [fotoPerfil, setFotoPerfil] = useState('');
-    const [minhasTasks, setMinhasTasks] = useState([]);
+    // const [minhasTasks, setMinhasTasks] = useState([]);
 
     //Tradução
 
@@ -39,9 +39,9 @@ export default function PerfilUsuario() {
     function editarPerfil(event) {
         event.preventDefault();
 
-        var modal = document.getElementById("editPerfil");
+        // var modal = document.getElementById("editPerfil");
 
-        modal.style.display = "block"
+        // modal.style.display = "block"
 
         var formData = new FormData();
 
@@ -77,31 +77,32 @@ export default function PerfilUsuario() {
             }
         }).then(resposta => {
             console.log(resposta)
-        }).then(() => buscarPerfil()).then(modal.style.display = "none")
+        }).then(() => buscarPerfil())
+        // .then(modal.style.display = "none")
             .catch(erro => console.log(erro))
     }
 
-    function abrirModal() {
-        var modal = document.getElementById("editPerfil");
+    // function abrirModal() {
+    //     var modal = document.getElementById("editPerfil");
 
-        modal.style.display = "block";
+    //     modal.style.display = "block";
 
-        window.onclick = function (event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        }
-    }
+    //     window.onclick = function (event) {
+    //         if (event.target === modal) {
+    //             modal.style.display = "none";
+    //         }
+    //     }
+    // }
 
-    function buscarTasks() {
-        api('/Tasks/Minhas/' + parseJwt().jti)
-            .then(resposta => {
-                console.log(resposta.data)
-                setMinhasTasks(resposta.data)
-            })
-    }
+    // function buscarTasks() {
+    //     api('/Tasks/Minhas/' + parseJwt().jti)
+    //         .then(resposta => {
+    //             console.log(resposta.data)
+    //             setMinhasTasks(resposta.data)
+    //         })
+    // }
 
-    useEffect(buscarTasks, []);
+    // useEffect(buscarTasks, []);
     useEffect(buscarPerfil, []);
 
     return (
@@ -118,7 +119,7 @@ export default function PerfilUsuario() {
 
                         <h1>Profile</h1>
                         <div className='section__infoPerfil'>
-                            <label>
+                            <label className="label__imgUpload">
                                 <input type='file' id='arquivo' className='imgUpload' onChange={(e) => editarPerfil(e)}/>
                                 <img
                                     className="perfil__imgPerfil"
@@ -128,22 +129,11 @@ export default function PerfilUsuario() {
 
 
                             <div className='div__textPerfil'>
-                                <h2 className='textPerfil__nomeUsuario'> {listaPerfil.nomeUsuario} {listaPerfil.sobreNome}</h2>
-                                <h2 className='textPerfil__emailUsuario'> {listaPerfil.email}</h2>
-                            </div>
-                        </div>
-
-                        <button className='button__editProfile' onClick={() => abrirModal()}>Edit profile</button>
-
-                        <div id='editPerfil' className='modal'>
-                            <div className="modal__PerfilEdit">
-                                <div className="modal_container ">
-                                    <div className='modal__contentPerfil'>
-                                        <form onSubmit={(e) => editarPerfil(e)}>
-                                            <label className='boxCadastro__label'>
+                            <form onSubmit={(e) => editarPerfil(e)}>
+                                            <label className='label__infoPerfil'>
                                                 Name
                                                 <input
-                                                    className='projetoNome__input'
+                                                    className='input__editPerfil'
                                                     type='text'
                                                     value={nomeUsuario}
                                                     name='nomeUsuario'
@@ -151,10 +141,10 @@ export default function PerfilUsuario() {
                                                     onChange={(e) => setNomeUsuario(e.target.value)} />
                                             </label>
 
-                                            <label className='boxCadastro__label'>
-                                                Surname
+                                            <label className='label__infoPerfil'>
+                                                Last name
                                                 <input
-                                                    className='projetoNome__input'
+                                                    className='input__editPerfil'
                                                     type='text'
                                                     value={sobrenome}
                                                     name='sobrenome'
@@ -162,10 +152,10 @@ export default function PerfilUsuario() {
                                                     onChange={(e) => setSobrenome(e.target.value)} />
                                             </label>
 
-                                            <label className='boxCadastro__label'>
+                                            <label className='label__infoPerfil'>
                                                 E-mail
                                                 <input
-                                                    className='projetoNome__input'
+                                                    className='input__editPerfil'
                                                     type='text'
                                                     value={email}
                                                     name='email'
@@ -173,28 +163,32 @@ export default function PerfilUsuario() {
                                                     onChange={(e) => setEmail(e.target.value)} />
                                             </label>
 
-                                            <label className='boxCadastro__label'>
+                                            {/* <label className='label__infoPerfil'>
                                                 Foto de perfil
                                                 <input
-                                                    className='projetoNome__input'
+                                                    className='input__editPerfil'
                                                     type='file'
                                                     id='arquivo'
                                                     accept="image/png, image/jpeg"
                                                     name='fotoPerfil'
                                                     onChange={(e) => setFotoPerfil(e)} />
-                                            </label>
+                                            </label> */}
 
                                             <button className='button__editProfileModal'
                                                 onClick={(e) => editarPerfil(e)}>Editar perfil</button>
 
                                         </form>
-                                    </div>
-                                </div>
+                                {/* <h2 className='textPerfil__nomeUsuario'> {listaPerfil.nomeUsuario} {listaPerfil.sobreNome}</h2>
+                                <h2 className='textPerfil__emailUsuario'> {listaPerfil.email}</h2> */}
                             </div>
                         </div>
 
+                        {/* <button className='button__editProfile' onClick={() => abrirModal()}>Edit profile</button> */}
 
-                        <section>
+                                        
+
+
+                        {/* <section>
                             <h2>Events</h2>
                             {
                                 minhasTasks.map((tasks) => {
@@ -205,7 +199,7 @@ export default function PerfilUsuario() {
                                     )
                                 })
                             }
-                        </section>
+                        </section> */}
                     </section>
                 </div>
             </div>

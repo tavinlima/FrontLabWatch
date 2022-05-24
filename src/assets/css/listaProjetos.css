@@ -48,6 +48,16 @@
     align-items: center;
 }
 
+.select__filterProjects {
+    width: 14em;
+    background-color: var(--cor-secundaria);
+    color: #fff;
+    height: 2em;
+    border-radius: 5px;
+    border-width: 0px;
+    padding-left: 1rem;
+}
+
 .section__projeto {
     display: flex;
     justify-content: center;

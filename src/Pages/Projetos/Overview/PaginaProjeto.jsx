@@ -72,7 +72,7 @@ export default function PaginaProjeto() {
         api("/Projetos/").then(resposta => {
             if (resposta.status === 200) {
                 resposta.data.map((projeto) => {
-                    if (projeto.idProjeto == parseIdProjeto()) {
+                    if (projeto.idProjeto === parseInt(parseIdProjeto())) {
                         setListaProjetos(projeto)
                         setDescricao(projeto.descricao)
                         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
@@ -94,7 +94,7 @@ export default function PaginaProjeto() {
         }).then(resposta => {
             console.log(resposta.data)
             let users = resposta.data.filter((equipe) => {
-                return equipe.idEquipe == parseIdEquipe()
+                return equipe.idEquipe === parseInt(parseIdEquipe())
             })
             console.log(users)
             setEquipe(users)
