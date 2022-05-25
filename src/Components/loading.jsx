@@ -2,8 +2,11 @@ import React from 'react'
 import 'react-loader-spinner'
 import { BallTriangle } from 'react-loader-spinner'
 import './../assets/css/components.css'
+import { useTranslation } from 'react-i18next';
+
 
 const Loading = () => {
+    const { t } = useTranslation();
     return (
         <div className='div_loading' align='center'>
             <section className='section_loading'>
@@ -13,7 +16,7 @@ const Loading = () => {
                     width={900}
                     timeout={1000} />
                 <div className='text'>
-                    <span>Loading....</span>
+                    <span>{t('Loading')}</span>
                 </div>
             </section >
         </div>

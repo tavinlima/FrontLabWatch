@@ -118,13 +118,14 @@ export default function PerfilUsuario() {
                     <section className="section__listagemProjetos container">
 
                         <h1>Profile</h1>
-                        <div className='section__infoPerfil'>
+                        <div className='section__infoPerfil' id="foto">
                             <label className="label__imgUpload">
                                 <input type='file' id='arquivo' className='imgUpload' onChange={(e) => editarPerfil(e)}/>
                                 <img
                                     className="perfil__imgPerfil"
                                     src={fotoPerfil}
                                     alt="Imagem do cliente" />
+                                    <div id="comentario">Alterar Foto de Perfil</div>
                             </label>
 
 

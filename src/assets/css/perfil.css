@@ -25,6 +25,40 @@
     object-fit: scale-down;
     clip-path: circle();
 }
+.perfil__imgPerfil:hover {
+    background-color: #1B65A6;
+    filter: blur(0.15em) saturate(30%);
+    transition: 1s;
+}
+#foto{
+    position: relative;
+}
+#comentario{
+    position: relative;
+    color: #113352;
+    display: block;
+    opacity: 0;
+    transition: all 300ms ease;
+    top: -13vh;
+    height: 3vh;
+    width: 11vw;
+    margin-left: 1rem;
+    -webkit-transition: all 300ms ease;
+     -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+    font-weight: bolder;
+    text-shadow: 
+               -1px -1px 0px #FFF, 
+               -1px 1px 0px #FFF,                    
+                1px -1px 0px #FFF,                  
+                1px 0px 0px #FFF;
+}
+
+#foto:hover  #comentario{
+    opacity: 1;
+}
 
 .div__textPerfil {
     display: flex;

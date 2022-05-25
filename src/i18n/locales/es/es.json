@@ -18,7 +18,8 @@
     "h3Projects":"Lo mas reciente primero",
     "inputSearch":"Buscar un proyecto",
     "titleClient":"Cliente",
-    "dataDelivery":"Fecha de finalizacion"
+    "dataDelivery":"Fecha de finalizacion",
+    "Loading": "Cargando..."
 
 
 

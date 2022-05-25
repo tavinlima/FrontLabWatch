@@ -19,6 +19,7 @@ import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
 import NotFound from './Pages/NotFound/NotFound';
 import DashBoard from './Pages/Dashboard/Graficos'
+import AlterarSenha from './Pages/Senha/AlterarSenha'
 
 
 import './i18n';
@@ -94,6 +95,7 @@ const routing = (
             <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Tasks' element={<ListagemTasks />} />
             <Route path='/Settings' element={<Settings />} />
+            <Route path='/AlterarSenha' element={<AlterarSenha />} />
 
           </Route>
 
