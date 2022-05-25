@@ -275,9 +275,9 @@ export default function ListagemOwner() {
                         {/* <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label> */}
                         <div className='box__filter'>
                             <select className='select__filterProjects' onChange={(e) => setFiltroSelecionado(e.target.value)} value={filtroSelecionado}>
-                                <option value='1'>Todos os projetos</option>
                                 <option value='2'>Projetos em andamento</option>
                                 <option value='3'>Projetos concluídos</option>
+                                <option value='1'>Todos os projetos</option>
                             </select>
                         </div>
                             <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>

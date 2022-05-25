@@ -71,12 +71,12 @@
     align-items: center;
     align-self: center;
     justify-content: center;
-    height: 34vh;
-    width: 26%;
+    height: 15vh;
+    width: 80%;
+    margin: 10px 0 20px 0;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 10px;
 }
-
 
 .box__task:hover{
     background-color: #ecebee;
@@ -88,7 +88,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
 .alertTask{
@@ -100,10 +99,10 @@
     font-size: 2em;
 }
 .button_selectTask{
+    margin-left: 1rem;
     width: 10vw;
     border: none;
     cursor: pointer;
-    margin-bottom: 2rem;
 }
 
 .button_selectTask h2{
@@ -116,18 +115,15 @@
 .infoTask{
     display: flex;
     flex-direction: column;
+    margin-left:4rem ;
 }
 
 .span_title{
     color: var(--cor-primaria);
-    font-size: 1.3em;
+    font-size: 1.5em;
 }
 .titleTask{
-    font-size: 1.1em;
-}
-.span__desc{
-    margin-top: 1rem;
-    margin-left: 3rem;
+    font-size: 1.4em;
 }
 .span_description{
     color: var(--cor-primaria);
@@ -140,7 +136,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-top: 1rem;
+    width: 11vw;
 }
 .span_hours{
     color: var(--cor-primaria);
@@ -205,7 +201,7 @@
 /* CSS DOS MODAL */
 
 .modal-content1{
-    background-image: radial-gradient(circle, #f2f2f2, #c6c6d7, #979dbd, #6377a5, #1a548c);
+    background-image: linear-gradient(to bottom, #485d70, #57697a, #667684, #76828f, #858f99);
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -300,7 +296,6 @@
     border-width: thin;
     margin-top: 0.5rem;
     padding-left: 2em;
-    height: 5vh;
 }
 
 .box__coment{
@@ -340,7 +335,7 @@
 
 /* MODAL DE ADD TASK */
 .modal-content2{
-    background-image: linear-gradient(to right bottom, #f2f2f2, #efefef, #ededed, #eaeaea, #e8e7e7);
+    background-image: linear-gradient(to left top, #bdc4cb, #afb6be, #a1a9b2, #939ca5, #858f99);
     width: 45%;
     display: flex;
     flex-direction: column;
@@ -369,7 +364,7 @@
     border-right: none;
     border-left: none;
     border-width: thin;
-    background-color: #d5d3d6;
+    background-color: #e2dee7;
     padding: 8px 20px;
 }
 
@@ -380,7 +375,7 @@
     border-right: none;
     border-left: none;
     border-width: thin;
-    background-color: #d5d3d6;
+    background-color: #e2dee7;
     padding: 8px 20px;
 }
 
@@ -391,7 +386,7 @@
     border-right: none;
     border-left: none;
     border-width: thin;
-    background-color: #d5d3d6;
+    background-color: #e2dee7;
     padding: 8px 20px;
     margin-top: 1rem;
 }
@@ -415,7 +410,7 @@
     border-right: none;
     border-left: none;
     border-width: thin;
-    background-color: #d5d3d6;
+    background-color: #e2dee7;
     padding: 8px 20px;
 }
 
