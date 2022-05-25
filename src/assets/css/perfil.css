@@ -3,7 +3,7 @@
 }
 
 .label__imgUpload{
-    width: 11vw;
+    width: fit-content;
     cursor: pointer;
     height: fit-content;
     clip-path: circle();
@@ -219,4 +219,12 @@
                     1px -1px 0px #FFF,                  
                     1px 0px 0px #FFF;
     }
+
+    .label__imgUpload{
+        width: 11vw;
+        cursor: pointer;
+        height: fit-content;
+        clip-path: circle();
+    }
+    
 }
