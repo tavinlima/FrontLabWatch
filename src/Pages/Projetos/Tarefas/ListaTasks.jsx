@@ -464,10 +464,10 @@ export default function TaskTarefa() {
                                                     switch (parseJwt().role) {
                                                         case "2":
                                                             return (
-                                                                <div className='box_input_horas'>
-                                                                    Add a responsable for the task
+                                                                <div className='box_input_respon'>
+                                                                    <h2 className='respo_title'>Add a responsable for the task: </h2> 
                                                                     <select
-                                                                        className='select_cliente'
+                                                                        className='select_respon'
                                                                         required
                                                                         name='idResponsavel'
                                                                         onChange={(e) => setIdUsuario(e.target.value)}
@@ -487,11 +487,11 @@ export default function TaskTarefa() {
                                                             )
                                                         case "3":
                                                             return (
-                                                                <div className='box_input_horas'>
+                                                                <div className='box_input_respon'>
                                                                     <label>
                                                                         Change the responsable for the task
                                                                         <select
-                                                                            className='select_cliente'
+                                                                            className='select_respon'
                                                                             required
                                                                             name='idResponsavel'
                                                                             onChange={(e) => setIdUsuario(e.target.value)}
@@ -626,10 +626,10 @@ export default function TaskTarefa() {
                                                     placeholder="Descrição da task" />
                                             </label>
 
-                                            <div className='box_input_horas'>
-                                                Add a responsable for the task
+                                            <div className='box_input_respo'>
+                                                Add a responsable for the task:              
                                                 <select
-                                                    className='select_cliente'
+                                                    className='select_respo'
                                                     required
                                                     name='idResponsavel'
                                                     onChange={(e) => setIdResp(e.target.value)}
