@@ -9,7 +9,12 @@ import api from "../../services/api";
 
 import '../../assets/css/perfil.css'
 
+    //Tradução
+    import { useTranslation } from 'react-i18next';
+    import { changeLanguage } from 'i18next';
+
 export default function PerfilUsuario() {
+    const { t } = useTranslation();
     const [listaPerfil, setListaPerfil] = useState([]);
     const [nomeUsuario, setNomeUsuario] = useState('');
     const [sobrenome, setSobrenome] = useState('');
@@ -17,8 +22,7 @@ export default function PerfilUsuario() {
     const [fotoPerfil, setFotoPerfil] = useState('');
     // const [minhasTasks, setMinhasTasks] = useState([]);
 
-    //Tradução
-
+    
     function buscarPerfil() {
         api('/Usuarios/' + parseJwt().jti)
             .then(resposta => {
@@ -132,7 +136,7 @@ export default function PerfilUsuario() {
                             <div className='div__textPerfil'>
                             <form onSubmit={(e) => editarPerfil(e)}>
                                             <label className='label__infoPerfil'>
-                                                Name
+                                               {t('Name')}
                                                 <input
                                                     className='input__editPerfil'
                                                     type='text'
@@ -143,7 +147,7 @@ export default function PerfilUsuario() {
                                             </label>
 
                                             <label className='label__infoPerfil'>
-                                                Last name
+                                                t{('Last name')} 
                                                 <input
                                                     className='input__editPerfil'
                                                     type='text'
@@ -176,7 +180,7 @@ export default function PerfilUsuario() {
                                             </label> */}
 
                                             <button className='button__editProfileModal'
-                                                onClick={(e) => editarPerfil(e)}>Editar perfil</button>
+                                                onClick={(e) => editarPerfil(e)}>{t('Edit profile')}</button>
 
                                         </form>
                                 {/* <h2 className='textPerfil__nomeUsuario'> {listaPerfil.nomeUsuario} {listaPerfil.sobreNome}</h2>
