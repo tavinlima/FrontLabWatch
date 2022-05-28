@@ -50,7 +50,22 @@
     "Add Description:":"Add Description:",
     "Add Hours:":"Add Hours:",
     "Register Task":"Register Task",
-    "Find a task":"Find a task"
+    "Find a task":"Find a task",
+    "Change Profile Photo":"Change Profile Photo",
+    "There are no projects registered":"There are no projects registered",
+    "Most recent First":"Most recent First",
+    "Projects":"Projects",
+    "Create Project":"Create Project",
+    "Client:":"Client:",
+    "Delivery date:":"Delivery date:",
+    "Project name":"Project name",
+    "Start Date":"Start Date",
+    "Final date":"Final date",
+    "Save changes":"Save changes",
+    "Back":"Back",
+    "Deactivate project":"Deactivate project",
+    "Do you really want to delete this project?":"Do you really want to delete this project?",
+    "No":"No"
 
 
 

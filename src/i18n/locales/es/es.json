@@ -21,6 +21,7 @@
     "dataDelivery":"Fecha de finalizacion",
     "Loading":"Cargando...",
     "Edit profile":"Editar perfil",
+    "All Notifications":"Todas las notificaciones",
     "Notifications":"notificaciones",
     "Notifications of the day":"notificaciones del dia",
     "Last Week":"notificaciones de la semana pasada",
@@ -49,7 +50,9 @@
     "Add Description:":"Agregar descripción",
     "Add Hours:":"Agregar Horas:",
     "Register Task":"Registrar Trabajo",
-    "Find a task":"Encuentra un trabajo"
+    "Find a task":"Encuentra un trabajo",
+    "Change Profile Photo":"Cambiar foto de perfil",
+    "There are no projects registered":"No hay proyectos registrados"
 
 
 

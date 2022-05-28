@@ -21,6 +21,7 @@
     "dataDelivery":"Data de conclusão",
     "Notifications":"Notificações",
     "Profile":"Perfil",
+    "All Notifications": "Todas as Notificações",
     "Notifications of the day":"Notificações do dia",
     "Last Week":"Semana Passada", 
     "Loading": "Carregando...",
@@ -49,7 +50,22 @@
     "Add Description:":"Adicionar Descrição",
     "Add Hours:":"Adicionar Horas:",
     "Register Task":"Cadastrar Tarefa",
-    "Find a task":"Procure uma tarefa"
+    "Find a task":"Procure uma tarefa",
+    "Change Profile Photo":"Alterar Foto de Perfil",
+    "There are no projects registered":"Não há projetos cadastrados",
+    "Most recent First":"Mais recente Primeiro",
+    "Projects":"Projetos",
+    "Create Project":"Criar Projeto",
+    "Client:":"Cliente:",
+    "Delivery date:":"Data de entrega",
+    "Project name":"Nome do Projeto",
+    "Start Date":"Data de inicio",
+    "Final date":"Data final",
+    "Save changes":"Salvar alterações",
+    "Back":"Voltar",
+    "Deactivate project":"Desativar projeto",
+    "Do you really want to delete this project?":"Deseja mesmo excluir esse projeto?",
+    "No":"Não"
 
 
 

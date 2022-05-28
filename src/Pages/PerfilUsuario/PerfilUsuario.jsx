@@ -121,7 +121,7 @@ export default function PerfilUsuario() {
                 <div className="box__listagemProjetos">
                     <section className="section__listagemProjetos container">
 
-                        <h1>Profile</h1>
+                        <h1>{t("Profile")}</h1>
                         <div className='section__infoPerfil' id="foto">
                             <label className="label__imgUpload">
                                 <input type='file' id='arquivo' className='imgUpload' onChange={(e) => editarPerfil(e)}/>
@@ -129,7 +129,7 @@ export default function PerfilUsuario() {
                                     className="perfil__imgPerfil"
                                     src={fotoPerfil}
                                     alt="Imagem do cliente" />
-                                    <div id="comentario">Alterar Foto de Perfil</div>
+                                    <div id="comentario">{t("Change Profile Photo")}</div>
                             </label>
 
 
@@ -147,7 +147,7 @@ export default function PerfilUsuario() {
                                             </label>
 
                                             <label className='label__infoPerfil'>
-                                                t{('Last name')} 
+                                                {t('Last name')} 
                                                 <input
                                                     className='input__editPerfil'
                                                     type='text'
