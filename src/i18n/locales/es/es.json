@@ -35,25 +35,20 @@
     "Worked Hours:":"Horas trabajadas:",
     "Add task":"Agregar tarea",
     "There is no task to be done today!":"No hay trabajo que hacer hoy!",
-    "Task:":"trabajo:",
-    "Details:":"Detalles:",
-    "Add a responsable for the task:":"Agregar un responsable de la tarea",
-    "Select a responsible":"Seleccionar un responsable",
-    "Change the responsable for the task":"Cambiar el responsable de la trabajo",
-    "Change responsable":"Cambiar responsable",
-    "Comments:":"Comentarios:",
-    "Comment:":"Comentario:",
-    "write a comment":"escribir un comentario",
-    "Add new Task":"Agregar una nueva trabajo",
-    "Title Task:":"Título de lo trabajo",
-    "Task tag:":"etiqueta de lo trabajo",
-    "Add Description:":"Agregar descripción",
-    "Add Hours:":"Agregar Horas:",
-    "Register Task":"Registrar Trabajo",
-    "Find a task":"Encuentra un trabajo",
-    "Change Profile Photo":"Cambiar foto de perfil",
-    "There are no projects registered":"No hay proyectos registrados"
-
+    
+    "Most recent First":"Primero más reciente",
+    "Projects":"Proyectos",
+    "Create Project":"Crear Proyecto",
+    "Client:":"Cliente:",
+    "Delivery date:":"Fecha de entrega:",
+    "Project name":"Nombre del proyecto",
+    "Start Date":"Fecha de inicio",
+    "Final date":"Fecha final",
+    "Save changes":"Guardar cambios",
+    "Back":"atras",
+    "Deactivate project":"Desactivar proyecto",
+    "Do you really want to delete this project?":"Realmente desea eliminar este proyecto?",
+    "No":"No"
 
 
   }
