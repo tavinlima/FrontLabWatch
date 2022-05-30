@@ -64,7 +64,7 @@ export default function SideBar() {
                         <Link id="more" onClick={BotaoDoMenu} to={'#'}><i><FontAwesomeIcon id="icon" icon={faSliders}></FontAwesomeIcon></i>{t('sidebarItem5')}<FontAwesomeIcon id="icon" className='seta' icon={faCaretDown}></FontAwesomeIcon></Link>
                             <ul id="links" className="settings" style={{display: "none"}}>
                                 <li  className="sett_link"><Link to={'/Usuarios'}><i><FontAwesomeIcon icon={faUserCheck}></FontAwesomeIcon></i>{t('sidebarItem6')}</Link></li>
-                                <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>{t('sidebarItem7')}</Link></li>
+                                {/* <li  className="sett_link"><Link to={'/Realocate'}><i><FontAwesomeIcon icon={faUsers}></FontAwesomeIcon></i>{t('sidebarItem7')}</Link></li> */}
                                 <li  className="sett_link"><Link to={'/Clientes'}><i><FontAwesomeIcon icon={faBuildingUser}></FontAwesomeIcon></i>{t('sidebarItem8')}</Link></li>
                             </ul>
                     </li>: ''} 

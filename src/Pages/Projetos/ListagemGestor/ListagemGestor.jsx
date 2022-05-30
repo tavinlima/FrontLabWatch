@@ -16,7 +16,12 @@ import { Icon } from '@iconify/react';
 import api from '../../../services/api';
 import { parseIdEquipe, parseJwt } from '../../../services/auth';
 
+//Tradução
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from 'i18next';
+
 export default function ListarMinhas() {
+    const { t } = useTranslation();
     const [idProjeto, setIdProjeto] = useState([])
     const [filteredResults, setFilteredResults] = useState([]);
     // const [projetosAtivos, setProjetosAtivos] = useState([]);
@@ -213,7 +218,7 @@ export default function ListarMinhas() {
                 <div className="box__listagemProjetos">
                     <section className="section__listagemProjetos container">
                         <div className="div__tituloInput">
-                            <h1>Projects</h1>
+                            <h1>{t("Projects")}</h1>
                             <input
                                 type="search"
                                 id='projetos'
@@ -237,12 +242,12 @@ export default function ListarMinhas() {
                             draggable
                             pauseOnHover />
 
-                        <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label>
-                        <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
+                        <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>{t("Most recent First")}</label>
+                        <Link to='/CadastroProjetos' className="btn__criarProjeto btn">{t("Create Project")}</Link>
                         {
                             meusProjetos.length === 0 ?
                                 <div className="box__semProjetos">
-                                    <span>Não há projetos cadastrados</span>
+                                    <span>{t("There are no projects registered")}</span>
                                 </div>
 
                                 :
@@ -266,11 +271,11 @@ export default function ListarMinhas() {
                                                                 </button>
 
                                                                 <div>
-                                                                    <span>Cliente: </span>
+                                                                    <span>{t("Client:")} </span>
                                                                     <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                                 </div>
 
-                                                                <span>Data de entrega:</span>
+                                                                <span>{t("Delivery date:")}</span>
                                                                 <span>{Intl.DateTimeFormat("pt-BR",
                                                                     {
                                                                         year: 'numeric', month: 'numeric', day: 'numeric',
@@ -314,11 +319,11 @@ export default function ListarMinhas() {
                                                             </button>
 
                                                             <div>
-                                                                <span>Cliente: </span>
+                                                                <span>{t("Client:")} </span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
 
-                                                            <span>Data de entrega:</span>
+                                                            <span>{t("Delivery date:")}</span>
                                                             <span>{Intl.DateTimeFormat("pt-BR",
                                                                 {
                                                                     year: 'numeric', month: 'numeric', day: 'numeric',
@@ -346,7 +351,7 @@ export default function ListarMinhas() {
                                                         <div className="modal_container">
                                                             <form onSubmit={(e) => atualizarProjeto(e)}>
                                                                 <label className='boxCadastro__label'>
-                                                                    Project name
+                                                                    {t("Project name")}
                                                                     <input
                                                                         className='projetoNome__input'
                                                                         type='text'
@@ -357,7 +362,7 @@ export default function ListarMinhas() {
                                                                 </label>
 
                                                                 <label className='boxCadastro__label'>
-                                                                    Client
+                                                                {t("Client:")}
                                                                     <h3>{nomeCliente}</h3>
                                                                     <img
                                                                         className="box__imgEmpresa"
@@ -379,7 +384,7 @@ export default function ListarMinhas() {
 
                                                                 <div className="div__inputDate">
                                                                     <label className="boxCadastro__label">
-                                                                        Start Date
+                                                                        {t("Start Date")}
                                                                         <input
                                                                             className="projetoData__input"
                                                                             name='dataInicioProjeto'
@@ -390,7 +395,7 @@ export default function ListarMinhas() {
                                                                     </label>
 
                                                                     <label className="boxCadastro__label">
-                                                                        Final date
+                                                                        {t("Final date")}
                                                                         <input
                                                                             className="projetoData__input"
                                                                             name='dataFinalProjeto'
@@ -406,11 +411,11 @@ export default function ListarMinhas() {
                                                                     isLoading ? <button
                                                                         className='boxCadastro__btnCriar btn btn_salvar'
                                                                         disabled>
-                                                                        Salvar Alterações</button>
+                                                                        {t("Save changes")}</button>
                                                                         :
                                                                         <button
                                                                             className='boxCadastro__btnCriar btn btn_salvar'
-                                                                            type='submit'>Salvar alterações</button>
+                                                                            type='submit'>{t("Save changes")}</button>
                                                                 }
 
                                                             </form>
@@ -421,12 +426,12 @@ export default function ListarMinhas() {
                                                                     type="button"
                                                                     onClick={() => fecharModal()}
                                                                 >
-                                                                    Voltar
+                                                                    {t("Back")}
                                                                 </button>
 
                                                                 <button
                                                                     className="btn__excluirProjeto btn"
-                                                                    type="button">Desativar projeto
+                                                                    type="button">{t("Deactivate project")}
                                                                 </button>
 
                                                             </div>
@@ -436,14 +441,14 @@ export default function ListarMinhas() {
                                                     <div id="alerta" className="modal_mini">
 
                                                         <div className="alerta-content">
-                                                            <h3>Deseja mesmo excluir esse projeto?</h3>
+                                                            <h3>{t("Do you really want to delete this project?")}</h3>
                                                             {/* <button
                                                             className="btn__excluirProjetoModal btn"
                                                             onClick={() => excluirProjeto()}>Sim</button> */}
                                                             <button
                                                                 className="btn__Excluir"
                                                                 onClick={() => fecharAlerta()}
-                                                            >Não</button>
+                                                            >{t("No")}</button>
                                                         </div>
 
                                                     </div>

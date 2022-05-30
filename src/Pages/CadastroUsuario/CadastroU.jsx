@@ -15,14 +15,13 @@ export default function Usuario() {
     const [sobreNome, setSobreNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [senhaConfirmacao, setSenhaConfirmacao] = useState('');
 
     let navigate = useNavigate();
 
     function Cadastar(evento) {
         evento.preventDefault()
-
         var formData = new FormData();
-
         // const target = document.getElementById('arquivo')
         // const file = target.files[0]
         console.log(nomeUsuario)
@@ -58,6 +57,46 @@ export default function Usuario() {
             .catch(erro => console.log(erro))
     }
 
+    function lerCampos() {
+       
+        var temNum = /[0-9]/;
+        var temMaius = /[A-Z]/;
+        var temMinus = /[a-z]/;
+        var emailCerto = /\S+@\S+.\S+/;
+        var senha = document.getElementById("password").value
+        var senhaConfirmacao = document.getElementById("passwordConfirmation").value
+        var email = document.getElementById("email").value
+
+        var feedback = document.getElementById("msgFeedback")
+        console.log(senha)
+
+        if (!emailCerto.exec(email)) {
+            feedback.innerHTML = 'E-mail inválido!!!'
+        } else {
+            feedback.innerHTML = 'E-mail informado corretamente!'
+        }
+
+        if (senha !== senhaConfirmacao) {
+            feedback.innerHTML = 'A confirmação deve ser igual ao campo de senha!'
+        } else if (senha.length < 8) {
+            let qntdCampos = 8 - senha.length
+            feedback.innerHTML = 'Campos insuficentes! Ainda faltam ' + qntdCampos + ' caracteres!'
+        } else if (!temNum.exec(senha)) {
+            feedback.innerHTML = 'A senha deve conter ao menos um número!'
+        } else if (!temMaius.exec(senha)) {
+            feedback.innerHTML = 'A senha deve conter ao menos uma letra maisucula!'
+        } else if (!temMinus.exec(senha)) {
+            feedback.innerHTML = 'A senha deve conter ao menos uma letra minuscula!'
+        }
+        else {
+            feedback.innerHTML = 'Tudo certo!'
+        }
+
+        if (email === '' || senha === '' || senhaConfirmacao === '') {
+            feedback.innerHTML = 'Erro!!! Alguns campos podem estar vazios!'
+        }
+    }
+
     // useEffect(console.log(fotoPadrao.split(',', 2)[1]), [])
     return (
         <motion.div
@@ -89,7 +128,8 @@ export default function Usuario() {
                                     onChange={(campo) => setNomeUsuario(campo.target.value)}
                                     name="nomeUsuario"
                                     type="text"
-                                    id="nomeUsuario" />
+                                    id="nomeUsuario"
+                                    required />
 
                                 <input className="input-cad"
                                     placeholder="Last Name"
@@ -97,27 +137,49 @@ export default function Usuario() {
                                     onChange={(campo) => setSobreNome(campo.target.value)}
                                     name="sobreNome"
                                     type="text"
-                                    id="sobreNome" />
+                                    id="sobreNome"
+                                    required />
 
-                                <input className="input-cad"
+                                <input
+
+                                    className="input-cad"
                                     autoComplete="off"
                                     placeholder="Email"
                                     value={email}
                                     onChange={(campo) => setEmail(campo.target.value)}
                                     name="email"
                                     type="email"
-                                    id="email" />
+                                    id="email"
+                                    required />
 
-                                <input className="input-cad"
+                                <input
+
+                                    className="input-cad"
                                     autoComplete="off"
                                     placeholder="Password"
                                     defaultValue={senha}
                                     onChange={(campo) => setSenha(campo.target.value)}
-                                    name="password" type="password"
-                                    id="password" />
+                                    name="password"
+                                    type="password"
+                                    id="password"
+                                    required />
+
+                                <input
+
+                                    className="input-cad"
+                                    autoComplete="off"
+                                    placeholder="Password Confirmation"
+                                    defaultValue={senhaConfirmacao}
+                                    onChange={(campo) => setSenhaConfirmacao(campo.target.value)}
+                                    name="password"
+                                    type="password"
+                                    id="passwordConfirmation"
+                                    required />
+
+                                <p className="msgFeedback" id="msgFeedback"></p>
 
                                 <div className="botao-cad">
-                                    <button type='submit' className="btn-cad" id="btn_cad">
+                                    <button onClick={lerCampos} type='submit' className="btn-cad" id="btn_cad">
                                         Register
                                     </button>
                                 </div>

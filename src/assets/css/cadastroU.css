@@ -20,8 +20,7 @@
     justify-content: left;
     align-items: left;
     flex-direction: column;
-    margin-bottom: 5vh;
-    margin-top: 9vh;
+    margin-top: 12vh;
 }
 
 .titulo-cad{
@@ -62,9 +61,17 @@
     justify-content: center;
     width: 25vw;
     height: 8vh;
-    margin-top: 10vh;
+    margin-top: 4vh;
 }
 
+.msgFeedback{
+    color: rgba(226, 23, 23, 0.87);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26vw;
+    margin-top: 1rem;
+}
 /* .btn-login{
     background-color: #1B65A6;
     color: #ffff;
@@ -169,5 +176,12 @@
         flex-direction: column;
         width: 24vw;
         margin-bottom: 8vh;
+    }
+    .box_tituloCad{
+        display: flex;
+        justify-content: left;
+        align-items: left;
+        flex-direction: column;
+        margin-top: 4vh;
     }
 }

@@ -130,7 +130,7 @@ export default function ListarConsultor() {
                         {
                             meusProjetos.length === 0 ?
                                 <div className="box__semProjetos">
-                                    <span>Não há projetos cadastrados</span>
+                                    <span>{t("There are no projects registered")}</span>
                                 </div>
 
                                 :

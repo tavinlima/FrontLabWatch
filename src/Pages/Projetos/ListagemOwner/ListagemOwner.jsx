@@ -458,17 +458,6 @@ export default function ListagemOwner() {
                                             </label>
 
                                         </div>
-                                        <label className="boxCadastro__label">
-                                            Imagem do cliente
-                                            <input
-                                                className="projetoArquivo__input"
-                                                name='arquivo'
-                                                id='arquivo'
-                                                type='file'
-                                                accept="image/png, image/jpeg"
-                                                onChange={(e) => setFotoCliente(e.target.value)}
-                                            />
-                                        </label>
 
                                         {
                                             isLoading ? <button

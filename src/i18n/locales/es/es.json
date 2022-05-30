@@ -9,7 +9,7 @@
     "sidebarItem3":"Actividad",
     "sidebarItem4":"Proyecto",
     "sidebarItem5":"Mas Opciones",
-    "sidebarItem6":"Usuarios Aprobados",
+    "sidebarItem6":"Aprobar Usuarios",
     "sidebarItem7":"Reubicar Usuarios",
     "sidebarItem8":"Lista de Clientes",
     "sidebarItem9":"Ajustes",
@@ -18,8 +18,37 @@
     "h3Projects":"Lo mas reciente primero",
     "inputSearch":"Buscar un proyecto",
     "titleClient":"Cliente",
-    "dataDelivery":"Fecha de finalizacion"
-
+    "dataDelivery":"Fecha de finalizacion",
+    "Loading":"Cargando...",
+    "Edit profile":"Editar perfil",
+    "All Notifications":"Todas las notificaciones",
+    "Notifications":"notificaciones",
+    "Notifications of the day":"notificaciones del dia",
+    "Last Week":"notificaciones de la semana pasada",
+    "Profile":"Perfil",
+    "Name":"Nombre",
+    "Last name":"apellido",
+    "Active Tasks":"Tarefas Ativas",
+    "Date":"Data:",
+    "Project Title:":"Título del proyecto:",
+    "Description:":"Descripción:",
+    "Worked Hours:":"Horas trabajadas:",
+    "Add task":"Agregar tarea",
+    "There is no task to be done today!":"No hay trabajo que hacer hoy!",
+    
+    "Most recent First":"Primero más reciente",
+    "Projects":"Proyectos",
+    "Create Project":"Crear Proyecto",
+    "Client:":"Cliente:",
+    "Delivery date:":"Fecha de entrega:",
+    "Project name":"Nombre del proyecto",
+    "Start Date":"Fecha de inicio",
+    "Final date":"Fecha final",
+    "Save changes":"Guardar cambios",
+    "Back":"atras",
+    "Deactivate project":"Desactivar proyecto",
+    "Do you really want to delete this project?":"Realmente desea eliminar este proyecto?",
+    "No":"No"
 
 
   }

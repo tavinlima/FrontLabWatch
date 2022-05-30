@@ -22,6 +22,7 @@ import DashBoard from './Pages/Dashboard/Graficos'
 import Kanban from './Pages/Kanban/App'
 
 
+
 import './i18n';
 import { usuarioAutenticado, parseJwt } from './services/auth';
 
