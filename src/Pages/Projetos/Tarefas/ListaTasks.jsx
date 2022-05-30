@@ -322,7 +322,7 @@ export default function TaskTarefa() {
                                                                     <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
                                                                 </span>
                                                                 <span >
-                                                                    <span className='span_description'> {t("Description:")}</span>
+                                                                    <span className='span_description'> {t('Description')}</span>
                                                                     <span className='description'>{task.descricao}</span>
                                                                 </span>
                                                             </div>
@@ -346,7 +346,7 @@ export default function TaskTarefa() {
                         }
                         <div className="section__task" ></div>
                         {
-                            minhasTasks.length === 0 ?
+                            listaTasks.length === 0 ?
                                 <div className="box__semTasks">
                                     <span>
                                     {t("There is no task to be done today!")}
@@ -385,7 +385,7 @@ export default function TaskTarefa() {
                                                                             </span>
                                                                             <div></div>
                                                                             <span className='span__desc' >
-                                                                                <span className='span_description'>{t("Description:")} </span>
+                                                                                <span className='span_description'>{t('Description')} </span>
                                                                                 <span className='description'>{task.descricao}</span>
                                                                             </span>
                                                                         </div>
@@ -431,11 +431,11 @@ export default function TaskTarefa() {
 
                                                                     <div className='infoTask'>
                                                                         <span>
-                                                                            <span className='span_title'>{t("Project Title:")} </span>
+                                                                            <span className='span_title'>{t("Project Title: ")} </span>
                                                                             <span className='titleTask'>{task.idProjetoNavigation.tituloProjeto}</span>
                                                                         </span>
                                                                         <span className='span__desc'>
-                                                                            <span className='span_description'>{t("Description:")} </span>
+                                                                            <span className='span_description'>{t('Description')} </span>
                                                                             <span className='description'>{task.descricao}</span>
                                                                         </span>
                                                                     </div>
@@ -460,10 +460,10 @@ export default function TaskTarefa() {
                                 <div className="modal_container modal__task">
                                     <div>
                                         <div className='box__tituloTask'>
-                                            <h2 className='tituloTask'>{t("Task:")} {tituloTask}</h2>
+                                            <h2 className='tituloTask'>{t("Task: ")} {tituloTask}</h2>
                                         </div>
                                         <div className="box__DetailsTask">
-                                            <h2 className='detailsTask'>{t("Details:")} {tituloTag} </h2>
+                                            <h2 className='detailsTask'>{t("Details: ")} {tituloTag} </h2>
                                             {
                                                 (() => {
                                                     switch (parseJwt().role) {
@@ -494,7 +494,7 @@ export default function TaskTarefa() {
                                                             return (
                                                                 <div className='box_input_respon'>
                                                                     <label>
-                                                                        {t("Change the responsable for the task")}
+                                                                        <h2 className='respo_title'>{t("Change the responsable for the task")}</h2>
                                                                         <select
                                                                             className='select_respon'
                                                                             required
@@ -512,7 +512,7 @@ export default function TaskTarefa() {
                                                                                 })
                                                                             }
                                                                         </select>
-                                                                        <button onClick={() => mudarResponsavel(idUsuario)}>{t("Change responsable")}</button>
+                                                                        <button className='btn__change' onClick={() => mudarResponsavel(idUsuario)}>{t("Change responsable")}</button>
                                                                     </label>
                                                                 </div>
                                                             )
@@ -523,7 +523,7 @@ export default function TaskTarefa() {
                                             }
                                         </div>
                                         <div className='box__coment'>
-                                            <h2 className='comentTask'>{t("Comments:")} </h2>
+                                            <h2 className='comentTask'>{t("Comments")} </h2>
                                             <div className='section__coment'>
                                                 {
                                                     comentariotask.map((comentario) => {
@@ -556,7 +556,7 @@ export default function TaskTarefa() {
                                                 />
                                             </label>
 
-                                            <button className='btn__coment' >{t("write a comment")}
+                                            <button className='btn__coment' >{t("Write a comment")}
 </button>
                                         </form>
                                     </div>
