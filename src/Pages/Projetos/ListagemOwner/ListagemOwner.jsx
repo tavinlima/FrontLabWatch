@@ -280,6 +280,7 @@ export default function ListagemOwner() {
                                 <option value='2'>Projetos em andamento</option>
                                 <option value='1'>Todos os projetos</option>
                                 <option value='3'>Projetos concluídos</option>
+                                <option value='1'>Todos os projetos</option>
                             </select>
                         </div>
                         <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
@@ -460,17 +461,6 @@ export default function ListagemOwner() {
                                             </label>
 
                                         </div>
-                                        <label className="boxCadastro__label">
-                                            Imagem do cliente
-                                            <input
-                                                className="projetoArquivo__input"
-                                                name='arquivo'
-                                                id='arquivo'
-                                                type='file'
-                                                accept="image/png, image/jpeg"
-                                                onChange={(e) => setFotoCliente(e.target.value)}
-                                            />
-                                        </label>
 
                                         {
                                             isLoading ? <button
