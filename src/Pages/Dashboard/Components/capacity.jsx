@@ -5,7 +5,7 @@ import { parseIdEquipe, parseIdProjeto } from '../../../services/auth';
 import api from '../../../services/api';
 import ReactLoading from 'react-loading';
 import { useState } from "react";
-// import moment from "moment";
+import moment from "moment";
 
 export default function DiffCapacity() {
     const [equipe, setEquipe] = useState([]);
@@ -15,7 +15,7 @@ export default function DiffCapacity() {
     const [newData, setNewData] = useState([]);
     const [loading, setLoading] = useState([]);
     const [buscouDias, setBuscouDias] = useState(false);
-    const [tempoProjeto, setTempoProjeto] = useState([]);
+    const [tempoProjeto, setTempoProjeto] = useState(0);
     const [dataInicio, setDataInicio] = useState(new Date());
     const [dataConclusao, setDataConclusao] = useState(new Date());
 
@@ -35,7 +35,7 @@ export default function DiffCapacity() {
         let dataInicial = projeto[0].dataInicio
         let dataFinal = projeto[0].dataConclusao
 
-        // setTempoProjeto(moment(dataFinal).diff(dataInicial, 'days'))
+        setTempoProjeto(moment(dataFinal).diff(dataInicial, 'days'))
     }
 
     function buscarEquipe() {
