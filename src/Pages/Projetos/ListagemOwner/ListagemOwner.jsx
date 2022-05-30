@@ -24,6 +24,7 @@ export default function ListagemOwner() {
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [tituloProjeto, setTituloProjeto] = useState('');
+    const [statusProjeto, setStatusProjeto] = useState(0);
     const [dataInicio, setDataInicio] = useState(new Date());
     const [fotoCliente, setFotoCliente] = useState('');
     const [idCliente, setIdCliente] = useState('');
@@ -81,6 +82,7 @@ export default function ListagemOwner() {
         setDataInicio(projeto.dataInicio)
         setDataConclusao(projeto.dataConclusao)
         setFotoCliente(projeto.fotoCliente)
+        setStatusProjeto(projeto.idStatusProjeto)
 
         modal.style.display = "block";
 
@@ -241,16 +243,16 @@ export default function ListagemOwner() {
             {isLoading == false ?
                 <Loading /> : ''}
             {/* <Loading /> */}
-                <ToastContainer
-                    position="top-center"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover />
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover />
             <div>
                 <Header />
                 <section>
@@ -275,12 +277,13 @@ export default function ListagemOwner() {
                         {/* <label className="box__filter"><span className="iconify" data-icon="mi:filter"></span>Mais recentes primeiro</label> */}
                         <div className='box__filter'>
                             <select className='select__filterProjects' onChange={(e) => setFiltroSelecionado(e.target.value)} value={filtroSelecionado}>
-                                <option value='1'>Todos os projetos</option>
                                 <option value='2'>Projetos em andamento</option>
+                                <option value='1'>Todos os projetos</option>
                                 <option value='3'>Projetos concluídos</option>
+                                <option value='1'>Todos os projetos</option>
                             </select>
                         </div>
-                            <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
+                        <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
                         {
                             listaProjetos.length === 0 ?
                                 <div className="box__semProjetos">
@@ -458,17 +461,6 @@ export default function ListagemOwner() {
                                             </label>
 
                                         </div>
-                                        <label className="boxCadastro__label">
-                                            Imagem do cliente
-                                            <input
-                                                className="projetoArquivo__input"
-                                                name='arquivo'
-                                                id='arquivo'
-                                                type='file'
-                                                accept="image/png, image/jpeg"
-                                                onChange={(e) => setFotoCliente(e.target.value)}
-                                            />
-                                        </label>
 
                                         {
                                             isLoading ? <button
@@ -479,12 +471,15 @@ export default function ListagemOwner() {
                                                 <button
                                                     className='boxCadastro__btnCriar btn btn_salvar'
                                                     type='submit'>Salvar alterações</button>
+                                        } 
+                                        {
+                                            statusProjeto !== 2 ?
+                                                <button
+                                                    className="btn__excluirProjeto btn"
+                                                    type="button"
+                                                    onClick={() => btnExcluir()}>Desativar projeto
+                                                </button> : ''
                                         }
-                                        <button
-                                            className="btn__excluirProjeto btn"
-                                            type="button"
-                                            onClick={() => btnExcluir()}>Desativar projeto
-                                        </button>
                                     </form>
                                     <div className="div__buttons">
                                         <button

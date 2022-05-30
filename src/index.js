@@ -19,6 +19,7 @@ import Settings from './Pages/Settings/Settings';
 import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
 import NotFound from './Pages/NotFound/NotFound';
 import DashBoard from './Pages/Dashboard/Graficos'
+import Kanban from './Pages/Kanban/App'
 
 
 
@@ -95,6 +96,7 @@ const routing = (
             <Route path='/ProjetoOverview' element={<PaginaProjeto />} />
             <Route path='/Tasks' element={<ListagemTasks />} />
             <Route path='/Settings' element={<Settings />} />
+            <Route path='/Kanban' element={<Kanban />} />
 
           </Route>
 
