@@ -246,6 +246,24 @@
 .detailsTask{
     color: #fff;
 }
+.btn__change{
+    background-color: #348fdf;
+    color: #FFFF;
+    font-weight: thin;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #348fdf;
+    border-radius: 5px;
+    border: none;
+   margin-left: 1rem;
+}
+.btn__change:hover{
+    cursor: pointer;
+    background-color: #1B65A6;
+    transition: all 1.5s 0s ease;
+    transform: scale(1.01);
+    transition: all 0.2s;
+}
 
 .btn__coment{
     background-color: #348fdf;

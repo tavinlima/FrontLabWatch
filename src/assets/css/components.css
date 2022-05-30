@@ -81,10 +81,10 @@ ul li:hover a{
     transform: translate(-50%) rotate(-180deg);
 }
 
-.side_baixo{
-    margin-top: 38vh;
-    position: sticky;
-}
+/* .side_baixo{
+     margin-top: 28vh;
+} 
+     */
 
 .li_logout{
     filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
