@@ -559,6 +559,14 @@
     padding-left: 2em;
     height: 6vh;
  }
+ .input_add_coment{
+    width: 25vw;
+    border: #302e2e;
+    border-width: thin;
+    margin-top: 0.5rem;
+    padding-left: 2em;
+    height: 7vh;
+}
 
  .modal__task{
     display: flex;
