@@ -218,13 +218,22 @@ td:nth-child(2) {
 }
 
 .btn__excluirProjeto {
-    position: relative;
-    margin: 10px 0 10px 0;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
     background-color: #d61f1fd2;
-    color: #FFFF;
-    font-weight: bold;
-    width: 200px;
-    height: 50px;
+    color: #ffff;
+    width: 15vw;
+    height: 7vh;
+	transition: all 0.5s;
+	position: relative;
+    margin-top: 1rem;
 }
 
 .btn__excluirProjetoModal {
@@ -254,14 +263,21 @@ td:nth-child(2) {
 }
 
 .btn__backProjeto {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
     background-color: #1B65A6;
-    color: #FFFF;
-    font-weight: bold;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #1B65A6;
-    width: 200px;
-    height: 50px;
+    color: #ffff;
+    width: 15vw;
+    height: 7vh;
+	transition: all 0.5s;
+	position: relative;
     margin-left: 17vw;
     margin-bottom: 5vh;
 }

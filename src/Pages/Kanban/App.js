@@ -69,8 +69,12 @@ export default function Kanban() {
                 return (
                   <div className="dropZone" id="todo" key={tasks.idTask}>
                     <div className="card" draggable="true">
-                      <div className="status doing"></div>
+                      <div className="status doing">
                       <span>{tasks.tituloTask}</span>
+                      <span>{tasks.descricao}</span>
+                      <span>{tasks.hour}</span>
+                      </div>
+                      
                     </div>
                   </div>
                 )

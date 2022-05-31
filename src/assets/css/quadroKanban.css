@@ -1,6 +1,7 @@
 .section__kanban {
     display: flex;
-    width: max-content;
+    width: 100%;
+    margin-bottom: 2rem;
 }
 
 .boards {
@@ -12,22 +13,21 @@
 }
 
 .board {
-    width: 20em;
-    min-height: 100%;
-    margin: 0 15px;
-    background-color: #ffffff;
-    border: 1px solid #fafafa;
-    border-radius: 5px;
+    width: 17em;
+    background-color: #f8f8f8;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 2rem;
+    margin-right: 4rem;
 }
 
 #doing {
     margin: 0 0;
 }
 
-.board h2 {
+.board_title {
     text-align: center;
-    padding: 30px 15px 15px 15px;
-    color: #fd951fcc;
+    margin-top: 1.5rem;
+    color: #1B65A6;
 }
 
 .dropZone {
@@ -38,33 +38,37 @@
 
 .card {
     width: 100%;
-    height: auto;
-    padding: 15px;
-    margin-bottom: 15px;
+    height: 18vh;
     background-color: #f8f8f8;
-    box-shadow: 0 2px 2px -1px #FD951Fcc;
-    border-radius: 5px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 1rem;
     font-weight: 600;
     font-size: 18px;
-    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    
 
     transition: .2s;
 }
 
 .card:hover {
-    cursor: move;
+    cursor:pointer;
+    background-color: #fcfcfc;
+    transition: 0.4s;
+    transform: scale(1.03);
 }
 
 .status {
-    width: 10%;
-    height: 5px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    background-color: #fd951fcc;
+    width: 22%;
+    height: 0.7vh;
+    margin-bottom: 0.4rem;
+    border-radius: 1rem;
+    margin-left: 1rem;
 }
 
+
 .todo {
-    background-color: red;
+    background-color: rgb(230, 23, 23);
 }
 
 .doing {
@@ -194,4 +198,34 @@
 
 .garbage .dropZone {
     height: 100%;
+}
+
+@media (min-width: 1920px) {
+
+    .section__kanban{
+    display: flex;
+    width: 100%;
+    margin-bottom: 2rem;
+    justify-content: center;
+    }
+    .card{
+    width: 100%;
+    height: 12vh;
+    background-color: #f8f8f8;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    transition: .2s;
+    }
+
+    .board{
+        width: 15vw;
+        background-color: #f8f8f8;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 2rem;
+        margin-right: 6rem;
+    }
 }
