@@ -362,7 +362,7 @@ export default function TaskTarefa() {
                                                                 <span className='titleTask'>{tasks.idProjetoNavigation.tituloProjeto}</span>
                                                             </span>
                                                             <span >
-                                                                <span className='span_description'> {t('Description')}</span>
+                                                                <span className='span_description'> {t("Description")}</span>
                                                                 <span className='description'>{tasks.descricao}</span>
                                                             </span>
                                                             <span >
@@ -422,7 +422,7 @@ export default function TaskTarefa() {
                                         </div>
                                         <div className="box__DetailsTask">
                                             <h2 className='detailsTask'>{t("Details: ")} {tituloTag} (Tag) </h2>
-                                            <h2 className='detailsTask'>Description: {descricao}</h2>
+                                            <h2 className='detailsTask'>{t("Description")} {descricao}</h2>
                                             {
                                                 (() => {
                                                     switch (parseJwt().role) {
