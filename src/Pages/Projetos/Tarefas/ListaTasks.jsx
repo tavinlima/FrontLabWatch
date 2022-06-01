@@ -403,6 +403,7 @@ export default function TaskTarefa() {
                                                                 <span className='span_hours'> {t('Worked Hours:')} </span>
                                                                 <span className='hours'>{tasks.tempoTrabalho}</span>
                                                             </span>
+                                                            <button>Alterar situação</button>
                                                         </div>
                                                     </div>
                                                 </label>
