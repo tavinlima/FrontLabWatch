@@ -99,8 +99,7 @@
 }
 
 .box__imgEmpresa {
-    width: 70px;
-    height: 70px;
+    width: 7vw;
     object-fit: contain;
     padding: 5px;
 }
@@ -258,6 +257,11 @@ svg.iconify.iconify--bi.projeto__icon {
         display: flex;
         flex-direction: column;
         margin-left: 10vw;
+    }
+    .box__imgEmpresa {
+        width: 7vw;
+        object-fit: contain;
+        padding: 5px;
     }
 
 }

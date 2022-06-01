@@ -99,10 +99,11 @@
     font-size: 2em;
 }
 .button_selectTask{
-    margin-left: 1rem;
-    width: 10vw;
+    font-size: 1em;
     border: none;
     cursor: pointer;
+    text-align: center;
+    color: var(--cor-primaria);
     
 }
 
@@ -117,37 +118,35 @@
 .infoTask{
     display: flex;
     flex-direction: column;
-    margin-left: 7rem;
-    width: 16vw;
+    margin-left: 0.5rem;
+    text-overflow: clip ellipsis;   
+    overflow: hidden;
+    white-space: nowrap;
+    width: 13vw;
 }
 
 .span_title{
     color: var(--cor-primaria);
-    font-size: 1.5em;
+    font-size: 0.8em;
 }
 .titleTask{
-    font-size: 1.4em;
+    font-size: 0.8em;
 }
 .span_description{
     color: var(--cor-primaria);
-    font-size: 1.1em;
+    font-size: 0.8em;
+   
 }
 .description{
-    font-size: 1em;
+    font-size: 0.8em;   
 }
-.div__hours{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;  
-    margin-left: 4rem;
-    width: 13vw;
-}
+
 .span_hours{
     color: var(--cor-primaria);
-    font-size: 1.1em;
+    font-size: 0.8em;
 }
 .hours{
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 .modal__content {
@@ -197,9 +196,8 @@
 }   
 
 .btn_salvar1{
-    margin-top: 3vh;
     margin-bottom: 3rem;
-    margin-right: 10rem;
+    margin-right: 4rem;
 }
 
 /* CSS DOS MODAL */
@@ -222,11 +220,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40vw;
+    width: 56vw;
 }
 
 .box__tituloTask{
     height: 12vh;
+    width: 46vw;
 }
 
 .tituloTask{
@@ -236,7 +235,7 @@
 }
 
 .box__DetailsTask{
-    height: 18vh;
+    height: 23vh;
 }
 
 .detailsTask{
@@ -436,7 +435,7 @@
 .select_respo{
     width: 20vw;
     background-color: #d5d3d6;
-    padding: 8px 20px;
+    padding-left: 1rem;
     border: none;
     border-radius: 0.5em;
     height: 4vh;
@@ -524,7 +523,17 @@
     }
 
     .box__DetailsTask{
-        height: 15vh;
+        height: 19vh;
+    }
+
+    .box__tituloTask{
+        height: 10vh;
+        width: 46vw;
+    }
+    .tituloTask{
+    color: #fff;
+    font-size: 40px;
+    margin-top: 4rem;
     }
 
     .label_coment{
@@ -554,11 +563,33 @@
     padding-left: 2em;
     height: 6vh;
  }
+ .input_add_coment{
+    width: 25vw;
+    border: #302e2e;
+    border-width: thin;
+    margin-top: 0.5rem;
+    padding-left: 2em;
+    height: 7vh;
+}
 
  .modal__task{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 38vw;
+    width: 54vw;
  }
+ .infoTask{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+    text-overflow: clip ellipsis;   
+    overflow: hidden;
+    white-space: nowrap;
+    width: 12vw;
+}
+
+.btn_salvar1{
+    margin-bottom: 3rem;
+    margin-right: 6rem;
+}
 }

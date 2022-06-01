@@ -31,10 +31,11 @@
     "Active Tasks":"Tarefas Ativas",
     "Date":"Data:",
     "Project Title:":"Título del proyecto:",
-    "Description:":"Descripción:",
+    "Description":"Descripción: ",
     "Worked Hours:":"Horas trabajadas:",
     "Add task":"Agregar tarea",
     "There is no task to be done today!":"No hay trabajo que hacer hoy!",
+    "Change the responsable for the task":"Cambio responsable de la tarea : ",
     
     "Most recent First":"Primero más reciente",
     "Projects":"Proyectos",
