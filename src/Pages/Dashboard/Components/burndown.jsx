@@ -44,7 +44,6 @@ export default function Burndown() {
 
     const options = {
         isStacked: "relative",
-        title: 'Project burndown',
         backgroundColor: 'white',
         height: 400,
         legend: { position: "top", maxLines: 3 },
@@ -57,6 +56,7 @@ export default function Burndown() {
 
     return (
         <Chart
+        className="chart__burdown"
             chartType="AreaChart"
             data={data}
             options={options}

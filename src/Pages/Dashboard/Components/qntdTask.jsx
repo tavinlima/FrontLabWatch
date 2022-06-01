@@ -53,11 +53,13 @@ export default function QntdTask() {
 
     return (
         <Chart
+        className="chart__qntd"
             chartType="PieChart"
             data={data}
             options={options}
             width={"400px"}
             height={"250px"}
+            margin-right={"2rem"}
         />
     )
 }
