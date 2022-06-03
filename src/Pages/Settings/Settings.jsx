@@ -1,6 +1,7 @@
 import { React } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"
+import { Link } from 'react-router-dom';
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
@@ -41,7 +42,7 @@ export default function Setting() {
                         </div>
                     </section>
 
-                    <div className='div__Notidicacao'>
+                    {/* <div className='div__Notidicacao'>
                         <h2 className='titulo__Notificacao'>{t('Notifications')}
                             <select name="" id="" className='Box__Options'>
                                 <option value="">{t('All Notifications')}</option>
@@ -52,12 +53,12 @@ export default function Setting() {
                         </h2>
 
 
-                    </div>
+                    </div> */}
 
 
 
                     <section>
-                        <button type='button' className='btn__Link'><a href="/PerfilUsuario" className='link__PerfilUsuario'>{t('Profile')}</a></button>
+                        <button type='button' className='btn__Link'> <Link className='Link' to='/PerfilUsuario'>{t('Profile')}</Link></button>
                     </section>
                 </div >
             </div >

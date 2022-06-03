@@ -22,7 +22,6 @@
     text-align: left;
     float: right;
     font-size: 30px;
-    text-decoration: underline #77BF63;
 }
 
 .Box__Options {
@@ -39,25 +38,32 @@
 }
 
 .btn__Link {
-    margin-top: 5px;
-    width: 100px;
-    height: 70px;
-    border-radius: 5%;
-    font-size: 15px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: #1B65A6;
+    color: #ffff;
+    width: 17vw;
+    height: 8vh;
+    transition: all 0.5s;
 }
 
-.btn__Link:hover, .link__PerfilUsuario:hover {
-    transform: scale(1.4);
-    font-size: 17px;
-    background-color: #0D4373;
-    transition-delay: 200ms;
+.btn__Link:hover{
+    cursor: pointer;
+    background-color: #1B65A6;
+    transition: all 1.5s 0s ease;
+    transform: scale(1.01);
+    transition: all 0.2s;
 }
 
-.link__PerfilUsuario {
-    color: black;
-}
 
-.link__PerfilUsuario:hover {
-    color: #77BF63;
-
+.Link{
+    color: #ffff;
+    text-decoration: none;
 }
