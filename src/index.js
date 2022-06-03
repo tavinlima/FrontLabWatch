@@ -20,8 +20,7 @@ import ListagemTasks from './Pages/Projetos/Tarefas/ListaTasks';
 import NotFound from './Pages/NotFound/NotFound';
 import DashBoard from './Pages/Dashboard/Graficos'
 import Kanban from './Pages/Kanban/App'
-
-
+import MudarUsuario from './Pages/Usuarios/MudarUsuarios';
 
 import './i18n';
 import { usuarioAutenticado, parseJwt } from './services/auth';
@@ -88,6 +87,7 @@ const routing = (
 
           <Route element={<PermissaoOwnerGestor />}>
             <Route path='/CadastroProjetos' element={<CadastroProjetos />} />
+            <Route path='/MudarUsuario' element={<MudarUsuario />} />
             <Route path='/DashBoard' element={<DashBoard />} />
           </Route>
 
