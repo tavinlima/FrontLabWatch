@@ -142,15 +142,24 @@
 }
 
 .btn__edit {
-    font-size: larger;
-    width: 45%;
-    height: 70px;
+    background-color: #d3d5d6;
+    color: rgb(44, 41, 41);
+    font-weight: bold;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #1B65A6;
+    width: 14vw;
+    height: 6vh;
+    border-radius: 14px;
+    border: none;       
+    margin-top: 1rem;
 }
 .btn__edit:hover {
+    cursor: pointer;
+    background-color: #348fdf;
     transition: all 1.5s 0s ease;
     transform: scale(1.01);
     transition: all 0.2s;
-    background-image: linear-gradient(to left top, #fafafa, #dbdcf0, #b6c0e8, #89a6df, #488fd6);
 }
 
 .section__membersTeam {

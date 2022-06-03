@@ -1,6 +1,7 @@
 import { React, useState, useEffect, useLayoutEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { motion } from "framer-motion"
 
 import '../../../assets/css/overview.css'
 
@@ -107,7 +108,7 @@ export default function PaginaProjeto() {
             api.post('/Equipes', {
                 nomeEquipe: 'Equipe ok'
             }).catch(erro => console.log(erro))
-        } 
+        }
     }
 
     function cadastrarNaEquipe(event) {
@@ -168,154 +169,161 @@ export default function PaginaProjeto() {
     // useEffect(buscarFotoCliente, [])
 
     return (
-        <div>
-            <Header />
-            <SideBar />
-            <div className="box__listagemProjetos">
-                <section className="section__listagemProjetos container">
-                    <h1>Overview</h1>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
+            exit={{ opacity: 0 }}
+        >
+            <div>
+                <Header />
+                <SideBar />
+                <div className="box__listagemProjetos">
+                    <section className="section__listagemProjetos container">
+                        <h1>Overview</h1>
 
-                    <div className='section__infoBox'>
-                        <div className="overview__imgEmpresa">
-                            <img
-                                src={fotoCliente}
-                                alt="Imagem do cliente" />
-                        </div>
-
-                        <div className='div__textBox'>
-                            <h2 className='titulo__projeto'>{listaProjetos.tituloProjeto}</h2>
-
-                            <div className='div__infBox'>
-                                <h2 className='subtitulo_projeto'>Cliente: </h2>
-                                <p>{nomeCliente}</p>
+                        <div className='section__infoBox'>
+                            <div className="overview__imgEmpresa">
+                                <img
+                                    src={fotoCliente}
+                                    alt="Imagem do cliente" />
                             </div>
 
-                            <div className='div__infBox'>
-                                <h2 className='subtitulo_projeto'>Data de conclusão:</h2>
-                                <p id='dataConclusao'>{new Date(listaProjetos.dataConclusao).toLocaleString()}</p>
-                            </div>
-                        </div>
-                    </div>
+                            <div className='div__textBox'>
+                                <h2 className='titulo__projeto'>{listaProjetos.tituloProjeto}</h2>
 
-                    <div className='div__description'>
-                        <h2>Project Description:</h2>
+                                <div className='div__infBox'>
+                                    <h2 className='subtitulo_projeto'>Cliente: </h2>
+                                    <p>{nomeCliente}</p>
+                                </div>
 
-                        <textarea
-                            className='input__descricao'
-                            value={descricao}
-                            onChange={(e) => setDescricao(e.target.value)} />
-                    </div>
-
-                    <div className='div_tasks'>
-                        <h2>Project Tasks: </h2>
-                        <button className='btn__tasks' onClick={() => navigate('/Tasks')}>Acessar Tasks</button>
-                    </div>
-
-                    <div className='div__team'>
-                        <h2>Project Team:</h2>
-
-                        {/* <h3>{infEquipe.tituloEquipe}</h3> */}
-                        <button type="submit" className='btn btnStyle btn__edit' onClick={() => abrirModal()}>Edit team</button>
-                        <div id="myModal" className="modal">
-                            <div className="modal-contentAdd">
-                                <div className="modal_container">
-                                    <form onSubmit={(e) => cadastrarNaEquipe(e)}>
-
-                                        <div className="div__teamRegister">
-                                            <h3>Insert new users in your team!</h3>
-                                            <input
-                                                type="search"
-                                                id='usuarios'
-                                                name='usuario'
-                                                autoComplete='off'
-                                                list='usuarios'
-                                                onChange={(e) => searchTeam(e.target.value)}
-                                                placeholder="Search anything..." />
-                                        </div>
-
-                                        {
-                                            filteredUsers.map((usuarios) => {
-                                                return (
-                                                    <div key={usuarios.idUsuario}>
-                                                        <section className='section__membersRegister'>
-                                                            <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + usuarios.fotoUsuario} alt='Foto de perfil do usuário'></img>
-                                                            <div className='section__infMembers'>
-                                                                <span>{usuarios.nomeUsuario} {usuarios.sobreNome}</span>
-                                                                <span>{usuarios.email}</span>
-                                                            </div>
-                                                            <button onClick={() => setIdUsuario(usuarios.idUsuario)} className='btn btnStyle btn__addTeam'>Adicionar na equipe</button>
-                                                        </section>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                    </form>
-
+                                <div className='div__infBox'>
+                                    <h2 className='subtitulo_projeto'>Data de conclusão:</h2>
+                                    <p id='dataConclusao'>{new Date(listaProjetos.dataConclusao).toLocaleString()}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <ToastContainer
-                            position="top-center"
-                            autoClose={5000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover />
+                        <div className='div__description'>
+                            <h2>Project Description:</h2>
 
-
-                        <div className="div__teamInput">
-                            <input
-                                type="search"
-                                id='equipes'
-                                name='equipe'
-                                autoComplete='off'
-                                list='equipe'
-                                onChange={(e) => searchItems(e.target.value)}
-                                placeholder="Search anything..." />
+                            <textarea
+                                className='input__descricao'
+                                value={descricao}
+                                onChange={(e) => setDescricao(e.target.value)} />
                         </div>
 
-                        <div className='div__listTeams'>
-                            {
-                                searchInput.length > 0 ?
-                                    filteredResults.map((usuarios) => {
-                                        return (
-                                            <div key={usuarios.idUsuarioNavigation.idUsuario}>
-                                                <section className='section__membersTeam'>
-                                                    <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + usuarios.idUsuarioNavigation.fotoUsuario} alt='Foto de perfil do usuário'></img>
-                                                    <div className='section__infMembers'>
-                                                        <span>{usuarios.idUsuarioNavigation.nomeUsuario}</span>
-                                                        <span>Responsável por: {(usuarios.idUsuarioNavigation.tasks).length} tasks</span>
-                                                    </div>
-                                                </section>
-                                            </div>
-                                        )
-                                    })
-                                    :
-                                    equipe.map((users) => {
-                                        return (
-                                            <div key={users.idUsuarioNavigation.idUsuario}>
-                                                <section className='section__membersTeam'>
-                                                    {/* <img className='equipe__fotoUsuario' src={fotoPerfil} alt='Foto de perfil do usuário'></img> */}
-                                                    <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + users.idUsuarioNavigation.fotoUsuario} alt='Foto de perfil do usuário'></img>
-                                                    <div className='section__infMembers'>
-                                                        <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
-                                                        <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
-                                                    </div>
-                                                    <button className='btn_exclui_user' onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
-                                                </section>
-                                            </div>
-                                        )
-                                    })
-                            }
-
+                        <div className='div_tasks'>
+                            <h2>Project Tasks: </h2>
+                            <button className='btn__tasks' onClick={() => navigate('/Tasks')}>Acessar Tasks</button>
                         </div>
-                    </div>
-                </section>
+
+                        <div className='div__team'>
+                            <h2>Project Team:</h2>
+
+                            {/* <h3>{infEquipe.tituloEquipe}</h3> */}
+                            <button type="submit" className='btn btnStyle btn__edit' onClick={() => abrirModal()}>Edit team</button>
+                            <div id="myModal" className="modal">
+                                <div className="modal-contentAdd">
+                                    <div className="modal_container">
+                                        <form onSubmit={(e) => cadastrarNaEquipe(e)}>
+
+                                            <div className="div__teamRegister">
+                                                <h3>Insert new users in your team!</h3>
+                                                <input
+                                                    type="search"
+                                                    id='usuarios'
+                                                    name='usuario'
+                                                    autoComplete='off'
+                                                    list='usuarios'
+                                                    onChange={(e) => searchTeam(e.target.value)}
+                                                    placeholder="Search anything..." />
+                                            </div>
+
+                                            {
+                                                filteredUsers.map((usuarios) => {
+                                                    return (
+                                                        <div key={usuarios.idUsuario}>
+                                                            <section className='section__membersRegister'>
+                                                                <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + usuarios.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                                <div className='section__infMembers'>
+                                                                    <span>{usuarios.nomeUsuario} {usuarios.sobreNome}</span>
+                                                                    <span>{usuarios.email}</span>
+                                                                </div>
+                                                                <button onClick={() => setIdUsuario(usuarios.idUsuario)} className='btn btnStyle btn__addTeam'>Adicionar na equipe</button>
+                                                            </section>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ToastContainer
+                                position="top-center"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover />
+
+
+                            <div className="div__teamInput">
+                                <input
+                                    type="search"
+                                    id='equipes'
+                                    name='equipe'
+                                    autoComplete='off'
+                                    list='equipe'
+                                    onChange={(e) => searchItems(e.target.value)}
+                                    placeholder="Search anything..." />
+                            </div>
+
+                            <div className='div__listTeams'>
+                                {
+                                    searchInput.length > 0 ?
+                                        filteredResults.map((usuarios) => {
+                                            return (
+                                                <div key={usuarios.idUsuarioNavigation.idUsuario}>
+                                                    <section className='section__membersTeam'>
+                                                        <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + usuarios.idUsuarioNavigation.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                        <div className='section__infMembers'>
+                                                            <span>{usuarios.idUsuarioNavigation.nomeUsuario}</span>
+                                                            <span>Responsável por: {(usuarios.idUsuarioNavigation.tasks).length} tasks</span>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            )
+                                        })
+                                        :
+                                        equipe.map((users) => {
+                                            return (
+                                                <div key={users.idUsuarioNavigation.idUsuario}>
+                                                    <section className='section__membersTeam'>
+                                                        {/* <img className='equipe__fotoUsuario' src={fotoPerfil} alt='Foto de perfil do usuário'></img> */}
+                                                        <img className='equipe__fotoUsuario' src={"https://labwatch-backend.azurewebsites.net/img/" + users.idUsuarioNavigation.fotoUsuario} alt='Foto de perfil do usuário'></img>
+                                                        <div className='section__infMembers'>
+                                                            <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
+                                                            <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
+                                                        </div>
+                                                        <button className='btn_exclui_user' onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
+                                                    </section>
+                                                </div>
+                                            )
+                                        })
+                                }
+
+                            </div>
+                        </div>
+                    </section>
+                </div >
             </div >
-        </div >
+        </motion.div>
     );
 }

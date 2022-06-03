@@ -281,7 +281,7 @@ export default function ListagemOwner() {
                                 <option value='2'>Projetos em andamento</option>
                                 <option value='1'>Todos os projetos</option>
                                 <option value='3'>Projetos concluídos</option>
-                                <option value='1'>Todos os projetos</option>
+                                {/* <option value='1'>Todos os projetos</option> */}
                             </select>
                         </div>
                         <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
