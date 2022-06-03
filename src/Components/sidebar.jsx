@@ -49,7 +49,7 @@ export default function SideBar() {
                 {parseJwt().role === '3' ? <li><Link to="/ListaProjetosOwner"><i><FontAwesomeIcon icon={faTarp} /></i>{t('sidebarItem1')}</Link></li> :''}
                     <hr className="side_hr"></hr>
                     {/* <li><Link to="/"><i> <FontAwesomeIcon icon={faChartLine} /></i>Overview</Link></li> */}
-                    <li><Link to="/Tasks"><i> <FontAwesomeIcon icon={faListCheck} /></i>{t('sidebarItem2')}</Link></li>
+                    {/* <li><Link to="/Tasks"><i> <FontAwesomeIcon icon={faListCheck} /></i>{t('sidebarItem2')}</Link></li> */}
                     
                     {
                         parseJwt().role === '2' || parseJwt().role === '3' ? <li><Link to="/DashBoard"><i> <FontAwesomeIcon icon={faFileWaveform} /></i>{t('sidebarItem3')}</Link></li> : ''

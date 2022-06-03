@@ -203,7 +203,7 @@
 /* CSS DOS MODAL */
 
 .modal-content1{
-    background-image: linear-gradient(to bottom, #485d70, #57697a, #667684, #76828f, #858f99);
+    background-image: linear-gradient(to left top, #bdc4cb, #afb6be, #a1a9b2, #939ca5, #858f99);
     width: 60%;
     display: flex;
     flex-direction: column;
