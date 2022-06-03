@@ -279,7 +279,6 @@ export default function ListagemOwner() {
                         <div className='box__filter'>
                             <select className='select__filterProjects' onChange={(e) => setFiltroSelecionado(e.target.value)} value={filtroSelecionado}>
                                 <option value='2'>Projetos em andamento</option>
-                                <option value='1'>Todos os projetos</option>
                                 <option value='3'>Projetos concluídos</option>
                                 <option value='1'>Todos os projetos</option>
                             </select>

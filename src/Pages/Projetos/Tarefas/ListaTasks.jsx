@@ -1,12 +1,10 @@
 import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Icon } from '@iconify/react';
 import { parseJwt, parseIdProjeto, parseIdEquipe } from '../../../services/auth';
 
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar';
-import Kanban from '../../Kanban/App';
 import api from '../../../services/api';
 import { motion } from "framer-motion"
 
@@ -20,12 +18,9 @@ export default function TaskTarefa() {
     const { t } = useTranslation();
     // const notify = () => toast.warning("Cuidado! Palavras inadequadas foram encontradas")
     const date = new Date().toLocaleDateString();
-    const [searchInput, setSearchInput] = useState('');
     const [tituloTag, setTituloTag] = useState('');
     const [tempoTrabalho, setTempoTrabalho] = useState('');
-    const [filteredResults, setFilteredResults] = useState([]);
     const [minhasTasks, setMinhasTasks] = useState([]);
-    const [listaTasks, setListaTasks] = useState([]);
     const [tituloTask, setTituloTask] = useState([]);
     const [descricaoTask, setDescricaoTask] = useState([]);
     const [descricao, setDescricao] = useState('');
@@ -65,17 +60,20 @@ export default function TaskTarefa() {
         }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
-                setListaTasks(resposta.data)
 
-                let taskPendente = resposta.data.filter((task) => {
+                let taskCerta = resposta.data.filter((tasks) => {
+                    return tasks.idProjeto === parseInt(parseIdProjeto())
+                })
+
+                let taskPendente = taskCerta.filter((task) => {
                     return task.idStatusTask === 3
                 })
 
-                let taskConcluidas = resposta.data.filter((task) => {
+                let taskConcluidas = taskCerta.filter((task) => {
                     return task.idStatusTask === 1
                 })
 
-                let taskAndamento = resposta.data.filter((task) => {
+                let taskAndamento = taskCerta.filter((task) => {
                     return task.idStatusTask === 2
                 })
 
@@ -83,7 +81,6 @@ export default function TaskTarefa() {
                 setListaPendentes(taskPendente)
                 setListaFazendo(taskAndamento)
                 setListaConcluido(taskConcluidas)
-                setListaTasks(resposta.data)
 
             }
         })
@@ -102,19 +99,6 @@ export default function TaskTarefa() {
                 setComentarioTask(myComent)
             }
         })
-    }
-
-    //Função da barra de busca
-    const searchItems = (searchValue) => {
-        setSearchInput(searchValue)
-        if (searchInput !== '') {
-            const filteredData = minhasTasks.filter((item) => {
-                return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-            })
-            setFilteredResults(filteredData)
-        } else {
-            setFilteredResults(minhasTasks)
-        }
     }
 
     function abrirModal() {
@@ -261,8 +245,8 @@ export default function TaskTarefa() {
     return (
         <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1}}
-            transition={{ duration: 1}}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
             exit={{ opacity: 0 }}
         >
             <div>
@@ -403,7 +387,6 @@ export default function TaskTarefa() {
                                                                 <span className='span_hours'> {t('Worked Hours:')} </span>
                                                                 <span className='hours'>{tasks.tempoTrabalho}</span>
                                                             </span>
-                                                            <button>Alterar situação</button>
                                                         </div>
                                                     </div>
                                                 </label>
