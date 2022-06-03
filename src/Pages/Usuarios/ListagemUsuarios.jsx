@@ -40,7 +40,11 @@ export default function Usuario() {
 
     ///FUNCAO COM API
     function listarUsuarios() {
-        api("/Usuarios/")
+        api("/Usuarios/", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        })
             .then(resposta => {
                 // let users = resposta.data.map((usuarios) => {
                 //     if (usuarios.ativo === false) {

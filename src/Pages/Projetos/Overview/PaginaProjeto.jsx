@@ -69,7 +69,11 @@ export default function PaginaProjeto() {
 
     // Buscar projeto selecionado
     function buscarProjeto() {
-        api("/Projetos/").then(resposta => {
+        api("/Projetos/", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 resposta.data.map((projeto) => {
                     if (projeto.idProjeto === parseInt(parseIdProjeto())) {
@@ -106,6 +110,10 @@ export default function PaginaProjeto() {
         if (listaProjetos.idEquipe == null) {
             api.post('/Equipes', {
                 nomeEquipe: 'Equipe ok'
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+                }
             }).catch(erro => console.log(erro))
         } 
     }
@@ -155,7 +163,11 @@ export default function PaginaProjeto() {
     }
 
     function buscarUsuarios() {
-        api('/Usuarios').then(resposta => {
+        api('/Usuarios', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 setListaUsuarios(resposta.data)
             }

@@ -40,10 +40,11 @@ export default function CadastroProjetos() {
 
         console.log(projeto)
 
-        api.post("/Projetos", projeto
-            // {
-            //     headers: { "Content-Type": "application/json" }
-            // }
+        api.post("/Projetos", projeto, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }
         )
             .then((resposta) => {
                 if (resposta.status === 201) {
@@ -69,7 +70,11 @@ export default function CadastroProjetos() {
     }
 
     function buscarClientes() {
-        api('/Clientes').then(resposta => setCliente(resposta.data))
+        api('/Clientes', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => setCliente(resposta.data))
     }
 
     useLayoutEffect(buscarClientes, [])

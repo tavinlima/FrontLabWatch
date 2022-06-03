@@ -9,9 +9,9 @@ import api from "../../services/api";
 
 import '../../assets/css/perfil.css'
 
-    //Tradução
-    import { useTranslation } from 'react-i18next';
-    import { changeLanguage } from 'i18next';
+//Tradução
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from 'i18next';
 
 export default function PerfilUsuario() {
     const { t } = useTranslation();
@@ -22,11 +22,10 @@ export default function PerfilUsuario() {
     const [fotoPerfil, setFotoPerfil] = useState('');
     // const [minhasTasks, setMinhasTasks] = useState([]);
 
-    
+
     function buscarPerfil() {
         api('/Usuarios/' + parseJwt().jti)
             .then(resposta => {
-                console.log(resposta.data)
                 if (resposta.status === 200) {
                     setListaPerfil(resposta.data)
                     setNomeUsuario(resposta.data.nomeUsuario)
@@ -65,48 +64,27 @@ export default function PerfilUsuario() {
         formData.append('arquivo', file, file.name);
         formData.append('ativo', true);
 
-        console.log(parseJwt().jti)
-        console.log(parseJwt().role)
-        console.log(listaPerfil.idStatus)
-        console.log(nomeUsuario)
-        console.log(sobrenome)
-        console.log(listaPerfil.cargaHoraria)
-        console.log(listaPerfil.horasTrabalhadas)
-        console.log(listaPerfil.email)
-        console.log(listaPerfil.senha)
-        console.log(file + '  ' +file.name)
-        console.log(listaPerfil.ativo)
+        // console.log(parseJwt().jti)
+        // console.log(parseJwt().role)
+        // console.log(listaPerfil.idStatus)
+        // console.log(nomeUsuario)
+        // console.log(sobrenome)
+        // console.log(listaPerfil.cargaHoraria)
+        // console.log(listaPerfil.horasTrabalhadas)
+        // console.log(listaPerfil.email)
+        // console.log(listaPerfil.senha)
+        // console.log(file + '  ' + file.name)
+        // console.log(listaPerfil.ativo)
 
         api.put('/CadastroUsuario?id=' + parseJwt().jti, formData, {
             headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
                 "Content-Type": "multipart/form-data"
             }
-        }).then(resposta => {
-            console.log(resposta)
         }).then(() => buscarPerfil())
-        // .then(modal.style.display = "none")
+            // .then(modal.style.display = "none")
             .catch(erro => console.log(erro))
     }
-
-    // function abrirModal() {
-    //     var modal = document.getElementById("editPerfil");
-
-    //     modal.style.display = "block";
-
-    //     window.onclick = function (event) {
-    //         if (event.target === modal) {
-    //             modal.style.display = "none";
-    //         }
-    //     }
-    // }
-
-    // function buscarTasks() {
-    //     api('/Tasks/Minhas/' + parseJwt().jti)
-    //         .then(resposta => {
-    //             console.log(resposta.data)
-    //             setMinhasTasks(resposta.data)
-    //         })
-    // }
 
     // useEffect(buscarTasks, []);
     useEffect(buscarPerfil, []);
@@ -115,7 +93,7 @@ export default function PerfilUsuario() {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1}}
+            transition={{ duration: 1 }}
             exit={{ opacity: 0 }}
         >
             <div>
@@ -127,51 +105,51 @@ export default function PerfilUsuario() {
                         <h1>{t("Profile")}</h1>
                         <div className='section__infoPerfil' id="foto">
                             <label className="label__imgUpload">
-                                <input type='file' id='arquivo' className='imgUpload' onChange={(e) => editarPerfil(e)}/>
+                                <input type='file' id='arquivo' className='imgUpload' onChange={(e) => editarPerfil(e)} />
                                 <img
                                     className="perfil__imgPerfil"
                                     src={fotoPerfil}
                                     alt="Imagem do cliente" />
-                                    <div id="comentario">{t("Change Profile Photo")}</div>
+                                <div id="comentario">{t("Change Profile Photo")}</div>
                             </label>
 
 
                             <div className='div__textPerfil'>
-                            <form onSubmit={(e) => editarPerfil(e)}>
-                                            <label className='label__infoPerfil'>
-                                               {t('Name')}
-                                                <input
-                                                    className='input__editPerfil'
-                                                    type='text'
-                                                    value={nomeUsuario}
-                                                    name='nomeUsuario'
-                                                    autoComplete='off'
-                                                    onChange={(e) => setNomeUsuario(e.target.value)} />
-                                            </label>
+                                <form onSubmit={(e) => editarPerfil(e)}>
+                                    <label className='label__infoPerfil'>
+                                        {t('Name')}
+                                        <input
+                                            className='input__editPerfil'
+                                            type='text'
+                                            value={nomeUsuario}
+                                            name='nomeUsuario'
+                                            autoComplete='off'
+                                            onChange={(e) => setNomeUsuario(e.target.value)} />
+                                    </label>
 
-                                            <label className='label__infoPerfil'>
-                                                {t('Last name')} 
-                                                <input
-                                                    className='input__editPerfil'
-                                                    type='text'
-                                                    value={sobrenome}
-                                                    name='sobrenome'
-                                                    autoComplete='off'
-                                                    onChange={(e) => setSobrenome(e.target.value)} />
-                                            </label>
+                                    <label className='label__infoPerfil'>
+                                        {t('Last name')}
+                                        <input
+                                            className='input__editPerfil'
+                                            type='text'
+                                            value={sobrenome}
+                                            name='sobrenome'
+                                            autoComplete='off'
+                                            onChange={(e) => setSobrenome(e.target.value)} />
+                                    </label>
 
-                                            <label className='label__infoPerfil'>
-                                                E-mail
-                                                <input
-                                                    className='input__editPerfil'
-                                                    type='text'
-                                                    value={email}
-                                                    name='email'
-                                                    autoComplete='off'
-                                                    onChange={(e) => setEmail(e.target.value)} />
-                                            </label>
+                                    <label className='label__infoPerfil'>
+                                        E-mail
+                                        <input
+                                            className='input__editPerfil'
+                                            type='text'
+                                            value={email}
+                                            name='email'
+                                            autoComplete='off'
+                                            onChange={(e) => setEmail(e.target.value)} />
+                                    </label>
 
-                                            {/* <label className='label__infoPerfil'>
+                                    {/* <label className='label__infoPerfil'>
                                                 Foto de perfil
                                                 <input
                                                     className='input__editPerfil'
@@ -182,10 +160,10 @@ export default function PerfilUsuario() {
                                                     onChange={(e) => setFotoPerfil(e)} />
                                             </label> */}
 
-                                            <button className='button__editProfileModal'
-                                                onClick={(e) => editarPerfil(e)}>{t('Edit profile')}</button>
+                                    <button className='button__editProfileModal'
+                                        onClick={(e) => editarPerfil(e)}>{t('Edit profile')}</button>
 
-                                        </form>
+                                </form>
                                 {/* <h2 className='textPerfil__nomeUsuario'> {listaPerfil.nomeUsuario} {listaPerfil.sobreNome}</h2>
                                 <h2 className='textPerfil__emailUsuario'> {listaPerfil.email}</h2> */}
                             </div>
@@ -193,7 +171,7 @@ export default function PerfilUsuario() {
 
                         {/* <button className='button__editProfile' onClick={() => abrirModal()}>Edit profile</button> */}
 
-                                        
+
 
 
                         {/* <section>
