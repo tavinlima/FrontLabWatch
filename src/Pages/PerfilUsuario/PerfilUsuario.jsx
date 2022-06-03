@@ -53,13 +53,13 @@ export default function PerfilUsuario() {
         const file = target.files[0]
         console.log(file)
 
-        formData.append('idUsuario', parseJwt().jti);
-        formData.append('idTipoUsuario', parseJwt().role);
-        formData.append('idStatus', listaPerfil.idStatus);
+        formData.append('idUsuario', parseInt(parseJwt().jti));
+        formData.append('idTipoUsuario', parseInt(parseJwt().role));
+        formData.append('idStatus', parseInt(listaPerfil.idStatus));
         formData.append('nomeUsuario', nomeUsuario);
         formData.append('sobreNome', sobrenome);
-        formData.append('cargaHoraria', listaPerfil.cargaHoraria);
-        formData.append('horasTrabalhadas', listaPerfil.horasTrabalhadas);
+        formData.append('cargaHoraria', parseInt(listaPerfil.cargaHoraria));
+        formData.append('horasTrabalhadas', parseInt(listaPerfil.horasTrabalhadas));
         formData.append('email', listaPerfil.email);
         formData.append('senha', listaPerfil.senha);
         formData.append('arquivo', file, file.name);
@@ -74,6 +74,8 @@ export default function PerfilUsuario() {
         console.log(listaPerfil.horasTrabalhadas)
         console.log(listaPerfil.email)
         console.log(listaPerfil.senha)
+        console.log(file + '  ' +file.name)
+        console.log(listaPerfil.ativo)
 
         api.put('/CadastroUsuario?id=' + parseJwt().jti, formData, {
             headers: {
