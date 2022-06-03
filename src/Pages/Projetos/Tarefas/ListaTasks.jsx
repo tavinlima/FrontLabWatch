@@ -40,7 +40,11 @@ export default function TaskTarefa() {
 
 
     function listarMinhasTasks() {
-        api("/Tasks/Minhas/" + parseJwt().jti).then(resposta => {
+        api("/Tasks/Minhas/" + parseJwt().jti, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 let minhasTasks = resposta.data.filter((tasks) => {
@@ -88,7 +92,11 @@ export default function TaskTarefa() {
 
     function buscarComentarios(idTask) {
         console.log(idTask)
-        api('/Comentarios').then(resposta => {
+        api('/Comentarios', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 let myComent = resposta.data.filter((coment) => {
                     return (
@@ -136,7 +144,11 @@ export default function TaskTarefa() {
     }
 
     function listarTags() {
-        api('/Tags').then(resposta => {
+        api('/Tags', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 setListaTag(resposta.data)
             }
@@ -160,7 +172,10 @@ export default function TaskTarefa() {
 
         console.log(task)
         api.post('/Tasks', task, {
-            headers: { "Content-Type": "application/json" }
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+                "Content-Type": "application/json"
+            }
         }
         ).then(modal.style.display = "none").then(resposta => {
             if (resposta.status === 200) {
@@ -193,7 +208,11 @@ export default function TaskTarefa() {
 
         console.log(comentTask)
 
-        api.post('/Comentarios', comentTask)
+        api.post('/Comentarios', comentTask, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        })
             .then(resposta => console.log(resposta.data))
             .then(() => buscarComentarios(idTask))
             .catch(erro => console.log(erro))
@@ -202,6 +221,10 @@ export default function TaskTarefa() {
     function cadastrarTag(e) {
         e.preventDefault()
         api.post('/Tags', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }, {
             tituloTag: tituloTag
         }).then(resposta => {
             console.log(resposta)

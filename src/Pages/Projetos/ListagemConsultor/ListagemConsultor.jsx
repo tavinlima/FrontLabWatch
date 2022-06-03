@@ -20,8 +20,6 @@ import { useTranslation } from 'react-i18next';
 export default function ListarConsultor() {
     const { t } = useTranslation();
     const [filteredResults, setFilteredResults] = useState([]);
-    // const [projetosAtivos, setProjetosAtivos] = useState([]);
-    // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [meusProjetos, setMeusProjetos] = useState([]);
 
@@ -54,7 +52,11 @@ export default function ListarConsultor() {
     // Listar todas os projetos na página
 
     function selecionarProjeto(projeto) {
-        api("/Projetos/" + projeto.idProjeto).then(resposta => {
+        api("/Projetos/" + projeto.idProjeto, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 var valorProjeto = resposta.data.idProjeto;
@@ -67,7 +69,11 @@ export default function ListarConsultor() {
 
     function buscarEquipe() {
         // console.log('entrou')
-        api("/UsuarioEquipes").then(resposta => {
+        api("/UsuarioEquipes", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 resposta.data.map((equipe) => {
                     if (equipe.idUsuarioNavigation.idUsuario != null) {
@@ -88,7 +94,11 @@ export default function ListarConsultor() {
 
     async function listarMeusProjetos() {
         console.log(parseIdEquipe());
-        await api("/Projetos/Minhas/" + parseJwt().jti).then(resposta => {
+        await api("/Projetos/Minhas/" + parseJwt().jti, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 setMeusProjetos(resposta.data);
             }

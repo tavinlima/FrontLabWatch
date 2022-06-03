@@ -74,7 +74,6 @@ export default function ListagemOwner() {
     function abrirModal(projeto) {
         var modal = document.getElementById("myModal");
 
-        console.log(projeto)
         setIdProjeto(projeto.idProjeto)
         setTituloProjeto(projeto.tituloProjeto)
         setNomeCliente(projeto.idClienteNavigation.nomeCliente)
@@ -110,9 +109,14 @@ export default function ListagemOwner() {
 
     // Listar todas os projetos na página
     function listarProjetos() {
-        api("/Projetos").then(resposta => {
+        api("/Projetos", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 setListaProjetos(resposta.data)
+
                 localStorage.removeItem('idEquipe')
             }
         })
@@ -120,9 +124,12 @@ export default function ListagemOwner() {
     }
 
     function selecionarProjeto(projeto) {
-        api("/Projetos/" + projeto.idProjeto).then(resposta => {
+        api("/Projetos/" + projeto.idProjeto, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
-                console.log(resposta.data)
                 var valorProjeto = resposta.data.idProjeto;
                 localStorage.setItem('idProjetoSelect', resposta.data.idProjeto)
                 navigate('/ProjetoOverview', { state: { id: projeto.idProjeto, name: projeto.idProjeto, value: valorProjeto } })
@@ -132,7 +139,11 @@ export default function ListagemOwner() {
     }
 
     function listarAtivos() {
-        api("/Projetos").then(resposta => {
+        api("/Projetos", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 let listaAtivos = resposta.data.filter((projeto) => {
                     return projeto.idStatusProjeto !== 2
@@ -146,7 +157,11 @@ export default function ListagemOwner() {
     }
 
     function listarConcluidos() {
-        api("/Projetos").then(resposta => {
+        api("/Projetos", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
 
                 let listaConcluidos = resposta.data.filter((projeto) => {
@@ -165,7 +180,6 @@ export default function ListagemOwner() {
         event.preventDefault();
         setIsLoading(true);
 
-        console.log(tituloProjeto)
         let projeto = {
             idProjeto: idProjeto,
             idStatusProjeto: 1,
@@ -177,10 +191,6 @@ export default function ListagemOwner() {
             idEquipe: 4,
         }
 
-        console.log(projeto)
-        console.log(tituloProjeto)
-        console.log(idProjeto)
-
         api.put("/Projetos/" + idProjeto, {
             idProjeto: idProjeto,
             idStatusProjeto: 1,
@@ -191,25 +201,27 @@ export default function ListagemOwner() {
             idCliente: parseInt(idCliente),
             idEquipe: 2,
         },
-            // {
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     }
-            // }
-        ).then(resposta => {
-            console.log(resposta.data)
-        }).then(() => listarProjetos()).then(atualizado)
+            {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+                    "Content-Type": "application/json"
+                }
+            }
+        ).then(() => listarProjetos()).then(atualizado)
             .catch(erro => console.log(erro))
     }
 
     function desativarProjeto() {
         console.log(idProjeto)
-        api.patch('/Projetos/MudarSituacao?idProjeto=' + idProjeto + '&statusProjeto=2',).then(resposta => {
+        api.patch('/Projetos/MudarSituacao?idProjeto=' + idProjeto + '&statusProjeto=2',{
+            idProjeto: idProjeto
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
-                console.log(resposta)
-                console.log(listaProjetos)
                 window.location.reload();
-                console.log(resposta)
 
             }
         }
@@ -217,7 +229,11 @@ export default function ListagemOwner() {
     }
 
     function buscarClientes() {
-        api('/Clientes').then(resposta => setCliente(resposta.data))
+        api('/Clientes', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => setCliente(resposta.data))
     }
 
     /// UseEffects aqui:
@@ -238,12 +254,11 @@ export default function ListagemOwner() {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2}}
+            transition={{ duration: 2 }}
             exit={{ opacity: 0 }}
         >
             {isLoading == false ?
                 <Loading /> : ''}
-            {/* <Loading /> */}
             <ToastContainer
                 position="top-center"
                 autoClose={5000}
@@ -471,7 +486,7 @@ export default function ListagemOwner() {
                                                 <button
                                                     className='boxCadastro__btnCriar btn btn_salvar'
                                                     type='submit'>Salvar alterações</button>
-                                        } 
+                                        }
                                         {
                                             statusProjeto !== 2 ?
                                                 <button

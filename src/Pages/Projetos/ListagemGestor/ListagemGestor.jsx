@@ -24,8 +24,6 @@ export default function ListarMinhas() {
     const { t } = useTranslation();
     const [idProjeto, setIdProjeto] = useState([])
     const [filteredResults, setFilteredResults] = useState([]);
-    // const [projetosAtivos, setProjetosAtivos] = useState([]);
-    // const [projetosConcluidos, setProjetosConcluidos] = useState([]);
     const [nomeCliente, setNomeCliente] = useState('');
     const [searchInput, setSearchInput] = useState('');
     const [tituloProjeto, setTituloProjeto] = useState('');
@@ -33,7 +31,6 @@ export default function ListarMinhas() {
     const [fotoCliente, setFotoCliente] = useState('');
     const [dataConclusao, setDataConclusao] = useState(new Date());
     const [descricaoProjeto, setDescricaoProjeto] = useState('');
-    const [minhaEquipe, setMinhaEquipe] = useState('');
     const [meusProjetos, setMeusProjetos] = useState([]);
 
     // const notify = () => toast.success("Projeto deletado com sucesso!")
@@ -53,7 +50,6 @@ export default function ListarMinhas() {
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
         if (searchInput !== '') {
-
             const filteredData = meusProjetos.filter((item) => {
                 return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
             })
@@ -117,7 +113,11 @@ export default function ListarMinhas() {
     // Listar todas os projetos na página
 
     function selecionarProjeto(projeto) {
-        api("/Projetos/" + projeto.idProjeto).then(resposta => {
+        api("/Projetos/" + projeto.idProjeto, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 var valorProjeto = resposta.data.idProjeto;
@@ -129,7 +129,11 @@ export default function ListarMinhas() {
     }
 
     function buscarEquipe() {
-        api("/UsuarioEquipes").then(resposta => {
+        api("/UsuarioEquipes", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 resposta.data.map((equipe) => {
@@ -153,8 +157,11 @@ export default function ListarMinhas() {
 
 
     async function listarMeusProjetos() {
-        console.log(parseIdEquipe());
-        await api("/Projetos/Minhas/" + parseJwt().jti).then(resposta => {
+        await api("/Projetos/Minhas/" + parseJwt().jti, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 setMeusProjetos(resposta.data);
@@ -190,7 +197,10 @@ export default function ListarMinhas() {
             dataConclusao,
             fotoCliente
         }, {
-            headers: { "Content-Type": "application/json" }
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+                "Content-Type": "application/json"
+            }
         }).then(resposta => {
             console.log(resposta)
         }).then(() => listarMeusProjetos()).then(atualizado)
@@ -206,7 +216,7 @@ export default function ListarMinhas() {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2}}
+            transition={{ duration: 2 }}
             exit={{ opacity: 0 }}
         >
             {isLoading == false ?
@@ -363,7 +373,7 @@ export default function ListarMinhas() {
                                                                 </label>
 
                                                                 <label className='boxCadastro__label'>
-                                                                {t("Client:")}
+                                                                    {t("Client:")}
                                                                     <h3>{nomeCliente}</h3>
                                                                     <img
                                                                         className="box__imgEmpresa"
