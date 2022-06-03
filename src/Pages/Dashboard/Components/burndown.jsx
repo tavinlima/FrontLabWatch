@@ -7,56 +7,25 @@ import api from "../../../services/api";
 export default function Burndown() {
     const [tempoProjeto, setTempoProjeto] = useState(0);
     const [diasDeProjeto, setDiasDeProjeto] = useState(0);
-    function buscarProjeto() {
-        api("/Projetos/").then(resposta => {
-            if (resposta.status === 200) {
-                let meuProjeto = resposta.data.filter((projeto) => {
-                    return projeto.idProjeto == parseIdProjeto()
-                })
-                buscarDataFinal(meuProjeto)
-            }
-        }).then()
-            .catch(erro => console.log(erro));
-    }
-
-    function buscarDataFinal(projeto) {
-        let dataInicial = projeto[0].dataInicio
-        let dataFinal = projeto[0].dataConclusao
-
-        setTempoProjeto(moment(dataFinal).diff(dataInicial, 'days'))
-        let diasProjeto = [];
-        diasProjeto.push(tempoProjeto, 23, 45)
-
-        setDiasDeProjeto(diasProjeto);
-        console.log(diasProjeto);
-    }
-
-    useEffect(buscarProjeto, [])
-
     const data = [
-        ["Days", "Previous", "Real"],
-        diasDeProjeto
+        ["Data", "Previous", "Real"],
+        ["01/05/2022", 150, 100],
+        ["02/05/2022", 100, 90],
+        ["03/05/2022", 50, 50],
+        ["04/05/2022", 0, 0],
     ];
 
-    // const data = [
-    //     diasDeProjeto
-    // ];
-
     const options = {
-        isStacked: "relative",
-        title: 'Project burndown',
-        backgroundColor: 'white',
-        height: 400,
+        isStacked: true,
+        height: 300,
         legend: { position: "top", maxLines: 3 },
-        vAxis: {
-            minValue: 0,
-            ticks: [0, 0.3, 0.6, 0.9, 1],
-        },
+        vAxis: { minValue: 0 }
     };
 
 
     return (
         <Chart
+        className="chart__burdown"
             chartType="AreaChart"
             data={data}
             options={options}
