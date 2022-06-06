@@ -234,13 +234,8 @@
     width: 46vw;
 }
 
-<<<<<<< HEAD
 .tituloTask{
     color: black;
-=======
-.tituloTask {
-    color: #fff;
->>>>>>> 55fd580729ba332e2cb7d6a2df882f61d56e2b2e
     font-size: 40px;
     margin: 40px 0 20px 0;
 }
@@ -249,13 +244,8 @@
     height: 23vh;
 }
 
-<<<<<<< HEAD
 .detailsTask{
     color: black;
-=======
-.detailsTask {
-    color: #fff;
->>>>>>> 55fd580729ba332e2cb7d6a2df882f61d56e2b2e
 }
 
 .btn__change {
@@ -309,13 +299,8 @@
     overflow-x: hidden;
 }
 
-<<<<<<< HEAD
 .comentTask{
     color: black;
-=======
-.comentTask {
-    color: #fff;
->>>>>>> 55fd580729ba332e2cb7d6a2df882f61d56e2b2e
 }
 
 ::-webkit-scrollbar {
@@ -488,13 +473,8 @@
     height: 4vh;
 }
 
-<<<<<<< HEAD
 .respo_title{
     color: black;
-=======
-.respo_title {
-    color: #fff;
->>>>>>> 55fd580729ba332e2cb7d6a2df882f61d56e2b2e
 }
 
 .box_input_horas {
