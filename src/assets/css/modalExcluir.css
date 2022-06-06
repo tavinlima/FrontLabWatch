@@ -31,23 +31,24 @@
 .modalAviso-content {
     background-color: #fafafa;
     margin: 60px auto;
-    width: 65%;
+    width: 49%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 20px;
     box-sizing: border-box;
     box-shadow: 5px 8px 10px 3px rgba(31, 30, 30, 0.25);
-    margin-left: 23vw;
+    margin-left: 27vw;
 }
 
 .modalAviso__text {
     margin: 7rem auto;
-    width: 80%;
+    width: 100%;
 }
 
 .modalAviso__text p {
     color: red;
+    font-size: 1.1em;
 }
 
 .modal_mini {
@@ -194,7 +195,7 @@ td:nth-child(2) {
 }
 
 .modal_container {
-    width: 80%;
+    width: 75%;
 }
 
 .modal__input {

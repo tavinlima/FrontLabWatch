@@ -57,45 +57,45 @@ export default function Usuario() {
             .catch(erro => console.log(erro))
     }
 
-    function lerCampos() {
+    // function lerCampos() {
        
-        var temNum = /[0-9]/;
-        var temMaius = /[A-Z]/;
-        var temMinus = /[a-z]/;
-        var emailCerto = /\S+@\S+.\S+/;
-        var senha = document.getElementById("password").value
-        var senhaConfirmacao = document.getElementById("passwordConfirmation").value
-        var email = document.getElementById("email").value
+    //     var temNum = /[0-9]/;
+    //     var temMaius = /[A-Z]/;
+    //     var temMinus = /[a-z]/;
+    //     var emailCerto = /\S+@\S+.\S+/;
+    //     var senha = document.getElementById("password").value
+    //     var senhaConfirmacao = document.getElementById("passwordConfirmation").value
+    //     var email = document.getElementById("email").value
 
-        var feedback = document.getElementById("msgFeedback")
-        console.log(senha)
+    //     var feedback = document.getElementById("msgFeedback")
+    //     console.log(senha)
 
-        if (!emailCerto.exec(email)) {
-            feedback.innerHTML = 'E-mail inválido!!!'
-        } else {
-            feedback.innerHTML = 'E-mail informado corretamente!'
-        }
+    //     if (!emailCerto.exec(email)) {
+    //         feedback.innerHTML = 'E-mail inválido!!!'
+    //     } else {
+    //         feedback.innerHTML = 'E-mail informado corretamente!'
+    //     }
 
-        if (senha !== senhaConfirmacao) {
-            feedback.innerHTML = 'A confirmação deve ser igual ao campo de senha!'
-        } else if (senha.length < 8) {
-            let qntdCampos = 8 - senha.length
-            feedback.innerHTML = 'Campos insuficentes! Ainda faltam ' + qntdCampos + ' caracteres!'
-        } else if (!temNum.exec(senha)) {
-            feedback.innerHTML = 'A senha deve conter ao menos um número!'
-        } else if (!temMaius.exec(senha)) {
-            feedback.innerHTML = 'A senha deve conter ao menos uma letra maisucula!'
-        } else if (!temMinus.exec(senha)) {
-            feedback.innerHTML = 'A senha deve conter ao menos uma letra minuscula!'
-        }
-        else {
-            feedback.innerHTML = 'Tudo certo!'
-        }
+    //     if (senha !== senhaConfirmacao) {
+    //         feedback.innerHTML = 'A confirmação deve ser igual ao campo de senha!'
+    //     } else if (senha.length < 8) {
+    //         let qntdCampos = 8 - senha.length
+    //         feedback.innerHTML = 'Campos insuficentes! Ainda faltam ' + qntdCampos + ' caracteres!'
+    //     } else if (!temNum.exec(senha)) {
+    //         feedback.innerHTML = 'A senha deve conter ao menos um número!'
+    //     } else if (!temMaius.exec(senha)) {
+    //         feedback.innerHTML = 'A senha deve conter ao menos uma letra maisucula!'
+    //     } else if (!temMinus.exec(senha)) {
+    //         feedback.innerHTML = 'A senha deve conter ao menos uma letra minuscula!'
+    //     }
+    //     else {
+    //         feedback.innerHTML = 'Tudo certo!'
+    //     }
 
-        if (email === '' || senha === '' || senhaConfirmacao === '') {
-            feedback.innerHTML = 'Erro!!! Alguns campos podem estar vazios!'
-        }
-    }
+    //     if (email === '' || senha === '' || senhaConfirmacao === '') {
+    //         feedback.innerHTML = 'Erro!!! Alguns campos podem estar vazios!'
+    //     }
+    // }
 
     // useEffect(console.log(fotoPadrao.split(',', 2)[1]), [])
     return (
@@ -180,7 +180,7 @@ export default function Usuario() {
                                 <p className="msgFeedback" id="msgFeedback"></p>
 
                                 <div className="botao-cad">
-                                    <button onClick={lerCampos} type='submit' className="btn-cad" id="btn_cad">
+                                    <button type='submit' className="btn-cad" id="btn_cad">
                                         Register
                                     </button>
                                 </div>
