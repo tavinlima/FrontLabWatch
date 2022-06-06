@@ -151,23 +151,38 @@ export default function ListarMinhas() {
                     return equipe
                 })
             }
-        }).then(() => listarMeusProjetos())
+        }).then(() => listarProjetosMeus())
             .catch(erro => console.log(erro))
     }
 
-
-    async function listarMeusProjetos() {
-        await api("/Projetos/Minhas/" + parseJwt().jti, {
+    async function listarProjetosMeus() {
+        await api("/Projetos", {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
             }
         }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
-                setMeusProjetos(resposta.data);
+                let projetoCerto = resposta.data.filter((projeto) => {
+                    return projeto.idUsuario = parseJwt().jti
+                })
+                setMeusProjetos(projetoCerto);
             }
         }).catch(erro => console.log(erro))
     }
+
+    // async function listarMeusProjetos() {
+    //     await api("/Projetos/Minhas/" + parseJwt().jti, {
+    //         headers: {
+    //             Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+    //         }
+    //     }).then(resposta => {
+    //         if (resposta.status === 200) {
+    //             console.log(resposta.data)
+    //             setMeusProjetos(resposta.data);
+    //         }
+    //     }).catch(erro => console.log(erro))
+    // }
 
     // Atualizar Projeto
     function atualizarProjeto(event) {
@@ -203,7 +218,7 @@ export default function ListarMinhas() {
             }
         }).then(resposta => {
             console.log(resposta)
-        }).then(() => listarMeusProjetos()).then(atualizado)
+        }).then(() => listarProjetosMeus()).then(atualizado)
             .catch(erro => console.log(erro))
     }
 

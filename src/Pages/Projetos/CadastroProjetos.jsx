@@ -36,6 +36,7 @@ export default function CadastroProjetos() {
             dataInicio: dataInicio,
             dataConclusao: dataFinal,
             descricao: descricaoProjeto,
+            idEquipe: 31,
             idCliente: idCliente
         }
 
