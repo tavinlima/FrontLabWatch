@@ -11,7 +11,11 @@ export default function QntdTask() {
     const [concluidas, setConcluidas] = useState(0);
 
     function buscarTasks() {
-        api("/Tasks/").then(resposta => {
+        api("/Tasks/", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
                 let minhasTasks = resposta.data.filter((tasks) => {

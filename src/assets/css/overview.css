@@ -196,11 +196,11 @@
 
 .btn_exclui_user{
     margin-right: 1rem;
-    clip-path: circle(50% at 50% 50%);
+    /* clip-path: circle(50% at 50% 50%); */
+    background-color: transparent;
     border: none;
     cursor: pointer;
     border-width: inherit;
-    background-color: antiquewhite;
     height: 8vh;
 }
 

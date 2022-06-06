@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 // import { parseJwt } from "../../services/auth";
 import { motion } from "framer-motion"
+import { ToastContainer, toast } from 'react-toastify';
 
 import Header from '../../Components/header';
 import SideBar from '../../Components/sidebar'
@@ -19,12 +20,18 @@ export default function PerfilUsuario() {
     const [nomeUsuario, setNomeUsuario] = useState('');
     const [sobrenome, setSobrenome] = useState('');
     const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
     const [fotoPerfil, setFotoPerfil] = useState('');
     // const [minhasTasks, setMinhasTasks] = useState([]);
 
+    const ok = () => toast.success("Alteração feita com sucesso!")
 
     function buscarPerfil() {
-        api('/Usuarios/' + parseJwt().jti)
+        api('/Usuarios/' + parseJwt().jti, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        })
             .then(resposta => {
                 if (resposta.status === 200) {
                     setListaPerfil(resposta.data)
@@ -37,6 +44,18 @@ export default function PerfilUsuario() {
             }
             )
             .catch(erro => console.log(erro));
+    }
+
+    function alterarSenha() {
+        api.patch('/Usuarios/AlterarSenha?idUsuario=' + parseJwt().jti + '&senha=' + senha, {
+            idUsuario: parseJwt().jti,
+            senha: senha
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(buscarPerfil()).then(ok)
+            .catch(erro => console.log(erro))
     }
 
     function editarPerfil(event) {
@@ -52,6 +71,7 @@ export default function PerfilUsuario() {
         const file = target.files[0]
         console.log(file)
 
+        formData.append('arquivo', file, file.name);
         formData.append('idUsuario', parseInt(parseJwt().jti));
         formData.append('idTipoUsuario', parseInt(parseJwt().role));
         formData.append('idStatus', parseInt(listaPerfil.idStatus));
@@ -61,27 +81,24 @@ export default function PerfilUsuario() {
         formData.append('horasTrabalhadas', parseInt(listaPerfil.horasTrabalhadas));
         formData.append('email', listaPerfil.email);
         formData.append('senha', listaPerfil.senha);
-        formData.append('arquivo', file, file.name);
         formData.append('ativo', true);
 
-        // console.log(parseJwt().jti)
-        // console.log(parseJwt().role)
-        // console.log(listaPerfil.idStatus)
-        // console.log(nomeUsuario)
-        // console.log(sobrenome)
-        // console.log(listaPerfil.cargaHoraria)
-        // console.log(listaPerfil.horasTrabalhadas)
-        // console.log(listaPerfil.email)
-        // console.log(listaPerfil.senha)
-        // console.log(file + '  ' + file.name)
-        // console.log(listaPerfil.ativo)
+        // api.patch('/Usuarios/AlterarSenha?idUsuario=' + parseJwt().jti + '&senha=' + senha, {
+        //     idUsuario: parseJwt().jti,
+        //     senha: senha
+        // }, {
+        //     headers: {
+        //         Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+        //     }
+        // }).then(buscarPerfil()).then(ok)
+        //     .catch(erro => console.log(erro))
 
         api.put('/CadastroUsuario?id=' + parseJwt().jti, formData, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
                 "Content-Type": "multipart/form-data"
             }
-        }).then(() => buscarPerfil())
+        }).then(() => buscarPerfil()).then(() => alterarSenha())
             // .then(modal.style.display = "none")
             .catch(erro => console.log(erro))
     }
@@ -138,15 +155,28 @@ export default function PerfilUsuario() {
                                             onChange={(e) => setSobrenome(e.target.value)} />
                                     </label>
 
+
                                     <label className='label__infoPerfil'>
                                         E-mail
                                         <input
                                             className='input__editPerfil'
                                             type='text'
+                                            placeholder="senha"
                                             value={email}
                                             name='email'
                                             autoComplete='off'
                                             onChange={(e) => setEmail(e.target.value)} />
+                                    </label>
+
+                                    <label className='label__infoPerfil'>
+                                        Password
+                                        <input
+                                            className='input__editPerfil'
+                                            type='password'
+                                            value={'********'}
+                                            name='senha'
+                                            autoComplete='off'
+                                            onChange={(e) => setSenha(e.target.value)} />
                                     </label>
 
                                     {/* <label className='label__infoPerfil'>
@@ -164,28 +194,10 @@ export default function PerfilUsuario() {
                                         onClick={(e) => editarPerfil(e)}>{t('Edit profile')}</button>
 
                                 </form>
-                                {/* <h2 className='textPerfil__nomeUsuario'> {listaPerfil.nomeUsuario} {listaPerfil.sobreNome}</h2>
-                                <h2 className='textPerfil__emailUsuario'> {listaPerfil.email}</h2> */}
+
                             </div>
                         </div>
 
-                        {/* <button className='button__editProfile' onClick={() => abrirModal()}>Edit profile</button> */}
-
-
-
-
-                        {/* <section>
-                            <h2>Events</h2>
-                            {
-                                minhasTasks.map((tasks) => {
-                                    return (
-                                        <ul key={tasks.idTask}>
-                                            <li>{tasks.tituloTask}</li>
-                                        </ul>
-                                    )
-                                })
-                            }
-                        </section> */}
                     </section>
                 </div>
             </div>

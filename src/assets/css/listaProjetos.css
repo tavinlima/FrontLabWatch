@@ -76,7 +76,7 @@
     border-radius: 10px;
 }
 
-.box__projeto:hover{
+.box__projeto:hover {
     background-color: #ecebee;
     transition: 0.4s;
     transform: scale(1.03);
@@ -95,7 +95,7 @@
     width: 8vw;
     display: flex;
     align-items: center;
-    margin-left:1rem;
+    margin-left: 1rem;
 }
 
 .box__imgEmpresa {
@@ -119,14 +119,23 @@
 .box__infProjeto {
     margin-left: 2rem;
     font-size: 0.9em;
-    width: 8rem;
+}
+
+.div__infAdd {
+    display: flex;
+    width: max-content;
+}
+
+.div__infAdd span {
+    margin-right: 0.5rem;
 }
 
 .box__infProjeto h2 {
     margin-bottom: 10px;
     font-size: 1.5em;
 }
-.box__data{
+
+.box__data {
     color: var(--cor-primaria);
 }
 
@@ -140,7 +149,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-left: 18rem;
+    margin-left: 18%;
 }
 
 .div__members {
@@ -248,20 +257,39 @@ svg.iconify.iconify--bi.projeto__icon {
         left: 70vw;
         top: 18.2vh;
     }
+
     .div__membersGear {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    .div__members{
+
+    .div__members {
         display: flex;
         flex-direction: column;
         margin-left: 10vw;
     }
+
     .box__imgEmpresa {
         width: 7vw;
         object-fit: contain;
         padding: 5px;
     }
 
+}
+
+@media (max-width: 1120px) {
+    .box__infProjeto {
+        width: max-content;
+    }
+
+    .div__infAdd {
+        width: max-content;
+    }
+}
+
+@media (max-width: 763px) {
+    .section__listagemProjetos {
+        margin-left: 0;
+    }
 }

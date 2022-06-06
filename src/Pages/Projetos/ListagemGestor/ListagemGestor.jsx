@@ -151,23 +151,38 @@ export default function ListarMinhas() {
                     return equipe
                 })
             }
-        }).then(() => listarMeusProjetos())
+        }).then(() => listarProjetosMeus())
             .catch(erro => console.log(erro))
     }
 
-
-    async function listarMeusProjetos() {
-        await api("/Projetos/Minhas/" + parseJwt().jti, {
+    async function listarProjetosMeus() {
+        await api("/Projetos", {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
             }
         }).then(resposta => {
             if (resposta.status === 200) {
                 console.log(resposta.data)
-                setMeusProjetos(resposta.data);
+                let projetoCerto = resposta.data.filter((projeto) => {
+                    return projeto.idUsuario = parseJwt().jti
+                })
+                setMeusProjetos(projetoCerto);
             }
         }).catch(erro => console.log(erro))
     }
+
+    // async function listarMeusProjetos() {
+    //     await api("/Projetos/Minhas/" + parseJwt().jti, {
+    //         headers: {
+    //             Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+    //         }
+    //     }).then(resposta => {
+    //         if (resposta.status === 200) {
+    //             console.log(resposta.data)
+    //             setMeusProjetos(resposta.data);
+    //         }
+    //     }).catch(erro => console.log(erro))
+    // }
 
     // Atualizar Projeto
     function atualizarProjeto(event) {
@@ -203,7 +218,7 @@ export default function ListarMinhas() {
             }
         }).then(resposta => {
             console.log(resposta)
-        }).then(() => listarMeusProjetos()).then(atualizado)
+        }).then(() => listarProjetosMeus()).then(atualizado)
             .catch(erro => console.log(erro))
     }
 
@@ -282,7 +297,7 @@ export default function ListarMinhas() {
                                                                 </button>
 
                                                                 <div>
-                                                                    <span>{t("Client:")} </span>
+                                                                    <span>{t("Client: ")} </span>
                                                                     <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                                 </div>
 
@@ -329,18 +344,20 @@ export default function ListarMinhas() {
                                                                 <h2>{projeto.tituloProjeto}</h2>
                                                             </button>
 
-                                                            <div>
-                                                                <span>{t("Client:")} </span>
+                                                            <div className='div__infAdd'>
+                                                                <span>{t("Client: ")}</span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
+                                                            <div className='div__infAdd'>
+                                                                <span>{t("Delivery date:")}</span>
+                                                                <span>{Intl.DateTimeFormat("pt-BR",
+                                                                    {
+                                                                        year: 'numeric', month: 'numeric', day: 'numeric',
+                                                                        hour: 'numeric', minute: 'numeric'
+                                                                    }
+                                                                ).format(new Date(projeto.dataConclusao))}</span>
+                                                            </div>
 
-                                                            <span>{t("Delivery date:")}</span>
-                                                            <span>{Intl.DateTimeFormat("pt-BR",
-                                                                {
-                                                                    year: 'numeric', month: 'numeric', day: 'numeric',
-                                                                    hour: 'numeric', minute: 'numeric'
-                                                                }
-                                                            ).format(new Date(projeto.dataConclusao))}</span>
                                                         </div>
                                                         <div className="div__membersGear">
                                                             <div className="div__members">

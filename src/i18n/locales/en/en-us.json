@@ -32,7 +32,7 @@
     "Date:":"Date:",
     "Project Title:":"Project Title:",
     "Description":"Description: ",
-    "Worked Hours:":"Worked Hours:",
+    "Worked Hours:":"Planned Hours:",
     "Add task":"Add task",
     "There is no task to be done today!":"There is no task to be done today!",
     "Task:":"Task:",
@@ -63,11 +63,8 @@
     "Final date":"Final date",
     "Save changes":"Save changes",
     "Back":"Back",
-    "Deactivate project":"Deactivate project",
-    "Do you really want to delete this project?":"Do you really want to delete this project?",
+    "Deactivate project":"Disable project",
+    "Do you really want to delete this project?":"Do you really want to disable this project?",
     "No":"No"
-
-
-
   }
 }

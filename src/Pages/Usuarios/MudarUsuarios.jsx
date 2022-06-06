@@ -77,7 +77,7 @@ export default function MudarUsuario() {
             <div className="box__usuarios">
                 <section className="section__listagemUsuarios container">
                     <div className="div__titulo">
-                        <h1>Accept Users</h1>
+                        <h1>Users List</h1>
                     </div>
                     <div className="div__inputt">
                         <input
@@ -117,7 +117,7 @@ export default function MudarUsuario() {
                                                 <section className="box__usuario" key={usuario.idUsuario}>
                                                     <div className="container__Box">
                                                         <div className="divisoria__imgUsuario">
-                                                            <img src={"https://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
+                                                            <img style={{width: '-webkit-fill-available', clipPath: 'circle()'}} src={"https://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
                                                                 alt="Imagem do Usuario" />
                                                         </div>
                                                         <div id="usuario" className="box__infoUsuario">
@@ -153,31 +153,34 @@ export default function MudarUsuario() {
                                             <section className="box__usuario" key={usuario.idUsuario}>
                                                 <div className="container__Box">
                                                     <div className="divisoria__imgUsuario">
-                                                        <img src={"https://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
+                                                        <img style={{width: '-webkit-fill-available', clipPath: 'circle()'}} src={"https://labwatch-backend.azurewebsites.net/img/" + usuario.fotoUsuario}
                                                             alt="Imagem do Usuario" />
                                                     </div>
                                                     <div id="usuario" className="box__infoUsuario">
                                                         <span>Name: {usuario.nomeUsuario} {usuario.sobreNome}</span>
                                                         <span>Email: {usuario.email}</span>
+                                                        {/* <span>Cargo: {usuario.idTipoUsuarioNavigation.tituloTipoUsuario}</span> */}
 
                                                     </div>
                                                     <div className="div__linha">
                                                         <hr />
                                                     </div>
-                                                    <select className='select__filterProjects' onChange={(e) => {
+                                                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                                                        <select className='select__filterProjects' onChange={(e) => {
                                                             setUsuarioSelecionado(usuario.idUsuario)
                                                             setIdTipoUsuario(e.target.value)
                                                         }} value={usuario.idUsuario === usuarioSelecionado ? idTipoUsuario : 0}>
-                                                        <option value='0'>Selecione uma opção</option>
-                                                        <option value='1'>Gestor</option>
-                                                        <option value='2'>Consultor</option>
-                                                        <option value='3'>Owner</option>
-                                                        {/* <option value='1'>Todos os projetos</option> */}
-                                                    </select>
+                                                            <option value='0'>Selecione uma opção</option>
+                                                            <option value='1'>Gestor</option>
+                                                            <option value='2'>Consultor</option>
+                                                            <option value='3'>Owner</option>
+                                                            {/* <option value='1'>Todos os projetos</option> */}
+                                                        </select>
 
-                                                    {
-                                                        parseInt(idTipoUsuario) !== 0 && usuario.idUsuario === usuarioSelecionado ? <button onClick={() => MudarTipoUsuario()}>Salvar alterações</button> : ''
-                                                    }
+                                                        {
+                                                            parseInt(idTipoUsuario) !== 0 && usuario.idUsuario === usuarioSelecionado ? <button style={{marginTop: '0.5rem', backgroundColor: '#92BF4E', color: "#fff", border: 'none', borderRadius: '6px', height: '1.8em'}} onClick={() => MudarTipoUsuario()}>Salvar alterações</button> : ''
+                                                        }
+                                                    </div>
                                                 </div>
                                             </section>
                                         </div>

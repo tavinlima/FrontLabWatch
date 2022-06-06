@@ -8,10 +8,12 @@ import '../../../assets/css/overview.css'
 // import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
+import Loading from '../../../Components/loading'
 
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth.jsx'
 import api from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([]);
@@ -26,6 +28,14 @@ export default function PaginaProjeto() {
     const [listaUsuarios, setListaUsuarios] = useState([]);
     const [idUsuario, setIdUsuario] = useState(0);
     const [erroMensagem, setErroMensagem] = useState('');
+    const [count, setCount] = useState(0);
+
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1500);
+    })
 
     const notify = () => toast.success("Usuário retirado da equipe com sucesso!")
     const notifyCadastro = () => toast.success("Usuário cadastrado na equipe com sucesso!")
@@ -101,6 +111,7 @@ export default function PaginaProjeto() {
             let users = resposta.data.filter((equipe) => {
                 return equipe.idEquipe === parseInt(parseIdEquipe())
             })
+            setCount(users.length)
             console.log(users)
             setEquipe(users)
             console.log(users)
@@ -131,6 +142,10 @@ export default function PaginaProjeto() {
         api.post('/UsuarioEquipes', {
             idEquipe: listaProjetos.idEquipe,
             idUsuario: idUsuario
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
         })
             .then(modal.style.display = "none")
             .then(notifyCadastro)
@@ -142,6 +157,10 @@ export default function PaginaProjeto() {
         console.log(users.idusuarioEquipe)
         api.delete('/UsuarioEquipes/' + users.idusuarioEquipe, {
             idEquipe: listaProjetos.idEquipe
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
         })
             .then(() => buscarEquipe())
             .then(notify)
@@ -176,7 +195,7 @@ export default function PaginaProjeto() {
     }
 
     useEffect(buscarUsuarios, [])
-    useEffect(buscarProjeto, [])
+    useEffect(buscarProjeto, [count])
     useLayoutEffect(buscarEquipe, [])
     // useEffect(buscarFotoCliente, [])
 
@@ -187,6 +206,8 @@ export default function PaginaProjeto() {
             transition={{ duration: 2 }}
             exit={{ opacity: 0 }}
         >
+            {isLoading == false ?
+                <Loading /> : ''}
             <div>
                 <Header />
                 <SideBar />
@@ -324,7 +345,7 @@ export default function PaginaProjeto() {
                                                             <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
                                                             <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
                                                         </div>
-                                                        <button className='btn_exclui_user' onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
+                                                        <button className='btn_exclui_user' onClick={() => excluirUserEquipe(users)}><Icon className="X" icon="akar-icons:circle-x" /></button>
                                                     </section>
                                                 </div>
                                             )

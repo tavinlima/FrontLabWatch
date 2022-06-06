@@ -1,10 +1,10 @@
-.box__semTasks{
+.box__semTasks {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 10vh;
     font-size: 30px;
-    font-weight: bold;  
+    font-weight: bold;
     margin-right: 8rem;
 }
 
@@ -44,7 +44,7 @@
 .div__titlesTasks h2 {
     font-size: 2em;
     color: black;
-    margin-bottom:2rem;
+    margin-bottom: 2rem;
 }
 
 .div__tInput input {
@@ -78,74 +78,80 @@
     margin-bottom: 2rem;
 }
 
-.box__task:hover{
+.box__task:hover {
     background-color: #ecebee;
     transition: 0.4s;
     transform: scale(1.03);
 }
 
-.box__infTask{
+.box__infTask {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.alertTask{
+.alertTask {
     color: rgb(234, 238, 20);
     font-size: 2em;
 }
-.checkTask{
+
+.checkTask {
     color: #59a842;
     font-size: 2em;
 }
-.button_selectTask{
+
+.button_selectTask {
     font-size: 1em;
     border: none;
     cursor: pointer;
     text-align: center;
     color: var(--cor-primaria);
-    
+
 }
 
-.button_selectTask h2{
+.button_selectTask h2 {
     border-width: inherit;
-    color: var(--cor-primaria);  
+    color: var(--cor-primaria);
     background: transparent;
     border-style: none;
     margin-bottom: 1rem;
 }
 
-.infoTask{
+.infoTask {
     display: flex;
     flex-direction: column;
     margin-left: 0.5rem;
-    text-overflow: clip ellipsis;   
+    text-overflow: clip ellipsis;
     overflow: hidden;
     white-space: nowrap;
     width: 13vw;
 }
 
-.span_title{
+.span_title {
     color: var(--cor-primaria);
     font-size: 0.8em;
-}
-.titleTask{
-    font-size: 0.8em;
-}
-.span_description{
-    color: var(--cor-primaria);
-    font-size: 0.8em;
-   
-}
-.description{
-    font-size: 0.8em;   
 }
 
-.span_hours{
+.titleTask {
+    font-size: 0.8em;
+}
+
+.span_description {
+    color: var(--cor-primaria);
+    font-size: 0.8em;
+
+}
+
+.description {
+    font-size: 0.8em;
+}
+
+.span_hours {
     color: var(--cor-primaria);
     font-size: 0.8em;
 }
-.hours{
+
+.hours {
     font-size: 0.8em;
 }
 
@@ -179,7 +185,7 @@
     background-color: #59a842;
 }
 
-.div__tags button:focus{
+.div__tags button:focus {
     background-color: #54c233;
 }
 
@@ -187,22 +193,22 @@
     padding-left: 5px;
 }
 
-.lupaTask{
+.lupaTask {
     position: absolute;
     color: #A6A0AE;
     font-size: 18px;
     left: 69vw;
     top: 27.8vh;
-}   
+}
 
-.btn_salvar1{
+.btn_salvar1 {
     margin-bottom: 3rem;
     margin-right: 4rem;
 }
 
 /* CSS DOS MODAL */
 
-.modal-content1{
+.modal-content1 {
     background-image: linear-gradient(to left top, #bdc4cb, #afb6be, #a1a9b2, #939ca5, #858f99);
     width: 60%;
     display: flex;
@@ -216,43 +222,57 @@
     margin-top: 1rem;
 }
 
-.modal__task{
+.modal__task {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 56vw;
 }
 
-.box__tituloTask{
+.box__tituloTask {
     height: 12vh;
     width: 46vw;
 }
 
+<<<<<<< HEAD
 .tituloTask{
     color: black;
+=======
+.tituloTask {
+    color: #fff;
+>>>>>>> 55fd580729ba332e2cb7d6a2df882f61d56e2b2e
     font-size: 40px;
-     margin: 40px 0 20px 0;
+    margin: 40px 0 20px 0;
 }
 
-.box__DetailsTask{
+.box__DetailsTask {
     height: 23vh;
 }
 
+<<<<<<< HEAD
 .detailsTask{
     color: black;
+=======
+.detailsTask {
+    color: #fff;
+>>>>>>> 55fd580729ba332e2cb7d6a2df882f61d56e2b2e
 }
-.btn__change{
+
+.btn__change {
     background-color: #348fdf;
     color: #FFFF;
     font-weight: thin;
     border-width: 1px;
     border-style: solid;
     border-color: #348fdf;
+    width: 12em;
+    height: 2.2em;
     border-radius: 5px;
     border: none;
-   margin-left: 1rem;
+    margin-left: 1rem;
 }
-.btn__change:hover{
+
+.btn__change:hover {
     cursor: pointer;
     background-color: #1B65A6;
     transition: all 1.5s 0s ease;
@@ -260,7 +280,7 @@
     transition: all 0.2s;
 }
 
-.btn__coment{
+.btn__coment {
     background-color: #348fdf;
     color: #FFFF;
     font-weight: bold;
@@ -274,7 +294,7 @@
     margin-top: 2rem;
 }
 
-.btn__coment:hover{
+.btn__coment:hover {
     cursor: pointer;
     background-color: #1B65A6;
     transition: all 1.5s 0s ease;
@@ -282,15 +302,20 @@
     transition: all 0.2s;
 }
 
-.section__coment{
+.section__coment {
     width: 52vw;
-    overflow-y: auto; 
+    overflow-y: auto;
     height: 29vh;
     overflow-x: hidden;
 }
 
+<<<<<<< HEAD
 .comentTask{
     color: black;
+=======
+.comentTask {
+    color: #fff;
+>>>>>>> 55fd580729ba332e2cb7d6a2df882f61d56e2b2e
 }
 
 ::-webkit-scrollbar {
@@ -299,27 +324,28 @@
     border-radius: 15px;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     background-color: #ffff;
     border-radius: 16px;
 }
 
-.label_coment{
+.label_coment {
     color: #ffff;
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
 }
 
-.input_add_coment{
+.input_add_coment {
     width: 25vw;
     border: #302e2e;
     border-width: thin;
     margin-top: 0.5rem;
     padding-left: 2em;
+    height: 2em;
 }
 
-.box__coment{
+.box__coment {
     width: 10vw;
 }
 
@@ -328,7 +354,7 @@
     align-items: center;
 }
 
-.box__comentario{
+.box__comentario {
     background-color: #F2F2F2;
     display: flex;
     align-items: center;
@@ -355,7 +381,7 @@
 }
 
 /* MODAL DE ADD TASK */
-.modal-content2{
+.modal-content2 {
     background-image: linear-gradient(to left top, #bdc4cb, #afb6be, #a1a9b2, #939ca5, #858f99);
     width: 45%;
     display: flex;
@@ -372,7 +398,7 @@
 
 }
 
-.div__Register h1{
+.div__Register h1 {
     font-size: 40px;
     color: var(--cor-primaria);
     margin-top: 1rem;
@@ -389,7 +415,7 @@
     font-weight: bolder;
 }
 
-.input_title{
+.input_title {
     width: 37vw;
     border-bottom-color: #000000;
     border-top: none;
@@ -400,7 +426,7 @@
     padding: 8px 20px;
 }
 
-.input_descricao{
+.input_descricao {
     width: 30vw;
     border-bottom-color: #000000;
     border-top: none;
@@ -411,7 +437,7 @@
     padding: 8px 20px;
 }
 
-.input_tag{
+.input_tag {
     width: 15vw;
     border-bottom-color: #000000;
     border-top: none;
@@ -423,35 +449,28 @@
     margin-top: 1rem;
 }
 
-.box_input_descricao{
+.box_input_descricao {
     margin-top: 1rem;
     width: 15vw;
 }
 
-.box_input_respo{
+.box_input_respo {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
     width: 30vw;
     font-weight: bolder;
 }
-.box_input_respon{
+
+.box_input_respon {
     display: flex;
     flex-direction: column;
-    width: 30vw;
+    /* width: 30vw; */
     margin-bottom: 2rem;
     margin-top: 1rem;
 }
 
-.select_respo{
-    width: 20vw;
-    background-color: #d5d3d6;
-    padding-left: 1rem;
-    border: none;
-    border-radius: 0.5em;
-    height: 4vh;
-}
-.select_respon{
+.select_respo {
     width: 20vw;
     background-color: #d5d3d6;
     padding-left: 1rem;
@@ -460,19 +479,34 @@
     height: 4vh;
 }
 
+.select_respon {
+    width: 20vw;
+    background-color: #d5d3d6;
+    padding-left: 1rem;
+    border: none;
+    border-radius: 0.5em;
+    height: 4vh;
+}
+
+<<<<<<< HEAD
 .respo_title{
     color: black;
+=======
+.respo_title {
+    color: #fff;
+>>>>>>> 55fd580729ba332e2cb7d6a2df882f61d56e2b2e
 }
 
-.box_input_horas{
+.box_input_horas {
     width: 10vw;
     margin-top: 2rem;
 }
 
-.box_input_tag{
+.box_input_tag {
     margin-top: 2rem;
 }
-.input_horas{
+
+.input_horas {
     width: 10vw;
     border-bottom-color: #000000;
     border-top: none;
@@ -483,14 +517,14 @@
     padding: 8px 20px;
 }
 
-.box_btn_cadTask{
+.box_btn_cadTask {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 1rem;
 }
 
-.btn_cadTask{
+.btn_cadTask {
     background-color: #1B65A6;
     color: #FFFF;
     font-weight: bold;
@@ -503,7 +537,7 @@
     border: none;
 }
 
-.btn_cadTask:hover{
+.btn_cadTask:hover {
     cursor: pointer;
     background-color: #348fdf;
     transition: all 1.5s 0s ease;
@@ -516,7 +550,7 @@
         max-width: 1920px;
     }
 
-    .modal-content2{
+    .modal-content2 {
         background-image: linear-gradient(to right bottom, #f2f2f2, #efefef, #ededed, #eaeaea, #e8e7e7);
         width: 45%;
         display: flex;
@@ -530,77 +564,82 @@
         height: 72vh;
         margin-top: 4rem;
         margin-bottom: 2.5rem;
-    
+
     }
 
-    .box__DetailsTask{
+    .box__DetailsTask {
         height: 19vh;
     }
 
-    .box__tituloTask{
+    .box__tituloTask {
         height: 10vh;
         width: 46vw;
     }
-    .tituloTask{
-    color: #fff;
-    font-size: 40px;
-    margin-top: 4rem;
+
+    .tituloTask {
+        color: #fff;
+        font-size: 40px;
+        margin-top: 4rem;
     }
 
-    .label_coment{
+    .label_coment {
         margin-top: 3rem;
     }
 
-.box_btn_cadTask{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 4rem;
- }
+    .box_btn_cadTask {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 4rem;
+    }
 
- .lupaTask{
-    left: 70.5vw;
-    top: 21.8vh;
-    position: absolute;
-    color: #A6A0AE;
-    font-size: 18px;
- }
+    .lupaTask {
+        left: 70.5vw;
+        top: 21.8vh;
+        position: absolute;
+        color: #A6A0AE;
+        font-size: 18px;
+    }
 
- .input_add_coment{
-    width: 25vw;
-    border: #302e2e;
-    border-width: thin;
-    margin-top: 0.5rem;
-    padding-left: 2em;
-    height: 6vh;
- }
- .input_add_coment{
-    width: 25vw;
-    border: #302e2e;
-    border-width: thin;
-    margin-top: 0.5rem;
-    padding-left: 2em;
-    height: 7vh;
-}
+    .input_add_coment {
+        width: 25vw;
+        border: #302e2e;
+        border-width: thin;
+        margin-top: 0.5rem;
+        padding-left: 2em;
+        height: 6vh;
+        height: 2em;
+    }
 
- .modal__task{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 54vw;
- }
- .infoTask{
-    display: flex;
-    flex-direction: column;
-    margin-left: 0.5rem;
-    text-overflow: clip ellipsis;   
-    overflow: hidden;
-    white-space: nowrap;
-    width: 12vw;
-}
+    .input_add_coment {
+        width: 25vw;
+        border: #302e2e;
+        border-width: thin;
+        margin-top: 0.5rem;
+        padding-left: 2em;
+        height: 7vh;
+        height: 2em;
+    }
 
-.btn_salvar1{
-    margin-bottom: 3rem;
-    margin-right: 6rem;
-}
+    .modal__task {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 54vw;
+    }
+
+    .infoTask {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.5rem;
+        text-overflow: clip ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 12vw;
+    }
+
+    .btn_salvar1 {
+        margin-bottom: 3rem;
+        margin-right: 6rem;
+    }
 }
