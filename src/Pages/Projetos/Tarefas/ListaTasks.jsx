@@ -542,7 +542,7 @@ export default function TaskTarefa() {
                                         </div>
 
                                         <div>
-                                            <h2>{t("Title Task:")} </h2>
+                                            <h2 className='titulo_addTask'>{t("Title Task:")} </h2>
                                             <label>
                                                 <input className='input_title' type="text"
                                                     id='title'
@@ -556,7 +556,7 @@ export default function TaskTarefa() {
                                         </div>
 
                                         <div className='box_input_tag'>
-                                            <h2>{("Task tag:")} </h2>
+                                            <h2 className='titulo_addTask'>{("Task tag:")} </h2>
                                             <div className='div__tags'>
                                                 {
                                                     listaTag.map((tag) => {

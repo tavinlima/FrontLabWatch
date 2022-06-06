@@ -229,7 +229,7 @@
 }
 
 .tituloTask{
-    color: #fff;
+    color: black;
     font-size: 40px;
      margin: 40px 0 20px 0;
 }
@@ -239,7 +239,7 @@
 }
 
 .detailsTask{
-    color: #fff;
+    color: black;
 }
 .btn__change{
     background-color: #348fdf;
@@ -290,7 +290,7 @@
 }
 
 .comentTask{
-    color: #fff;
+    color: black;
 }
 
 ::-webkit-scrollbar {
@@ -378,6 +378,16 @@
     margin-top: 1rem;
 
 }
+.div__Register{
+    font-weight: bolder;
+
+}
+
+.titulo_addTask{
+    color: #000000;
+    font-size: 1em;
+    font-weight: bolder;
+}
 
 .input_title{
     width: 37vw;
@@ -423,6 +433,7 @@
     display: flex;
     flex-direction: column;
     width: 30vw;
+    font-weight: bolder;
 }
 .box_input_respon{
     display: flex;
@@ -450,7 +461,7 @@
 }
 
 .respo_title{
-    color: #fff;
+    color: black;
 }
 
 .box_input_horas{
