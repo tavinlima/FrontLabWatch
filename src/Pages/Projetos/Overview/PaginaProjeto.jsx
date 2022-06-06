@@ -8,6 +8,7 @@ import '../../../assets/css/overview.css'
 // import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
+import Loading from '../../../Components/loading'
 
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth.jsx'
 import api from '../../../services/api';
@@ -27,6 +28,14 @@ export default function PaginaProjeto() {
     const [listaUsuarios, setListaUsuarios] = useState([]);
     const [idUsuario, setIdUsuario] = useState(0);
     const [erroMensagem, setErroMensagem] = useState('');
+    const [count, setCount] = useState(0);
+
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1500);
+    })
 
     const notify = () => toast.success("Usuário retirado da equipe com sucesso!")
     const notifyCadastro = () => toast.success("Usuário cadastrado na equipe com sucesso!")
@@ -102,6 +111,7 @@ export default function PaginaProjeto() {
             let users = resposta.data.filter((equipe) => {
                 return equipe.idEquipe === parseInt(parseIdEquipe())
             })
+            setCount(users.length)
             console.log(users)
             setEquipe(users)
             console.log(users)
@@ -147,7 +157,7 @@ export default function PaginaProjeto() {
         console.log(users.idusuarioEquipe)
         api.delete('/UsuarioEquipes/' + users.idusuarioEquipe, {
             idEquipe: listaProjetos.idEquipe
-        } , {
+        }, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
             }
@@ -185,7 +195,7 @@ export default function PaginaProjeto() {
     }
 
     useEffect(buscarUsuarios, [])
-    useEffect(buscarProjeto, [])
+    useEffect(buscarProjeto, [count])
     useLayoutEffect(buscarEquipe, [])
     // useEffect(buscarFotoCliente, [])
 
@@ -196,6 +206,8 @@ export default function PaginaProjeto() {
             transition={{ duration: 2 }}
             exit={{ opacity: 0 }}
         >
+            {isLoading == false ?
+                <Loading /> : ''}
             <div>
                 <Header />
                 <SideBar />
