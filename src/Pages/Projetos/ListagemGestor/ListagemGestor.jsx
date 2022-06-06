@@ -282,7 +282,7 @@ export default function ListarMinhas() {
                                                                 </button>
 
                                                                 <div>
-                                                                    <span>{t("Client:")} </span>
+                                                                    <span>{t("Client: ")} </span>
                                                                     <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                                 </div>
 
@@ -329,18 +329,20 @@ export default function ListarMinhas() {
                                                                 <h2>{projeto.tituloProjeto}</h2>
                                                             </button>
 
-                                                            <div>
-                                                                <span>{t("Client:")} </span>
+                                                            <div className='div__infAdd'>
+                                                                <span>{t("Client: ")}</span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
+                                                            <div className='div__infAdd'>
+                                                                <span>{t("Delivery date:")}</span>
+                                                                <span>{Intl.DateTimeFormat("pt-BR",
+                                                                    {
+                                                                        year: 'numeric', month: 'numeric', day: 'numeric',
+                                                                        hour: 'numeric', minute: 'numeric'
+                                                                    }
+                                                                ).format(new Date(projeto.dataConclusao))}</span>
+                                                            </div>
 
-                                                            <span>{t("Delivery date:")}</span>
-                                                            <span>{Intl.DateTimeFormat("pt-BR",
-                                                                {
-                                                                    year: 'numeric', month: 'numeric', day: 'numeric',
-                                                                    hour: 'numeric', minute: 'numeric'
-                                                                }
-                                                            ).format(new Date(projeto.dataConclusao))}</span>
                                                         </div>
                                                         <div className="div__membersGear">
                                                             <div className="div__members">

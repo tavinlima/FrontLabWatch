@@ -12,6 +12,7 @@ import SideBar from '../../../Components/sidebar'
 import { parseIdEquipe, parseIdProjeto } from '../../../services/auth.jsx'
 import api from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 
 export default function PaginaProjeto() {
     const [listaProjetos, setListaProjetos] = useState([]);
@@ -131,6 +132,10 @@ export default function PaginaProjeto() {
         api.post('/UsuarioEquipes', {
             idEquipe: listaProjetos.idEquipe,
             idUsuario: idUsuario
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
         })
             .then(modal.style.display = "none")
             .then(notifyCadastro)
@@ -142,6 +147,10 @@ export default function PaginaProjeto() {
         console.log(users.idusuarioEquipe)
         api.delete('/UsuarioEquipes/' + users.idusuarioEquipe, {
             idEquipe: listaProjetos.idEquipe
+        } , {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
         })
             .then(() => buscarEquipe())
             .then(notify)
@@ -324,7 +333,7 @@ export default function PaginaProjeto() {
                                                             <span>{users.idUsuarioNavigation.nomeUsuario} {users.idUsuarioNavigation.sobreNome}</span>
                                                             <span>Responsável por: {(users.idUsuarioNavigation.tasks).length} tasks</span>
                                                         </div>
-                                                        <button className='btn_exclui_user' onClick={() => excluirUserEquipe(users)}>Excluir Usuario</button>
+                                                        <button className='btn_exclui_user' onClick={() => excluirUserEquipe(users)}><Icon className="X" icon="akar-icons:circle-x" /></button>
                                                     </section>
                                                 </div>
                                             )

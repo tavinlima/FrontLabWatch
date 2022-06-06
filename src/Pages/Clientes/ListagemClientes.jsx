@@ -44,7 +44,11 @@ export default function Cliente() {
 
     ///FUNCAO COM A API
     function listarClientes() {
-        api("/Clientes/")
+        api("/Clientes/", {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        })
             .then(resposta => {
                 if (resposta.status === 200) {
                     console.log(resposta.data)
@@ -68,14 +72,17 @@ export default function Cliente() {
         // formData.append('idCliente', idCliente);
         formData.append('nomeCliente', nomeCliente);
         formData.append('descricao', descricao);
-        formData.append('dataCadastro', dataCadastro.toLocaleString()); 
+        formData.append('dataCadastro', dataCadastro.toLocaleString());
         console.log(nomeCliente);
         console.log(descricao);
-        console.log(dataCadastro.toLocaleString()); 
+        console.log(dataCadastro.toLocaleString());
         console.log(file.name);
 
         api.post("/ClientesCadastrar/", formData, {
-            headers: { "Content-Type": "multipart/form-data" }
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+                "Content-Type": "multipart/form-data"
+            }
         })
             .then((resposta) => {
                 if (resposta.status === 201) {
@@ -96,7 +103,7 @@ export default function Cliente() {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1}}
+            transition={{ duration: 1 }}
             exit={{ opacity: 0 }}
         >
             <Header />
@@ -171,27 +178,27 @@ export default function Cliente() {
                                 listaClientes.map((cliente) => {
                                     return (
                                         <section className="section__cliente" key={cliente.idCliente}>
-                                                <div className="box__cliente" key={cliente.idCliente}>
-                                                    <div className="containerBox">
-                                                        <div className="divisoria__imgCliente">
-                                                            <img className="img_cliente" src={"https://labwatch-backend.azurewebsites.net/img/" + cliente.fotoCliente}
-                                                                alt="Imagem do Cliente" />
-                                                        </div>
-                                                        <div className="box__infoCliente">
-                                                            <h2>Client: {cliente.nomeCliente}</h2>
-
-                                                            <div className="div__working">
-                                                                <span>Working Since: {new Date(cliente.dataCadastro).toLocaleDateString()}</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="div__descricao">
-                                                            <span>Descrição: {cliente.descricao}</span>
-                                                        </div>
-
+                                            <div className="box__cliente" key={cliente.idCliente}>
+                                                <div className="containerBox">
+                                                    <div className="divisoria__imgCliente">
+                                                        <img className="img_cliente" src={"https://labwatch-backend.azurewebsites.net/img/" + cliente.fotoCliente}
+                                                            alt="Imagem do Cliente" />
                                                     </div>
+                                                    <div className="box__infoCliente">
+                                                        <h2>Client: {cliente.nomeCliente}</h2>
+
+                                                        <div className="div__working">
+                                                            <span>Working Since: {new Date(cliente.dataCadastro).toLocaleDateString()}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="div__descricao">
+                                                        <span>Descrição: {cliente.descricao}</span>
+                                                    </div>
+
                                                 </div>
-                                            </section>
+                                            </div>
+                                        </section>
                                     )
                                 })
                     }

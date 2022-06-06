@@ -30,6 +30,7 @@ export default function CadastroProjetos() {
         setIsLoading(true);
 
         let projeto = {
+            idUsuario: parseJwt().jti,
             idStatusProjeto: 1,
             tituloProjeto: nomeProjeto,
             dataInicio: dataInicio,

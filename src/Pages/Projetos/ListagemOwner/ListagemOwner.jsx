@@ -2,8 +2,10 @@ import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"
-
 import { useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Icon } from '@iconify/react';
+
 import Header from '../../../Components/header';
 import SideBar from '../../../Components/sidebar'
 import Loading from '../../../Components/loading'
@@ -12,12 +14,12 @@ import "../../../assets/css/listaProjetos.css"
 import "../../../assets/css/global.css"
 import "../../../assets/css/modalExcluir.css"
 
-import { Icon } from '@iconify/react';
 
 import api from '../../../services/api';
 
 
 export default function ListagemOwner() {
+    const { t } = useTranslation();
     const [listaProjetos, setListaProjetos] = useState([])
     const [idProjeto, setIdProjeto] = useState([])
     const [filteredResults, setFilteredResults] = useState([]);
@@ -213,7 +215,7 @@ export default function ListagemOwner() {
 
     function desativarProjeto() {
         console.log(idProjeto)
-        api.patch('/Projetos/MudarSituacao?idProjeto=' + idProjeto + '&statusProjeto=2',{
+        api.patch('/Projetos/MudarSituacao?idProjeto=' + idProjeto + '&statusProjeto=2', {
             idProjeto: idProjeto
         }, {
             headers: {
@@ -295,7 +297,7 @@ export default function ListagemOwner() {
                             <select className='select__filterProjects' onChange={(e) => setFiltroSelecionado(e.target.value)} value={filtroSelecionado}>
                                 <option value='2'>Projetos em andamento</option>
                                 <option value='3'>Projetos concluídos</option>
-                                {/* <option value='1'>Todos os projetos</option> */}
+                                <option value='1'>Todos os projetos</option>
                             </select>
                         </div>
                         <Link to='/CadastroProjetos' className="btn__criarProjeto btn">Create Project</Link>
@@ -325,18 +327,19 @@ export default function ListagemOwner() {
                                                                     <h2>{projeto.tituloProjeto}</h2>
                                                                 </button>
 
-                                                                <div>
-                                                                    <span>Cliente: </span>
+                                                                <div className='div__infAdd'>
+                                                                    <span>{t("Client: ")}</span>
                                                                     <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                                 </div>
-
-                                                                <span>Data de entrega:</span>
-                                                                <span>{Intl.DateTimeFormat("pt-BR",
-                                                                    {
-                                                                        year: 'numeric', month: 'numeric', day: 'numeric',
-                                                                        hour: 'numeric', minute: 'numeric'
-                                                                    }
-                                                                ).format(new Date(projeto.dataConclusao))}</span>
+                                                                <div className='div__infAdd'>
+                                                                    <span>{t("Delivery date:")}</span>
+                                                                    <span>{Intl.DateTimeFormat("pt-BR",
+                                                                        {
+                                                                            year: 'numeric', month: 'numeric', day: 'numeric',
+                                                                            hour: 'numeric', minute: 'numeric'
+                                                                        }
+                                                                    ).format(new Date(projeto.dataConclusao))}</span>
+                                                                </div>
                                                             </div>
                                                             <div className="div__membersGear">
                                                                 <div className="div__members">
@@ -372,18 +375,19 @@ export default function ListagemOwner() {
                                                                 <h2>{projeto.tituloProjeto}</h2>
                                                             </button>
 
-                                                            <div>
-                                                                <span>Cliente: </span>
+                                                            <div className='div__infAdd'>
+                                                                <span>{t("Client: ")}</span>
                                                                 <span>{projeto.idClienteNavigation.nomeCliente}</span>
                                                             </div>
-
-                                                            <span>Data de entrega:</span>
-                                                            <span>{Intl.DateTimeFormat("pt-BR",
-                                                                {
-                                                                    year: 'numeric', month: 'numeric', day: 'numeric',
-                                                                    hour: 'numeric', minute: 'numeric'
-                                                                }
-                                                            ).format(new Date(projeto.dataConclusao))}</span>
+                                                            <div className='div__infAdd'>
+                                                                <span>{t("Delivery date:")}</span>
+                                                                <span>{Intl.DateTimeFormat("pt-BR",
+                                                                    {
+                                                                        year: 'numeric', month: 'numeric', day: 'numeric',
+                                                                        hour: 'numeric', minute: 'numeric'
+                                                                    }
+                                                                ).format(new Date(projeto.dataConclusao))}</span>
+                                                            </div>
                                                         </div>
                                                         <div className="div__membersGear">
                                                             <div className="div__members">

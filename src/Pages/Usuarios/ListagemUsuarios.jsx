@@ -65,7 +65,14 @@ export default function Usuario() {
         // console.log(ativo)
         // console.log(usuario);
 
-        api.patch("/Usuarios/" + usuario + '?ativo=true'
+        api.patch("/Usuarios/" + usuario + '?ativo=true', {
+            idUsuario: usuario,
+            ativo: true
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }
         ).then(resposta => {
             console.log(resposta.data)
             if (resposta.status === 200) {
@@ -74,7 +81,7 @@ export default function Usuario() {
             }
             console.log(resposta);
         }).then(check)
-        .catch(erro => console.log(erro))
+            .catch(erro => console.log(erro))
 
     }
 
@@ -89,7 +96,7 @@ export default function Usuario() {
             }
             console.log(resposta)
         }).then(delet)
-        .catch(erro => console.log(erro))
+            .catch(erro => console.log(erro))
     }
 
     useEffect(listarUsuarios, [])
@@ -98,7 +105,7 @@ export default function Usuario() {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1}}
+            transition={{ duration: 1 }}
             exit={{ opacity: 0 }}
         >
             <Header />

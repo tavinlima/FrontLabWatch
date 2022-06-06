@@ -78,6 +78,7 @@ export default function ListarConsultor() {
                 resposta.data.map((equipe) => {
                     if (equipe.idUsuarioNavigation.idUsuario != null) {
                         let usuarioEquipes = equipe.idEquipeNavigation.usuarioEquipes
+                        console.log(usuarioEquipes)
                         usuarioEquipes.map((usuario) => {
                             if (usuario.idUsuario == parseJwt().jti) {
                                 localStorage.setItem('idEquipe', usuario.idEquipe)
@@ -90,7 +91,7 @@ export default function ListarConsultor() {
             .catch(erro => console.log(erro))
     }
 
-    useLayoutEffect(buscarEquipe, [])
+    // useLayoutEffect(buscarEquipe, [])
 
     async function listarMeusProjetos() {
         console.log(parseIdEquipe());
@@ -106,7 +107,7 @@ export default function ListarConsultor() {
     }
 
     /// UseEffects aqui:
-    // useEffect(listarMeusProjetos, [])
+    useEffect(listarMeusProjetos, [])
 
     return (
         <motion.div

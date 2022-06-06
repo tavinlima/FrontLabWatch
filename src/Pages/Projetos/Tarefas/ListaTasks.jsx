@@ -16,7 +16,6 @@ import { changeLanguage } from 'i18next';
 
 export default function TaskTarefa() {
     const { t } = useTranslation();
-    // const notify = () => toast.warning("Cuidado! Palavras inadequadas foram encontradas")
     const date = new Date().toLocaleDateString();
     const [tituloTag, setTituloTag] = useState('');
     const [tempoTrabalho, setTempoTrabalho] = useState('');
@@ -29,16 +28,19 @@ export default function TaskTarefa() {
     const [listaPendentes, setListaPendentes] = useState([]);
     const [listaFazendo, setListaFazendo] = useState([]);
     const [listaConcluido, setListaConcluido] = useState([]);
+    const [horasTrabalhadas, setHorasTrabalhadas] = useState(0);
     // const [erroMod, setErroMod] = useState('');
     const [idTag, setIdTag] = useState([]);
+    const [statusDaTask, setStatusDaTask] = useState([]);
     const [idTask, setIdTask] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [meuComentario, setMeuComentario] = useState('');
     const [equipe, setEquipe] = useState([]);
     const [idResp, setIdResp] = useState([]);
     const [idUsuario, setIdUsuario] = useState([]);
-
-
+    
+    const notify = () => toast.success("Horas confirmadas!")
+    
     function listarMinhasTasks() {
         api("/Tasks/Minhas/" + parseJwt().jti, {
             headers: {
@@ -51,7 +53,6 @@ export default function TaskTarefa() {
                     return tasks.idProjeto == parseIdProjeto()
                 })
                 setMinhasTasks(minhasTasks);
-                console.log(minhasTasks)
             }
         }).catch(erro => console.log(erro))
     }
@@ -131,6 +132,7 @@ export default function TaskTarefa() {
         setTituloTask(task.tituloTask)
         setDescricao(task.descricao)
         setDescricaoTask(task.descricaoTask)
+        setStatusDaTask(task.idStatusTask)
         setIdTag(task.idTag)
         setTituloTag(task.idTagNavigation.tituloTag)
 
@@ -181,7 +183,7 @@ export default function TaskTarefa() {
             if (resposta.status === 200) {
                 setIsLoading(false)
             }
-        }).then(() => listarMinhasTasks())
+        }).then(() => listarTodasTasks())
             .catch(erro => {
                 console.log(erro)
                 setIsLoading(false)
@@ -247,6 +249,107 @@ export default function TaskTarefa() {
             setEquipe(users)
             console.log(users)
         })
+    }
+
+    function mudarSituacao(idTask, idStatus) {
+        console.log(idTask + " " + idStatus)
+        api.patch('/Tasks/MudarSituacao/' + idTask + '?idStatus=' + idStatus, {
+            idTask: idTask,
+            idStatus: idStatus
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            }
+        }).then(() => listarMinhasTasks())
+            .catch(erro => console.log(erro))
+    }
+
+    const cards = document.querySelectorAll('.card');
+    const dropZones = document.querySelectorAll('.dropZone');
+
+    cards.forEach((card) => {
+        card.addEventListener('dragstart', dragStart);
+        card.addEventListener('drag', drag);
+        card.addEventListener('dragend', dragEnd);
+    })
+
+    function dragStart() {
+        dropZones.forEach(dropZone => dropZone.classList.add('highlight'));
+        this.classList.add('dragging');
+
+        switch (this.parentElement.id) {
+            case 'todo':
+                this.firstElementChild.classList.remove('todo');
+                break;
+            case 'doing':
+                this.firstElementChild.classList.remove('doing');
+                break;
+            case 'done':
+                this.firstElementChild.classList.remove('done');
+                break;
+            case 'garbage':
+                this.firstElementChild.classList.remove('todo');
+                break;
+            default:
+                break;
+        }
+    }
+
+    function drag() {
+
+    }
+
+    function dragEnd() {
+        dropZones.forEach(dropZone => dropZone.classList.remove('highlight'));
+        this.classList.remove('dragging');
+
+        switch (this.parentElement.id) {
+            case 'todo':
+                this.firstElementChild.classList.add('todo');
+                console.log(this.parentElement.firstElementChild)
+                mudarSituacao(this.lastElementChild.lastElementChild.id, 3)
+                break;
+            case 'doing':
+                this.firstElementChild.classList.add('doing');
+                mudarSituacao(this.lastElementChild.lastElementChild.id, 2)
+                break;
+            case 'done':
+                this.firstElementChild.classList.add('done');
+                mudarSituacao(this.lastElementChild.lastElementChild.id, 1)
+                break;
+            case 'garbage':
+                this.parentElement.removeChild(this);
+                break;
+            default:
+                break;
+        }
+    }
+
+    dropZones.forEach(dropZone => {
+        dropZone.addEventListener('dragenter', dragEnter);
+        dropZone.addEventListener('dragover', dragOver);
+        dropZone.addEventListener('dragleave', dragLeave);
+        dropZone.addEventListener('drop', drop);
+    })
+
+    function dragEnter() {
+
+    }
+
+    function dragOver() {
+        this.classList.add('over');
+
+        const cardBeingDragged = document.querySelector('.dragging');
+
+        this.appendChild(cardBeingDragged);
+    }
+
+    function dragLeave() {
+        this.classList.remove('over');
+    }
+
+    function drop() {
+        this.classList.remove('over');
     }
 
     function mudarResponsavel(idUser) {
@@ -323,100 +426,103 @@ export default function TaskTarefa() {
                         <section className="section__kanban container">
                             <div className='board'>
                                 <h2 className='board_title'>TO-DO</h2>
-                                {
-                                    listaPendentes.map((tasks) => {
-                                        return (
-                                            <div className="dropZone" id="todo" key={tasks.idTask}>
-                                                <label>
-                                                    <button onClick={() => abrirModalTask(tasks)}></button>
-                                                    <div className="card" draggable="true">
-                                                        <div className="status todo"></div>
-                                                        <div className='infoTask'>
-                                                            <h2 className='button_selectTask'>{tasks.tituloTask}</h2>
-                                                            <span>
-                                                                <span className='span_title'> {t('Project Title:')} </span>
-                                                                <span className='titleTask'>{tasks.idProjetoNavigation.tituloProjeto}</span>
-                                                            </span>
-                                                            <span >
-                                                                <span className='span_description'> {t('Description')}</span>
-                                                                <span className='description'>{tasks.descricao}</span>
-                                                            </span>
-                                                            <span>
-                                                                <span className='span_hours'> {t('Worked Hours:')} </span>
-                                                                <span className='hours'>{tasks.tempoTrabalho}</span>
-                                                            </span>
-                                                        </div>
+                                <div className="dropZone" id="todo">
+                                    {
+                                        listaPendentes.map((tasks) => {
+                                            return (
+                                                <label className="card" draggable="true" key={tasks.idTask}>
+                                                    <div className="status todo"></div>
+                                                    <button style={{ display: 'none' }} onClick={() => abrirModalTask(tasks)}></button>
+                                                    {/* <div className="card" draggable="true"> */}
+                                                    <div className='infoTask' id='content'>
+                                                        <h2 className='button_selectTask'>{tasks.tituloTask}</h2>
+                                                        <span>
+                                                            <span className='span_title'> {t('Project Title:')} </span>
+                                                            <span className='titleTask'>{tasks.idProjetoNavigation.tituloProjeto}</span>
+                                                        </span>
+                                                        <span >
+                                                            <span className='span_description'> {t('Description')}</span>
+                                                            <span className='description'>{tasks.descricao}</span>
+                                                        </span>
+                                                        <span>
+                                                            <span className='span_hours'> {t('Worked Hours:')} </span>
+                                                            <span className='hours'>{tasks.tempoTrabalho}</span>
+                                                        </span>
+                                                        <span id={tasks.idTask} style={{ display: 'none' }}></span>
                                                     </div>
+                                                    {/* </div> */}
                                                 </label>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
                             <div className="board">
                                 <h2 className='board_title'>DOING</h2>
-                                {
-                                    listaFazendo.map((tasks) => {
-                                        return (
-                                            <div className="dropZone" id="todo" key={tasks.idTask}>
-                                                <label>
-                                                    <button onClick={() => abrirModalTask(tasks)}></button>
-                                                    <div className="card" draggable="true">
-                                                        <div className="status doing"></div>
-                                                        <div className='infoTask'>
-                                                            <h2 className='button_selectTask'>{tasks.tituloTask}</h2>
-                                                            <span>
-                                                                <span className='span_title'> {t('Project Title:')} </span>
-                                                                <span className='titleTask'>{tasks.idProjetoNavigation.tituloProjeto}</span>
-                                                            </span>
-                                                            <span >
-                                                                <span className='span_description'> {t("Description")}</span>
-                                                                <span className='description'>{tasks.descricao}</span>
-                                                            </span>
-                                                            <span >
-                                                                <span className='span_hours'> {t('Worked Hours:')} </span>
-                                                                <span className='hours'>{tasks.tempoTrabalho}</span>
-                                                            </span>
-                                                        </div>
+                                <div className="dropZone" id="doing">
+                                    {
+                                        listaFazendo.map((tasks) => {
+                                            return (
+                                                <label className="card" draggable="true" key={tasks.idTask}>
+                                                    <div className="status doing"></div>
+                                                    <button style={{ display: 'none' }} onClick={() => abrirModalTask(tasks)}></button>
+                                                    {/* <div> */}
+                                                    <div className='infoTask' id='content'>
+                                                        <h2 className='button_selectTask'>{tasks.tituloTask}</h2>
+                                                        <span>
+                                                            <span className='span_title'> {t('Project Title:')} </span>
+                                                            <span className='titleTask'>{tasks.idProjetoNavigation.tituloProjeto}</span>
+                                                        </span>
+                                                        <span >
+                                                            <span className='span_description'> {t("Description")}</span>
+                                                            <span className='description'>{tasks.descricao}</span>
+                                                        </span>
+                                                        <span >
+                                                            <span className='span_hours'> {t('Worked Hours:')} </span>
+                                                            <span className='hours'>{tasks.tempoTrabalho}</span>
+                                                        </span>
+                                                        <span id={tasks.idTask} style={{ display: 'none' }}></span>
                                                     </div>
+                                                    {/* </div> */}
                                                 </label>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                            )
+                                        })
+                                    }
+                                </div>
 
                             </div>
                             <div className="board">
                                 <h2 className='board_title'>DONE!</h2>
-                                {
-                                    listaConcluido.map((tasks) => {
-                                        return (
-                                            <div className="dropZone" id="todo" key={tasks.idTask}>
-                                                <label>
-                                                    <button onClick={() => abrirModalTask(tasks)}></button>
-                                                    <div className="card" draggable="true">
-                                                        <div className="status done"></div>
-                                                        <div className='infoTask'>
-                                                            <h2 className='button_selectTask'>{tasks.tituloTask}</h2>
-                                                            <span>
-                                                                <span className='span_title'> {t('Project Title:')} </span>
-                                                                <span className='titleTask'>{tasks.idProjetoNavigation.tituloProjeto}</span>
-                                                            </span>
-                                                            <span >
-                                                                <span className='span_description'> {t('Description')}</span>
-                                                                <span className='description'>{tasks.descricao}</span>
-                                                            </span>
-                                                            <span >
-                                                                <span className='span_hours'> {t('Worked Hours:')} </span>
-                                                                <span className='hours'>{tasks.tempoTrabalho}</span>
-                                                            </span>
-                                                        </div>
+                                <div className="dropZone" id="done">
+                                    {
+                                        listaConcluido.map((tasks) => {
+                                            return (
+                                                <label className="card" draggable="true" key={tasks.idTask}>
+                                                    <div className="status done"></div>
+                                                    <button style={{ display: 'none' }} onClick={() => abrirModalTask(tasks)}></button>
+                                                    {/* <div> */}
+                                                    <div className='infoTask' id='content'>
+                                                        <h2 className='button_selectTask'>{tasks.tituloTask}</h2>
+                                                        <span>
+                                                            <span className='span_title'> {t('Project Title:')} </span>
+                                                            <span className='titleTask'>{tasks.idProjetoNavigation.tituloProjeto}</span>
+                                                        </span>
+                                                        <span >
+                                                            <span className='span_description'> {t('Description')}</span>
+                                                            <span className='description'>{tasks.descricao}</span>
+                                                        </span>
+                                                        <span >
+                                                            <span className='span_hours'> {t('Worked Hours:')} </span>
+                                                            <span className='hours'>{tasks.tempoTrabalho}</span>
+                                                        </span>
+                                                        <span id={tasks.idTask} style={{ display: 'none' }}></span>
                                                     </div>
+                                                    {/* </div> */}
                                                 </label>
-                                            </div>
-                                        )
-                                    })
-                                }
+                                            )
+                                        })
+                                    }
+                                </div>
 
                             </div>
                         </section>
@@ -446,7 +552,7 @@ export default function TaskTarefa() {
                                                                         value={idUsuario}
                                                                         multiple={false}
                                                                     >
-                                                                        <option aria-disabled="true" value="0">{t("Select a responsible")}</option>
+                                                                        <option value="0" >{t("Select a responsible")}</option>
                                                                         {
                                                                             equipe.map((usuario) => {
                                                                                 return (
@@ -481,6 +587,26 @@ export default function TaskTarefa() {
                                                                         </select>
                                                                         <button className='btn__change' onClick={() => mudarResponsavel(idUsuario)}>{t("Change responsable")}</button>
                                                                     </label>
+                                                                </div>
+                                                            )
+                                                        case "1":
+                                                            return (
+                                                                <div className='box_input_respon'>
+                                                                    {
+                                                                        statusDaTask === 1 ?
+                                                                            <label>
+                                                                                <h2 className='respo_title'>Worked hours</h2>
+                                                                                <input
+                                                                                    className='input_add_coment'
+                                                                                    type='text'
+                                                                                    name='coment'
+                                                                                    onChange={(e) => setHorasTrabalhadas(e.target.value)}
+                                                                                    value={horasTrabalhadas}
+                                                                                    placeholder='Worked hours'
+                                                                                />
+                                                                                <button className='btn__change' onClick={notify}>Confirm</button>
+                                                                            </label> : ''
+                                                                    }
                                                                 </div>
                                                             )
                                                         default:
@@ -608,7 +734,7 @@ export default function TaskTarefa() {
                                                     onChange={(e) => setIdResp(e.target.value)}
                                                     value={idResp}
                                                 >
-                                                    <option aria-disabled="true" value="0" disabled>{t("Select a responsible")}</option>
+                                                    <option aria-disabled="true" value="0" >{t("Select a responsible")}</option>
                                                     {
                                                         equipe.map((usuario) => {
                                                             return (
